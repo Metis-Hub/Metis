@@ -1,12 +1,12 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>Zianteu - pop the bubble</title>
+        <title>Metis - school made easy</title>
     </head>
     <body style="background-color: aliceblue;">
         <center>
             <p style="font-family: Haettenschweiler; font-size: 200;">
-                Zianteu - pop the bubble
+                Metis - school made easy
             </p>
         </center>
 
