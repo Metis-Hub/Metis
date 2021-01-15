@@ -1,11 +1,11 @@
 nav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
 body {
@@ -13,14 +13,14 @@ body {
     font-size: 20px;
     position: absolute;
     top: 50%;
-    left 50%;
-    -ms-transform: translate(90%, -50%);
-    transform: translate(90%, -50%);
+    left: 50%;
+    -ms-transform: translate(-50%, -60%);
+    transform: translate(-50%, -60%);
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-image: linear-gradient(to bottom right, blue, cyan, white);
+    background-image: linear-gradient(to bottom right, #b2b2b2, #949494, #b2b2b2);
 }
 
 nav button:hover {
@@ -29,42 +29,42 @@ nav button:hover {
 }
 
 nav input {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 17px;
-  border: none;
-  width: 200px;
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 200px;
 }
 
-/* Style the button inside the input container */
 button {
-  float: inherit;
-  padding: 6px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
+    float: inherit;
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
 }
 
 .topnav button:hover {
-  background: #ccc;
+    background: #ccc;
 }
 
-/* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */
-@media screen and (max-width: 50px) {
-  nav.login-container {
-    float: none;
-  }
-  nav a, nav input, button {
-    float: none;
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  nav input[type=text] {
-    border: 1px solid #ccc;
-  }
+@media screen and (max-width: 900px) {
+    nav.login-container {
+        float: none;
+    }
+
+    nav a, nav input, button {
+        float: none;
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+
+        nav input[type=text] {
+            border: 1px solid #ccc;
+        }
 }

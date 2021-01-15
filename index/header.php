@@ -13,7 +13,7 @@
 			<a href="#about">About</a>
 			<a href="#contact">Contact</a>
 			<div class="login-container">
-				<form action="">
+				<form action="../login/signin.php" method="$POST">
 					<input type="text" placeholder="Username" name="username"/>
 					<input type="password" placeholder="Password" name="psw"/>
 					<button type="button" onclick="window.location.href = '../login/signup.html';">Registrieren</button>
