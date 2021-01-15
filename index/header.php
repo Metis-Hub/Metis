@@ -13,11 +13,10 @@
 			<a href="#about">About</a>
 			<a href="#contact">Contact</a>
 			<div class="login-container">
-				<form action="../login/signin.php" method="$POST">
-					<input type="text" placeholder="Username" name="username"/>
-					<input type="password" placeholder="Password" name="psw"/>
-					<button type="button" onclick="window.location.href = '../login/signup.html';">Registrieren</button>
-					<button type="submit" name="login">Login</button>
+				<form method="POST" action="../login/signin.php">
+					<input type="text" placeholder="Benutztername" name="username" />
+					<input type="password" placeholder="Passwort" name="psw" />
+					<button type="submit" name="login">Anmelden</button>
 				</form>
 			</div>
 		</nav>
