@@ -1,5 +1,13 @@
 * {box-sizing: border-box;}
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 /* Style the navbar */
 nav {
   overflow: hidden;
