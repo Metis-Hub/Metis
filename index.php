@@ -1,6 +1,8 @@
 <html>
     <head>
-        <meta http-equiv="refresh" content="0; URL=index/index.php">
+        <title>
+        Metis
+        </title>
     </head>
     <body>
         <p>
@@ -8,3 +10,6 @@
         </p>
     </body>
 </html>
+<?php
+header('Location: index/index.php');
+?>
