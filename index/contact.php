@@ -6,7 +6,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="style.css" />
-	<link rel="icon" href="../logoMetis.png" type="image/png" />
+	<link rel="icon" href="../faviconMetis.ico" type="image/x-icon" />
 	<title>
 	Metis - Impressum
 	</title>

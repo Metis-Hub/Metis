@@ -25,7 +25,7 @@
 		<html>
 
 		<head>
-			<link rel=\"icon\" href=\"../logoMetis (2).png\" type=\"image/png\">
+			<link rel=\"icon\" href=\"../faviconMetis.ico\" type=\"image/x-icon\" />
 			<title>Anmeldedaten nicht gefunden!</title>
 			<meta http-equiv=\"refresh\" content=\"5; URL=../index/index.php\">
 		</head>
