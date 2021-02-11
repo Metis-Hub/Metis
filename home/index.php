@@ -1,7 +1,7 @@
 <?php
 global $position;
 $position = 0;
-include("header.php");
+include("./../header.php");
 ?>
 
 <?php
