@@ -40,7 +40,7 @@
 
 			echo
 			'
-			<a id="SignOut" href="./../index.php">Abmelden</a>
+			<a id="SignOut" href="./../../index.php">Abmelden</a>
 			</div>
 			';
 
