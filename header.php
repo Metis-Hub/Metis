@@ -13,21 +13,30 @@
 			<?php
 
 			if($position == 0) {
-			echo
-			'
-			<a class="active" href="./../home">Home</a>
-			<a href="./../class">Meine Klasse</a>
-			<a href="./../class">Einstellungen</a>
-			';
+				echo
+				'
+				<a class="active">Home</a>
+				<a href="./../class">Meine Klasse</a>
+				<a href="./../settings">Einstellungen</a>
+				';
 			}
-			else if($position == 1) {
-			echo
-			'
-			<a href="./../home">Home</a>
-			<a class="active"  href="">Meine Klasse</a>
-			<a href="">Einstellungen</a>
-			';
+			elseif($position == 1) {
+				echo
+				'
+				<a href="./../home">Home</a>
+				<a class="active">Meine Klasse</a>
+				<a href="./../settings">Einstellungen</a>
+				';
 			}
+			elseif ($position == 2) {
+				echo
+				'
+				<a href="./../home">Home</a>
+				<a href="./../class">Meine Klasse</a>
+				<a class="active">Einstellungen</a>
+				';
+			}
+
 
 			echo
 			'
