@@ -11,5 +11,5 @@
     </body>
 </html>
 <?php
-header('Location: index/index.php');
+header('Location: index/');
 ?>

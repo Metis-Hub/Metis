@@ -1,6 +1,7 @@
 <?php
+global $position;
+$position = 0;
 include("header.php");
-global $position = 0;
 ?>
 
 <?php

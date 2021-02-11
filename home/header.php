@@ -15,18 +15,20 @@
 			'
 			<a class="active" href="#home">Home</a>
 			<a href="">Meine Klasse</a>
-			<a href="contact.php">Impressum</a>
+			<a href="">Einstellungen</a>
+			<a id="SignOut" href="./../index.php">Abmelden</a>
 			</div>
-			'
+			';
 			}
 			else if($position == 1){
 			echo
 			'
 			<a class="active" href="#home">Home</a>
 			<a href="">Meine Klasse</a>
-			<a href="contact.php">Impressum</a>
+			<a href="">Einstellungen</a>
+			<a id="SignOut" href="./../index.php">Abmelden</a>
 			</div>
-			'
+			';
 			}
 			?>
 		</nav>
