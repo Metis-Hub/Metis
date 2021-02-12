@@ -4,6 +4,11 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url(./../logoMetis.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-attachment: scroll;
     background-color: #c2f9ff;
 }
 

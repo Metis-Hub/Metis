@@ -5,10 +5,15 @@
 		<link rel="stylesheet" href="style.css" />
 		<link rel="icon" href="../faviconMetis.ico" type="image/x-icon" />
 		<title>Metis</title>
-
-		<script type="text/javascript">
-			alert("Diese Web-Site verwendet Cookies.\nBitte stimmen Sie zu, um unsere Web-Site zu verwenden.");
-		</script>
+		<?php
+			// Wenn keine Cookies gesetzt wurden, bzw. nicht zugestimmt wurde wird zu JavaScript-Meldung weitergeleitet.
+			if (!isset($_COOKIE["cookie"]))
+			header('Location: ./../index.php');
+			else
+			// Da die JavaScript-Meldung nur Tempräre Cookies setzt wird dies Cookie verlängert, sodass
+			// keine weitere Frage nach Cookies in nächster Zeit auftaucht
+			setcookie("cookie", "true", time() * 100);
+		?>
 
 	</head>
 	<body>

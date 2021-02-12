@@ -12,7 +12,7 @@
 	</title>
 </head>
 
-<body>
+<body class="content">
 
 	<header>
 	<nav>
