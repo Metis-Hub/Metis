@@ -1,6 +1,6 @@
 <?php
 	global $position;
-	$position = 2;
+	$position = 3;
 	include("./../header.php");
 	include("./../footer.php");
 ?>

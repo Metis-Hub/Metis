@@ -7,7 +7,7 @@
 		<title>Metis</title>
 
 		<script type="text/javascript">
-			alert("Diese Web-Site verwendet Coockies.\nBitte stimmen Sie zu, um unsere Web-Site zu verwenden.");
+			alert("Diese Web-Site verwendet Cookies.\nBitte stimmen Sie zu, um unsere Web-Site zu verwenden.");
 		</script>
 
 	</head>

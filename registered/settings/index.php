@@ -1,8 +1,6 @@
 <?php
-
-global $position;
-$position = 2;
-include("./../header.php");
-include("footer.php");
-
+	global $position;
+	$position = 4;
+	include("./../header.php");
+	include("./../footer.php");
 ?>

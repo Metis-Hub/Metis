@@ -15,32 +15,58 @@
 			if($position == 0) {
 				echo
 				'
-				<a class="active">Home</a>
-				<a href="./../class">Meine Klasse</a>
-				<a href="./../settings">Einstellungen</a>
+				<div><a class="active">Home</a></div>
+				<div><a href="./../tasks">Aufgabenplaner</a></div>
+				<div><a href="./../class">Meine Klasse</a></div>
+				<div><a href="./../learn">Lernen</a></div>
+				<div><a href="./../settings">Einstellungen</a></div>
 				';
 			}
 			elseif($position == 1) {
 				echo
 				'
-				<a href="./../home">Home</a>
-				<a class="active">Meine Klasse</a>
-				<a href="./../settings">Einstellungen</a>
+				<div><a href="./../home">Home</a></div>
+				<div><a class="active">Aufgabenplaner</a></div>
+				<div><a href="./../class">Meine Klasse</a></div>
+				<div><a href="./../learn">Lernen</a></div>
+				<div><a href="./../settings">Einstellungen</a></div>
 				';
 			}
 			elseif ($position == 2) {
 				echo
 				'
-				<a href="./../home">Home</a>
-				<a href="./../class">Meine Klasse</a>
-				<a class="active">Einstellungen</a>
+				<div><a href="./../home">Home</a></div>
+				<div><a href="./../tasks">Aufgabenplaner</a></div>
+				<div><a class="active">Meine Klasse</a></div>
+				<div><a href="./../learn">Lernen</a></div>
+				<div><a href="./../settings">Einstellungen</a></div>
+				';
+			}
+			elseif($position == 3) {
+				echo
+				'
+				<div><a href="./../home">Home</a></div>
+				<div><a href="./../tasks">Aufgabenplaner</a></div>
+				<div><a href="./../class">Meine Klasse</a></div>
+				<div><a class="active">Lernen</a></div>
+				<div><a href="./../settings">Einstellungen</a></div>
+				';
+			}
+			elseif ($position == 4) {
+				echo
+				'
+				<div><a href="./../home">Home</a></div>
+				<div><a href="./../tasks">Aufgabenplaner</a></div>
+				<div><a href="./../class">Meine Klasse</a></div>
+				<div><a href="./../learn">Lernen</a></div>
+				<div><a class="active">Einstellungen</a></div>
 				';
 			}
 
 
 			echo
 			'
-			<a id="SignOut" href="./../../index.php">Abmelden</a>
+			<div><a id="SignOut" href="./../../index.php">Abmelden</a></div>
 			</div>
 			';
 
