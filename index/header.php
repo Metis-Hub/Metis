@@ -5,13 +5,18 @@
 		<link rel="stylesheet" href="style.css" />
 		<link rel="icon" href="../faviconMetis.ico" type="image/x-icon" />
 		<title>Metis</title>
+
+		<script type="text/javascript">
+			alert("Diese Web-Site verwendet Coockies.\nBitte stimmen Sie zu, um unsere Web-Site zu verwenden.");
+		</script>
+
 	</head>
 	<body>
 		<header>
 		<nav>
 			<a class="active" href="#home">Home</a>
-			<a href="#about">About</a>
-			<a href="contact.php">Impressum</a>
+			<a href="about">About</a>
+			<a href="contact">Impressum</a>
 			<div class="login-container">
 				<form method="POST" action="../login/signin.php">
 					<input type="text" placeholder="Benutztername" name="username" />
