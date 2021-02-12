@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link rel="icon" href="faviconMetis.ico" type="image/x-icon" />
         <title>
             Metis
         </title>

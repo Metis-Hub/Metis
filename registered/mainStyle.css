@@ -4,6 +4,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #c2f9ff;
 }
 
 h2 {
@@ -13,7 +14,7 @@ h2 {
 /* Style the navbar */
 nav {
     overflow: hidden;
-    background-color: #e9e9e9;
+    background-color: #e9e9e977;
 }
 
 #SignOut {
@@ -26,7 +27,7 @@ nav {
     padding: 6px;
     margin-top: 8px;
     margin-right: 16px;
-    background: #ddd;
+    background: rgba(221, 221, 221, 0.788);
     font-size: 17px;
     border: none;
     cursor: pointer;
@@ -45,19 +46,14 @@ nav a {
 
 /* Navbar links on mouse-over */
 nav a:hover {
-    background-color: #ddd;
+    background-color: rgba(221, 221, 221, 0.849);
     color: black;
 }
 
 /* Active/current link */
 nav a.active {
     background-color: #2196F3;
-    color: white;
-}
-
-/* Style the input container */
-nav .login-container {
-    float: right;
+    color: #c2f9ff;
 }
 
 /* Style the input field inside the navbar */
@@ -75,14 +71,14 @@ nav .login-container button {
     padding: 6px;
     margin-top: 8px;
     margin-right: 16px;
-    background: #ddd;
+    background: rgba(221, 221, 221, 0.795);
     font-size: 17px;
     border: none;
     cursor: pointer;
 }
 
 .topnav .login-container button:hover {
-    background: #ccc;
+    background: rgba(204, 204, 204, 0.808);
 }
 
 /* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */
@@ -101,6 +97,6 @@ nav .login-container button {
     }
 
     nav input[type=text] {
-    border: 1px solid #ccc;
+    border: 1px solid rgba(204, 204, 204, 0.795);
     }
 }
