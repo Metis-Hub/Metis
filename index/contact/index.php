@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html>
 
@@ -17,9 +15,7 @@
 	<header>
 	<nav>
 		<a href="../../index">zur&uuml;ck</a>
-		<center>
-			<p id="headLine"><b>Impressum - Metis</b></p>
-		</center>
+		<div id="headLine"><b>Impressum - Metis</b></div>
 	</nav>
 	</header>
 

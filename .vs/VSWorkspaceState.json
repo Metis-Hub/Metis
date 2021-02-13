@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\index",
+    "\\index\\about",
+    "\\index\\contact",
     "\\registered"
   ],
-  "SelectedNode": "\\index.php",
+  "SelectedNode": "\\index\\about\\index.php",
   "PreviewInSolutionExplorer": false
 }
