@@ -4,7 +4,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<?php
-		if($_SESSION["visual_mode"] == "bright")
+		if($_COOKIE["visual_mode"] == "bright")
 			echo '<link rel="stylesheet" href="../style.css" />';
 	?>
 	<link rel="icon" href="../../faviconMetis.ico" type="image/x-icon" />
@@ -16,7 +16,7 @@
 <body>
 
 	<header>
-		<div id="headLine"><b>Impressum - Metis</b></div>
+		<!--div id="headLine"><b>Impressum - Metis</b></div-->
 		<nav>
 			<a href="../../index">zur&uuml;ck</a>
 		</nav>

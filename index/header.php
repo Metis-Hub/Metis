@@ -4,7 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<?php
 			if($_SESSION["visual_mode"] == "bright")
-				echo '<link rel="stylesheet" href="style.css" />';
+				echo '<link rel="stylesheet" href="style_dark.css" />';
 		?>
 		<link rel="icon" href="../faviconMetis.ico" type="image/x-icon" />
 		<title>Metis</title>

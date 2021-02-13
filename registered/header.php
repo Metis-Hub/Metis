@@ -2,7 +2,11 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="./../mainStyle.css" />
+		<?php
+			if($_COOKIE["visual_mode"] == "bright")
+				echo '<link rel="stylesheet" href="./../mainStyle.css" />';
+			echo '<link rel="stylesheet" href="./../mainStyle.css" />'
+		?>
 		<link rel="icon" href="./../../faviconMetis.ico" type="image/x-icon" />
 		<title>Metis</title>
 	</head>

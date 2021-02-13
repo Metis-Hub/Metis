@@ -2,22 +2,22 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url(./../logoMetis.png);
+    background-image: url(./../logoMetis_Dark.png);
     background-position: top;
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-attachment: scroll;
-    background-color: #c2f9ff;
+    background-color: #010d33;
 }
 
 p {
     /*Dies ist eine weisse Umrandung, um die Lesbarkeit zu verbessern.*/
-    text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+    text-shadow: -0.5px 0 #c2f9ff, 0 0.5px #c2f9ff, 0.5px 0 #c2f9ff, 0 -0.5px #c2f9ff;
 }
 
 h3 {
     /*Dies ist eine weisse Umrandung, um die Lesbarkeit zu verbessern.*/
-    text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+    text-shadow: -0.5px 0 #c2f9ff, 0 0.5px #c2f9ff, 0.5px 0 #c2f9ff, 0 -0.5px #c2f9ff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -39,7 +39,7 @@ nav {
 nav a {
     float: left;
     display: block;
-    color: black;
+    color: rgb(233, 233, 233);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -48,13 +48,19 @@ nav a {
 
 /* Navbar links on mouse-over */
 nav a:hover {
-    background-color: rgba(221, 221, 221, 0.849);
-    color: black;
+    background-color: rgba(221, 221, 221, 0.527);
+    color: rgb(201, 201, 201);
 }
 
 /* Active/current link */
 nav a.active {
     background-color: #2196F3;
+    color: #c2f9ff;
+}
+
+/* Active/current link */
+nav a.active {
+    background-color: #1c4e77;
     color: #c2f9ff;
 }
 

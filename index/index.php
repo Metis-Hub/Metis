@@ -8,6 +8,7 @@ if (!isset($_COOKIE["cookie"])) {
 // keine weitere Frage nach Cookies in nächster Zeit auftaucht
 else {
 
+
 	setcookie("cookie", "true", time() * 100);	// Aktualisierung des Cookies, dass er ja nicht verschwindet
 
 	if(!isset($_COOKIE["visual_mode"])) {
@@ -15,8 +16,9 @@ else {
 	}
 	else {
 		setcookie("visual_mode", $_COOKIE["visual_mode"], time() * 100);	// Annsonsten wird alter Modus behalten.
-		$_SESSION["visual_mode"] = $_COOKIE["visual_mode"];	// Modus wird in Sessions übergeben
 	}
+
+	$_SESSION["visual_mode"] = $_COOKIE["visual_mode"];	// Modus wird in Sessions übergeben
 }
 
 include("header.php");
