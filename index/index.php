@@ -1,5 +1,4 @@
 <?php
-include("header.php");
 
 // Wenn keine Cookies gesetzt wurden, bzw. nicht zugestimmt wurde wird zu JavaScript-Meldung weitergeleitet.
 if (!isset($_COOKIE["cookie"])) {
@@ -16,9 +15,11 @@ else {
 	}
 	else {
 		setcookie("visual_mode", $_COOKIE["visual_mode"], time() * 100);	// Annsonsten wird alter Modus behalten.
+		$_SESSION["visual_mode"] = $_COOKIE["visual_mode"];	// Modus wird in Sessions übergeben
 	}
-
 }
+
+include("header.php");
 
 ?>
 

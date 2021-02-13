@@ -3,7 +3,10 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="../style.css" />
+	<?php
+		if($_SESSION["visual_mode"] == "bright")
+			echo '<link rel="stylesheet" href="../style.css" />';
+	?>
 	<link rel="icon" href="../../faviconMetis.ico" type="image/x-icon" />
 	<title>
 		&Uumlber uns - Metis
