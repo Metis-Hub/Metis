@@ -6,17 +6,17 @@
 	<link rel="stylesheet" href="../style.css" />
 	<link rel="icon" href="../../faviconMetis.ico" type="image/x-icon" />
 	<title>
-	&Uumlber uns - Metis
+		&Uumlber uns - Metis
 	</title>
 </head>
 
 <body>
 
 	<header>
-	<nav>
-		<a href="../../index">zur&uuml;ck</a>
-		<div id="headLine"><b>&Uumlber uns</b><div>
-	</nav>
+		<div id="headLine"><b>&Uumlber uns</b></div>
+		<nav>
+			<a href="../../index">zur&uuml;ck</a>
+		</nav>
 	</header>
 
 	<center>

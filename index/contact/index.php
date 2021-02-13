@@ -6,17 +6,17 @@
 	<link rel="stylesheet" href="../style.css" />
 	<link rel="icon" href="../../faviconMetis.ico" type="image/x-icon" />
 	<title>
-	Metis - Impressum
+		Metis - Impressum
 	</title>
 </head>
 
-<body class="content">
+<body>
 
 	<header>
-	<nav>
-		<a href="../../index">zur&uuml;ck</a>
 		<div id="headLine"><b>Impressum - Metis</b></div>
-	</nav>
+		<nav>
+			<a href="../../index">zur&uuml;ck</a>
+		</nav>
 	</header>
 
 	<center>
