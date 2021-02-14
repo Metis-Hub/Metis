@@ -33,7 +33,7 @@
     </head>
     <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #c2f9ff;">
         <p>
-            
+            Leite zur Startseite weiter . . .
         </p>
     </body>
 </html>

@@ -4,8 +4,13 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<?php
-		if($_COOKIE["visual_mode"] == "bright")
-			echo '<link rel="stylesheet" href="../style.css" />';
+		session_start();
+		if(!isset($_COOKIE["cookie"]))
+			header("Location: ./../../index.php");
+		if($_SESSION["visual_mode"] == "bright")
+			echo "<link rel=\"stylesheet\" href=\"../style.css\" />\n";
+		elseif($_SESSION["visual_mode"] == "dark")
+			echo "<link rel=\"stylesheet\" href=\"../style_dark.css\" />\n";
 	?>
 	<link rel="icon" href="../../faviconMetis.ico" type="image/x-icon" />
 	<title>

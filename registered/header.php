@@ -3,9 +3,13 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<?php
-			if($_COOKIE["visual_mode"] == "bright")
-				echo '<link rel="stylesheet" href="./../mainStyle.css" />';
-			echo '<link rel="stylesheet" href="./../mainStyle.css" />'
+			session_start();
+			if(!isset($_COOKIE["cookie"]))
+				header("Location: ./../../../index.php");
+			if($_SESSION["visual_mode"] == "bright")
+				echo "<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";
+			elseif($_SESSION["visual_mode"] == "dark")
+				echo "<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n";
 		?>
 		<link rel="icon" href="./../../faviconMetis.ico" type="image/x-icon" />
 		<title>Metis</title>
@@ -23,7 +27,7 @@
 				<div><a href="./../tasks">Aufgabenplaner</a></div>
 				<div><a href="./../class">Meine Klasse</a></div>
 				<div><a href="./../learn">Lernen</a></div>
-				<div><a href="./../settings">Einstellungen</a></div>
+				<div><a href="./../settings/mySettings.php">Einstellungen</a></div>
 				';
 			}
 			elseif($position == 1) {
@@ -33,7 +37,7 @@
 				<div><a class="active">Aufgabenplaner</a></div>
 				<div><a href="./../class">Meine Klasse</a></div>
 				<div><a href="./../learn">Lernen</a></div>
-				<div><a href="./../settings">Einstellungen</a></div>
+				<div><a href="./../settings/mySettings.php">Einstellungen</a></div>
 				';
 			}
 			elseif ($position == 2) {
@@ -43,7 +47,7 @@
 				<div><a href="./../tasks">Aufgabenplaner</a></div>
 				<div><a class="active">Meine Klasse</a></div>
 				<div><a href="./../learn">Lernen</a></div>
-				<div><a href="./../settings">Einstellungen</a></div>
+				<div><a href="./../settings/mySettings.php">Einstellungen</a></div>
 				';
 			}
 			elseif($position == 3) {
@@ -53,7 +57,7 @@
 				<div><a href="./../tasks">Aufgabenplaner</a></div>
 				<div><a href="./../class">Meine Klasse</a></div>
 				<div><a class="active">Lernen</a></div>
-				<div><a href="./../settings">Einstellungen</a></div>
+				<div><a href="./../settings/mySettings.php">Einstellungen</a></div>
 				';
 			}
 			elseif ($position == 4) {

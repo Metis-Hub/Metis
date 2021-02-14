@@ -4,18 +4,28 @@
 if (!isset($_COOKIE["cookie"])) {
 	header('Location: ./../index.php');
 }
-// Da die JavaScript-Meldung nur Tempräre Cookies setzt wird dies Cookie verlängert, sodass
+// Da die JavaScript-Meldung nur ein temporäres Cookie setzt wird dies Cookie verlängert, sodass
 // keine weitere Frage nach Cookies in nächster Zeit auftaucht
 else {
+	session_start();
+	setcookie("cookie", "true", time() * 100, "/");	// Aktualisierung des Cookies, dass er ja nicht verschwindet
 
-
-	setcookie("cookie", "true", time() * 100);	// Aktualisierung des Cookies, dass er ja nicht verschwindet
-
-	if(!isset($_COOKIE["visual_mode"])) {
-		setcookie("visual_mode", "bright", time() * 100); // bei Erster Nutzung
+	if(isset($_SESSION["change_setting"])) {
+		if($_SESSION["change_setting"] == 1) {
+			setcookie("visual_mode", $_SESSION["visual_mode"], time() * 100);
+			//TODO: Hier werden die anderen Einstellung als Cookie gespeichert
+			$_SESSION["change_setting"] = 0;
+			header("Location: ./../registered/settings");
+		}
 	}
 	else {
-		setcookie("visual_mode", $_COOKIE["visual_mode"], time() * 100);	// Annsonsten wird alter Modus behalten.
+		if(!isset($_COOKIE["visual_mode"])) {
+			setcookie("visual_mode", "bright", time() * 100); // bei Erster Nutzung
+			header('Location: ./../index');	// Annsonsten wird Seite nicht richtig dargestellt, deswegen neuladen
+		}
+		else {
+			setcookie("visual_mode", $_COOKIE["visual_mode"], time() * 100);
+		}
 	}
 
 	$_SESSION["visual_mode"] = $_COOKIE["visual_mode"];	// Modus wird in Sessions übergeben
@@ -23,6 +33,7 @@ else {
 
 include("header.php");
 
+echo "<p>".$_SESSION["visual_mode"]."</p>";
 ?>
 
 <a href="../registered/home">Simulierte Anmeldung</a>
