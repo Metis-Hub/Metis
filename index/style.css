@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url(./../logoMetis.png);
+    background-image: url(./../LogoWebsite_LM_1.png);   /*Hier den Link aenderen, um das Bild zu aendern, 900*900 px sollte es in etwa sein*/
     background-position: top;
     background-repeat: no-repeat;
     background-attachment: scroll;
