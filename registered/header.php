@@ -4,7 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<?php
 			session_start();
-			if(!isset($_COOKIE["cookie"]))
+			if ($_SESSION["cookies_set"] == false)
 				header("Location: ./../../../index.php");
 			if($_SESSION["visual_mode"] == "bright")
 				echo "<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";

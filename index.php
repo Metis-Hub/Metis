@@ -2,38 +2,46 @@
     <head>
         <link rel="icon" href="faviconMetis.ico" type="image/x-icon" />
         <title>
-            Metis
+            Metis - Bitte stimmen Sie den Cookies zu
         </title>
         <?php
-            //Erklärung siehe index/header.php
-            if (!isset($_COOKIE["cookie"])) {
-				echo
-				'
-				<script type="text/javascript">
+               
+            session_start();
+            $_SESSION["caller"] = "./";
+            $_SESSION["type"] = "cookies";
 
-				var cookie = confirm("Diese Web-Site verwendet Cookies.\nBitte stimmen Sie zu, um unsere Web-Site zu verwenden.\n"+
-				"Diese Cookies verbleiben bis zur nächsten Löschung Ihrer Browserdaten auf Ihren Computer.");
+            
+            if ((!isset($_SESSION["cookies_set"])) || ($_SESSION["cookies_set"] == false)) {
+				echo "<script type=\"text/javascript\">\n
 
-				if (cookie == false) {
-					history.back();
-				}
-                else {
-                    document.cookie = "cookie=true"
-                    window.location = "index";
-                }
+				var cookie = confirm(unescape(\"Diese Web-Site verwendet Cookies. Bitte stimmen Sie zu%2C um unsere Web-Site zu verwenden.\\n\"+\n
+                                              \"%0ADiese Cookies verbleiben bis zur n%E4chsten L%F6schung Ihrer Browserdaten auf Ihren Computer.\"));\n\n
 
-				</script>';
+				if (cookie) {\n
+                    window.location = \"CookiesConfirm.php\";\n
+                }\n
+
+				</script>\n";
 			}
             else {
-                header('location: index');
+                header('location: index/');
             }
             
         ?>
 
     </head>
     <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #c2f9ff;">
+        <a style="color:#FF1919;" href="./">
+            <b><u>Bitte akzeptieren Sie, das wir Cookies benutzen, um unsere Web-Site zu nutzten zu k&ouml;nnen.</u></b>
+        </a>
         <p>
-            Leite zur Startseite weiter . . .
+            <h2>Wof&uuml;r nutzten wir Cookies?</h2>
+            <br />
+            Wir nutzen Cookies, um Ihre Web-Site-Einstellungen auf Ihren PC zu speicher, damit Sie unsere Web-Site so wiederfinden, wie Sie sie verlie&szlig;en.
+            <br />
+            Keineswegs leiten wir Ihre Daten an andere Web-Sites weiter.
+            <br />
+            Um die Cookies (die jetzt noch nicht gesetzt wurden), gehen Sie einfach in Ihren Browserverlauf, und auf "Browserdaten l&ouml;schen".
         </p>
     </body>
 </html>
