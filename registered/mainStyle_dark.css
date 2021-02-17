@@ -4,12 +4,12 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /*background-image: url(./../logoMetis.png);*/
-    background-position: top;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-attachment: scroll;
-    background-color: #c2f9ff;
+    background-size: contain;
+    background: url(./../../logoMetis_Dark.png) 45% 45% no-repeat; /*Hier den Link aenderen, um das Bild zu aendern, 900*900 px sollte es in etwa sein*/
+    background-size: 70% auto;
+    background-position: center calc(14%);
+    background-color: #03023b;
+    color: #ffffff;
 }
 
 h2 {
@@ -19,7 +19,7 @@ h2 {
 /* Style the navbar */
 nav {
     overflow: hidden;
-    background-color: #e9e9e977;
+    background-color: rgba(40, 40, 40, 0.87);
 }
 
 #SignOut {
@@ -32,7 +32,7 @@ nav {
     padding: 6px;
     margin-top: 8px;
     margin-right: 16px;
-    background: rgba(221, 221, 221, 0.788);
+    background: rgba(0, 0, 0, 0.79);
     font-size: 17px;
     border: none;
     cursor: pointer;
@@ -42,17 +42,11 @@ nav {
 nav a {
     float: left;
     display: block;
-    color: black;
+    color: #ffffff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-}
-
-/* Navbar links on mouse-over */
-nav a:hover {
-    background-color: rgba(221, 221, 221, 0.849);
-    color: black;
 }
 
 /* Active/current link */
@@ -68,22 +62,6 @@ nav input {
     font-size: 17px;
     border: none;
     width: 150px; /* adjust as needed (as long as it doesn't break the topnav) */
-}
-
-/* Style the button inside the input container */
-nav .login-container button {
-    float: right;
-    padding: 6px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: rgba(221, 221, 221, 0.795);
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
-
-.topnav .login-container button:hover {
-    background: rgba(204, 204, 204, 0.808);
 }
 
 /* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */

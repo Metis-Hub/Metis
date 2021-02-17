@@ -57,7 +57,7 @@ if(isset($_SESSION["caller"])) {
 				SetLongCookie("cookies", 1);
 			}
 			if(isset($_SESSION["visual_mode"])) {
-				SetLongCookie("visual_mode", "bright");
+				SetLongCookie("visual_mode", $_SESSION["visual_mode"]);
 			}
 		}
 		elseif ($type == "get_all & set_all" || "set_all & get_all" || "get_all&set_all" || "set_all&get_all") {

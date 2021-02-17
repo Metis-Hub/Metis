@@ -27,7 +27,7 @@
 				<div><a href="./../tasks">Aufgabenplaner</a></div>
 				<div><a href="./../class">Meine Klasse</a></div>
 				<div><a href="./../learn">Lernen</a></div>
-				<div><a href="./../settings/mySettings.php">Einstellungen</a></div>
+				<div><a href="./../settings/index.php">Einstellungen</a></div>
 				';
 			}
 			elseif($position == 1) {
@@ -37,7 +37,7 @@
 				<div><a class="active">Aufgabenplaner</a></div>
 				<div><a href="./../class">Meine Klasse</a></div>
 				<div><a href="./../learn">Lernen</a></div>
-				<div><a href="./../settings/mySettings.php">Einstellungen</a></div>
+				<div><a href="./../settings/index.php">Einstellungen</a></div>
 				';
 			}
 			elseif ($position == 2) {
@@ -47,7 +47,7 @@
 				<div><a href="./../tasks">Aufgabenplaner</a></div>
 				<div><a class="active">Meine Klasse</a></div>
 				<div><a href="./../learn">Lernen</a></div>
-				<div><a href="./../settings/mySettings.php">Einstellungen</a></div>
+				<div><a href="./../settings/index.php">Einstellungen</a></div>
 				';
 			}
 			elseif($position == 3) {
@@ -57,7 +57,7 @@
 				<div><a href="./../tasks">Aufgabenplaner</a></div>
 				<div><a href="./../class">Meine Klasse</a></div>
 				<div><a class="active">Lernen</a></div>
-				<div><a href="./../settings/mySettings.php">Einstellungen</a></div>
+				<div><a href="./../settings/index.php">Einstellungen</a></div>
 				';
 			}
 			elseif ($position == 4) {
@@ -74,7 +74,7 @@
 
 			echo
 			'
-			<div><a id="SignOut" href="./../../index.php">Abmelden</a></div>
+			<div><a id="SignOut" href="./../SignOut.php">Abmelden</a></div>
 			</div>
 			';
 

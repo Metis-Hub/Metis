@@ -7,6 +7,7 @@ if(!isset($_SESSION["called"]) || $_SESSION["called"] == false) {
 	$_SESSION["type"] = "get_all & set_all";
 	header("Location: ../cookies.php");
 	$_SESSION["called"] = false;
+	$_SESSION["first"] = false;
 }
 elseif ($_SESSION["cookies_set"] == false) {
 	// Wenn keine Cookies gesetzt wurden, bzw. nicht zugestimmt wurde wird zu JavaScript-Meldung weitergeleitet.

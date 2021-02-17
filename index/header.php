@@ -9,7 +9,6 @@
 			elseif ($_SESSION["visual_mode"] == "dark") {
 				echo '<link rel="stylesheet" href="style_dark.css" />';
 			}
-
 		?>
 		<link rel="icon" href="../faviconMetis.ico" type="image/x-icon" />
 		<title>Metis</title>
