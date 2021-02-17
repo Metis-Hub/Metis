@@ -5,7 +5,7 @@
 		<?php
 			session_start();
 			if ($_SESSION["cookies_set"] == false)
-				header("Location: ./../../../index.php");
+				header("Location: ./../../../");
 			if($_SESSION["visual_mode"] == "bright")
 				echo "<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";
 			elseif($_SESSION["visual_mode"] == "dark")

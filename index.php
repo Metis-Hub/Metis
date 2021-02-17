@@ -12,16 +12,8 @@
 
             
             if ((!isset($_SESSION["cookies_set"])) || ($_SESSION["cookies_set"] == false)) {
-				echo "<script type=\"text/javascript\">\n
-
-				var cookie = confirm(unescape(\"Diese Web-Site verwendet Cookies. Bitte stimmen Sie zu%2C um unsere Web-Site zu verwenden.\\n\"+\n
-                                              \"%0ADiese Cookies verbleiben bis zur n%E4chsten L%F6schung Ihrer Browserdaten auf Ihren Computer.\"));\n\n
-
-				if (cookie) {\n
-                    window.location = \"CookiesConfirm.php\";\n
-                }\n
-
-				</script>\n";
+		        echo "<script type=\"text/javascript\"> var cookie=confirm(unescape(\"Diese Web-Site verwendet Cookies. Bitte stimmen Sie zu%2C um unsere Web-Site zu verwenden.\\n".
+                "Diese Cookies verbleiben bis zur n%E4chsten L%F6schung Ihrer Browserdaten auf Ihren Computer.\"));if(cookie){window.location=\"CookiesConfirm.php\";}</script>";
 			}
             else {
                 header('location: index/');
@@ -42,6 +34,8 @@
             Keineswegs leiten wir Ihre Daten an andere Web-Sites weiter.
             <br />
             Um die Cookies (die jetzt noch nicht gesetzt wurden), gehen Sie einfach in Ihren Browserverlauf, und auf "Browserdaten l&ouml;schen".
+            <br /><br />
+            Um mit Cookies forzufahren Klicken Sie bitte <a href="./">hier</a>.
         </p>
     </body>
 </html>
