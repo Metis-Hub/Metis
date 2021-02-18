@@ -21,7 +21,7 @@ include("header.php");
 	<p><b><u>Das ist tempor&auml;r:</u></b></p>
 	<ul>
 		<li><p><a href="../registered/home">Simulierte Anmeldung</a></p></li>
-		<li><p><a href="../../tmpDelCookies.php">Cookies l&ouml;schen</a></p></li>
+		<li><p><a href="./../tmpDelCookies.php">Cookies l&ouml;schen</a></p></li>
 	</ul>
 </p>
 
