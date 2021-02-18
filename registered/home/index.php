@@ -5,7 +5,10 @@ include("./../header.php");
 ?>
 
 <p>
-	Wilkommen bei Metis
+	Wilkommen bei Metis,
+	<?php
+		echo $_SESSION["user"]["uname"];
+	?>
 </p>
 
 <?php
