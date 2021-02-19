@@ -15,7 +15,8 @@ if($promise["success"]) {
 
     header("Location: ../registered/home");
 } else {
-    header("Location: ../index/index.php");
+    $_SESSION["login_failed"] = true;
+    header("Location: ../index/loginFailed.php");
     //Anmeldung fehlgeschlagen
 }
 ?>
