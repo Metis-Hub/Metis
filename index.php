@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="icon" href="faviconMetis.ico" type="image/x-icon" />
+        <link rel="icon" href="image/faviconMetis.ico" type="image/x-icon" />
         <title>
             Metis - Bitte stimmen Sie den Cookies zu
         </title>

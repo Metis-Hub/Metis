@@ -18,7 +18,7 @@ else {
 			echo '<link rel="stylesheet" href="style_dark.css" />';
 		}
 	?>
-	<link rel="icon" href="../faviconMetis.ico" type="image/x-icon" />
+	<link rel="icon" href="../image/faviconMetis.ico" type="image/x-icon" />
 	<script type="text/JavaScript">
 		alert(unescape("Das Passwort oder der Benutztername oder beides ist ung%FCltig!\nSolltest du dein Passwort vergessen haben, informiere bitte deinen Lehrer,\ndamit dieser es zur%FCcksetzt."));
 		window.location = "./../index/";

@@ -12,7 +12,7 @@
 		elseif($_SESSION["visual_mode"] == "dark")
 			echo "<link rel=\"stylesheet\" href=\"../style_dark.css\" />\n";
 	?>
-	<link rel="icon" href="../../faviconMetis.ico" type="image/x-icon" />
+	<link rel="icon" href="../../image/faviconMetis.ico" type="image/x-icon" />
 	<title>
 		&Uumlber uns - Metis
 	</title>

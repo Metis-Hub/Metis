@@ -3,7 +3,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-size: contain;
-    background: url(./../logoMetis.png) 45% 45% no-repeat; /*Hier den Link aenderen, um das Bild zu aendern, 900*900 px sollte es in etwa sein*/
+    background: url(./../image/logoMetis.png) 45% 45% no-repeat; /*Hier den Link aenderen, um das Bild zu aendern, 900*900 px sollte es in etwa sein*/
     background-size: 70% auto;
     background-position: center calc(14%);
     background-color: #c2f9ff;

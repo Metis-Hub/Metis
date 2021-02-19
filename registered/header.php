@@ -11,7 +11,7 @@
 			elseif($_SESSION["visual_mode"] == "dark")
 				echo "<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n";
 		?>
-		<link rel="icon" href="./../../faviconMetis.ico" type="image/x-icon" />
+		<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />
 		<title>Metis</title>
 	</head>
 	<body>
@@ -75,8 +75,8 @@
 			echo
 			'
 			<div><a id="SignOut" href="./../SignOut.php">Abmelden</a></div>
-			</div>
 			';
 
 			?>
 		</nav>
+	</header>
