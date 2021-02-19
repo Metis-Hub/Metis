@@ -23,7 +23,7 @@
 				<div class="login-container">
 					<form method="POST" action="../login/login.inc.php">
 						<input type="text" placeholder="Benutztername" name="username" />
-						<input type="password" placeholder="Passwort" name="psw" />
+						<input type="password" placeholder="Passwort" name="pw" />
 						<button type="submit" name="login">Anmelden</button>
 					</form>
 				</div>

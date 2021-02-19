@@ -23,6 +23,11 @@
 <body>
 <?php
 	if(isset($_POST["password_ok"])) {
+	include("./../../login/user.php");
+		if($_POST["old"] != $_SESSION["user"]) {
+			echo
+	"<p><b>Passwort nicht richtig!</b></p>";
+		}
 		if(!$_POST["old"] || !$_POST["new"] || !$_POST["new_2"]){
 			if(!$_POST["old"]) {
 				echo
