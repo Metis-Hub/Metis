@@ -6,8 +6,9 @@
 	<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />
 <?php
 	session_start();
-	if ($_SESSION["cookies_set"] == false)
+	if ($_SESSION["cookies_set"] == false) {
 		header("Location: ./../../../");
+	}
     if(isset($_POST["change_visual_mode"])) {
         $_SESSION["visual_mode"] = $_POST["visual_mode"];
 		$_SESSION["caller"] = "registered/settings/ChangeSettings.php";
@@ -17,38 +18,15 @@
 
         header("Location: ./../settings");
     }
+	if(isset($_POST["password_ok"])) {
+		
+	}
+
 ?>
 </head>
 
 <body>
 <?php
-	if(isset($_POST["password_ok"])) {
-	include("./../../login/user.php");
-		if($_POST["old"] != $_SESSION["user"]) {
-			echo
-	"<p><b>Passwort nicht richtig!</b></p>";
-		}
-		if(!$_POST["old"] || !$_POST["new"] || !$_POST["new_2"]){
-			if(!$_POST["old"]) {
-				echo
-	"<p><b>Altes Passwort ist nicht eingegeben!</b></b>";
-			}
-			if(!$_POST["new"]) {
-				echo
-	"<p><b>Neues Passwort ist nicht eingegeben!</b></b>";
-			}
-			if(!$_POST["new_2"]){ 
-				echo
-	"<p><b>Neues Passwort ist nicht best&auml;tigt!</b></b>";
-			}
-			echo
-	"<p><a href=\"./../settings\"><u>Klicken Sie hier um zu den Einstellungen zur&uuml;ckzukehren.</u></a></p>";
-		}
-		elseif($_POST["new"] != $_POST["new_2"]) {
-			echo
-	"<p><b>Passwortbest&auml;tigung stimmt nicht mit den neuen Passwort &uuml;berein!</b></p>";
-		}
-	}
 	if(isset($_POST["change_password"])) {
 		if($_SESSION["visual_mode"] == "bright")
 			echo "	<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";
