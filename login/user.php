@@ -28,7 +28,7 @@ function sendRequest($path, $params) {
 function isLoggedIn() {
     if(session_status() == 2) {
         //echo isset($_SESSION["uid"]) && isset($_SESSION["pwd"]) ? "Ja" : "Nö";
-        return isset($_SESSION["uid"]) && isset($_SESSION["pwd"]);
+        return isset($_SESSION["user"]["uid"]) && isset($_SESSION["user"]["pwd"]);
     } else {
         return false;
     }
