@@ -52,7 +52,7 @@ function logIn($username, $password) {
 
     if($promise["success"] == true) {
         unset($promise["success"]);
-        $_SESSION["user"] = §promise;
+        $_SESSION["user"] = $promise;
         return true;
 
         return true;
