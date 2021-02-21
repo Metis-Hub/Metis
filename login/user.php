@@ -27,19 +27,10 @@ function sendRequest($path, $params) {
  */
 function isLoggedIn() {
     if(session_status() == 2) {
-        //echo isset($_SESSION["uid"]) && isset($_SESSION["pwd"]) ? "Ja" : "Nö";
-        return isset($_SESSION["user"]["uid"]) && isset($_SESSION["user"]["pwd"]);
+        return isset($_SESSION["user"]);
     } else {
         return false;
     }
-}
-
-/*
- * Gibt die User-Eigenschaften zurück
- * wenn nicht angemeldet wird false zurückgegeben
- */
-function getUserData() {
-    return session_status() != 2 || !isset($_SESSION["uid"]) || !isset($_SESSION["pwd"]) ? false : array("uid" => $_SESSION["uid"], "pwd" => $_SESSION["pwd"]);
 }
 
 /*
@@ -60,9 +51,9 @@ function logIn($username, $password) {
     curl_close($ch);
 
     if($promise["success"] == true) {
-        $_SESSION["uid"] = $promise["uid"];
-        $_SESSION["pwd"] = $password;
-        $_SESSION["uname"] = $username;
+        unset($promise["success"]);
+        $_SESSION["user"] = §promise;
+        return true;
 
         return true;
     } else return false;
