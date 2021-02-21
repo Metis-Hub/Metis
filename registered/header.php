@@ -3,7 +3,6 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<?php
-		session_start();
 		include("./../../login/user.php");
 		if(!isLoggedIn()) {
 			header("Location: ./../../index/loginFailed/you_not_logged_in.php");
