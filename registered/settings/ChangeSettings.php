@@ -12,7 +12,7 @@
     if(isset($_POST["change_visual_mode"])) {
         $_SESSION["visual_mode"] = $_POST["visual_mode"];
 		$_SESSION["caller"] = "registered/settings/ChangeSettings.php";
-		$_SESSION["type"] = "set_all";
+		$_SESSION["cookies.php_type"] = "set_all";
 		header("Location: ./../../cookies.php");
 		$_SESSION["called"] = false;
 

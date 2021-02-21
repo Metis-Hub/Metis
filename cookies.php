@@ -5,9 +5,11 @@
 
 session_start();
 
+echo "<script type=\"text/javascript\" language=\"Javascript\">";
+
 function ErrorMsg($text) {
 
-	echo "<script type=\"text/javascript\" language=\"Javascript\">alert(\"Error in cookies.php:\\n" . $text . "\");</script>";
+	echo "alert(\"Error in cookies.php:\\n" . $text . "\");";
 
 	return;
 }
@@ -27,23 +29,22 @@ function SetLongCookie($name, $traid) {
 }
 
 if(isset($_SESSION["caller"])) {
-
+		
 	$caller = $_SESSION["caller"]; // = Path
 
-	if(isset($_SESSION["type"])) {
+	if(isset($_SESSION["cookies.php_type"])) {
 
-		$type = $_SESSION["type"];
+		$type = $_SESSION["cookies.php_type"];
 
 		if(($type == "cookies" && isset($_COOKIE["cookies"])) || $type == "set_cookies") {
-			SetLongCookie("cookies", 1);
-			$_SESSION["cookies_set"] = true;
-			if(isset($_SESSION["first"]) && $_SESSION["first"] == true) {
+			SetLongCookie("cookies", 1);	// Dies Cookie gibt an, ob man Cookies setzten darf, wenn es nicht gesetzt ist darf man es nicht
+			$_SESSION["cookies_set"] = true;	// Dadurch gibt es keine weitere Cookiemeldung
+			if(isset($_SESSION["first"]) && $_SESSION["first"] == true) {	// Wenn man sich zum ersten mal auf der Web-Site befindet
 				$_SESSION["visual_mode"] = "bright";
 				SetLongCookie("visual_mode", "bright");
 			}
 		}
 		elseif($type == "get_all") {
-
 			if(isset($_COOKIE["cookies"])) {
 				$_SESSION["cookies_set"] = true;
 				$_SESSION["visual_mode"] = $_COOKIE["visual_mode"];
@@ -53,7 +54,7 @@ if(isset($_SESSION["caller"])) {
 			}
 		}
 		elseif($type == "set_all") {
-			if(isset($_SESSION["cookies"])) {
+			if(isset($_SESSION["cookies_set"])) {
 				SetLongCookie("cookies", 1);
 			}
 			if(isset($_SESSION["visual_mode"])) {
@@ -79,7 +80,7 @@ if(isset($_SESSION["caller"])) {
 
 	}
 	else {
-		ErrorMsg("\$_SESSION[\\\"type\\\"] is not set!");
+		ErrorMsg("\$_SESSION[\\\"type\\\"] is not set!");	// Damit "$_SESSION["type"] is not set" ausgegeben wird
 	}
 
 	header("Location: " . $caller);
@@ -87,6 +88,8 @@ if(isset($_SESSION["caller"])) {
 else {
 	ErrorMsg("\$_SESSION[\\\"caller\\\"] is not set!");
 }
+
+echo "</script>";
 
 ?>
 </head>

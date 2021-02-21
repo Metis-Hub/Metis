@@ -8,7 +8,7 @@
                
             session_start();
             $_SESSION["caller"] = "./";
-            $_SESSION["type"] = "cookies";
+            $_SESSION["cookies.php_type"] = "cookies";
 
             
             if ((!isset($_SESSION["cookies_set"])) || ($_SESSION["cookies_set"] == false)) {
