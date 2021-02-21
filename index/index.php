@@ -17,6 +17,7 @@ elseif ($_SESSION["cookies_set"] == false) {
 include("header.php");
 
 ?>
+
 <p>
 	<p><b><u>Das ist tempor&auml;r:</u></b></p>
 	<ul>
