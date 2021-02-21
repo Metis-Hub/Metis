@@ -18,6 +18,12 @@
 
         header("Location: ./../settings");
     }
+	if(isset($_POST["change_password"])) {
+		if($_SESSION["visual_mode"] == "bright")
+			echo "	<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";
+		elseif($_SESSION["visual_mode"] == "dark")
+			echo "	<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n";
+	}
 	if(isset($_POST["password_ok"])) {
 		
 	}
@@ -28,35 +34,34 @@
 <body>
 <?php
 	if(isset($_POST["change_password"])) {
-		if($_SESSION["visual_mode"] == "bright")
-			echo "	<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";
-		elseif($_SESSION["visual_mode"] == "dark")
-			echo "	<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n";
-		echo"
-	<center>
-		<form action=\"ChangeSettings.php\" method=\"post\">
-			<table>
-				<tr>
-					<td>Altes Passwort: </td>
-					<td><input type=\"password\" name=\"old\" /></td>
-				</tr>
-				<tr>
-					<td>Neues Password: </td>
-					<td><input type=\"password\" name=\"new\" /></td>
-				</tr>
-				<tr>
-					<td>Neues Password best&auml;tigen: </td>
-					<td><input type=\"password\" name=\"new_2\" /></td>
-				</tr>
-				<tr>
-					<td><input type=\"submit\" name=\"password_ok\"></input></td>
-				</tr>
-			</table>
-		</form>
-	</center>
-";		
+		echo "<center><form action=\"ChangeSettings.php\" method=\"post\"><table width=\"40%\"><tr><td width=\"40%\">Altes Passwort: </td><td width=\"60%\"><input type=\"password\" name=\"old\""
+		." placeholder=\"altes Passwort\" width=\"100%\"/></td></tr><tr><td><br /></td></tr><tr><td width=\"40%\">Neues Password: </td><td width=\"60%\"><input type=\"password\" name=\"new\" "
+		."placeholder=\"neues Passwort\" width=\"100%\"/></td></tr><tr><td width=\"40%\">Neues Password best&auml;tigen: </td><td width=\"60%\"><input type=\"password\" name=\"new_2\""
+		."placeholder=\"Best&auml;tigung des Neuens\" width=\"100%\"/></td></tr></table><p width=\"100%\"><input type=\"submit\" name=\"password_ok\" width=\"40%\"></input></p></form></center>";		
 	}
 ?>
 </body>
 
 </html>
+
+<!--	<center>
+		<form action=\"ChangeSettings.php\" method=\"post\">
+			<table width=\"40%\">
+				<tr>
+					<td width=\"40%\">Altes Passwort: </td>
+					<td width=\"60%\"><input type=\"password\" name=\"old\" placeholder=\"altes Passwort\" width=\"100%\"/></td>
+				</tr>
+				<tr><td><br /></td></tr>
+				<tr>
+					<td width=\"40%\">Neues Password: </td>
+					<td width=\"60%\"><input type=\"password\" name=\"new\" placeholder=\"neues Passwort\" width=\"100%\"/></td>
+				</tr>
+				<tr>
+					<td width=\"40%\">Neues Password best&auml;tigen: </td>
+					<td width=\"60%\"><input type=\"password\" name=\"new_2\" placeholder=\"Best&auml;tigung des Neuens\" width=\"100%\"/></td>
+				</tr>
+			</table>
+			<p width=\"100%\"><input type=\"submit\" name=\"password_ok\" width=\"40%\"></input></p>
+		</form>
+	</center>
+-->
