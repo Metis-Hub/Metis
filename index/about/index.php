@@ -1,32 +1,7 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<?php
-		session_start();
-		if($_SESSION["cookies_set"] == false)
-			header("Location: ./../../index.php");
-		if($_SESSION["visual_mode"] == "bright")
-			echo "<link rel=\"stylesheet\" href=\"../style.css\" />\n";
-		elseif($_SESSION["visual_mode"] == "dark")
-			echo "<link rel=\"stylesheet\" href=\"../style_dark.css\" />\n";
-	?>
-	<link rel="icon" href="../../image/faviconMetis.ico" type="image/x-icon" />
-	<title>
-		&Uumlber uns - Metis
-	</title>
-</head>
-
-<body>
-
-	<header>
-		<nav>
-			<a href="../../index">zur&uuml;ck</a>
-			<!--div id="headLine"><b>&Uumlber uns</b></div-->
-		</nav>
-	</header>
-
+<?php
+$position = 1;
+include("./../header2.php");
+?>
 	<center>
 		<div>
 			
