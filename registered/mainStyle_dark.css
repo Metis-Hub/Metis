@@ -21,6 +21,10 @@ body {
     color: #ffffff;
 }
 
+a {
+    color: #55b6ff
+}
+
 h2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

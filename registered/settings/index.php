@@ -1,6 +1,6 @@
 <?php
 	global $position;
-	$position = 4;
+	$position = 5;
 	include("./../header.php");
 ?>
 	<form action="ChangeSettings.php" method="post">

@@ -1,6 +1,6 @@
 <?php
 	global $position;
-	$position = 1;
+	$position = 2;
 	include("./../header.php");
 ?>
 	<div class="table">
