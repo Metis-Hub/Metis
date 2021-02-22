@@ -15,7 +15,9 @@
 			echo "<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n";
 	?>
 	<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />
-	<title>Metis - Einstellungen</title>
+	<title>
+		Metis - <?php switch($position){case 0: echo"Home";break;case 1: echo"Aufgabenplaner";break;case 2: echo"Meine Klasse";break;case 3: echo"Lernen";break;case 4: echo"Einstellungen";break;}?>
+	</title>
 </head>
 
 <body>

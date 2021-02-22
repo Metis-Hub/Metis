@@ -21,7 +21,7 @@ include("header.php");
 <p>
 	<p><b><u>Das ist tempor&auml;r:</u></b></p>
 	<ul>
-		<li><a href="./../registered/home">Die Fake-Anmeldung bleibt!</a></li>
+		<li><a href="./../registered/home/">Die Fake-Anmeldung bleibt!</a></li>
 		<li>tempor&auml;re Anmeldung als:
 			<ul>
 				<li><a href="tmpSignIn/Jakob.php">Jakob (un = Jakob; pw = jakob)</a></li>

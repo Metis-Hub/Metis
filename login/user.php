@@ -59,11 +59,27 @@ function logIn($username, $password) {
     } else return false;
 }
 
+function isPasswordOk($username, $password) {
+    
+    $password = $password;
+
+    $ch = curl_init("localhost:8080/loginRequest?".http_build_query(array("uname" => $username, "pwd" => $password)));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    $promise = json_decode(curl_exec($ch), true);
+    curl_close($ch);
+
+    if($promise["success"] == true) {
+        unset($promise["success"]);
+        return true;
+    } else return false;
+}
+
 /*
  * Meldet den User ab
  */
 function logOut() {
-    session_destroy();
+    unset($_SESSION["user"]);
 }
 
 ?>

@@ -33,7 +33,7 @@
             <br />
             Keineswegs leiten wir Ihre Daten an andere Web-Sites weiter.
             <br />
-            Um die Cookies (die jetzt noch nicht gesetzt wurden), gehen Sie einfach in Ihren Browserverlauf, und auf "Browserdaten l&ouml;schen".
+            Um die Cookies (die jetzt noch nicht gesetzt wurden) zu l&ouml;schen, gehen Sie einfach in Ihren Browserverlauf, und auf "Browserdaten l&ouml;schen".
             <br /><br />
             Um mit Cookies forzufahren Klicken Sie bitte <a href="./">hier</a>.
         </p>
