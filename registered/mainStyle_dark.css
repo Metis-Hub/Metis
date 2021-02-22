@@ -17,6 +17,7 @@ body {
     background-size: 65% auto;
     background-position: center calc(33.5%);
     background-color: #03023b;
+    background-attachment: fixed;
     color: #ffffff;
 }
 
