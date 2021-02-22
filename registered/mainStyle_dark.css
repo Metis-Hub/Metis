@@ -2,12 +2,20 @@
     box-sizing: border-box;
 }
 
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
 body {
+    width: 99%;
+    height: 99%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-size: contain;
     background: url(./../../image/logoMetis_Dark.png) 45% 45% no-repeat; /*Hier den Link aenderen, um das Bild zu aendern, 900*900 px sollte es in etwa sein*/
-    background-size: 70% auto;
-    background-position: center calc(14%);
+    background-size: 65% auto;
+    background-position: center calc(33.5%);
     background-color: #03023b;
     color: #ffffff;
 }
