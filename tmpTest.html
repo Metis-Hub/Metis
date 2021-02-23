@@ -1,12 +1,20 @@
-<!--Nur fürs Intelisense-->
-
 <html>
 <head>
-
+    <title>Notenrechner</title>
 </head>
 <body>
-    <form action="tmpTest.js" method="get">
-        <input type="text" name="123" />
-    </form>
+    <div>
+        <form action="tmpTest.php" method="get">
+            <table>
+                <tr>
+                    <td><input type="number" max="6" min="1" placeholder="Note" /></td>
+                    <td><input type="submit" name="addGrade" value="Note hinzufügen" /></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="del" value="löschen" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>
