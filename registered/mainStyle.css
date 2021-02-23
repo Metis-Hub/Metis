@@ -29,6 +29,14 @@ nav {
     background-color: #e9e9e977;
 }
 
+.num {
+    width: 30px;
+}
+
+.minus {
+    width: 30px;
+}
+
 #SignOut {
     padding: 6px;
     margin-top: 8px;
