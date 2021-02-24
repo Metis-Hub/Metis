@@ -12,4 +12,4 @@ $_SESSION["called"]:				(ob cookies.php schon aufgerufen wurde)
 $_SESSION["login_failed"]:			(ist nur gesetzt, wenn der Loginvorgang fehlschlug)
 $_SESSION["first"]:					(erste anmeldung)
 
-$_SESSION["user"]:					(ist ein Arry, welches alle userdaten speichert, bis auf das Passwort des Users)
+$_SESSION["user"]:					(Array der Userinformationen, extra Feld "usertype" mit möglichen Werten "student" oder "teacher")
