@@ -26,9 +26,8 @@
 ?>
     <div>
         <form action="calc.php" method="get">
-            <table>
-                <tr><?php
-                    echo "\n";
+            <table><?php
+                    echo "\n<tr>\n";
                 
 
                     $jumps = array();

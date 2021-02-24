@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\registered"
+    "\\registered",
+    "\\registered\\settings"
   ],
-  "SelectedNode": "\\registered\\mainStyle_dark.css",
+  "SelectedNode": "\\registered\\settings\\ChangeSettings.php",
   "PreviewInSolutionExplorer": false
 }

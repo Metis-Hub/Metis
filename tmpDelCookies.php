@@ -1,16 +1,19 @@
 <!Das ist temporaer um die Cookies dieser Web-Site zu löschen.>
-<?php
-session_start();
-session_destroy();
-setcookie("visual_mode", "bright", 1);
-setcookie("visual_mode", "dark", 1);
-setcookie("cookies", 1, 1);
-setcookie("cookies", "true", 1);
-setcookie("visual_mode", 0, 1);
-setcookie("visual_mode", "false", 1);
-?>
 <html>
 <head>
+<?php
+session_start();
+if(!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false) {
+	session_destroy();
+}
+else {
+	session_destroy();
+	session_start();
+	$_SESSION["cookie_request_del"] = true;
+	$_SESSION["cookie_caller"] = "./tmpDelCookies.php";
+	header("Location ./cookies.php");
+}
+?>
 	<title>Cookies gel&ouml;scht!</title>
 </head>
 <body>

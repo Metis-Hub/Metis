@@ -10,8 +10,8 @@
             <tr>
                 <td>
                     <select name="visual_mode">
-                        <option value="bright"<?php if($_SESSION["visual_mode"] == "bright")echo "selected";?>>bright (Standart)</option>
-                        <option value="dark"<?php if($_SESSION["visual_mode"] == "dark")echo "selected";?>>dark</option>
+                        <option value="bright"<?php if($_SESSION["cookies"]["visual_mode_cookie"] == "bright")echo "selected";?>>bright (Standart)</option>
+                        <option value="dark"<?php if($_SESSION["cookies"]["visual_mode_cookie"] == "dark")echo "selected";?>>dark</option>
                     </select>
                     &nbsp;&nbsp;
                     <input type="submit" name="change_visual_mode"value="Anwenden" />

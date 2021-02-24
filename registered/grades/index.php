@@ -12,7 +12,7 @@
 			unset($_SESSION["grades_instruction_ok"]);
 		}
 		setcookie("grades_calc", true, time() * 100);
-		header("Location: ./grade_in_subjekt.php");
+		header("Location: ./calc.php");
 	}
 
 ?>

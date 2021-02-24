@@ -10,11 +10,11 @@
 		if(!isLoggedIn()) {
 			header("Location: ./../../index/loginFailed/you_not_logged_in.php");
 		}
-		if ($_SESSION["cookies_set"] == false)
+		if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false)
 			header("Location: ./../../../");
-		if($_SESSION["visual_mode"] == "bright")
+		if($_SESSION["cookies"]["visual_mode_cookie"] == "bright")
 			echo "<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";
-		elseif($_SESSION["visual_mode"] == "dark")
+		elseif($_SESSION["cookies"]["visual_mode_cookie"] == "dark")
 			echo "<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n";
 	?>
 	<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />

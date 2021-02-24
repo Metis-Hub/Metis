@@ -25,15 +25,24 @@ h2 {
 
 /* Style the navbar */
 nav {
+    margin: 0.5px;
     overflow: hidden;
     background-color: #e9e9e977;
 }
 
+input {
+    background: rgba(221, 221, 221, 0.795);
+    height: 22px;
+    border: none;
+}
+
 .num {
+    height: 22px;
     width: 30px;
 }
 
 .minus {
+    height: 22px;
     width: 30px;
 }
 

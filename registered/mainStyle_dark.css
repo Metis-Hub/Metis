@@ -34,12 +34,18 @@ nav {
     background-color: rgba(40, 40, 40, 0.87);
 }
 
+input {
+    border: none;
+}
+
 .num {
-    width: 30px;
+    height: 15px;
+    width: 40px;
 }
 
 .minus {
-    width: 30px;
+    height: 15px;
+    width: 40px;
 }
 
 #SignOut {

@@ -2,16 +2,15 @@
 
 session_start();
 
-if(!isset($_SESSION["called"]) || $_SESSION["called"] == false) {
-	$_SESSION["caller"] = "index/";
-	$_SESSION["cookies.php_type"] = "get_all & set_all";
-	header("Location: ../cookies.php");
-	$_SESSION["called"] = false;
-	$_SESSION["first"] = false;
-}
-elseif ($_SESSION["cookies_set"] == false) {
+
+if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false) {
 	// Wenn keine Cookies gesetzt wurden, bzw. nicht zugestimmt wurde wird zu JavaScript-Meldung weitergeleitet.
-	header("Location: ./../../");
+	header("Location: ./../");
+}
+elseif(!isset($_SESSION["cookies"]["request_send"]) || $_SESSION["cookies"]["request_send"] == false) {
+	$_SESSION["cookie_caller"] = "index/";
+	$_SESSION["cookie_request_get"] = true;
+	header("Location: ./../cookies.php");
 }
 
 include("header.php");

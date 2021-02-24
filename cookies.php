@@ -1,101 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
 <?php
-
 session_start();
+$time = time() + (3600*24*360);	// Das wäre ein Jahr
+$caller = "Location: ".((isset($_SESSION["cookie_caller"]))?$_SESSION["cookie_caller"]:"index/");
 
-echo "<script type=\"text/javascript\" language=\"Javascript\">";
+if(isset($_SESSION["cookie_request_set"])) {	// Zuerst werden die Cookies gesetzt
+	
+	if(isset($_SESSION["first_cookie"])) {	// Bei den ersten Aufruf (wenn noch keine Cookies gesetzt wurde), werden diese gesetzt
 
-function ErrorMsg($text) {
+		unset($_SESSION["first_cookie"]);
 
-	echo "alert(\"Error in cookies.php:\\n" . $text . "\");";
+		setcookie("allow_set_cookies", 1, $time);
+		setcookie("visual_mode_cookie", "bright", $time);
+	}
+	elseif($_SESSION["cookie_request_set"] == "visual_mode_cookie") {
+		setcookie("visual_mode_cookie", $_SESSION["cookies"]["visual_mode_cookie"], $time);
+	}
 
-	return;
+	// Nun wird die Seite neugeladen und dabei die Sessions mit den Cookieinhalten gesetzt
+	unset($_SESSION["cookie_request_set"]);
+	$_SESSION["cookie_request_get"] = true;
+	header("Location:".$_SERVER['REQUEST_URI']);
 }
-
-function GetSettings($name) {
-	if(isset($_COOKIE[$name])) {
-		$_SESSION[$name] = $_COOKIE[$name];
-		return $_COOKIE[$name];
+elseif(isset($_SESSION["cookie_request_get"])) {	// Und dannach abgerufen
+	
+	unset($_SESSION["cookie_request_get"]);
+	
+	if(!isset($_COOKIE["allow_set_cookies"])) {
+		$_SESSION["cookies"]["allow_set_cookies"] = false;
+		header($caller);
 	}
 	else {
-		ErrorMsg("Cookie \"" . $name . "\" exsistiert nicht!");
+		$_SESSION["cookies"]["allow_set_cookies"] = true;
+		$_SESSION["cookies"]["visual_mode_cookie"] = $_COOKIE["visual_mode_cookie"];
+		$_SESSION["cookies"]["request_send"] = true;
+		header($caller);
 	}
 }
+elseif(isset($_SESSION["cookie_request_del"])) {
+	
+	unset($_SESSION["cookie_request_del"]);
 
-function SetLongCookie($name, $traid) {
-	setcookie($name, $traid, time() * 100);
+	setcookie("allow_set_cookies", 1, 1);	// Die Cookies werden auf eine abgelaufene Zeit gesetzt
+	setcookie("visual_mode_cookie", $_COOKIE["visual_mode_cookie"], 1);
+
+	$_SESSION["cookie_request_get"] = true;
+	header("Location:".$_SERVER['REQUEST_URI']);	// Neuladen
 }
-
-if(isset($_SESSION["caller"])) {
-		
-	$caller = $_SESSION["caller"]; // = Path
-
-	if(isset($_SESSION["cookies.php_type"])) {
-
-		$type = $_SESSION["cookies.php_type"];
-
-		if(($type == "cookies" && isset($_COOKIE["cookies"])) || $type == "set_cookies") {
-			SetLongCookie("cookies", 1);	// Dies Cookie gibt an, ob man Cookies setzten darf, wenn es nicht gesetzt ist darf man es nicht
-			$_SESSION["cookies_set"] = true;	// Dadurch gibt es keine weitere Cookiemeldung
-			if(isset($_SESSION["first"]) && $_SESSION["first"] == true) {	// Wenn man sich zum ersten mal auf der Web-Site befindet
-				$_SESSION["visual_mode"] = "bright";
-				SetLongCookie("visual_mode", "bright");
-			}
-		}
-		elseif($type == "get_all") {
-			if(isset($_COOKIE["cookies"])) {
-				$_SESSION["cookies_set"] = true;
-				$_SESSION["visual_mode"] = $_COOKIE["visual_mode"];
-			}
-			else {
-				$_SESSION["cookies_set"] = false;
-			}
-		}
-		elseif($type == "set_all") {
-			if(isset($_SESSION["cookies_set"])) {
-				SetLongCookie("cookies", 1);
-			}
-			if(isset($_SESSION["visual_mode"])) {
-				SetLongCookie("visual_mode", $_SESSION["visual_mode"]);
-			}
-		}
-		elseif ($type == "get_all & set_all" || "set_all & get_all" || "get_all&set_all" || "set_all&get_all") {
-			if(isset($_COOKIE["cookies"])) {
-				$_SESSION["cookies_set"] = true;
-				$_SESSION["visual_mode"] = $_COOKIE["visual_mode"];
-				SetLongCookie("visual_mode", $_COOKIE["visual_mode"]);
-				SetLongCookie("cookies_set", true);
-			}
-			else {
-				$_SESSION["cookies_set"] = false;
-			}
-		}
-		else {
-			$_SESSION["cookies_set"] = false;
-		}
-
-		$_SESSION["called"] = true;
-
-	}
-	else {
-		ErrorMsg("\$_SESSION[\\\"type\\\"] is not set!");	// Damit "$_SESSION["type"] is not set" ausgegeben wird
-	}
-
-	header("Location: " . $caller);
-}
-else {
-	ErrorMsg("\$_SESSION[\\\"caller\\\"] is not set!");
-}
-
-echo "</script>";
 
 ?>
-</head>
-<body>
-	<p>
-		Fehler!
-	</p>
-</body>
-</html>
