@@ -4,7 +4,8 @@
 	<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />
 	<title>Metis - Einstellungen</title>
 <?php
-	include("./../../login/user.php");
+	include("./../../includes/user.php");
+
 	if($_SESSION["visual_mode"] == "bright") {
 		echo "	<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";
 	}
@@ -14,11 +15,8 @@
 
 	if(isset($_POST["password_ok"])) {
 		if((isset($_POST["new"]) && isset($_POST["new_2"])) && ($_POST["new"] == $_POST["new_2"])) {
-			$_SESSION["new_passwort"] = $_POST["new"];
-			$_SESSION["old_passwort"] = $_POST["old"];
-			if(isPasswordOk($_SESSION["user"]["uname"], $_POST["old"])) {
+			if(changePassword($_POST["old"], $_POST["new"])) {
 				echo "\n<script type=\"text/JavaScript\">alert(unescape(\"Das Passwort ist OK%21\"));</script>";
-				#Passwort ändern @Bruno!
 			}
 			else {
 				echo "\n<script type=\"text/JavaScript\">alert(unescape(\"Das alte Passwort ist falsch%21\"));</script>";

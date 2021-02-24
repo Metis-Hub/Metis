@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\registered"
+    "\\includes",
+    "\\includes\\login"
   ],
-  "SelectedNode": "\\registered\\mainStyle_dark.css",
+  "SelectedNode": "\\index.php",
   "PreviewInSolutionExplorer": false
 }

@@ -21,9 +21,9 @@
 				<a href="about/">About</a>
 				<a href="contact/">Impressum</a>
 				<div class="login-container">
-					<form method="POST" action="../login/login.inc.php">
-						<input type="text" placeholder="Benutztername" name="username" />
-						<input type="password" placeholder="Passwort" name="pw" />
+					<form method="POST" action="../includes/login/login.inc.php">
+						<input type="text" placeholder="Email" name="email" />
+						<input type="password" placeholder="Passwort" name="pwd" />
 						<button type="submit" name="login">Anmelden</button>
 					</form>
 				</div>
