@@ -6,9 +6,9 @@
 		if(session_status() != 2) {
 			session_start();
 		}
-		include("./../../login/user.php");
+		include("./../../includes/user.php");
 		if(!isLoggedIn()) {
-			header("Location: ./../../index/loginFailed/you_not_logged_in.php");
+			header("Location: ./../../index/index.php?error=you_not_logged_in");
 		}
 		if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false)
 			header("Location: ./../../../");
@@ -34,7 +34,7 @@
 			<div><a <?php echo(($position == 3)?"class=\"active\"": "href=\"./../class\"")?>>Meine Klasse</a></div>
 			<div><a <?php echo(($position == 4)?"class=\"active\"": "href=\"./../learn\"")?>>Lernen</a></div>
 			<div><a <?php echo(($position == 5)?"class=\"active\"": "href=\"./../settings\"")?>>Einstellungen</a></div>
-			<div><a id="SignOut" href="./../SignOut.php">Abmelden</a></div>
+			<div><a id="SignOut" href="./../../includes/login/logout.inc.php">Abmelden</a></div>
 		</nav>
 	</header>
 

@@ -5,7 +5,24 @@
             Metis - Bitte stimmen Sie den Cookies zu
         </title>
         <?php
-               
+            include ("includes/DbAccess.php");
+            $conn -> query("CREATE TABLE IF NOT EXISTS `student` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `name` varchar(45) NOT NULL,
+                      `password` varchar(60) NOT NULL,
+                      `email` varchar(45) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;");
+            
+            $conn -> query("CREATE TABLE IF NOT EXISTS `teacher` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `name` varchar(45) NOT NULL,
+                      `password` varchar(60) NOT NULL,
+                      `email` varchar(45) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;");
+            $conn -> close();
+
             session_start();
             $_SESSION["cookie_caller"] = "./";
             $_SESSION["cookie_request_get"] = true;

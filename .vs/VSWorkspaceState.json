@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\includes",
+    "\\includes\\login",
     "\\registered",
     "\\registered\\settings"
   ],
-  "SelectedNode": "\\registered\\settings\\index.php",
+  "SelectedNode": "\\registered\\settings\\ChangePassword.php",
   "PreviewInSolutionExplorer": false
 }
