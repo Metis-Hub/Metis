@@ -5,10 +5,10 @@
 	<title>Metis - Einstellungen</title>
 <?php
 	include("./../../login/user.php");
-	if($_SESSION["visual_mode"] == "bright") {
+	if($_SESSION["cookies"]["visual_mode_cookie"] == "bright") {
 		echo "	<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";
 	}
-	elseif($_SESSION["visual_mode"] == "dark") {
+	elseif($_SESSION["cookies"]["visual_mode_cookie"] == "dark") {
 		echo "	<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n";
 	}
 
@@ -42,6 +42,8 @@
 
 	<center>
 		<form action="ChangePassword.php" method="post">
+			<br />
+			<br />
 			<table width="40%">
 				<tr>
 					<td width="35%">Altes Passwort: </td>
