@@ -12,7 +12,7 @@ body {
     height: 99%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-size: contain;
-    background: url(./../../image/logoMetis.png) 45% 45% no-repeat; /*Hier den Link aenderen, um das Bild zu aendern, 900*900 px sollte es in etwa sein*/
+    background: url(./../image/logoMetis.png) 45% 45% no-repeat; /*Hier den Link aenderen, um das Bild zu aendern, 900*900 px sollte es in etwa sein*/
     background-size: 65% auto;
     background-position: center calc(33.5%);
     background-attachment: fixed;
