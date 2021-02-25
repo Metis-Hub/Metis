@@ -5,7 +5,7 @@
 	$time = time() + (3600*24*360);
 	include("./../header.php");
 	
-	if(!isset($_COOKIE["nSubjekts"])) {
+	if(!isset($_COOKIE["nSubjekts"])) {	// Anzahl der Fächer wird auf 0 gesetzt
 		setcookie("nSubjekts", 0, $time);
 		header("location: ./../grades");	// Dadurch wird die URL zurückgesetzt
 	}
@@ -17,6 +17,18 @@
 		header("Location:".$_SERVER['REQUEST_URI']);
 	}
 
+	if(isset($_SESSION["subj"]) && isset($_SESSION["average".$_SESSION["subj"]])) {
+		for($i = 0; $i < $_SESSION["average".$_SESSION["subj"]]["n"]; $i++) {
+			setcookie("average".$_SESSION["subj"], $_SESSION["average".$_SESSION["subj"]][$i]);
+		}
+		setcookie("average".$_SESSION["subj"], $_SESSION["average".$_SESSION["subj"]]["num"], $time);
+		unset($_SESSION["average".$_SESSION["subj"]]);
+		unset($_SESSION["subj"]);
+		unset($_SESSION["subjekt"]);
+		$_SESSION["must_reload"] = true;
+		header("Location: ./../grades/");
+	}
+
 	for($i = 0; $i < $_COOKIE["nSubjekts"]; $i++) {
 		if(isset($_GET["remove".$i])) {
 			$remove = $i+1;
@@ -26,6 +38,7 @@
 	for($i = 0; $i < $_COOKIE["nSubjekts"]; $i++) {
 		if(isset($_GET["subj".$i])) {
 			$_SESSION["subjekt"] = $_COOKIE["nSubj".$i];
+			$_SESSION["subj"] = $i;
 			header("Location: calc.php");
 		}
 	}

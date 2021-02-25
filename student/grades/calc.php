@@ -1,5 +1,31 @@
 <?php
     session_start();
+
+    global $name;
+
+    if(!isset($_SESSION["subjekt"]) || !isset($_SESSION["subj"])) {
+        header("Location: ./../grades/");
+    }
+    else {
+        $name = $_SESSION["subjekt"];
+    }
+
+    if(isset($_GET["save"])) {
+        
+        // Löschen der Sessions
+		$number = $_SESSION["subj"];
+        $sum = 0;
+
+        for($i = 0; $i < $_SESSION["num"]; $i++) {
+            $_SESSION["average"][$i] = $_GET[$i];
+            $sum += $_GET[$i];
+        }
+
+        $_SESSION["average".$number]["num"] = $sum / $_SESSION["num"];
+        $_SESSION["average".$number]["n"] = $_SESSION["num"];
+        header("Location: ./../grades/");
+    }
+
     if(!isset($_SESSION["num"])) {
         $_SESSION["num"] = 0;
     }
@@ -25,6 +51,7 @@
     include("./../header.php");
 ?>
     <div>
+        <p><h1><?php echo $name;?></h1></p>
         <form action="calc.php" method="get">
             <table><?php
                     echo "\n<tr>\n";
