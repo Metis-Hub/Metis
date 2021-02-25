@@ -35,7 +35,7 @@ if(isset($_POST["email"]) && isset($_POST["pwd"])) {
 
     if(!tryLogin("teacher", $email, $password, $conn)) {
         if(!tryLogin("student", $email, $password, $conn)) {
-            header("Location: ../../index/index.php?error=noAccountFound");
+            header("Location: ../../index/index.php?error=no_account_found");
         } else {
             header("Location: ../../registered/home");
         }
