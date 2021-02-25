@@ -21,7 +21,7 @@ include("header.php");
 	<p><b><u>Das ist tempor&auml;r:</u></b></p>
 	<ul>
 		<li><a href="./../tmpDelCookies.php">Cookies l&ouml;schen</a></li>
-		<li><a href="./../test/createAccount.php">Account erstellen</a></li>
+		<li><a href="./../test/manageAccounts.php">Account erstellen</a></li>
 	</ul>
 	<p>
 		<h2>Zur Anmeldung:</h2>
