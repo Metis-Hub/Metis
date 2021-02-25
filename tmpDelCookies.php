@@ -22,7 +22,7 @@ else {
 		<b>Wohin jetzt?</b>
 		<ul>
 			<li><a href="./../">localhost/index.php</a></li>
-			<li><a href="./registered/home/">Home</a></li>
+			<li><a href="./student/home/">Home</a></li>
 			<li><a href="./index/">index/</a></li>
 		</ul>
 	</p>

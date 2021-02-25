@@ -12,7 +12,7 @@
     $input = array(
     1 => array(1 => "\t\t\t\t\t<td><input name=\"", 2 => "\" class=\"num\" type=\"number\" max=\"6\" min=\"1\" placeholder=\"Note\" value=\"", 3 => "\" /></td>\n",
                 4 => "\" type=\"number\" max=\"6\" min=\"1\" placeholder=\"Note\" autofocus value=\""),
-    2 => array(1 => "\t\t\t\t\t<td><input name=\"del", 2 => "\" class=\"minus\" type=\"submit\" name=\"del\" value=\"&minus;\" /></td>\n")
+    2 => array(1 => "\t\t\t\t\t<td><input name=\"del", 2 => "\" class=\"minus\" type=\"submit\" value=\"&minus;\" /></td>\n")
     );
 
     if(isset($_GET["addGrade"])) {

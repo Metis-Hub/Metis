@@ -9,7 +9,7 @@
 		echo "<script type=\"text/javascript\">alert(\"" . $_POST["visual_mode"] . "\");</script>";
 		$_SESSION["cookie_request_set"] = "visual_mode_cookie";
         $_SESSION["cookies"]["visual_mode_cookie"] = $_POST["visual_mode"];
-		$_SESSION["cookie_caller"] = "registered/settings/ChangeSettings.php";
+		$_SESSION["cookie_caller"] = "student/settings/ChangeSettings.php";
 	}
 ?>
 </head>
