@@ -1,4 +1,17 @@
 <html>
+	<head>
+		<title>Account erstellen</title>
+		<link rel="icon" href="../image/faviconMetis.ico" type="image/x-icon" />
+		<?php
+			session_start();
+			if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false)
+				header("Location: ./../");
+			if($_SESSION["cookies"]["visual_mode_cookie"] == "bright")
+				echo "<link rel=\"stylesheet\" href=\"./../index/style.css\" />\n";
+			elseif($_SESSION["cookies"]["visual_mode_cookie"] == "dark")
+				echo "<link rel=\"stylesheet\" href=\"./../index/style_dark.css\" />\n";
+		?>
+	</head>
 <body>
 	<?php
 		include("../includes/DbAccess.php");
@@ -41,16 +54,18 @@
 		mysqli_stmt_execute($stmt);
 	}
 	?>
-
-	<h1> Account erstellen </h1>
-	<p> <a href="javascript:history.back()">back</a> </p>
-	<h2> Student </h2>
+	
+	<header>
+		<nav><a href="./../index/">zur&uuml;ck</a></nav>
+		<center><h1>Account erstellen</h1></center>
+	</header>
+	<h2>Student</h2>
 	<form method="POST">
 	<input type="text" placeholder="Name" name="name"> </input>
 	<input type="text" placeholder="Email" name="email"> </input>
 	<input type="text" placeholder="Password" name="pwd"> </input>
 
-	<input type="submit" name = "student_submit"> </input>
+	<input type="submit" name="student_submit"> </input>
 	</form>
 	<?php
 	$sql = "SELECT * FROM student";
@@ -70,7 +85,7 @@
 	<input type="text" placeholder="Email" name="email"> </input>
 	<input type="text" placeholder="Password" name="pwd"> </input>
 
-	<input type="submit" name = "teacher_submit"> </input>
+	<input type="submit" name="teacher_submit"> </input>
 	</form>
 	<?php
 	$sql = "SELECT * FROM teacher";
