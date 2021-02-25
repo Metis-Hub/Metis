@@ -1,3 +1,35 @@
+<?php
+function createAccount($table, $email, $pwd, $name) {
+	global $conn;
+	$sql = "INSERT INTO $table (email, name, password) VALUES (?, ?, ?)";
+	$stmt = mysqli_stmt_init($conn);
+	mysqli_stmt_prepare($stmt, $sql);
+	$password = password_hash($pwd, PASSWORD_BCRYPT, array(
+		"cost" => 5
+	));
+
+	mysqli_stmt_bind_param($stmt, "sss", $email, $name, $password);
+	mysqli_stmt_execute($stmt);
+}
+function viewAccounts($table) {
+	global $conn;
+	$sql = "SELECT * FROM $table";
+	$result = $conn->query($sql);
+
+	while($row = $result->fetch_assoc()) {
+		echo "<form method='POST'>";
+		echo "<input type=submit name=$table-del value=".$row["id"]."> </input>";
+		foreach($row as $key => $value) {
+			if($key != "id") {
+				echo "<b>$key</b>: $value, ";
+			}
+		}
+		echo "</form>";
+	}
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="de">
 	<head>
@@ -24,34 +56,24 @@
 	<?php
 	#ACHTUNG! alle felder sollten ausgefüllt werden
 	if(isset($_POST["teacher_submit"])) {
-		$sql = "INSERT INTO teacher (email, name, password) VALUES (?, ?, ?)";
-		$stmt = mysqli_stmt_init($conn);
-
-		mysqli_stmt_prepare($stmt, $sql);
-
-		$name = $_POST["name"];
-		$email = $_POST["email"];
-		$password = password_hash($_POST["pwd"], PASSWORD_BCRYPT, array(
-			"cost" => 5
-		));
-
-		mysqli_stmt_bind_param($stmt, "sss", $email, $name, $password);
-		mysqli_stmt_execute($stmt);
-
-
+		createAccount("teacher", $_POST["email"], $_POST["pwd"], $_POST["name"]);
 	} else if(isset($_POST["student_submit"])) {
-		$sql = "INSERT INTO student (email, name, password) VALUES (?, ?, ?)";
+		createAccount("student", $_POST["email"], $_POST["pwd"], $_POST["name"]);
+	} else if(isset($_POST["teacher-del"])) {
+		$id = $_POST["teacher-del"];
+		$sql = "DELETE FROM teacher WHERE id = ?";
 		$stmt = mysqli_stmt_init($conn);
-
 		mysqli_stmt_prepare($stmt, $sql);
 
-		$name = $_POST["name"];
-		$email = $_POST["email"];
-		$password = password_hash($_POST["pwd"], PASSWORD_BCRYPT, array(
-			"cost" => 5
-		));
+		mysqli_stmt_bind_param($stmt, "s", $id);
+		mysqli_stmt_execute($stmt);
+	} else if(isset($_POST["student-del"])) {
+		$id = $_POST["student-del"];
+		$sql = "DELETE FROM student WHERE id = ?";
+		$stmt = mysqli_stmt_init($conn);
+		mysqli_stmt_prepare($stmt, $sql);
 
-		mysqli_stmt_bind_param($stmt, "sss", $email, $name, $password);
+		mysqli_stmt_bind_param($stmt, "s", $id);
 		mysqli_stmt_execute($stmt);
 	}
 	?>
@@ -69,15 +91,7 @@
 	<input type="submit" name="student_submit"> </input>
 	</form>
 	<?php
-	$sql = "SELECT * FROM student";
-	$result = $conn->query($sql);
-
-	while($row = $result->fetch_assoc()) {
-		foreach($row as $key => $value) {
-			echo "<b>$key</b>: $value, ";
-		}
-		echo "<br>";
-	}
+	viewAccounts("student");
 	?>
 
 	<h2> Teacher </h2>
@@ -89,15 +103,7 @@
 	<input type="submit" name="teacher_submit"> </input>
 	</form>
 	<?php
-	$sql = "SELECT * FROM teacher";
-	$result = $conn->query($sql);
-
-	while($row = $result->fetch_assoc()) {
-		foreach($row as $key => $value) {
-			echo "<b>$key</b>: $value, ";
-		}
-		echo "<br>";
-	}
+	viewAccounts("teacher");
 	?>
 </body>
 </html>
