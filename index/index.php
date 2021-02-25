@@ -25,7 +25,7 @@ include("header.php");
 	</ul>
 	<p>
 		<h2>Zur Anmeldung:</h2>
-		Zuerst Lokalserver (bei Xampp), und dann erst die Batch-Datei ("startBackend.bat") starten.
+		Datenbank metis erstellen, und dann registrieren
 	</p>
 </p>
 

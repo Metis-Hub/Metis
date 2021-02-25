@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="de">
 	<head>
 		<title>Account erstellen</title>
 		<link rel="icon" href="../image/faviconMetis.ico" type="image/x-icon" />
