@@ -26,7 +26,7 @@ function tryLogin($type, $email, $password, $conn) {
 }
 
 if(isset($_SESSION["user"])) {
-    header("Location: ./../../student/home");
+    header("Location: ./../../student/home/");
 }
 
 if(isset($_POST["email"]) && isset($_POST["pwd"])) {
@@ -37,10 +37,10 @@ if(isset($_POST["email"]) && isset($_POST["pwd"])) {
         if(!tryLogin("student", $email, $password, $conn)) {
             header("Location: ../../index/index.php?error=no_account_found");
         } else {
-            header("Location: ../../student/home");
+            header("Location: ../../student/home/");
         }
     } else {
-        header("Location: ../../student/home");
+        header("Location: ../../teacher/home/");
     }
 } else {
     header("Location: ../../index/index.php?error=emptyFields");
