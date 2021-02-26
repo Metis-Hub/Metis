@@ -7,14 +7,14 @@
 	
 	if(!isset($_COOKIE["nSubjekts"])) {	// Anzahl der Fächer wird auf 0 gesetzt.
 		setcookie("nSubjekts", 0, $time);
-		header("location: ./../grades");	// Dadurch wird die URL zurückgesetzt.
+		header("location: ./../grades/");	// Dadurch wird die URL zurückgesetzt.
 	}
 
 	$remove = null;
 
 	if(isset($_SESSION["must_reload"])) {	// Diese Neulademöglichkeit ermöglicht die Verwendung von neugesetzten Cookies.
 		unset($_SESSION["must_reload"]);
-		header("Location:".$_SERVER['REQUEST_URI']);
+		header("location:".$_SERVER['REQUEST_URI']);
 	}
 
 	if(isset($_SESSION["subj"]) && isset($_SESSION["average".$_SESSION["subj"]])) {	// Empfängt die Daten von der Berechnung des Durchschnittes.
@@ -28,7 +28,7 @@
 		unset($_SESSION["subj"]);
 		unset($_SESSION["subjekt"]);
 		$_SESSION["must_reload"] = true;
-		header("Location: ./../grades/");
+		header("location: ./../grades/");
 	}
 
 	for($i = 0; $i < $_COOKIE["nSubjekts"]; $i++) {	// Überpruft, ob ein Fach entfernt werden soll.
@@ -41,7 +41,18 @@
 		if(isset($_GET["subj".$i])) {
 			$_SESSION["subjekt"] = $_COOKIE["nSubj".$i];
 			$_SESSION["subj"] = $i;
-			header("Location: calc.php");
+			$header = "location: calc.php?";
+			$array = array();
+			echo $_COOKIE["grades".$i];
+			if(isset($_COOKIE["grades".$i]) && $_COOKIE["grades".$i] != 0 &&  $_COOKIE["grades".$i] != null) {
+				$array = unserialize($_COOKIE["grades".$i]);
+				for($j = 0; $j < count($array); $j++) {
+					$header .= $j . "=" . $array[$j] . "&";
+				}
+				$_SESSION["num"] = count($array);
+				header($header);
+			}
+			header("location: calc.php");
 		}
 	}
 
@@ -51,7 +62,7 @@
 		setcookie("grades".$_COOKIE["nSubjekts"], 0.0, $time);
 		setcookie("nSubjekts", $_COOKIE["nSubjekts"]+1, $time);
 		$_SESSION["must_reload"] = true;
-		header("location: ./../grades");	// Dadurch wird die URL zurückgesetzt.
+		header("location: ./../grades/");	// Dadurch wird die URL zurückgesetzt.
 	}
 	elseif(isset($_GET["reset"])) {
 		for($i = 0; $i < $_COOKIE["nSubjekts"]; $i++) {	// Die Cookies werden zurückgesetzt.
@@ -59,7 +70,7 @@
 				setcookie("nSubj".$i, $_COOKIE["nSubj".$i], 1);
 		}
 		setcookie("nSubjekts", 0, $time);
-		header("location: ./../grades");	// Dadurch wird die URL zurückgesetzt.
+		header("location: ./../grades/");	// Dadurch wird die URL zurückgesetzt.
 	}
 	elseif($remove != null) {
 		$remove--;
@@ -73,7 +84,7 @@
 		setcookie("nSubj".$_COOKIE["nSubjekts"], false, 1);	// Das Cookie wird entfernt
 		setcookie("nSubjekts", $_COOKIE["nSubjekts"]-1, $time);
 		$_SESSION["must_reload"] = true;
-		header("location: ./../grades");	// Dadurch wird die URL zurückgesetzt
+		header("location: ./../grades/");	// Dadurch wird die URL zurückgesetzt
 	}
 
 ?>

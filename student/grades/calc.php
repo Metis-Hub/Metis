@@ -4,7 +4,7 @@
     global $name;
 
     if(!isset($_SESSION["subjekt"]) || !isset($_SESSION["subj"])) {
-        header("Location: ./../grades/");
+        header("location: ./../grades/");
     }
     else {
         $name = $_SESSION["subjekt"];
@@ -25,7 +25,7 @@
         else $_SESSION["average".$number]["num"] = 0.00;
 
         $_SESSION["average".$number]["n"] = $_SESSION["num"];
-        header("Location: ./../grades/");
+        header("location: ./../grades/");
     }
 
     if(!isset($_SESSION["num"])) {
