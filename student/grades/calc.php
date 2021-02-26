@@ -111,6 +111,7 @@
             <br />
             <p id="average">
                 <script type="text/javascript">
+
                     window.onload = function() {
                         var sum = 0.0;
                         const num = document.querySelectorAll('input[class="num"]')
