@@ -1,7 +1,9 @@
 <?php
 
 $time = time() + (3600*24*360);	// Das wäre ein Jahr
+session_start();
 $caller = "Location: ".((isset($_SESSION["cookie_caller"]))?$_SESSION["cookie_caller"]:"index/");
+
 
 if(isset($_SESSION["cookie_request_set"])) {	// Zuerst werden die Cookies gesetzt
 	

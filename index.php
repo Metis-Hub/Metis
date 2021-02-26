@@ -24,8 +24,11 @@
             $conn -> close();
 
             session_start();
-            $_SESSION["cookie_caller"] = "./";
-            $_SESSION["cookie_request_get"] = true;
+            if(!isset($_SESSION["cookie_request_get"])) {
+                $_SESSION["cookie_caller"] = "index.php";
+                $_SESSION["cookie_request_get"] = true;
+            header("location: cookies.php");
+            }
 
             
             if ((!isset($_SESSION["cookies"]["allow_set_cookies"])) || ($_SESSION["cookies"]["allow_set_cookies"] == false)) {
