@@ -15,7 +15,6 @@
 	if(isset($_POST["password_ok"])) {
 		if((isset($_POST["new"]) && isset($_POST["new_2"])) && ($_POST["new"] == $_POST["new_2"])) {
 			if(changePassword($_POST["old"], $_POST["new"])) {
-				echo "\n<script type=\"text/JavaScript\">alert(unescape(\"Das Passwort ist OK%21\"));</script>";
 				header("Location: ./../settings/");
 			}
 			else {
