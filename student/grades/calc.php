@@ -17,11 +17,13 @@
         $sum = 0;
 
         for($i = 0; $i < $_SESSION["num"]; $i++) {
-            $_SESSION["average"][$i] = $_GET[$i];
+            $_SESSION["average".$number][$i] = $_GET[$i];
             $sum += $_GET[$i];
         }
 
-        $_SESSION["average".$number]["num"] = $sum / $_SESSION["num"];
+        if($sum != 0) $_SESSION["average".$number]["num"] = $sum / $_SESSION["num"];
+        else $_SESSION["average".$number]["num"] = 0.00;
+
         $_SESSION["average".$number]["n"] = $_SESSION["num"];
         header("Location: ./../grades/");
     }
@@ -54,7 +56,7 @@
         <p><h1><?php echo $name;?></h1></p>
         <form action="calc.php" method="get">
             <table><?php
-                    echo "\n<tr>\n";
+                    echo "\n\t\t\t\t<tr>\n";
                 
 
                     $jumps = array();
@@ -111,7 +113,6 @@
             <br />
             <p id="average">
                 <script type="text/javascript">
-
                     window.onload = function() {
                         var sum = 0.0;
                         const num = document.querySelectorAll('input[class="num"]')
@@ -119,7 +120,8 @@
                             sum += parseFloat(num[i].value + ".0");
                         }
                         if(sum != 0) {
-                            document.getElementById("average").innerHTML = "Ihr Durchschnitt betr&auml;gt: " + (sum / parseFloat(num.length).toString());
+                            document.getElementById("average").innerHTML = "Ihr Durchschnitt betr&auml;gt: " + 
+                            (parseFloat(Math.round((sum/parseFloat(num.length)*100))/100).toString());
                         }
                     }
                 </script>
