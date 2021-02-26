@@ -20,6 +20,15 @@
 					echo "alert(unescape(\"Das Passwort oder der Benutztername oder beides ist ung%FCltig!\\nSolltest du dein Passwort vergessen haben,"
 						 . "\\ninformiere bitte deinen Lehrer, damit dieser es zur%FCcksetzt.\"));\n";
 					break;
+					case "fields_are_empty":
+					echo "alert(unescape(\"Sie sollten auch die Felder ausf%FCllen.\"));\n";
+					break;
+					case "email_field_are_empty":
+					echo "alert(unescape(\"Sie haben keine E-Mail eingegeben.\"));\n";
+					break;
+					case "password_fields_are_empty":
+					echo "alert(unescape(\"Sie haben kein Passwort eingegeben.\"));\n";
+					break;
 				}
 				echo "window.location.href = \"./../index/\"";
 				echo "</script>\n";

@@ -29,7 +29,7 @@ if(isset($_SESSION["user"])) {
     header("Location: ./../../student/home/");
 }
 
-if(isset($_POST["email"]) && isset($_POST["pwd"])) {
+if(isset($_POST["email"]) && $_POST["email"] != null && isset($_POST["pwd"]) && $_POST["pwd"] != null) {
     $email = $_POST["email"];
     $password = $_POST["pwd"];
 
@@ -43,7 +43,12 @@ if(isset($_POST["email"]) && isset($_POST["pwd"])) {
         header("Location: ../../teacher/home/");
     }
 } else {
-    header("Location: ../../index/index.php?error=emptyFields");
+    if(isset($_POST["email"]) && !$_POST["email"] != null && isset($_POST["pwd"]) && !$_POST["pwd"] != null)
+    header("Location: ../../index/index.php?error=fields_are_empty");
+    elseif(isset($_POST["email"]) && $_POST["email"] != null)
+    header("Location: ../../index/index.php?error=email_field_are_empty");
+    elseif(isset($_POST["pwd"]) && $_POST["pwd"] != null)
+    header("Location: ../../index/index.php?error=password_fields_are_empty");
 }
 
 ?>
