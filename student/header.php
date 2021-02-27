@@ -1,3 +1,17 @@
+<?php
+
+// Datum
+date_default_timezone_set("Europe/Berlin");
+
+global $date;
+$date = array(
+"wochentag" => array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"),
+	"monat" => array(1=>"Januar",2=>"Februar",3=>"M&auml;rz",4=>"April",5=>"Mai",6=>"Juni",7=>"Juli",8=>"August",9=>"September", 10=>"Oktober",11=>"November",12=>"Dezember")
+);
+
+// Datum ende
+
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -6,6 +20,7 @@
 		if(session_status() != 2) {
 			session_start();
 		}
+
 		include("./../../includes/user.php");
 		if(!isLoggedIn()) {
 			header("Location: ./../../index/index.php?error=you_not_logged_in");
@@ -22,7 +37,7 @@
 		case 4: echo"Lernen";break;case 5: echo"Einstellungen";break;}?></title>
 </head>
 
-<body>
+<body onload="UpdateTime()">
 	
 	<header>
 		<nav>
