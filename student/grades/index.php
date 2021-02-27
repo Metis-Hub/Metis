@@ -102,12 +102,12 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</td>
-				<td>Durchschnitt<td>
+				<td align="center">Durchschnitt<td>
 			</tr><?php echo "\n";
 			for($i = 0; $i < $_COOKIE["nSubjekts".$id]; $i++) {	// Gibt die Buttons usw. aus.
 				echo "\t\t\t<tr>\n\t\t\t\t<td><input type=\"submit\" name=\"remove" . $i . "\" value=\"&minus;\"</td>\n";
 				echo "\t\t\t\t<td>" . $_COOKIE["nSubj".$i.$id] . ": </td>\n";
-				echo "\t\t\t\t<td>" . number_format($_COOKIE["average".$i.$id], 2, ",", ".") . "</td>\n";
+				echo "\t\t\t\t<td align=\"center\">" . number_format($_COOKIE["average".$i.$id], 2, ",", ".") . "</td>\n";
 				echo "\t\t\t\t<td>&nbsp;&nbsp;<input type=\"submit\" name=\"subj".$i."\" value=\"Durchschnitt berechnen\" /></td>\n";
 				echo "\t\t\t</tr>\n";
 			}
