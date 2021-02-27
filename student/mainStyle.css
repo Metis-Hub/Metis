@@ -46,6 +46,14 @@ input {
     width: 30px;
 }
 
+#time {
+    right: 1px;
+    bottom: 0px;
+    margin-right: 1%;
+    margin-bottom: 0.1%;
+    position: absolute;
+}
+
 #SignOut {
     padding: 6px;
     margin-top: 8px;
