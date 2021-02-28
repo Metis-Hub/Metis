@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\admin",
+    "\\errors"
   ],
-  "SelectedNode": "\\startBackend.bat",
+  "SelectedNode": "\\errors\\error.php",
   "PreviewInSolutionExplorer": false
 }
