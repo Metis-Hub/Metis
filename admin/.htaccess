@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Admin Only Area"
+AuthUserFile C:\xampp\htdocs\Metis\admin/.htpasswd
+Require valid-user

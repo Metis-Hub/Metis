@@ -1,0 +1,3 @@
+# Serverconfigurations
+
+ErrorDocument 404 /Metis/404.php
