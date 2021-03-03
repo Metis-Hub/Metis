@@ -5,8 +5,8 @@ AddCharset UTF-8 .php
 
 
 #Fehlerhandhabung
-ErrorDocument 404 /Metis/errors/404.php
-ErrorDocument 401 /Metis/errors/error.php?error=401
-ErrorDocument 403 /Metis/errors/error.php?error=403
-ErrorDocument 500 /Metis/errors/error.php?error=500
-ErrorDocument 503 /Metis/errors/error.php?error=503
+ErrorDocument 404 /Metis/error_404_site_not_exsist/
+ErrorDocument 401 /Metis/error.php?error=401
+ErrorDocument 403 /Metis/error.php?error=403
+ErrorDocument 500 /Metis/error.php?error=500
+ErrorDocument 503 /Metis/error.php?error=503
