@@ -3,7 +3,7 @@
 session_start();
 if(!isset($_SESSION["error_404"])) {
 	$_SESSION["error_404"] = true;
-	header("loaction: localhost/Metis/error_404.php");	//
+	header("loaction: localhost/Metis/error_404.php");
 }
 else {
 	unset($_SESSION["error_404"]);
@@ -15,7 +15,7 @@ else {
 	<head>
 		<title>Seite exsistiert nicht!</title>
 		<?php
-			if($_SESSION["cookies"]["visual_mode_cookie"] == "bright") {
+			if($_SESSION["cookies"]["visual_mode_cookie"] == "bright") {	//Style wird nicht gewählt
 				echo "<link rel=\"stylesheet\" href=\"index/style_dark.css\" />\n";
 			}
 			else {
