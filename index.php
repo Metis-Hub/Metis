@@ -21,6 +21,16 @@
                       `email` varchar(45) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;");
+
+            /*$conn -> query("CREATE TABLE IF NOT EXISTS `teacher` (
+                       `id` int(11) NOT NULL AUTO_INCREMENT,
+                       `person_id` int(11),
+                       `message` varchar(500),
+                       `time` smalldatetime,
+                       PRIMARY KEY (`id`)");*/
+            // @Bruno, das wird für den Chat gebraucht, bitte ggf. nochmal überarbeiten.
+
+
             $conn -> close();
 
             session_start();

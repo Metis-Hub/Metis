@@ -11,7 +11,7 @@ else {
 	session_start();
 	$_SESSION["cookie_request_del"] = true;
 	$_SESSION["cookie_caller"] = "./tmpDelCookies.php";
-	header("Location ./cookies.php");
+	header("location: ./cookies.php");
 }
 ?>
 	<title>Cookies gel&ouml;scht!</title>
@@ -21,7 +21,7 @@ else {
 	<p>
 		<b>Wohin jetzt?</b>
 		<ul>
-			<li><a href="./../">localhost/index.php</a></li>
+			<li><a href="./../Metis/">localhost/index.php</a></li>
 			<li><a href="./student/home/">Home</a></li>
 			<li><a href="./index/">index/</a></li>
 		</ul>
