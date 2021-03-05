@@ -22,12 +22,13 @@
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;");
 
-            /*$conn -> query("CREATE TABLE IF NOT EXISTS `teacher` (
+            $conn -> query("CREATE TABLE IF NOT EXISTS `messages` (
                        `id` int(11) NOT NULL AUTO_INCREMENT,
+                       `class_id` int(11),
                        `person_id` int(11),
-                       `message` varchar(500),
+                       `message` varchar(700),
                        `time` smalldatetime,
-                       PRIMARY KEY (`id`)");*/
+                       PRIMARY KEY (`id`)");
             // @Bruno, das wird für den Chat gebraucht, bitte ggf. nochmal überarbeiten.
 
 
