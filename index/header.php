@@ -9,6 +9,13 @@
 			elseif($_SESSION["cookies"]["visual_mode_cookie"] == "dark") {
 				echo "<link rel=\"stylesheet\" href=\"style_dark.css\" />\n";
 			}
+
+			$wait = false;
+			if(isset($_SESSION["to_much_wrong_logins"])) {
+				unset($_SESSION["to_much_wrong_logins"]);
+				$wait = true;
+			}
+
 			if(isset($_GET["error"])) {
 				echo "<script type=\"text/JavaScript\">\n";
 
@@ -29,10 +36,18 @@
 					case "password_fields_are_empty":
 					echo "alert(unescape(\"Sie haben kein Passwort eingegeben.\"));\n";
 					break;
+					case "to_much_wrong_logins":
+					header("location: ./to_much_wrong_logins.html");
+					break;
 				}
 				echo "window.location.href = \"./../index/\"";
 				echo "</script>\n";
 			}
+
+			if($wait) {
+				sleep(300);	// Wartet 3 min
+			}
+
 		?>
 		<link rel="icon" href="../image/faviconMetis.ico" type="image/x-icon" />
 		<title>Metis</title>

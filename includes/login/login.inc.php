@@ -26,7 +26,7 @@ function tryLogin($type, $email, $password, $conn) {
 }
 
 if(isset($_SESSION["user"])) {
-    header("Location: ./../../student/home/");
+    header("location: ./../../student/home/");
 }
 
 if(isset($_POST["email"]) && $_POST["email"] != null && isset($_POST["pwd"]) && $_POST["pwd"] != null) {
@@ -35,20 +35,42 @@ if(isset($_POST["email"]) && $_POST["email"] != null && isset($_POST["pwd"]) && 
 
     if(!tryLogin("teacher", $email, $password, $conn)) {
         if(!tryLogin("student", $email, $password, $conn)) {
-            header("Location: ../../index/index.php?error=no_account_found");
+
+            if(!isset($_SESSION["wrong_logins"])) {
+                $_SESSION["wrong_logins"] = 1;
+            }
+            else {
+                if($_SESSION["wrong_logins"] >= 10) {   // Nun wird 3 Minuten gewartet.
+                    unset($_SESSION["wrong_logins"]);
+                    $_SESSION["to_much_wrong_logins"] = true;
+                    header("location: ../../index/index.php?error=to_much_wrong_logins");
+                }
+                else {
+                    $_SESSION["wrong_logins"] += 1;
+                }
+            }
+
+            header("location: ../../index/index.php?error=no_account_found");
+
         } else {
-            header("Location: ../../student/home/");
+            if(isset($_SESSION["wrong_logins"])) {  // Wenn Anmeldung richtig ist wird ggf. zurückgesetzt
+                unset($_SESSION["wrong_logins"]);
+            }
+            header("location: ../../student/home/");    // Schüler
         }
     } else {
-        header("Location: ../../teacher/home/");
+        if(isset($_SESSION["wrong_logins"])) {  // Wenn Anmeldung richtig ist wird ggf. zurückgesetzt
+            unset($_SESSION["wrong_logins"]);
+        }
+        header("location: ../../teacher/home/");    // Lehrer
     }
 } else {
     if(isset($_POST["email"]) && !$_POST["email"] != null && isset($_POST["pwd"]) && !$_POST["pwd"] != null)
-    header("Location: ../../index/index.php?error=fields_are_empty");
+    header("location: ../../index/index.php?error=fields_are_empty");
     elseif(isset($_POST["email"]) && $_POST["email"] != null)
-    header("Location: ../../index/index.php?error=email_field_are_empty");
+    header("location: ../../index/index.php?error=email_field_are_empty");
     elseif(isset($_POST["pwd"]) && $_POST["pwd"] != null)
-    header("Location: ../../index/index.php?error=password_fields_are_empty");
+    header("location: ../../index/index.php?error=password_fields_are_empty");
 }
 
 ?>
