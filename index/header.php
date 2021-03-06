@@ -10,10 +10,10 @@
 				echo "<link rel=\"stylesheet\" href=\"style_dark.css\" />\n";
 			}
 
-			$wait = false;
 			if(isset($_SESSION["to_much_wrong_logins"])) {
 				unset($_SESSION["to_much_wrong_logins"]);
-				$wait = true;
+				$_SESSION["wait"] = true;
+				$_GET["error"] = "to_much_wrong_logins";
 			}
 
 			if(isset($_GET["error"])) {
@@ -37,15 +37,13 @@
 					echo "alert(unescape(\"Sie haben kein Passwort eingegeben.\"));\n";
 					break;
 					case "to_much_wrong_logins":
-					header("location: ./to_much_wrong_logins.html");
+					echo "alert(\"Sie haben zu viel falsche Daten gesendet!\");\n";
 					break;
 				}
-				echo "window.location.href = \"./../index/\"";
+				if(!$_GET["error"] != "to_much_wrong_logins") {
+					echo "window.location.href = \"./../index/\"";
+				}
 				echo "</script>\n";
-			}
-
-			if($wait) {
-				sleep(300);	// Wartet 3 min
 			}
 
 		?>
