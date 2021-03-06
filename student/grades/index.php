@@ -94,35 +94,39 @@
 
 <div>
 	<form action="index.php" methode="get">
-		<table <!--border = 1-->
-			<tr>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td>
-					Fach
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				</td>
-				<td align="center">Durchschnitt<td>
+		<table border="<?php echo(($_COOKIE["nSubjekts".$id] != 0)?"1":"0");?>" width="40%" cellspacing="0" bordercolor="#777760">
+			<tr><?php
+				if($_COOKIE["nSubjekts".$id] != 0) {
+					echo "\n";
+					echo "\t\t\t\t<th width=\"7%\"></th>\n";
+					echo "\t\t\t\t<th align=\"left\" width=\"50%\">Fach</th>\n";
+					echo "\t\t\t\t<th align=\"center\" width=\"18%\">&Oslash;<th>\n";
+					//echo "\t\t\t\t<th width=\"25%\"></th>\n";
+				}
+				else {
+					echo "\t\t\t\t<th>F&auml;cher</th><th></th>\n";
+				}
+
+				?>
 			</tr><?php echo "\n";
 			for($i = 0; $i < $_COOKIE["nSubjekts".$id]; $i++) {	// Gibt die Buttons usw. aus.
-				echo "\t\t\t<tr>\n\t\t\t\t<td><input type=\"submit\" name=\"remove" . $i . "\" value=\"&minus;\"</td>\n";
-				echo "\t\t\t\t<td>" . $_COOKIE["nSubj".$i.$id] . ": </td>\n";
-				echo "\t\t\t\t<td align=\"center\">" . number_format($_COOKIE["average".$i.$id], 2, ",", ".") . "</td>\n";
-				echo "\t\t\t\t<td>&nbsp;&nbsp;<input type=\"submit\" name=\"subj".$i."\" value=\"Durchschnitt berechnen\" /></td>\n";
+				echo "\t\t\t<tr>\n";
+				echo "\t\t\t\t<td align=\"center\" width=\"7%\"><input style=\"width:100%;\" type=\"submit\" name=\"remove"
+				. $i . "\" value=\"&minus;\"</td>\n";
+				echo "\t\t\t\t<td align=\"left\" width=\"50%\">" . $_COOKIE["nSubj".$i.$id] . ": </td>\n";
+				echo "\t\t\t\t<td align=\"center\" width=\"18%\">" . number_format($_COOKIE["average".$i.$id], 2, ",", ".") . "</td>\n";
+				echo "\t\t\t\t<td align=\"center\" width=\"25%\"><input style=\"width:100%;\" type=\"submit\" name=\"subj"
+				. $i . "\" value=\"&Oslash berechnen\" width=\"100%\" /></td>\n";
 				echo "\t\t\t</tr>\n";
 			}
 			?>
 		</table>
-		<table>
+		<table border="0" width="40%" cellspacing="0">
 			<tr>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td><input type="text" name="newSubjekt" placeholder="Fachname/-bezeichnung" width="600" /></td>
-				<td><input type="submit" name="addSubjekt" value="Fach hinzuf&uuml;gen" /></td>
-			</tr>
-			<tr><td><br /><br /></td></tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="reset" value="zur&uuml;cksetzten" /></td>
+				<th width="7%"></th>
+				<th width="50%"><input type="text" name="newSubjekt" placeholder="Fachname/-bezeichnung" style="width:100%;" /></th>
+				<th width="18%"><input type="submit" name="addSubjekt" value="Fach hinzuf&uuml;gen" /></th>
+				<th width="25%"><input type="submit" name="reset" value="zur&uuml;cksetzten" /></th>
 			</tr>
 		</table>
 	</form>
