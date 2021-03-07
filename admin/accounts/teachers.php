@@ -24,21 +24,26 @@ function emailIsTaken($email) {
 
 function updateStudent() {
 	global $conn;
-	$sql = "UPDATE student SET ";
+	$sql = "UPDATE teacher SET ";
 	$isFirst = true;
 		
 	if(!empty($_POST["name"])) {
 		$sql .= ($isFirst ? "name = \"".$_POST["name"]."\"" : ", name = \"".$_POST["name"]."\"");
 		$isFirst = false;
 	}
-	if(!empty($_POST["surname"])) {
-		$sql .= ($isFirst ? "surname = \"".$_POST["surname"]."\"" : ", surname = \"".$_POST["surname"]."\"");
+	if(!empty($_POST["firstname"])) {
+		$sql .= ($isFirst ? "firstname = \"".$_POST["firstname"]."\"" : ", firstname = \"".$_POST["firstname"]."\"");
 		$isFirst = false;
 	}
 	if(!empty($_POST["email"])) {
 		$sql .= ($isFirst ? "email = \"".$_POST["email"]."\"" : ", name = \"".$_POST["email"]."\"");
 		$isFirst = false;
 	}
+	if(!empty($_POST["salutation"])) {
+		$sql .= ($isFirst ? "salutation = \"".$_POST["salutation"]."\"" : ", name = \"".$_POST["salutation"]."\"");
+		$isFirst = false;
+	}
+
 	$sql .= " WHERE id = ?";
 	$stmt = $conn -> prepare($sql);
 
@@ -52,7 +57,7 @@ function updateStudent() {
 }
 
 $position = 1;
-$position2 = 0;
+$position2 = 1;
 include "../header.php";
 include "accountHeader.php";
 include("../../includes/DbAccess.php");
@@ -62,24 +67,23 @@ include("../../includes/DbAccess.php");
 	}
 ?>
 	<div class="left">
-		<center> <h2>Sch&uuml;ler</h2> </center>
+		<center> <h2>Lehrer</h2> </center>
 
 		<!-- Suche -->
 		<form method="GET">
 			<?php
 				echo '<input type = "text" name = "name" placeholder="Name" '.(!empty($_GET["name"]) ? ("value=".$_GET["name"]) :  "").'>';
 				echo '<input type = "text" name = "mail" placeholder="Mail" '.(!empty($_GET["mail"]) ? ("value=".$_GET["mail"]) :  "").'>';
-				echo '<input type = "text" name = "class" placeholder="Klasse" '.(!empty($_GET["class"]) ? ("value=".$_GET["class"]) :  "").'>';
 			?>
 			<input type=submit name=search value="Suchen">
 			<input type=submit name=newAccount value="Neuer Account">
 
 			<br>
 			<table>
-				<tr> <th>ID</th> <th>Name</th> <th>Nachname</th> <th>Email</th></tr>
+				<tr> <th>ID</th> <th>Anrede</th> <th>Nachname</th> <th>Email</th></tr>
 			<?php
 			if(!empty($_GET["search"]) ||!empty($_GET["select"])) {
-				$sql = "SELECT id, name, surname, email FROM student";
+				$sql = "SELECT id, salutation, name, email FROM teacher";
 			
 
 				$isFirst = true;
@@ -98,8 +102,8 @@ include("../../includes/DbAccess.php");
 				while($row = $result->fetch_assoc()) {
 					echo "<tr>";
 					echo "<td> <input type=submit name=select value=".$row["id"]."></td>";
+					echo "<td>".$row["salutation"]."</td>";
 					echo "<td>".$row["name"]."</td>";
-					echo "<td>".$row["surname"]."</td>";
 					echo "<td>".$row["email"]."</td>";
 					echo "</tr>";
 				}
@@ -112,13 +116,13 @@ include("../../includes/DbAccess.php");
 
 	######## Aktionsbehandlung ########
 	if(isset($_POST["createAccount"])) {
-		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["surname"])) {
+		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["firstname"])) {
 			echo "Nope, da waren leere Felder";
 		} else {
 			$name = $_POST["name"];
 			$email = $_POST["email"];
 			$pwd = $_POST["pwd"];
-			$surname = $_POST["surname"];
+			$firstname = $_POST["firstname"];
 
 			if($pwd != $_POST["pwdConfirm"]) {
 				echo "Die Passwörter stimmen nicht überein";
@@ -129,13 +133,13 @@ include("../../includes/DbAccess.php");
 					$password = password_hash($pwd, PASSWORD_BCRYPT, array(
 						"cost" => 5
 					));
-					$stmt = $conn -> prepare("INSERT INTO student (name, email, password, surname) VALUES (?, ?, ?, ?)");
+					$stmt = $conn -> prepare("INSERT INTO teacher (name, email, password, firstname) VALUES (?, ?, ?, ?)");
 					if(!$stmt) {
 						echo "SQL-Fehler";
 					} else {
-						$stmt -> bind_param("ssss", $name, $email, $password, $surname);
+						$stmt -> bind_param("ssss", $name, $email, $password, $firstname);
 						$stmt -> execute();
-						header("Location: students.php?select=".mysqli_insert_id($conn));
+						header("Location: teachers.php?select=".mysqli_insert_id($conn));
 					}
 				}
 			}
@@ -154,9 +158,9 @@ include("../../includes/DbAccess.php");
 	######## Auswahl ########
 	if(!empty($_GET["select"])) {
 		echo "<div class='right'>";
-		echo "<h2>Sch&uuml;lerinformation</h2>";
+		echo "<h2>Lehrerinformation</h2>";
 
-		$stmt = $conn -> prepare("SELECT * FROM student WHERE id = ?");
+		$stmt = $conn -> prepare("SELECT id, salutation, firstname, name, email FROM teacher WHERE id = ?");
 		$stmt -> bind_param("i", $_GET["select"]);
 		$stmt -> execute();
 		$result = $stmt -> get_result() -> fetch_assoc();
@@ -167,8 +171,9 @@ include("../../includes/DbAccess.php");
 			<form method=POST>
 				<table>
 					<tr> <th> ID </th> <td>".$result["id"]."</td></tr>
-					<tr> <th> Name </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type = text name = name> </td>" : "")."</tr>
-					<tr> <th> Nachname </th> <td>".$result["surname"]."</td>". ($edit ? "<td> <input type = text name = surname> </td>" : "")."</tr>
+					<tr> <th> Anrede </th> <td>".$result["salutation"]."</td>". ($edit ? "<td> <input type = text name = salutation> </td>" : "")."</tr>
+					<tr> <th> Vorname </th> <td>".$result["firstname"]."</td>". ($edit ? "<td> <input type = text name = firstname> </td>" : "")."</tr>
+					<tr> <th> Nachname </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type = text name = name> </td>" : "")."</tr>
 					<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type = text name = email> </td>" :"")."</tr>
 					<tr> <th> Password </th> <td><input type=submit name=changePwd value = 'Passwort &auml;ndern'></td></tr>
 					<tr> <th> Klassen </th> <td> Stuff </td></tr>
@@ -187,13 +192,14 @@ include("../../includes/DbAccess.php");
 		echo "</div>";
 		} elseif(isset($_GET["newAccount"])) {
 			echo "<div class='right'>";
-			echo "<h2>Neuer Sch&uuml;ler</h2>";
+			echo "<h2>Neuer Lehrer</h2>";
 
 			echo "
 				<form method=POST>
 					<table>
-						<tr> <th> Name </th> <td> <input type=text name=name placeholder=Name> </td></tr>
-						<tr> <th> Nachname </th> <td> <input type=text name=surname placeholder=Nachname> </td></tr>
+						<tr> <th> Anrede </th> <td> <input type=text name=salutatuin placeholder=Anrede> </td></tr>
+						<tr> <th> Vorname </th> <td> <input type=text name=firstname placeholder=Name> </td></tr>
+						<tr> <th> Nachname </th> <td> <input type=text name=name placeholder=Nachname> </td></tr>
 						<tr> <th> E-Mail </th><td> <input type=text name=email placeholder=E-Mail> </td></tr>
 						<tr> <th> Password </th> <td><input type=password name=pwd placeholder=Passwort></td></tr>
 						<tr> <th> Password best&auml;tigen </th> <td><input type=password name=pwdConfirm placeholder=Wiederholung></td></tr>
