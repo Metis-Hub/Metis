@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\admin",
+    "\\includes",
+    "\\includes\\DbTests",
+    "\\index",
+    "\\test"
   ],
+  "SelectedNode": "\\index\\header.php",
   "PreviewInSolutionExplorer": false
 }

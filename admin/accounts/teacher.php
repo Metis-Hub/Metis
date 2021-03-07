@@ -20,39 +20,30 @@ function viewAccounts($table) {
 		echo "<form method='POST'>";
 		echo "<input type=submit name=$table-del value=".$row["id"]."> </input>";
 		foreach($row as $key => $value) {
-			if($key != "id") {
-				echo "<b>$key</b>: $value, ";
+			if($table == "student") {
+				if($key == "name" || $key == "email") {
+					echo "<b>$key</b>: $value, ";
+				}
+			} else {
+				if($key == "name" || $key == "email") {
+					echo "<b>$key</b>: $value, ";
+				}
 			}
 		}
 		echo "</form>";
 	}
 }
-
-
+$position = 1;
+$position2 = 1;
+include "../header.php";
+include "accountHeader.php";
+include("../../includes/DbAccess.php");
+	if ($conn->connect_errno) {
+		echo "<h1>No DB-Connection</h1>";
+		exit();
+	}
 ?>
-<!DOCTYPE html>
-<html lang="de">
-	<head>
-		<title>Account erstellen</title>
-		<link rel="icon" href="../image/faviconMetis.ico" type="image/x-icon" />
-		<?php
-			session_start();
-			if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false)
-				header("Location: ./../");
-			if($_SESSION["cookies"]["visual_mode_cookie"] == "bright")
-				echo "<link rel=\"stylesheet\" href=\"./../index/style.css\" />\n";
-			elseif($_SESSION["cookies"]["visual_mode_cookie"] == "dark")
-				echo "<link rel=\"stylesheet\" href=\"./../index/style_dark.css\" />\n";
-		?>
-	</head>
-<body>
-	<?php
-		include("../includes/DbAccess.php");
-		if ($conn->connect_errno) {
-			echo "<h1>No DB-Connection</h1>";
-			exit();
-		}
-	?>
+
 	<?php
 	#ACHTUNG! alle felder sollten ausgefüllt werden
 	if(isset($_POST["teacher_submit"])) {
@@ -79,7 +70,6 @@ function viewAccounts($table) {
 	?>
 	
 	<header>
-		<nav><a href="./../index/">zur&uuml;ck</a></nav>
 		<center><h1>Account erstellen</h1></center>
 	</header>
 	<h2>Student</h2>
