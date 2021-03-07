@@ -1,10 +1,10 @@
 # Serverconfigurations
 
-#Einstellungen
+# Einstellungen
 AddCharset UTF-8 .php
 
 
-#Fehlerhandhabung
+# Fehlerhandhabung
 ErrorDocument 404 /Metis/error_404.php
 ErrorDocument 401 /Metis/index/error.php?error=401
 ErrorDocument 403 /Metis/index/error.php?error=403
