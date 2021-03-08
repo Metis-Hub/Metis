@@ -7,30 +7,44 @@
 	include("./header2.php");
 	include("./../../includes/chat_config.inc.php")
 ?>
+	<!-- Inhalt Chat -->
 	<div name="chat">
 		<table>
-		<?php/*
-			$req = mysqli_query($con, "SELECT * FROM messages, JOIN ON lehrerId = teacher.id");	//ggf. überarbeiten @Bruno
+		<?php
+			
+			$req = mysqli_query($con, "SELECT * FROM messages, JOIN ON lehrerId = teacher.id");	// ggf. bitte überarbeiten @Bruno
+			$i = 0;
+
+			// Durchlaufen der Nachrichten
 			while($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
 
 				$name = "";
 
 				if(!empty($row["teacherId"])) {
-
+					$name = $row["teacherId"];
 				}
 				elseif(!empty($row["studentId"])) {
-					
+					$name = $row["studentId"];
 				}
 
 				// Ausgabe der Nachricht
 				echo "\n\t\t\t<tr>\n";
-				echo "\t\t\t\t<th width=\"10%\" valign=\"top\">" . $row["name"] . "</th>\n";
+				echo "\t\t\t\t<th width=\"10%\" valign=\"top\">" . $name . "</th>\n";
 				echo "\t\t\t\t<td width=\"90%\" align=\"left\">" . $row["message"] ."</td>\n";
 				echo "\t\t\t</tr>\n";
+				$i++;
 			}
-		*/?>
+
+			// Wenn keine Nachrichten gesendet wurden
+			if($i <= 0) {
+				echo "\n\t\t\t<tr><td>Keine Nachrichten verfügbar.</td></tr>\n";
+			}
+
+		?>
 		</table>
 	</div>
+
+	<!-- Formular zum Nachrichten senden -->
 	<div id="msg">
 		<form action="chat.php" method="post">
 			<table border="0" width="100%">

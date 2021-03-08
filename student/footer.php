@@ -1,7 +1,8 @@
 	
-	<div id="time">
-	</div>
+	<!-- Zeitanzeige -->
+	<div id="time"></div>
 
+	<!-- Zeitupdate -->
 	<script type="text/JavaScript">
 		function UpdateTime() {
 			var now = new Date();
