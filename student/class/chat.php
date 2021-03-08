@@ -5,6 +5,7 @@
 	$position2 = 1;
 	include("./../header.php");
 	include("./header2.php");
+	include("./../../includes/chat_config.inc.php")
 ?>
 	<div name="chat">
 		<table>
