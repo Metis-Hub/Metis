@@ -94,7 +94,7 @@
 
 <div>
 	<form action="index.php" methode="get">
-		<table border="<?php echo(($_COOKIE["nSubjekts".$id] != 0)?"1":"0");?>" width="40%" cellspacing="0" bordercolor="#777760">
+		<table border="0" width="50%" cellspacing="0" bordercolor="#777760">
 			<tr><?php
 				if($_COOKIE["nSubjekts".$id] != 0) {
 					echo "\n";
@@ -111,16 +111,17 @@
 			</tr><?php echo "\n";
 			for($i = 0; $i < $_COOKIE["nSubjekts".$id]; $i++) {	// Gibt die Buttons usw. aus.
 				echo "\t\t\t<tr>\n";
-				echo "\t\t\t\t<td align=\"center\" width=\"7%\"><input style=\"width:100%;\" type=\"submit\" name=\"remove"
+				echo "\t\t\t\t<td align=\"center\" width=\"7%\"><input style=\"width:80%;\" type=\"submit\" name=\"remove"
 				. $i . "\" value=\"&minus;\"</td>\n";
 				echo "\t\t\t\t<td align=\"left\" width=\"50%\">" . $_COOKIE["nSubj".$i.$id] . ": </td>\n";
 				echo "\t\t\t\t<td align=\"center\" width=\"18%\">" . number_format($_COOKIE["average".$i.$id], 2, ",", ".") . "</td>\n";
 				echo "\t\t\t\t<td align=\"center\" width=\"25%\"><input style=\"width:100%;\" type=\"submit\" name=\"subj"
-				. $i . "\" value=\"&Oslash berechnen\" width=\"100%\" /></td>\n";
+				. $i . "\" value=\"&Oslash; berechnen\" width=\"100%\" /></td>\n";
 				echo "\t\t\t</tr>\n";
 			}
 			?>
 		</table>
+		<div style="padding:1%;"></div>
 		<table border="0" width="40%" cellspacing="0">
 			<tr>
 				<th width="7%"></th>
