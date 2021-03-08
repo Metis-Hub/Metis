@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../DbAccess.php");
+include("./../DbAccess.php");
 
 function tryLogin($type, $email, $password, $conn) {
     $stmt = mysqli_stmt_init($conn);
