@@ -70,6 +70,15 @@ input {
     cursor: pointer;
 }
 
+#msg {
+    bottom: 5%;
+    margin-bottom: 4%;
+    position: absolute;
+    margin-right: 0%;
+    right: 0%;
+    width: 100%;
+}
+
 .table {
     margin-top: 0.9%;
     margin-left: 2.5%;
