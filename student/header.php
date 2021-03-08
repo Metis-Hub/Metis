@@ -43,8 +43,9 @@ $date = array(
 
 <body onload="UpdateTime()">
 	
-	<!-- Kopfzeile -->
 	<header>
+
+		<!-- Kopfzeile -->
 		<nav>
 
 			<!-- Home -->
@@ -69,5 +70,6 @@ $date = array(
 			<div><a id="SignOut" href="./../../includes/login/logout.inc.php">Abmelden</a></div>
 
 		</nav>
-	</header>
+
+	<?php echo(isset($position2)? "" : "</header>");?>
 
