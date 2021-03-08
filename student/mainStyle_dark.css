@@ -40,14 +40,6 @@ input {
     border: none;
 }
 
-input[type=text] {
-    padding: 5%;
-    background: rgb(203, 190, 175, 0.66);
-    color: #ffeed7;
-    height: max-content;
-    border: none;
-}
-
 ::placeholder {
     color: #ffeed7;
 }

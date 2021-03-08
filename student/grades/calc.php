@@ -10,6 +10,16 @@
         $name = $_SESSION["subjekt"];
     }
 
+    if(isset($_GET["reset"])) {
+        unset($_GET);
+        $_GET["save"] = true;
+        $_SESSION["num"] = 0;
+    }
+    elseif(isset($_GET["back"])) {
+        unset($_GET);
+        header("location: ./../grades/");
+    }
+
     if(isset($_GET["save"])) {
         
         // Löschen der Sessions
@@ -29,11 +39,6 @@
     }
 
     if(!isset($_SESSION["num"])) {
-        $_SESSION["num"] = 0;
-    }
-
-    if(isset($_GET["reset"])) {
-        unset($_GET);
         $_SESSION["num"] = 0;
     }
 
@@ -130,6 +135,7 @@
             <table>
                 <tr>
                     <td><input type="submit" name="reset" value="reset" /></td>
+                    <td><input type="submit" name="back" value="zur&uuml;ck" /></td>
                     <td><input type="submit" name="save" value="speichen" /></td>
                 </tr>
             </table>
