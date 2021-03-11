@@ -4,8 +4,9 @@
     "\\admin",
     "\\admin\\accounts",
     "\\admin\\classes",
+    "\\admin\\index",
     "\\includes"
   ],
-  "SelectedNode": "\\includes\\DbTables.php",
+  "SelectedNode": "\\admin\\accounts\\students.php",
   "PreviewInSolutionExplorer": false
 }

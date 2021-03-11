@@ -33,14 +33,12 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`grade` (
 
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`teachersClass` (
                       `teacherId` INT NOT NULL,
-                      `classId` INT NOT NULL,
-                      PRIMARY KEY (`teacherId`, `classId`),
+                      `classId` INT NOT NULL)
                       ENGINE = InnoDB");
 
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`studentsClass` (
                       `studentId` INT NOT NULL,
-                      `classId` INT NOT NULL,
-                      PRIMARY KEY (`studentId`, `classId`),
+                      `classId` INT NOT NULL)
                       ENGINE = InnoDB");
 
 $conn -> close();
