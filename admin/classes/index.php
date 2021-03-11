@@ -49,9 +49,7 @@ include "../../includes/DbAccess.php";
 			}
 
 			#TODO (tmp)
-			echo "jo";
 			if(isset($_POST["adduser"])) {
-				echo "jo";
 				$id = $_POST["userid"];
 				if(isset($_POST["type"]) && $_POST["type"] == "Lehrer") {
 					$stmt = $conn -> prepare("INSERT INTO teachersclass (teacherId, classId) VALUES (?, ?)");
