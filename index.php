@@ -5,34 +5,7 @@
             Metis - Bitte stimmen Sie den Cookies zu
         </title>
         <?php
-            include ("includes/DbAccess.php");
-            $conn -> query("CREATE TABLE IF NOT EXISTS `student` (
-                      `id` int(11) NOT NULL AUTO_INCREMENT,
-                      `name` varchar(45) NOT NULL,
-                      `password` varchar(60) NOT NULL,
-                      `email` varchar(45) NOT NULL,
-                      PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;");
-            
-            $conn -> query("CREATE TABLE IF NOT EXISTS `teacher` (
-                      `id` int(11) NOT NULL AUTO_INCREMENT,
-                      `name` varchar(45) NOT NULL,
-                      `password` varchar(60) NOT NULL,
-                      `email` varchar(45) NOT NULL,
-                      PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;");
-
-            $conn -> query("CREATE TABLE IF NOT EXISTS `messages` (
-                       `id` int(11) NOT NULL AUTO_INCREMENT,
-                       `class_id` int(11),
-                       `person_id` int(11),
-                       `message` varchar(700),
-                       `time` smalldatetime,
-                       PRIMARY KEY (`id`)");
-            // @Bruno, das wird für den Chat gebraucht, bitte ggf. nochmal überarbeiten.
-
-
-            $conn -> close();
+            include ("includes/DbTables.php");
 
             session_start();
 
