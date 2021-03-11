@@ -11,6 +11,9 @@ include "../../includes/DbAccess.php";
 				?>
 				<input type=submit name=search value="Suchen">
 				<input type=submit name=newClass value="Neue Klasse">
+
+				<!-- #TODO -->
+				<input type=submit name=newRelation value="Neuer Verweis">
 			<?php
 			##### Suchsystem #####
 			if(isset($_GET["search"]) ||!empty($_GET["select"])) {
@@ -35,7 +38,6 @@ include "../../includes/DbAccess.php";
 				echo "</table>";
 			}
 			if(isset($_POST["removeTeacher"])) {
-				$id = $_POST["id"];
 				$stmt = $conn -> prepare("DELETE FROM teachersclass WHERE teacherId = ? AND classId = ? LIMIT 1");
 				$stmt -> bind_param("ii", $id, $_GET["select"]);
 				$stmt -> execute();
@@ -50,14 +52,13 @@ include "../../includes/DbAccess.php";
 
 			#TODO (tmp)
 			if(isset($_POST["adduser"])) {
-				$id = $_POST["userid"];
 				if(isset($_POST["type"]) && $_POST["type"] == "Lehrer") {
 					$stmt = $conn -> prepare("INSERT INTO teachersclass (teacherId, classId) VALUES (?, ?)");
-					$stmt -> bind_param("ii", $id, $_GET["select"]);
+					$stmt -> bind_param("ii", $_POST["userId"], $_POST["classId"]);
 					$stmt -> execute();
 				}else {
 					$stmt = $conn -> prepare("INSERT INTO studentsclass (studentId, classId) VALUES (?, ?)");
-					$stmt -> bind_param("ii", $id, $_GET["select"]);
+					$stmt -> bind_param("ii", $_POST["userId"], $_POST["classId"]);
 					$stmt -> execute();
 				}
 			}
@@ -102,10 +103,6 @@ include "../../includes/DbAccess.php";
 			echo "<input type=\"text\" name=\"searchkey\" placeholder=\"Suche\">";
 			echo "<input type=\"submit\" name=\"classSearch\" value=\"Suchen\">";
 
-			#TODO (tmp)
-			echo "<input type=\"number\" name=\"userid\" placeholder=\"ID\">";
-			echo "<input type=\"submit\" name=\"adduser\" value=\"Hinzuf&uuml;gen\">";
-
 			echo "</form>";
 
 
@@ -149,8 +146,6 @@ include "../../includes/DbAccess.php";
 				}
 			}
 
-
-
 			echo "</div>";
 
 		### Neue Klasse ###
@@ -175,6 +170,16 @@ include "../../includes/DbAccess.php";
 				echo "<form method=POST> <input type=text name=className placeholder = 'Klassenname'> <input type=submit name=createClass> </form>";
 			}
 			echo "</div>";
+		} elseif(isset($_GET["newRelation"])) {
+			echo "<div class=\"right\">";
+				echo "<h1> Tempor&auml;re Abteilung </h1>";
+				echo "<form method=POST>";
+					echo "<label> Sch&uuml;ler </label> <input type=\"radio\" name = \"type\" value = \"Sch&uuml;ler\"".((isset($_POST["type"]) && $_POST["type"] == "Lehrer") ? "" : "checked").">";
+					echo "<label> Lehrer </label> <input type=\"radio\" name = \"type\" value = \"Lehrer\"".((isset($_POST["type"]) && $_POST["type"] == "Lehrer") ? "checked" : "").">";
+					echo "<br>";
+					echo "<input type='number' name='userId' placeholder='UserId'><input type='number' name='classId' placeholder='KlassenId'>";
+					echo "<input type='submit' name='adduser'>";
+				echo "</form>";
 		}
 		?>
 <?php
