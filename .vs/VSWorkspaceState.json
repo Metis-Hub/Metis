@@ -2,11 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\admin",
-    "\\includes",
-    "\\includes\\DbTests",
-    "\\index",
-    "\\test"
+    "\\admin\\accounts",
+    "\\admin\\classes",
+    "\\includes"
   ],
-  "SelectedNode": "\\index\\header.php",
+  "SelectedNode": "\\includes\\DbTables.php",
   "PreviewInSolutionExplorer": false
 }
