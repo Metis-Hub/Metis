@@ -4,18 +4,18 @@ include "DbAccess.php";
 $conn -> query("CREATE TABLE IF NOT EXISTS `student` (
                  `id` INT NOT NULL AUTO_INCREMENT,
                  `password` VARCHAR(60) NOT NULL,
-                 `FirstName` VARCHAR(45) NOT NULL,
-                 `Name` VARCHAR(45) NOT NULL,
+                 `name` VARCHAR(45) NOT NULL,
+                 `surname` VARCHAR(45) NOT NULL,
                  `email` VARCHAR(45) NOT NULL,
                  PRIMARY KEY (`id`))
                  ENGINE = InnoDB;");
             
 $conn -> query("CREATE TABLE IF NOT EXISTS `teacher` (
               `id` INT NOT NULL AUTO_INCREMENT,
-              `Name` VARCHAR(45) NOT NULL,
+              `name` VARCHAR(45) NOT NULL,
               `password` VARCHAR(60) NOT NULL,
-              `FirstName` VARCHAR(45) NULL,
-              `Anrede` VARCHAR(45) NOT NULL,
+              `firstname` VARCHAR(45) NULL,
+              `salutation` VARCHAR(45) NOT NULL,
               `email` VARCHAR(45) NOT NULL,
               PRIMARY KEY (`id`))
               ENGINE = InnoDB;");
