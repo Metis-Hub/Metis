@@ -2,20 +2,23 @@
 include "DbAccess.php";
 
 $conn -> query("CREATE TABLE IF NOT EXISTS `student` (
-                      `id` int(11) NOT NULL AUTO_INCREMENT,
-                      `name` varchar(45) NOT NULL,
-                      `password` varchar(60) NOT NULL,
-                      `email` varchar(45) NOT NULL,
-                      PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;");
+                 `id` INT NOT NULL AUTO_INCREMENT,
+                 `password` VARCHAR(60) NOT NULL,
+                 `FirstName` VARCHAR(45) NOT NULL,
+                 `Name` VARCHAR(45) NOT NULL,
+                 `email` VARCHAR(45) NOT NULL,
+                 PRIMARY KEY (`id`))
+                 ENGINE = InnoDB;");
             
 $conn -> query("CREATE TABLE IF NOT EXISTS `teacher` (
-                      `id` int(11) NOT NULL AUTO_INCREMENT,
-                      `name` varchar(45) NOT NULL,
-                      `password` varchar(60) NOT NULL,
-                      `email` varchar(45) NOT NULL,
-                      PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;");
+              `id` INT NOT NULL AUTO_INCREMENT,
+              `Name` VARCHAR(45) NOT NULL,
+              `password` VARCHAR(60) NOT NULL,
+              `FirstName` VARCHAR(45) NULL,
+              `Anrede` VARCHAR(45) NOT NULL,
+              `email` VARCHAR(45) NOT NULL,
+              PRIMARY KEY (`id`))
+              ENGINE = InnoDB;");
 
 $conn -> query("CREATE TABLE IF NOT EXISTS `messages` (
                        `id` int(11) NOT NULL AUTO_INCREMENT,
