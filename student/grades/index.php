@@ -13,7 +13,7 @@
 
 	$remove = null;
 
-	if(isset($_SESSION["must_reload"])) {	// Diese Neulademöglichkeit ermöglicht die Verwendung von neugesetzten Cookies.
+		if(isset($_SESSION["must_reload"])) {	// Diese Neulademöglichkeit ermöglicht die Verwendung von neugesetzten Cookies.
 		unset($_SESSION["must_reload"]);
 		header("location:".$_SERVER['REQUEST_URI']);
 	}
