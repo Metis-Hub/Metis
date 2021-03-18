@@ -5,14 +5,14 @@
 	$position2 = 1;
 	include("./../header.php");
 	include("./header2.php");
-	include("./../../includes/chat_config.inc.php")
+	include("./../../includes/DBAccess.php")
 ?>
 	<!-- Inhalt Chat -->
 	<div name="chat">
 		<table>
 		<?php
 			
-			$req = mysqli_query($con, "SELECT * FROM messages, JOIN ON lehrerId = teacher.id");	// ggf. bitte überarbeiten @Bruno
+			$req = mysqli_query($con, "SELECT * FROM messages, JOIN ON lehrerId = teacher.id JOIN ON studentId = student.id");	// ggf. bitte überarbeiten @Bruno
 			$i = 0;
 
 			// Durchlaufen der Nachrichten
