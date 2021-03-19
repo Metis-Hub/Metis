@@ -49,22 +49,22 @@ $date = array(
 		<nav>
 
 			<!-- Home -->
-			<div><a <?php echo(($position == 0)?"class=\"active\"": "href=\"./../home\"")?>>Home</a></div>
+			<div><a <?php echo(($position == 0)?"class=\"active\"": "href=\"./../home/\"")?>>Home</a></div>
 			
 			<!-- Noten -->
-			<div><a <?php echo(($position == 1)?"class=\"active\"": "href=\"./../grades\"")?>>Noten</a></div>
+			<div><a <?php echo(($position == 1)?"class=\"active\"": "href=\"./../grades/\"")?>>Noten</a></div>
 			
 			<!-- Aufgabenplaner -->
-			<div><a <?php echo(($position == 2)?"class=\"active\"": "href=\"./../tasks\"")?>>Aufgabenplaner</a></div>
+			<div><a <?php echo(($position == 2)?"class=\"active\"": "href=\"./../tasks/\"")?>>Aufgabenplaner</a></div>
 			
 			<!-- Meine Klasse -->
-			<div><a <?php echo(($position == 3)?"class=\"active\"": "href=\"./../class\"")?>>Meine Klasse</a></div>
+			<div><a <?php echo(($position == 3)?"class=\"active\"": "href=\"./../class/\"")?>>Meine Klasse</a></div>
 			
 			<!-- Lernen -->
-			<div><a <?php echo(($position == 4)?"class=\"active\"": "href=\"./../learn\"")?>>Lernen</a></div>
+			<div><a <?php echo(($position == 4)?"class=\"active\"": "href=\"./../learn/\"")?>>Lernen</a></div>
 			
 			<!-- Einstellungen -->
-			<div><a <?php echo(($position == 5)?"class=\"active\"": "href=\"./../settings\"")?>>Einstellungen</a></div>
+			<div><a <?php echo(($position == 5)?"class=\"active\"": "href=\"./../settings/\"")?>>Einstellungen</a></div>
 			
 			<!-- Abmelden -->
 			<div><a id="SignOut" href="./../../includes/login/logout.inc.php">Abmelden</a></div>

@@ -9,8 +9,7 @@ $conn -> query(
         `surname` VARCHAR(45) NOT NULL,
         `email` VARCHAR(45) NOT NULL,
         PRIMARY KEY (`id`)
-    )
-    ENGINE = InnoDB;
+    ) ENGINE = InnoDB;
 ");
             
 $conn -> query(
@@ -22,8 +21,7 @@ $conn -> query(
         `salutation` VARCHAR(45) NOT NULL,
         `email` VARCHAR(45) NOT NULL,
         PRIMARY KEY (`id`)
-    )
-    ENGINE = InnoDB;
+    ) ENGINE = InnoDB;
 ");
 
 $conn -> query(
@@ -42,24 +40,21 @@ $conn -> query(
         `classId` INT NOT NULL AUTO_INCREMENT,
         `className` VARCHAR(45) NOT NULL,
         PRIMARY KEY (`classId`)
-    )
-    ENGINE = InnoDB;
+    ) ENGINE = InnoDB;
  ");
 
 $conn -> query(
 "   CREATE TABLE IF NOT EXISTS `Metis`.`teachersClass` (
         `teacherId` INT NOT NULL,
         `classId` INT NOT NULL
-    )
-    ENGINE = InnoDB
+    ) ENGINE = InnoDB
 ");
 
 $conn -> query(
 "   CREATE TABLE IF NOT EXISTS `Metis`.`studentsClass` (
         `studentId` INT NOT NULL,
         `classId` INT NOT NULL
-    )
-    ENGINE = InnoDB
+    ) ENGINE = InnoDB
 ");
 
 $conn -> close();
