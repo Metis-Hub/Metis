@@ -24,16 +24,13 @@ $conn -> query(
     ) ENGINE = InnoDB;
 ");
 
-$conn -> query(
-"    CREATE TABLE IF NOT EXISTS `messages` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `class_id` int(11),
-        `person_id` int(11),
-        `message` varchar(700),
-        `time` smalldatetime,
-        PRIMARY KEY (`id`)
-    );
-");
+$conn -> query("CREATE TABLE IF NOT EXISTS `messages` (
+                       `id` int(11) NOT NULL AUTO_INCREMENT,
+                       `class_id` int(11),
+                       `person_id` int(11),
+                       `message` varchar(700),
+                       `time` datetime,
+                       PRIMARY KEY (`id`)");
 
 $conn -> query(
 "   CREATE TABLE IF NOT EXISTS `Metis`.`grade` (
