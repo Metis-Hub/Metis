@@ -2,8 +2,8 @@
 <html lang="de">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../style.css" />
-		<link rel="icon" href="../image/faviconMetis.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="./../style.css" />
+		<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />
 		<title>Metis - Administration</title>
 	</head>
 
