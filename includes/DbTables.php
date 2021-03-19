@@ -25,7 +25,7 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `messages` (
                        `class_id` int(11),
                        `person_id` int(11),
                        `message` varchar(700),
-                       `time` smalldatetime,
+                       `time` datetime,
                        PRIMARY KEY (`id`)");
 
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`grade` (
