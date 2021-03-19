@@ -50,7 +50,8 @@ function updateStudent() {
 	$stmt -> execute();
 	return true;
 }
-
+global $position;
+global $position2;
 $position = 1;
 $position2 = 0;
 include "../header.php";
@@ -114,7 +115,10 @@ include("../../includes/DbAccess.php");
 	if(isset($_POST["createAccount"])) {
 		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["surname"])) {
 			echo "Nope, da waren leere Felder";
-		} else {
+		} /*else if(strlen($_POST["pwd"]) < 8) {	// Mindestlänge beträgt 8
+			echo "Passwort zu kurz!";
+		}*/
+		else {
 			$name = $_POST["name"];
 			$email = $_POST["email"];
 			$pwd = $_POST["pwd"];
@@ -140,12 +144,13 @@ include("../../includes/DbAccess.php");
 				}
 			}
 		}
-	}elseif(isset($_POST["updateUser"]) && isset($_GET["select"])) {
+	} elseif(isset($_POST["updateUser"]) && isset($_GET["select"])) {
 		if(!updateStudent()) {
 			#TODO
 			echo "Hast du entwa Felder freigelassen?";
 		}
 	} elseif(isset($_POST["updatePwd"])) {
+		
 	}
 
 

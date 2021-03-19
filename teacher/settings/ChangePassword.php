@@ -14,7 +14,10 @@
 
 	if(isset($_POST["password_ok"])) {
 		if((isset($_POST["new"]) && isset($_POST["new_2"])) && ($_POST["new"] == $_POST["new_2"])) {
-			if(changePassword($_POST["old"], $_POST["new"])) {
+			if(strlen($_POST["new"]) < 8 || strlen($_POST["new_2"]) < 8) {
+				echo "\n<script type=\"text/JavaScript\">alert(unescape(\"Das neue Passwort muss mindestens 8 Stellen lang sein%21\"));</script>";
+			}
+			else if(changePassword($_POST["old"], $_POST["new"])) {
 				header("Location: ./../settings/");
 			}
 			else {
