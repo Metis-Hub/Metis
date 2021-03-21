@@ -22,7 +22,7 @@ function emailIsTaken($email) {
 	return true;
 }
 
-function updateStudent() {
+function updateTeacher() {
 	global $conn;
 	$sql = "UPDATE teacher SET ";
 	$isFirst = true;
@@ -116,13 +116,14 @@ include("../../includes/DbAccess.php");
 
 	######## Aktionsbehandlung ########
 	if(isset($_POST["createAccount"])) {
-		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["firstname"])) {
+		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["firstname"]) || empty($_POST["salutation"])) {
 			echo "Nope, da waren leere Felder";
 		} else {
 			$name = $_POST["name"];
 			$email = $_POST["email"];
 			$pwd = $_POST["pwd"];
 			$firstname = $_POST["firstname"];
+			$salutation = $_POST["salutation"];
 
 			if($pwd != $_POST["pwdConfirm"]) {
 				echo "Die Passwörter stimmen nicht überein";
@@ -133,11 +134,11 @@ include("../../includes/DbAccess.php");
 					$password = password_hash($pwd, PASSWORD_BCRYPT, array(
 						"cost" => 5
 					));
-					$stmt = $conn -> prepare("INSERT INTO teacher (name, email, password, firstname) VALUES (?, ?, ?, ?)");
+					$stmt = $conn -> prepare("INSERT INTO teacher (name, email, password, firstname, salutation) VALUES (?, ?, ?, ?, ?)");
 					if(!$stmt) {
 						echo "SQL-Fehler";
 					} else {
-						$stmt -> bind_param("ssss", $name, $email, $password, $firstname);
+						$stmt -> bind_param("ssss", $name, $email, $password, $firstname, $salutation);
 						$stmt -> execute();
 						header("Location: teachers.php?select=".mysqli_insert_id($conn));
 					}
@@ -145,7 +146,7 @@ include("../../includes/DbAccess.php");
 			}
 		}
 	}elseif(isset($_POST["updateUser"]) && isset($_GET["select"])) {
-		if(!updateStudent()) {
+		if(!updateTeacher()) {
 			#TODO
 			echo "Hast du entwa Felder freigelassen?";
 		}

@@ -4,26 +4,6 @@ if(session_status() != 2) {
 }
 include_once("DbAccess.php");
 
-/* 
- * Sendet eine Request an den Backendserver an den Pfan $path mit den Parametern $params
- * gibt false zurück, wenn der Nutzer nicht angemeldet ist, ansonsten gibt er das promise zurück
- */
-function sendRequest($path, $params) {
-    if (!isLoggedIn()) {
-        return false;
-    }
-
-    $user = array($id => $_SESSION["user"]["id"], $usertype => $_SESSION["user"]["usertype"]);
-
-    $ch = curl_init("localhost:8080/".$path."?".http_build_query(array_merge($user, $params)));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    $promise = json_decode(curl_exec($ch), true);
-    curl_close($ch);
-
-    return $promise;
-}
-
 /*
  * Testet anhand der Session-Variablen ob der Nutzer angemeldet ist
  */

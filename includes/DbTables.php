@@ -52,7 +52,7 @@ $conn -> query(
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`task` (
   `taskId` INT NOT NULL AUTO_INCREMENT,
   `classId` INT NOT NULL,
-  `teacherId` INT NOT NULL,
+  `courseId` INT NOT NULL,
   `title` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
   `toDate` DATE NULL,
