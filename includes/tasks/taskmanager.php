@@ -1,4 +1,7 @@
 <?php
+session_start();
+include "./../DbAccess.php";
+
 class TaskManager {
 	private $days;
 
@@ -6,50 +9,62 @@ class TaskManager {
 		$days = array();
 	}
 
-	function addDay($date) {
-		# date => day
-		$days[$date] = array("10/3" => array(new Task("Lost")));
+	function fetchDays($from, $to) {
+		$days["date"] = new Day();
+	}
+	function clearDays() {
+		$days = array();
 	}
 
 	function getDays() {
-
+		return $days;
 	}
 }
+
 class Day {
-	private $tasks;
-	function __construct() {
-		#class => array(task)
-		$tasks = array();
+	private $courses;
+	#TODO
+	private $timespans;
+
+	function __construct($date) {
+		$courses = array();
 	}
-	function addTask($class, $task) {
-		if(is_a($task, "Task")) {
-
-		}elseif(is_array($task)) {
-			foreach($task as $subtask) {
-				if(is_a($subtask, "Task")) {
-
-				} else {
-					#TODO keine task
-				}
-			}
-		} else {
-			#TODO überhaupt keine Task
-		}
+	function fetchCourses() {
+		$sql = "SELECT * FROM ";
 	}
 }
+class Course {
+	private $courseId;
+	private $courseName;
+	private $courseShort;
+
+	function __construct() {
+
+	}
+}
+
 class Task {
 	public $class;
 	public $title;
 	public $description;
 
 
-	function __construct() {
+	function __construct($id) {
 	}
 }
 
-$tasks = new TaskManager();
-$tasks -> addDay("Lass mich");
 
+function addDefaultDays() {
+	global $conn;
+	foreach (array("Mon", "Tue", "Wed", "Thu", "Fri") as $day) {
+		$conn -> query("INSERT INTO `day` (DayName) VALUES (\"$day\")");
+	}
+	foreach (array("eng" => "Englisch", "de" => "Deutsch", "ma" => "Mathe") as $short => $long) {
+		$conn -> query("INSERT INTO `subject` (`short`, `long`) VALUES (\"".$short."\", \"".$long."\")");
+	}
 
-
+}
+addDefaultDays();
+$date = new DateTime();
+echo $date->modify("+1 days")->format('D');
 ?>
