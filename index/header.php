@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+include "../includes/Random.php";
+Rand::SetSeed(time());
+$_SESSION["safe_passwort_seed"] = Rand::Next();
+?>
 <html lang="de">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,6 +53,7 @@
 
 		?>
 		<link rel="icon" href="../image/faviconMetis.ico" type="image/x-icon" />
+		<script src="../includes/hash.js"></script>
 		<title>Metis</title>
 	</head>
 
@@ -58,10 +64,12 @@
 				<a href="about/">About</a>
 				<a href="contact/">Impressum</a>
 				<div class="login-container">
-					<form method="POST" action="../includes/login/login.inc.php">
-						<input type="text" placeholder="Email" name="email" />
-						<input type="password" placeholder="Passwort" name="pwd" />
-						<button type="submit" name="login">Anmelden</button>
+					<input type="text" placeholder="Email" name="email" id="email" />
+					<input type="password" placeholder="Passwort" name="pwd" id="pwd" />
+					<button name="login" onclick="wp2439017_q3uifdlgzTZZZZZZFISDAFDASFD('<?php echo $_SESSION["safe_passwort_seed"]; ?>')">Anmelden</button>
+					<form id="password" method="POST" action="../includes/login/login.inc.php">
+						<input type="hidden" name="pw" id="pw" value="" />
+						<input type="hidden" name="email" id="Email" value="" />
 					</form>
 				</div>
 			</nav>

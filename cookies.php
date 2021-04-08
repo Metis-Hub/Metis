@@ -1,6 +1,6 @@
 <?php
 
-$time = time() + (3600*24*360);	// Das wäre ein Jahr
+$time = time() + (3600*24*360);	// Das wï¿½re ein Jahr
 session_start();
 $caller = "Location: ".((isset($_SESSION["cookie_caller"]))?$_SESSION["cookie_caller"]:"index/");
 

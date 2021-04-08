@@ -1,6 +1,6 @@
 <?php
     session_start();
-
+    
     global $name;
 
     if(!isset($_SESSION["subjekt"]) || !isset($_SESSION["subj"])) {

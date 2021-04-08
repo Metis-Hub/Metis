@@ -25,19 +25,41 @@ function tryLogin($type, $email, $password, $conn) {
     }
 }
 
+function decrypt() {
+	if(isset($_SESSION["safe_passwort_seed"]) && isset($_POST["pw"])) {
+		$hash = $_SESSION["safe_passwort_seed"];
+		$out = "";
+		for($i = 0; $i < strlen($_POST["pw"]); $i++) {
+			$hash = $hash * 271 % 99999 + 1;
+			$tmp = "";
+
+			while($_POST["pw"][$i] != ';') {
+				$tmp .= $_POST["pw"][$i];
+				$i++;
+			}
+
+			$tmp = intval($tmp);
+			if(($tmp ^ $hash) != 3141) $out .= chr($tmp ^ $hash);
+		}
+	}
+    return $out;
+}
+
 $header = "location: ./../../";
 
 if(isset($_SESSION["user"])) {
     header($header . "student/home/");
 }
 
-if(isset($_POST["email"]) && $_POST["email"] != null && isset($_POST["pwd"]) && $_POST["pwd"] != null) {
-    $email = $_POST["email"];
-    $password = $_POST["pwd"];
+if(isset($_POST["pw"])) $password = decrypt(); else $password = null;
+echo "1";
 
+if(isset($_POST["email"]) && $_POST["email"] != null && $password != null) {
+    $email = $_POST["email"];
+    echo "1";
     if(!tryLogin("teacher", $email, $password, $conn)) {
         if(!tryLogin("student", $email, $password, $conn)) {
-
+            echo "1";
             if(!isset($_SESSION["wrong_logins"])) {
                 $_SESSION["wrong_logins"] = 1;
             }
@@ -67,12 +89,9 @@ if(isset($_POST["email"]) && $_POST["email"] != null && isset($_POST["pwd"]) && 
         header($header . "teacher/home/");    // Lehrer
     }
 } else {
-    if(isset($_POST["email"]) && !$_POST["email"] != null && isset($_POST["pwd"]) && !$_POST["pwd"] != null)
-    header($header . "index/index.php?error=fields_are_empty");
-    elseif(isset($_POST["email"]) && $_POST["email"] != null)
-    header($header . "index/index.php?error=email_field_are_empty");
-    elseif(isset($_POST["pwd"]) && $_POST["pwd"] != null)
-    header($header . "index/index.php?error=password_fields_are_empty");
+    if(!isset($_POST["email"]) || $_POST["email"] == null && $password == null) header($header . "index/index.php?error=fields_are_empty");
+    elseif(!isset($_POST["email"]) || $_POST["email"] == null) header($header . "index/index.php?error=email_field_are_empty");
+    elseif($password == null) header($header . "index/index.php?error=password_fields_are_empty");
 }
 
 ?>
