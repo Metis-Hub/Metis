@@ -53,12 +53,14 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`task` (
   `taskId` INT NOT NULL AUTO_INCREMENT,
   `classId` INT NOT NULL,
   `courseId` INT NOT NULL,
-  `title` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
-  `toDate` DATE NULL,
-  `createdDate` DATE NULL)
-  PRIMARY KEY (`taskId`)
-ENGINE = InnoDB;");
+  `title` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(45) NOT NULL,
+  `toDate` DATE NOT NULL,
+  `createdDate` DATE NOT NULL,
+  `updatedDate` DATE NULL,
+  PRIMARY KEY (`taskId`))
+ENGINE = InnoDB");
+
 
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`student_done_task` (
   `studentId` INT NOT NULL,
@@ -69,7 +71,7 @@ ENGINE = InnoDB;");
 # Days #
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`day` (
   `idDay` INT NOT NULL AUTO_INCREMENT,
-  `DayName` VARCHAR(2) NOT NULL,
+  `DayName` VARCHAR(3) NOT NULL,
   PRIMARY KEY (`idDay`))
 ENGINE = InnoDB;");
 
@@ -78,7 +80,7 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`day_has_class` (
   `classId` INT NOT NULL,
   `ValidFrom` DATE NOT NULL,
   `ValidTo` DATE NULL,
-  `createdAt` DATE NULL,
+  `createdAt` DATE NULL)
 ENGINE = InnoDB;");
 
 # Time spans #
