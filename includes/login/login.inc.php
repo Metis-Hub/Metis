@@ -30,7 +30,7 @@ function decrypt() {
 		$hash = $_SESSION["safe_passwort_seed"];
 		$out = "";
 		for($i = 0; $i < strlen($_POST["pw"]); $i++) {
-			$hash = $hash * 271 % 99999 + 1;
+			$hash = $hash * 271 % 999999 + 1;
 			$tmp = "";
 
 			while($_POST["pw"][$i] != ';') {
@@ -90,8 +90,8 @@ if(isset($_POST["email"]) && $_POST["email"] != null && $password != null) {
     }
 } else {
     if(!isset($_POST["email"]) || $_POST["email"] == null && $password == null) header($header . "index/index.php?error=fields_are_empty");
-    elseif(!isset($_POST["email"]) || $_POST["email"] == null) header($header . "index/index.php?error=email_field_are_empty");
-    elseif($password == null) header($header . "index/index.php?error=password_fields_are_empty");
+    elseif(!isset($_POST["email"]) || $_POST["email"] == null) header($header . "index/index.php?error=email_field_is_empty");
+    elseif($password == null) header($header . "index/index.php?error=password_field_is_empty");
 }
 
 ?>

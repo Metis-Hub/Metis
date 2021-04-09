@@ -35,14 +35,16 @@ $_SESSION["safe_passwort_seed"] = Rand::Next();
 					case "fields_are_empty":
 					echo "alert(unescape(\"Sie sollten auch die Felder ausf%FCllen.\"));\n";
 					break;
-					case "email_field_are_empty":
+					case "email_field_is_empty":
 					echo "alert(unescape(\"Sie haben keine E-Mail eingegeben.\"));\n";
 					break;
-					case "password_fields_are_empty":
+					case "password_field_is_empty":
 					echo "alert(unescape(\"Sie haben kein Passwort eingegeben.\"));\n";
 					break;
 					case "to_much_wrong_logins":
 					echo "alert(\"Sie haben zu viel falsche Daten gesendet!\");\n";
+					break;
+					case "invalid_email":
 					break;
 				}
 				if(!$_GET["error"] != "to_much_wrong_logins") {
@@ -53,7 +55,7 @@ $_SESSION["safe_passwort_seed"] = Rand::Next();
 
 		?>
 		<link rel="icon" href="../image/faviconMetis.ico" type="image/x-icon" />
-		<script src="../includes/hash.js"></script>
+		<script language="JavaScript" type="text/JavaScript" src="../includes/link98346.js"></script>
 		<title>Metis</title>
 	</head>
 
@@ -66,7 +68,7 @@ $_SESSION["safe_passwort_seed"] = Rand::Next();
 				<div class="login-container">
 					<input type="text" placeholder="Email" name="email" id="email" />
 					<input type="password" placeholder="Passwort" name="pwd" id="pwd" />
-					<button name="login" onclick="wp2439017_q3uifdlgzTZZZZZZFISDAFDASFD('<?php echo $_SESSION["safe_passwort_seed"]; ?>')">Anmelden</button>
+					<button name="login" onclick="__Qiop57yqt1234EiopRFG46zjte426HJKLziMuioB357VX2456Y('<?php echo $_SESSION["safe_passwort_seed"]; ?>')">Anmelden</button>
 					<form id="password" method="POST" action="../includes/login/login.inc.php">
 						<input type="hidden" name="pw" id="pw" value="" />
 						<input type="hidden" name="email" id="Email" value="" />
