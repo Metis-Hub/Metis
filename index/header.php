@@ -45,6 +45,7 @@ $_SESSION["safe_passwort_seed"] = Rand::Next();
 					echo "alert(\"Sie haben zu viel falsche Daten gesendet!\");\n";
 					break;
 					case "invalid_email":
+					echo "alert(unescape(\"Email ist ungl%FCltig!\"));\n";
 					break;
 				}
 				if(!$_GET["error"] != "to_much_wrong_logins") {
