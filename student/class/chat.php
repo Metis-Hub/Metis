@@ -5,27 +5,23 @@
 	$position2 = 1;
 	include("./../header.php");
 	include("./header2.php");
-	include("./../../includes/DBAccess.php")
 ?>
 	<!-- Inhalt Chat -->
 	<div name="chat">
 		<table>
 		<?php
-			
-			$req = mysqli_query($con, "SELECT * FROM messages, JOIN ON lehrerId = teacher.id JOIN ON studentId = student.id");	// ggf. bitte überarbeiten @Bruno
+			//require_once("chat/config.php");
+			include("./../../includes/DBAccess.php");
+			mysqli_select_db($conn, "message");
+			$req = mysqli_query($conn, "SELECT * FROM `message` JOIN `teacher` ON Not Isnull(`teacherId`) AND `teacherId` = `teacher`.`id`" .
+									   " JOIN `student` ON Not Isnull(`studentId`) AND `studentId` = `student`.`id` ORDER BY `time`");
+
 			$i = 0;
 
 			// Durchlaufen der Nachrichten
 			while($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
 
-				$name = "";
-
-				if(!empty($row["teacherId"])) {
-					$name = $row["teacherId"];
-				}
-				elseif(!empty($row["studentId"])) {
-					$name = $row["studentId"];
-				}
+				$name = (!empty($row["teacherId"])) ? $row["teacherId"] : ((!empty($row["studentId"])) ? $row["studentId"] : "");
 
 				// Ausgabe der Nachricht
 				echo "\n\t\t\t<tr>\n";
@@ -37,7 +33,7 @@
 
 			// Wenn keine Nachrichten gesendet wurden
 			if($i <= 0) {
-				echo "\n\t\t\t<tr><td>Keine Nachrichten verfügbar.</td></tr>\n";
+				echo "\n\t\t\t<tr><td>Keine Nachrichten verf&uuml;gbar.</td></tr>\n";
 			}
 
 		?>

@@ -89,7 +89,7 @@
             echo "\t</form>;\n";
         }
         else {
-            header("location: allSolved.php"); //muss auf ne andere seite geleitet werden (wegen refreshing)
+            header("location: allSolved.php"); //muss auf ne andere seite geleitet werden (wegen refreshing) @Jakob neeee
         }
     ?>
 

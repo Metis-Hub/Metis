@@ -122,13 +122,13 @@ ENGINE = InnoDB;");
 
 ## Messager ##
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`message` (
-  `messageId` INT NOT NULL AUTO_INCREMENT,
-  `gradeId` INT NOT NULL,
-  `teacherId` INT NULL,
-  `studentId` INT NULL,
-  `message` VARCHAR(700) NOT NULL,
-  `time` DATETIME NOT NULL,
-  PRIMARY KEY (`messageId`))
+    `messageId` INT NOT NULL AUTO_INCREMENT,
+    `gradeId` INT NOT NULL,
+    `isTeacher` TINYINT NOT NULL,
+    `accountId` INT NOT NULL,
+    `message` VARCHAR(700) NOT NULL,
+    `time` DATETIME NOT NULL,
+    PRIMARY KEY (`messageId`))
 ENGINE = InnoDB;");
 
 
