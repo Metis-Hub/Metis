@@ -138,7 +138,7 @@ include("../../includes/DbAccess.php");
 					if(!$stmt) {
 						echo "SQL-Fehler";
 					} else {
-						$stmt -> bind_param("ssss", $name, $email, $password, $firstname, $salutation);
+						$stmt -> bind_param("sssss", $name, $email, $password, $firstname, $salutation);
 						$stmt -> execute();
 						header("Location: teachers.php?select=".mysqli_insert_id($conn));
 					}
@@ -205,7 +205,7 @@ include("../../includes/DbAccess.php");
 			echo "
 				<form method=POST>
 					<table>
-						<tr> <th> Anrede </th> <td> <input type=text name=salutatuin placeholder=Anrede> </td></tr>
+						<tr> <th> Anrede </th> <td> <input type=text name=salutation placeholder=Anrede> </td></tr>
 						<tr> <th> Vorname </th> <td> <input type=text name=firstname placeholder=Name> </td></tr>
 						<tr> <th> Nachname </th> <td> <input type=text name=name placeholder=Nachname> </td></tr>
 						<tr> <th> E-Mail </th><td> <input type=text name=email placeholder=E-Mail> </td></tr>
