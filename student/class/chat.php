@@ -15,7 +15,8 @@
 			//mysqli_select_db($conn, "message");
 			//$req = mysqli_query($conn, "SELECT * FROM `message` JOIN `teacher` ON Not Isnull(`teacherId`) AND `teacherId` = `teacher`.`id`" .
 			//						   " JOIN `student` ON Not Isnull(`studentId`) AND `studentId` = `student`.`id` ORDER BY `time`");
-			$req = mysqli_query($conn, "SELECT * FROM `message` IF (`isTeacher` = 1) JOIN `teacher` ON `accountId` = `teacher`.`id` ELSE JOIN `student` ON `accountId` = `student`.`id`");
+			$req = mysqli_query($conn, "SELECT `message`.*, CASE `isTeacher` = 1 THEN".
+			" JOIN `teacher` ON `accountId` = `teacher`.`id` ELSE JOIN `student` ON `accountId` = `student`.`id`");
 
 
 			$i = 0;
