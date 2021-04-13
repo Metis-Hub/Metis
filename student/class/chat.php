@@ -12,9 +12,11 @@
 		<?php
 			//require_once("chat/config.php");
 			include("./../../includes/DBAccess.php");
-			mysqli_select_db($conn, "message");
-			$req = mysqli_query($conn, "SELECT * FROM `message` JOIN `teacher` ON Not Isnull(`teacherId`) AND `teacherId` = `teacher`.`id`" .
-									   " JOIN `student` ON Not Isnull(`studentId`) AND `studentId` = `student`.`id` ORDER BY `time`");
+			//mysqli_select_db($conn, "message");
+			//$req = mysqli_query($conn, "SELECT * FROM `message` JOIN `teacher` ON Not Isnull(`teacherId`) AND `teacherId` = `teacher`.`id`" .
+			//						   " JOIN `student` ON Not Isnull(`studentId`) AND `studentId` = `student`.`id` ORDER BY `time`");
+			$req = mysqli_query($conn, "SELECT * FROM `message` IF (`isTeacher` = 1) JOIN `teacher` ON `accountId` = `teacher`.`id` ELSE JOIN `student` ON `accountId` = `student`.`id`");
+
 
 			$i = 0;
 
