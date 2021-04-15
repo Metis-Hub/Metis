@@ -1,5 +1,5 @@
 <?php
-	if(false){
+	if(false) {
 	echo
 	'		<!DOCTYPE html>
 			<html>
