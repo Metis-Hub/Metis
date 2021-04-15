@@ -1,4 +1,4 @@
-<?php unset($_SESSION["user"]); ?><!DOCTYPE html>
+<?php session_start(); unset($_SESSION["user"]); ?><!DOCTYPE html>
 <html lang="de">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />

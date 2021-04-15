@@ -1,4 +1,3 @@
 <?php
-global $conn;
-$conn= new mysqli("localhost", "Metis", "", "Metis");
+$conn = new mysqli("localhost", "Metis", "", "Metis");
 ?>
