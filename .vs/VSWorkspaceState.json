@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\student"
+    "\\admin",
+    "\\admin\\accounts",
+    "\\includes",
+    "\\test"
   ],
-  "SelectedNode": "\\student\\mainStyle.css",
+  "SelectedNode": "\\includes\\user.php",
   "PreviewInSolutionExplorer": false
 }
