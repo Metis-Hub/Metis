@@ -166,7 +166,7 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis.`.`vocabs` (
   PRIMARY KEY (`vId`))
 ENGINE = InnoDB;");
 
-$conn -> query("CREATE TABLE IF NOT EXISTS `Metis.`.`vocabs` (
+$conn -> query("CREATE TABLE IF NOT EXISTS `Metis.`.`langs` (
   `langId` int(4) NOT NULL AUTO_INCREMENT,
   `langShort` varchar(8) NOT NULL,
   `lang` varchar(32) NOT NULL
