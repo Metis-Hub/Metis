@@ -27,7 +27,7 @@
 
                 include "dbSelect.php";            
                 //Ausgabe aller fächer
-                $sql="SELECT * FROM `subjects`";
+                $sql="SELECT * FROM `subject`";
                 $res=$dbank->query($sql);
                 $dbank=null;
 
@@ -37,7 +37,7 @@
                 }
 
                 foreach ($result as $subject) { 
-                    echo '<option value="'.$subject["subjectId"].'">'.$subject["subjectName"].'</option>';
+                    echo '<option value="'.$subject["subjectId"].'">'.$subject["long"].'</option>';
                 }
                 ?>
             </select>
