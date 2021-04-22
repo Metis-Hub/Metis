@@ -6,6 +6,15 @@
 
     <form action="search.php" method="get">
         <input type="text" name="tags" placeholder="Suche (verschiedene Tags durch Semikola abtrennen)" style="width: 10cm;">
+        <p>
+        Klassen (von...bis...):
+        <br>
+        <input type="range" name="minClass" id="minClass" min="1" max="13" value="1" oninput="document.getElementById('minClassOut').value=document.getElementById('minClass').value"></input>
+        <input type="number" name="minClassOut" id="minClassOut" min="1" max="13" value="1" oninput="document.getElementById('minClass').value=document.getElementById('minClassOut').value">
+        <p>
+        <input type="range" name="maxClass" id="maxClass" min="1" max="13" value="1" oninput="document.getElementById('maxClassOut').value=document.getElementById('maxClass').value"></input>
+        <input type="number" name="maxClassOut" id="maxClassOut" min="1" max="13" value="1" oninput="document.getElementById('maxClass').value=document.getElementById('maxClassOut').value"\>
+        <br>
         <input type="submit" name="search" value="Suche">
     </form>
         <?php
@@ -16,7 +25,7 @@
                 $resultQuiz=array();
                 foreach ($search as $tag) {    
                     include "dbSelect.php";       
-                    $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subjects` ON `quizzes`.`subjectId` = `subjects`.`subjectId` WHERE `tags` LIKE '%".$tag."%' ";
+                    $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subjects` ON `quizzes`.`subjectId` = `subjects`.`subjectId` WHERE `tags` LIKE '%".$tag."%' AND `minClass` >= ".$_GET["minClass"]." AND `maxClass` <= ".$_GET["maxClass"]."";
                     $resQuiz=$dbank->query($sqlQuiz);
                     $dbank=null;
 
