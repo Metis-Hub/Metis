@@ -43,7 +43,7 @@
 
             /* Verbindung aufnehmen und Datenbank
             auswählen */
-            include ("dbSelect.php");
+            include ("DbAccess.php");
 
             $sqlVocs="SELECT lang, vocab, transl, niveau FROM vocabs WHERE lang IN ( " . substr($langs, 0, -1) . " ) AND niveau>=".$minNiveau." AND niveau<=".$maxNiveau." ORDER BY RAND() LIMIT ".$queryLimit."";
             /* SQL-Abfrage ausführen */
@@ -65,7 +65,7 @@
 
             /* Verbindung aufnehmen und Datenbank
             auswählen */
-            include "dbSelect.php";
+            include "DbAccess.php";
 
             $sqlLangs="SELECT langId, lang FROM langs";
             /* SQL-Abfrage ausführen */

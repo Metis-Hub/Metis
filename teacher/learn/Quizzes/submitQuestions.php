@@ -6,7 +6,7 @@
         <?php
         session_start();
 
-        include "dbSelect.php";
+        include "DbAccess.php";
 
         //Hinzufügen des Quizzes
         $sqlAddQuiz="INSERT INTO `quizzes`(`name`, `tags`, `subjectId`, `minClass`, `maxClass`, `questionCount`) VALUES ('".$_SESSION["quizName"]."','".$_SESSION["quizTags"]."',".$_SESSION["quizSubject"].",".$_SESSION["minClass"].",".$_SESSION["maxClass"].", ".($_SESSION["questionCount"]).")";

@@ -78,7 +78,7 @@
                             if (empty($_SESSION["vocabs"][$vocNumber])) { //falls die Vokabel noch nicht geschrieben ist
                                 echo '<option value="no"' . (($_SESSION["defaultLang"] == "no")? "selected" : "") . ' disabled selected>Bitte wählen Sie die Sprache der Eingabe aus</option>';
 
-                                    include "dbSelect.php";
+                                    include "DbAccess.php";
 
                                     $sql="SELECT langId, lang FROM langs";
                                     /* SQL-Abfrage ausführen */
@@ -94,7 +94,7 @@
                             else { //also z.b. wenn man zurück und wieder vor geht (ist dann auch unten so)
                                 echo '<option value="no"' . (($_SESSION["vocabs"][$vocNumber][0] == "no")? "selected" : "") . ' disabled selected>Bitte wählen Sie die Sprache der Eingabe aus</option>'; 
 
-                                include "dbSelect.php";
+                                include "DbAccess.php";
 
                                 $sql="SELECT langId, lang FROM langs";
                                 /* SQL-Abfrage ausführen */
