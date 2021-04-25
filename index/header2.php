@@ -3,7 +3,6 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<?php
-			session_start();
 			if($_SESSION["cookies"]["allow_set_cookies"] == false) {
 				header("Location: ./../../");
 			}
