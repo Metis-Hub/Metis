@@ -14,6 +14,7 @@
 				echo "<a ".(($position == 0) ? 'class="active"' : 'href="../index/"').">Home</a>";
 				echo "<a ".(($position == 1) ? 'class="active"' : 'href="../accounts/"').">Accounts</a>";
 				echo "<a ".(($position == 2) ? 'class="active"' : 'href="../classes/"').">Klassen</a>";
+				echo "<a ".(($position == 3) ? 'class="active"' : 'href="../passwords/"').">Servereinstellungen</a>";
 				
 				#ersetzen um zum lehrer zu führen
 				echo "<a class = 'right' href = './../../index/'> Zur&uuml;ck </a>";
