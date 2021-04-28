@@ -17,7 +17,7 @@
         Welche Sprachen soll abgefragt werden?
         <br />
         <?php
-            include("dbSelect.php");
+            include("DbAccess.php");
 
             $sql = "SELECT langId, lang FROM langs";
             /* SQL-Abfrage ausführen */

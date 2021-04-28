@@ -15,7 +15,7 @@
         $_SESSION["rightAnswersCount"]=0; //Zahl der richtig beantworteten Fragen
 
         //Abfragen der Fragen (inkl. IDs f. Antworten)
-        include "dbSelect.php";
+        include "DbAccess.php";
         $sqlGetQuestions="SELECT `questions`.`question`, `questions`.`questionId` FROM `questions` WHERE `questions`.`quizId` LIKE ".$quizId."";
         $resGetQuestion=$dbank->query($sqlGetQuestions);
         $dbank->close();
@@ -39,7 +39,7 @@
         
 
             //Abfragen der Antwortemöglichkeiten in der DB
-            include "dbSelect.php";
+            include "DbAccess.php";
             $sqlGetAnswers="SELECT `answer` FROM `answers` WHERE `questionId`=".$_SESSION["questions"][$_SESSION["questionNumber"]]["questionId"]."";
             $resAnswers=$dbank->query($sqlGetAnswers);
 
@@ -73,7 +73,7 @@
 
     else if (isset($_POST["checkAnswer"])) {
         //Abfragen der richtigen Antwortemöglichkeiten in der DB
-        include "dbSelect.php";
+        include "DbAccess.php";
         $sqlGetCorrectAnswers="SELECT `answer` FROM `answers` WHERE `questionId`=".$_SESSION["questions"][$_SESSION["questionNumber"]]["questionId"]." AND `isCorrect` = 1";
         $resCorrectAnswers=$dbank->query($sqlGetCorrectAnswers);
 

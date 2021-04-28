@@ -24,7 +24,7 @@
 
                 $resultQuiz=array();
                 foreach ($search as $tag) {    
-                    include "dbSelect.php";       
+                    include "DbAccess.php";       
                     $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subjects` ON `quizzes`.`subjectId` = `subjects`.`subjectId` WHERE `tags` LIKE '%".$tag."%' AND `minClass` >= ".$_GET["minClass"]." AND `maxClass` <= ".$_GET["maxClass"]."";
                     $resQuiz=$dbank->query($sqlQuiz);
                     $dbank=null;

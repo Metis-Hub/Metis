@@ -25,7 +25,7 @@
                 <?php 
                 session_start();
 
-                include "dbSelect.php";            
+                include "DbAccess.php";            
                 //Ausgabe aller fächer
                 $sql="SELECT * FROM `subject`";
                 $res=$dbank->query($sql);
