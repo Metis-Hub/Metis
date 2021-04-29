@@ -169,7 +169,7 @@ include("../../includes/DbAccess.php");
 				if(!empty($_POST["newPwd"]) && !empty($_POST["repeatPwd"]) && $_POST["newPwd"] == $_POST["repeatPwd"]) {
 					$pwd = $_POST["newPwd"];
 
-
+					// Karl <-- hier das Passwort ändern
 				} else {
 					echo "Die Passwörter stimmen nicht überein";
 				}
