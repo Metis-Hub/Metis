@@ -15,17 +15,15 @@ include("header.php");
 
 ?>
 
-<p>
 	<p><b><u>Das ist tempor&auml;r:</u></b></p>
 	<ul>
 		<li><a href="./../tmpDelCookies.php">Cookies l&ouml;schen</a></li>
 		<li><a href="./../admin/">Admin-Zugriff</a></li>
 	</ul>
+	<h2>Zur Anmeldung:</h2>
 	<p>
-		<h2>Zur Anmeldung:</h2>
 		Datenbank metis erstellen, und dann registrieren
 	</p>
-</p>
 
 <?php
 include("footer.php");

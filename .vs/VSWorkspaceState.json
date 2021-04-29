@@ -1,12 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\admin",
-    "\\admin\\accounts",
-    "\\includes\\login",
-    "\\includes\\tasks",
+    "\\index",
     "\\test"
   ],
-  "SelectedNode": "\\admin\\accounts\\students.php",
+  "SelectedNode": "\\index\\index.php",
   "PreviewInSolutionExplorer": false
 }
