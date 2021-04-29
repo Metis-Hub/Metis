@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="de">
-
-<head>
-    <title>Metis - Vokabeltrainer</title>
-</head>
-
-<body>
-    <?php
-
-        session_start();
+<?php
+    global $position;
+    $position = 4;
+    include "../header.php";
+    
+         
 
         if (isset($_GET["allVocsConfirm"])) {
             $lang = $_SESSION["studentLang"];
@@ -25,15 +20,15 @@
 
             /* Verbindung aufnehmen und Datenbank
             auswählen */
-            include("DbAccess.php");
+            include("includes/DbAccess.php");
 
             $sqlVocs = "SELECT lang, vocab, transl, niveau FROM vocabs WHERE lang IN ( " . substr($langs, 0, -1) . " ) AND niveau >= " .
             $minNiveau . " AND niveau <= " . $maxNiveau . " ORDER BY RAND() LIMIT " . $queryLimit . "";
             /* SQL-Abfrage ausführen */
-            $res = $dbank->query($sqlVocs);
+            $res = $conn->query($sqlVocs);
 
             /* Verbindung schließen */
-            $dbank = null;
+            $conn = null;
         } else if (isset($_POST["studentSolSubmit"])) {
     
             $queryNumber = $_POST["queryNumber"];
@@ -80,7 +75,7 @@
 
         if (isset($_SESSION["resultVocs"][$queriedNumber])) {
 
-            echo "\t<h2>Was bedeutet " . $_SESSION["resultVocs"][$queriedNumber]["vocab"] . "?</h2>"\n; //Ausgabe der abgefragten Vokabel
+            echo "\t<h2>Was bedeutet " . $_SESSION["resultVocs"][$queriedNumber]["vocab"] . "?</h2>\n"; //Ausgabe der abgefragten Vokabel
         
             echo "\t<form action=\"vocQuery.php\" method=\"POST\" name=\"studentSolution\">\n";
             echo "\t\t<input type=\"text\" name=\"sol\" placeholder=\"Bitte gib die Übersetzung an\" autocomplete=\"off\" />\n";
@@ -93,6 +88,7 @@
         }
     ?>
 
-</body>
 
-</html>
+<?php
+    include "../footer.php";
+?>

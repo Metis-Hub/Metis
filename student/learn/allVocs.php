@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="de">
-
-<head>
-    <title>Metis - Vokabeltrainer</title>
-</head>
-
-<body>
+<?php
+    global $position;
+    $position = 4;
+    include "../header.php";
+?>
 
     <style>
         table, th, td {
@@ -18,7 +15,6 @@
     </style>
        
     <?php
-        session_start();
 
         if (!empty("lang[]" && !empty("minNiveau") && !empty("maxNiveau") && !empty("queryLimit"))) {
 
@@ -43,11 +39,11 @@
 
             /* Verbindung aufnehmen und Datenbank
             auswählen */
-            include ("DbAccess.php");
+            include ("../../includes/DbAccess.php");
 
             $sqlVocs="SELECT lang, vocab, transl, niveau FROM vocabs WHERE lang IN ( " . substr($langs, 0, -1) . " ) AND niveau>=".$minNiveau." AND niveau<=".$maxNiveau." ORDER BY RAND() LIMIT ".$queryLimit."";
             /* SQL-Abfrage ausführen */
-            $resVocs = $dbank->query($sqlVocs);
+            $resVocs = $conn->query($sqlVocs);
             echo "<br />";
 
         
@@ -57,21 +53,14 @@
             }
 
             $_SESSION["resultVocs"] = $resultVocs;
-                               
-            /* Verbindung schließen */
-            $dbank = null;
+                                          
 
             //Abfrage der vorhandenen Sprachen
-
-            /* Verbindung aufnehmen und Datenbank
-            auswählen */
-            include "DbAccess.php";
-
             $sqlLangs="SELECT langId, lang FROM langs";
             /* SQL-Abfrage ausführen */
-            $resLangs = $dbank->query($sqlLangs);
+            $resLangs = $conn->query($sqlLangs);
             /* Verbindung schließen */
-            $dbank = null;
+            $conn = null;
 
             $resultLangs=array(); //muss aus irgendwelchen gründen in ein anderes array geschreiben werden
             foreach ($resLangs as $value) {
@@ -124,6 +113,7 @@
             echo "<input type=\"number\" name=\"maxNiveau\" value=\"" . $maxNiveau . "\" hidden=\"true\"\>\n";
         ?>
     </form>
-</body>
 
-</html>
+<?php
+    include "../footer.php";
+?>

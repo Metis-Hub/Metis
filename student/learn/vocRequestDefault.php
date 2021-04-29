@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="de">
-
-<head>
-    <title>Metis - Vokabeltrainer</title>
-</head>
-
-<body>
+<?php
+    global $position;
+    $position = 4;
+    include "../header.php";
+?>
     <!--Einstellen der Lämge der Ranges!-->
     <style>
         input[type="range"] {
@@ -17,14 +14,15 @@
         Welche Sprachen soll abgefragt werden?
         <br />
         <?php
-            include("DbAccess.php");
+            include("../../includes/DBAccess.php");
 
             $sql = "SELECT langId, lang FROM langs";
             /* SQL-Abfrage ausführen */
-            $result = $dbank->query($sql);
+            $result = $conn->query($sql);
             /* Verbindung schließen */
-            $dbank = null;
+            $conn = null;
 
+            //var_dump($result);
             foreach ($result as $ds) {
                 echo "\t\t<input type=\"checkbox\" name=\"lang[]\" value=\"" . $ds["langId"] . "\">" . $ds["lang"] . "</input>\n"; //Ausgabe aller mgl. Sprachen
                 echo "\t\t<br />\n";
@@ -56,6 +54,6 @@
         <p><input type="submit" name="classLangSubmit" id="classLangSubmit" value="Bestätigen"></input></p>
     </form>
 
-</body>
-
-</html>
+<?php
+    include "../footer.php";
+?>

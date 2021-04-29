@@ -1,10 +1,9 @@
-<html>
-    <head>
-        <title>Metis - Quizzes</title>
-    </head>
-    <body>
-    <?php
-    session_start();
+<?php
+    global $position;
+    $position = 4;
+    include "../header.php";
+
+     
 
     if (isset($_GET["solveQuiz"])) {
         //Abfragen der Fragenzahl & ID
@@ -145,7 +144,5 @@
         echo 'Du hast alle Fragen gelöst und '.$_SESSION["rightAnswersCount"].'/'.$_SESSION["questionCount"].' Punkten erzielt ('.(($_SESSION["rightAnswersCount"]/$_SESSION["questionCount"])*100).' %).';
     }
 
-    
-    ?>     
-    </body>
-</html>
+    include "../footer.php";
+?>

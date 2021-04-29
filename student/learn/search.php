@@ -1,8 +1,8 @@
-<html>
-    <head>
-        <title>Metis - Quizzes</title>
-    </head>
-    <body>
+<?php
+    global $position;
+    $position = 4;
+    include "../header.php";
+?>
 
     <form action="search.php" method="get">
         <input type="text" name="tags" placeholder="Suche (verschiedene Tags durch Semikola abtrennen)" style="width: 10cm;">
@@ -73,5 +73,7 @@
 
                 </table>
      
-    </body>
-</html>
+
+<?php
+    include "../footer.php";
+?>
