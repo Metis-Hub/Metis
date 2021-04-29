@@ -3,9 +3,10 @@
     "",
     "\\admin",
     "\\admin\\accounts",
-    "\\includes",
+    "\\includes\\login",
+    "\\includes\\tasks",
     "\\test"
   ],
-  "SelectedNode": "\\includes\\user.php",
+  "SelectedNode": "\\admin\\accounts\\students.php",
   "PreviewInSolutionExplorer": false
 }
