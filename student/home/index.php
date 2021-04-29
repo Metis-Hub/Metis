@@ -6,13 +6,13 @@ include("./../header.php");
 	<p>
 		Wilkommen bei Metis, <?php echo $_SESSION["user"]["name"] . "\n";?>
 	</p>
-		<!--Nun für alle, deine erhältlich Daten: *Hu Har har!*
-		< ?php
+		<?php
+			echo "ICH BIN ZURÜCK <br>";
 			foreach($_SESSION["user"] as $data) {
-				echo "\n<p>\n". $data . "\n</p>\n";
+				var_dump($data);
+				echo "<br>";
 			}
 		?>
-		-->
 <?php
 include("./../footer.php");
 ?>
