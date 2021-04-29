@@ -131,6 +131,48 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`message` (
     PRIMARY KEY (`messageId`))
 ENGINE = InnoDB;");
 
+$conn -> query("CREATE TABLE IF NOT EXISTS `Metis.`.`answers` (
+  `Id` int(5) NOT NULL AUTO_INCREMENT,
+  `questionId` int(5) NOT NULL,
+  `answer` varchar(255) NOT NULL,
+  `isCorrect` tinyint(1) NOT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB;");
+
+$conn -> query("CREATE TABLE IF NOT EXISTS `Metis.`.`questions` (
+  `questionId` int(5) NOT NULL AUTO_INCREMENT,
+  `quizId` int(5) NOT NULL,
+  `question` varchar(255) NOT NULL,
+  PRIMARY KEY (`questionId`))
+ENGINE = InnoDB;");
+
+$conn -> query("CREATE TABLE IF NOT EXISTS `Metis.`.`quizzes` (
+  `Id` int(3) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `tags` varchar(255) NOT NULL,
+  `subjectId` int(2) NOT NULL,
+  `minClass` int(2) NOT NULL,
+  `maxClass` int(2) NOT NULL,
+  `questionCount` int(3) NOT NULL
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB;");
+
+$conn -> query("CREATE TABLE IF NOT EXISTS `Metis.`.`vocabs` (
+  `vId` int(11) NOT NULL AUTO_INCREMENT,
+  `lang` int(4) NOT NULL,
+  `vocab` varchar(255) NOT NULL,
+  `transl` varchar(255) NOT NULL,
+  `niveau` int(11) NOT NULL
+  PRIMARY KEY (`vId`))
+ENGINE = InnoDB;");
+
+$conn -> query("CREATE TABLE IF NOT EXISTS `Metis.`.`langs` (
+  `langId` int(4) NOT NULL AUTO_INCREMENT,
+  `langShort` varchar(8) NOT NULL,
+  `lang` varchar(32) NOT NULL
+  PRIMARY KEY (`langId`))
+ENGINE = InnoDB;");
+
 
 
 

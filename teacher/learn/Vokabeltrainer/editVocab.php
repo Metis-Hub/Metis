@@ -32,7 +32,7 @@
                         <?php
                             echo '<option value="no"' . (($_SESSION["defaultLang"] == "no")? "selected" : "") . ' disabled selected>Bitte wählen Sie die Sprache der Eingabe aus</option>'; 
 
-                                include "dbSelect.php";
+                                include "DbAccess.php";
 
                                 $sql="SELECT langId, lang FROM langs";
                                 /* SQL-Abfrage ausführen */

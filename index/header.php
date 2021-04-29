@@ -69,7 +69,7 @@ $_SESSION["safe_passwort_seed"] = Rand::Next();
 				<div class="login-container">
 					<input type="text" placeholder="Email" name="email" id="email" />
 					<input type="password" placeholder="Passwort" name="pwd" id="pwd" />
-					<button name="login" onclick="__Qiop57yqt1234EiopRFG46zjte426HJKLziMuioB357VX2456Y('<?php echo $_SESSION["safe_passwort_seed"]; ?>')">Anmelden</button>
+					<button name="login" onclick="hash('<?php echo $_SESSION["safe_passwort_seed"]; ?>')">Anmelden</button>
 					<form id="password" method="POST" action="../includes/login/login.inc.php">
 						<input type="hidden" name="pw" id="pw" value="" />
 						<input type="hidden" name="email" id="Email" value="" />

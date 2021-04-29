@@ -28,7 +28,7 @@
 
             <?php
 
-                include "dbSelect.php";
+                include "DbAccess.php";
                 $sql="SELECT langId, lang FROM langs";
                 /* SQL-Abfrage ausführen */
                 $res = $dbank->query($sql);                

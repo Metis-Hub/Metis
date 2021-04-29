@@ -6,7 +6,7 @@
         <?php
         session_start();
 
-        include "dbSelect.php";
+        include "DbAccess.php";
 
         foreach ($_SESSION["vocabs"] as $vocab) {
 
