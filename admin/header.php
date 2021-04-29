@@ -7,6 +7,7 @@
 		<title>Metis - Administration</title>
 		<?php
 			session_start();
+			session_regenerate_id(false);
 			if(isset($_SESSION["ask_for_dbAccess_change"]) && $_SESSION["ask_for_dbAccess_change"] == true) {
 				unset($_SESSION["ask_for_dbAccess_change"]);
 				echo "<script type=\"text/javascript\">\n" .

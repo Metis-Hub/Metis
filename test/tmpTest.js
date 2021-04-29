@@ -1,3 +1,1 @@
-window.onload = function () {
-
-}
+document.getElementById("").innerHTML = 

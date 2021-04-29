@@ -22,6 +22,7 @@ $date = array(
 		if(session_status() != 2) {
 			session_start();
 		}
+		session_regenerate_id(false);
 
 		include("./../../includes/user.php");
 		if(!isLoggedIn()) {
