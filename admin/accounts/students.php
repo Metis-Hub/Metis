@@ -155,14 +155,14 @@ include("../../includes/DbAccess.php");
 	######## Auswahl ########
 	if(!empty($_GET["select"])) {
 		if(!empty($_GET["editPwd"])) {
-			echo "<div class='right'>";
+			echo "<div class=\"right\">";
 			echo "<h2>Passwort&auml;nderung</h2>";
 
 			echo "
 			<form method='POST'>
-				<input type='password' name = 'newPwd' placeholder='Neues Passwort'>
-				<input type='password' name = 'repeatPwd' placeholder='Passwort wiederholen'>
-				<input type='submit' name='changePwd' value='Best&auml;tigen'>
+				<input type=\"password\" name = 'newPwd' placeholder='Neues Passwort'>
+				<input type=\"password\" name = 'repeatPwd' placeholder='Passwort wiederholen'>
+				<input type=\"submit\" name='changePwd' value='Best&auml;tigen'>
 			";
 
 			if(!empty($_POST["changePwd"])) {
@@ -177,7 +177,7 @@ include("../../includes/DbAccess.php");
 
 			echo "</div>";
 		} else {
-			echo "<div class='right'>";
+			echo "<div class=\"right\">";
 			echo "<h2>Sch&uuml;lerinformation</h2>";
 
 			$stmt = $conn -> prepare("SELECT * FROM student WHERE id = ?");
@@ -191,9 +191,9 @@ include("../../includes/DbAccess.php");
 				<form method=POST>
 					<table>
 						<tr> <th> ID </th> <td>".$result["id"]."</td></tr>
-						<tr> <th> Name </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type = text name = name> </td>" : "")."</tr>
-						<tr> <th> Nachname </th> <td>".$result["surname"]."</td>". ($edit ? "<td> <input type = text name = surname> </td>" : "")."</tr>
-						<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type = text name = email> </td>" :"")."</tr>
+						<tr> <th> Name </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type=\"text name=\"name\"> </td>" : "")."</tr>
+						<tr> <th> Nachname </th> <td>".$result["surname"]."</td>". ($edit ? "<td> <input type=\"text name=\"surname\"> </td>" : "")."</tr>
+						<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type=\"text name=\"email\"> </td>" :"")."</tr>
 						<tr> <th> Password </th> <td><a href='?select=".$_GET["select"]."&editPwd=1'>Passwort &auml;ndern'</a></td></tr>
 						<tr> <th> Klassen </th> <td>";
 						{
@@ -209,8 +209,8 @@ include("../../includes/DbAccess.php");
 
 					
 						echo "</td></tr>
-						<tr> <th> <input type=submit name=delete value=Entfernen> </th>
-						<th> ".($edit ? "<input type=submit value=Abbrechen> </th> <th> <input type=submit name=updateUser value=Absenden>" : "<input type=submit name=edit value=Bearbeiten>")."</th> </tr>
+						<tr> <th> <input type=\"submit\" name=\"delete\" value=\"Entfernen\"> </th>
+						<th> ".($edit ? "<input type=\"submit\" value=\"Abbrechen\"> </th> <th> <input type=\"submit\" name=\"updateUser\" value=\"Absenden\">" : "<input type=\"submit\" name=\"edit\" value=\"Bearbeiten\">")."</th> </tr>
 					</table>
 				</form>";
 			} else {
@@ -219,18 +219,18 @@ include("../../includes/DbAccess.php");
 			echo "</div>";
 			}
 		} elseif(isset($_GET["newAccount"])) {
-			echo "<div class='right'>";
+			echo "<div class=\"right\">";
 			echo "<h2>Neuer Sch&uuml;ler</h2>";
 
 			echo "
 				<form method=POST>
 					<table>
-						<tr> <th> Name </th> <td> <input type=text name=name placeholder=Name> </td></tr>
-						<tr> <th> Nachname </th> <td> <input type=text name=surname placeholder=Nachname> </td></tr>
-						<tr> <th> E-Mail </th><td> <input type=text name=email placeholder=E-Mail> </td></tr>
-						<tr> <th> Password </th> <td><input type=password name=pwd placeholder=Passwort></td></tr>
-						<tr> <th> Password best&auml;tigen </th> <td><input type=password name=pwdConfirm placeholder=Wiederholung></td></tr>
-						<tr> <th> </th><th><input type=submit name=createAccount value='Account erstellen'></th></tr>
+						<tr> <th> Name </th> <td> <input type=\"text\" name=\"name\" placeholder=\"Name\"> </td></tr>
+						<tr> <th> Nachname </th> <td> <input type=\"text\" name=\"surname\" placeholder=\"Nachname\"> </td></tr>
+						<tr> <th> E-Mail </th><td> <input type=\"text\" name=\"email\" placeholder=\"E-Mail\"> </td></tr>
+						<tr> <th> Password </th> <td><input type=\"password\" name=\"pwd\" placeholder=\"Passwort\"></td></tr>
+						<tr> <th> Password best&auml;tigen </th> <td><input type=\"password\" name=\"pwdConfirm\" placeholder=\"Wiederholung\"></td></tr>
+						<tr> <th> </th><th><input type=\"submit\" name=\"createAccount\" value=\"Account erstellen\"></th></tr>
 					</table>
 				</form>
 			";

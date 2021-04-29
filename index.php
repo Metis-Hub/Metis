@@ -12,7 +12,7 @@
             if(!isset($_SESSION["cookies"]["allow_set_cookies"])) {
                 $_SESSION["cookie_caller"] = "./";
                 $_SESSION["cookie_request_get"] = true;
-            header("location: cookies.php");
+                header("location: cookies.php");
             }
 
             
