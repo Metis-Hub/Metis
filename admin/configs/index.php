@@ -15,6 +15,16 @@ include "../header.php";
 			</table>
 		</form>
 
+		<!-- Umgebung -->
+		<h2><u>Serverumgebungseinstellungen</u></h2>
+		<form action="../configs/" method="POST">
+			<table width="25%" border="0">
+				<tr><td width="40%">Domain:</td><td><input type="text" name="$domain" placeholder="z.B.: &quot;Metis.de&quot;"></input></td></tr>
+				<tr><td width="40%">Pfad zum Metisordner:</td><td><input type="text" name="$path" placeholder="z.B.: &quot;Schule/Metis/&quot;"></input></td></tr>
+				<tr><td align="center" colspan="2"><input type="submit" name="$submit_server_conf" value="&Uuml;bernehmen"></input></td></tr>
+			</table>
+		</form>
+
 <?php
 
 if(isset($_POST["\$submit_db_conf"])) {
