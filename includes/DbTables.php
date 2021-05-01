@@ -144,6 +144,15 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`quizzes` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;");
 
+## Quiztags ##
+
+$conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`quiztags` (
+  `tagId` int(5) NOT NULL AUTO_INCREMENT,
+  `quizId` varchar(3) NOT NULL,
+  `tag` varchar(64) NOT NULL,
+  PRIMARY KEY (`tagId`))
+ENGINE = InnoDB;");
+
 ## Quizfragen ##
 
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`questions` (

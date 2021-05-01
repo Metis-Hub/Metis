@@ -68,10 +68,15 @@
                 }
 
                 $resultQuiz=array_unique($resultQuiz, SORT_REGULAR); //Entfernen bei mehrfach gespeichertem Quiz
-            
 
-                //Ausgaben in eienr Tabelle
-                echo '<table border>
+                //Überprüfen ob es leer ist
+                if(empty($resultQuiz)) {
+                    echo '<h1>Wir konnten leider keine deiner Suche entsprechenden Quizze finden.</h1>';
+                }
+
+                else {
+                     //Ausgaben in eienr Tabelle
+                    echo '<table border>
                     <tr>
                         <th style="width:9cm">Name</th>
                         <th style="width:3cm">Fach</th>
@@ -95,7 +100,11 @@
                                 </td>
                             </form>';
                         echo '</tr>';
-                    }
+                }
+                }
+            
+
+               
                 }
                     ?>
 
