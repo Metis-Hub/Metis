@@ -1,5 +1,9 @@
 <?php
 
+include "../../includes/set_link.php";
+include "../../includes/user.php";
+include "../../std_session.php";
+
 // Datum
 date_default_timezone_set("Europe/Berlin");
 
@@ -19,12 +23,6 @@ $date = array(
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<?php
-		if(session_status() != 2) {
-			session_start();
-		}
-		session_regenerate_id(false);
-
-		include("./../../includes/user.php");
 		if(!isLoggedIn()) {
 			header("Location: ./../../index/index.php?error=you_not_logged_in");
 		}

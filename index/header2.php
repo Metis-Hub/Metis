@@ -1,4 +1,4 @@
-<?php session_start(); unset($_SESSION["user"]); ?><!DOCTYPE html>
+<?php include "../../includes/set_link.php"; include "../../includes/std_session.php"; unset($_SESSION["user"]); ?><!DOCTYPE html>
 <html lang="de">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +14,7 @@
 			}
 		?>
 		<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />
-		<title><?php echo(($position == 1)?"&Uumlber uns - Metis":"Metis - Impressum")?></title>
+		<title><?php echo(($position == 1)?"Metis - &Uumlber uns":"Metis - Impressum")?></title>
 	</head>
 
 	<body>

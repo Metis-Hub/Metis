@@ -1,6 +1,6 @@
 <?php
-session_start();
-
+include "../includes/std_session.php";
+include "../includes/set_link.php";
 if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false) {
 	// Wenn keine Cookies gesetzt wurden, bzw. nicht zugestimmt wurde wird zu JavaScript-Meldung weitergeleitet.
 	header("Location: ./../");

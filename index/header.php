@@ -1,9 +1,10 @@
-<?php unset($_SESSION["user"]); ?><!DOCTYPE html>
-<?php
+<?php unset($_SESSION["user"]);
 include "../includes/Random.php";
+
 Rand::SetSeed(time());
 $_SESSION["safe_passwort_seed"] = Rand::Next();
-?>
+
+?><!DOCTYPE html>
 <html lang="de">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />

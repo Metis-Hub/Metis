@@ -1,4 +1,4 @@
-<!Das ist temporaer um die Cookies dieser Web-Site zu löschen.>
+<!-- Das ist temporaer um die Cookies dieser Web-Site zu löschen. -->
 <html>
 <head>
 <?php
