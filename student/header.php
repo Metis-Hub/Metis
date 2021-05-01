@@ -1,8 +1,8 @@
 <?php
 
 include "../../includes/set_link.php";
-include "../../includes/user.php";
 include "../../includes/std_session.php";
+include "../../includes/user.php";
 
 // Datum
 date_default_timezone_set("Europe/Berlin");
