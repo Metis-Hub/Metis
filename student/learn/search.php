@@ -12,22 +12,52 @@
         <input type="range" name="minClass" id="minClass" min="1" max="13" value="1" oninput="document.getElementById('minClassOut').value=document.getElementById('minClass').value"></input>
         <input type="number" name="minClassOut" id="minClassOut" min="1" max="13" value="1" oninput="document.getElementById('minClass').value=document.getElementById('minClassOut').value">
         <p>
-        <input type="range" name="maxClass" id="maxClass" min="1" max="13" value="1" oninput="document.getElementById('maxClassOut').value=document.getElementById('maxClass').value"></input>
-        <input type="number" name="maxClassOut" id="maxClassOut" min="1" max="13" value="1" oninput="document.getElementById('maxClass').value=document.getElementById('maxClassOut').value"\>
-        <br>
+        <input type="range" name="maxClass" id="maxClass" min="1" max="13" value="13" oninput="document.getElementById('maxClassOut').value=document.getElementById('maxClass').value"></input>
+        <input type="number" name="maxClassOut" id="maxClassOut" min="1" max="13" value="13" oninput="document.getElementById('maxClass').value=document.getElementById('maxClassOut').value"\>
+        <p>
+         <!--nach Fach filtern!-->
+         <select name="subject">
+                <option value="all">Quizzes aus allen Fächern auswählen</option>
+
+                <?php 
+                include "../../includes/DbAccess.php";           
+                //Ausgabe aller fächer
+                $sql="SELECT * FROM `subject`";
+                $res=$conn->query($sql);
+                $conn=null;
+
+                $result=array();
+                foreach ($res as $value) {
+                    array_push($result, $value);
+                }
+
+                foreach ($result as $subject) { 
+                    echo '<option value="'.$subject["subjectId"].'">'.$subject["long"].'</option>';
+                }
+                ?>
+        </select>
+        <p>
         <input type="submit" name="search" value="Suche">
     </form>
         <?php
             if (isset($_GET["search"])) {
+                //Speichern des Faches, wenn eines ausgewählt ist (inkl. SQL für einfacheres Auswählen)
+                if ($_GET["subject"]!="all") {
+                    $sqlSubject="AND `quizzes`.`subjectId` LIKE ".$_GET["subject"]."";
+                }
+                else {
+                    $sqlSubject="";
+                }
+
                 //Speichern aller Quizzes
                 $search=explode("; ", $_GET["tags"]);
 
                 $resultQuiz=array();
                 foreach ($search as $tag) {    
-                    include "DbAccess.php";       
-                    $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subjects` ON `quizzes`.`subjectId` = `subjects`.`subjectId` WHERE `tags` LIKE '%".$tag."%' AND `minClass` >= ".$_GET["minClass"]." AND `maxClass` <= ".$_GET["maxClass"]."";
-                    $resQuiz=$dbank->query($sqlQuiz);
-                    $dbank=null;
+                    include "../../includes/DbAccess.php";     
+                    $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subject` ON `quizzes`.`subjectId` = `subject`.`subjectId` INNER JOIN `quizTags` ON `quizTags`.`quizId` = `quizzes`.`Id` WHERE `quiztags`.`tag` LIKE '".$tag."' AND `minClass` >= ".$_GET["minClass"]." AND `maxClass` <= ".$_GET["maxClass"]." ".$sqlSubject;
+                    $resQuiz=$conn->query($sqlQuiz);
+                    $conn=null;
 
                  
                     foreach ($resQuiz as $value) {
@@ -46,16 +76,14 @@
                         <th style="width:9cm">Name</th>
                         <th style="width:3cm">Fach</th>
                         <th style="width:5cm">Klassen</th>
-                        <th style="width:9cm">Themen</th>
                         <th style="width:3cm">Zahl der Fragen</th>
                     <tr>';
 
                     foreach ($resultQuiz as $quiz) {
                         echo '<tr>';
                         echo '<td>'.$quiz["name"].'</td>';
-                        echo '<td>'.$quiz["subjectName"].'</td>';
+                        echo '<td>'.$quiz["long"].'</td>';
                         echo '<td> Klasse '.$quiz["minClass"].' bis Klasse '.$quiz["maxClass"].'</td>';
-                        echo '<td>'.implode("; ", explode(";", $quiz["tags"])).'</td>';
                         echo '<td>'.$quiz["questionCount"].'</td>';
 
                         echo '<form action="solveQuiz.php" method="get">

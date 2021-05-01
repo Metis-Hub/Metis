@@ -1,8 +1,8 @@
-<html>
-    <head>
-        <title>Metis - Vokabeltrainer</title>
-    </head>
-    <body>
+<?php
+    global $position;
+    $position = 3;
+    include "../header.php";
+?>
         <style>
             table, th, td {
             border: 1px solid black;
@@ -10,9 +10,6 @@
 
         table {text-align: center};
         </style>
-        <?php
-            session_start();
-        ?>
 
         <center>
             <h1>Bitte überprüfen Sie Ihre Eingabe:</h1>
@@ -23,17 +20,19 @@
                     <th style="width: 9cm;">Vokabel</th>
                     <th style="width: 9cm;">Übersetzung der Vokabel</th>
                     <th style="width: 9cm;">Anspruch der Vokabel</th>
+                    <th style="width: 4cm;">Bearbeiten</th>
+                    <th style="width: 4cm;">Löschen</th>
                 </tr>
                 <tr>
 
             <?php
 
-                include "DbAccess.php";
+                include "../../includes/DbAccess.php"; 
                 $sql="SELECT langId, lang FROM langs";
                 /* SQL-Abfrage ausführen */
-                $res = $dbank->query($sql);                
+                $res = $conn->query($sql);                
                 /* Verbindung schließen */
-                $dbank = null;
+                $conn = null;
 
                 $result=array();
                 foreach ($res as $value) {
@@ -61,12 +60,17 @@
 
                     echo '<td> Klassenstufe '.$vocab[3].'</td>';
 
-                    echo '<td>
+                    echo '
                     <form name="editVocab" method="GET" action="editVocab.php">
-                    <input type="submit" name="edit" value="Bearbeiten"\>
+                    <td style="text-align: center;">
+                        <input type="submit" name="edit" value="Bearbeiten"\>
+                    </td>
+                    <td style="text-align: center;">
+                        <input type="submit" name="delete" value="Frage löschen"\>
+                    </td>
                     <input type="hidden" name="vocNumber" value="'.$i.'"\>
-                    </form>
-                    </td>'; //falls man was bearbeiten möchte
+                    </form>'; //falls man was bearbeiten oder löschen möchte
+                    
 
                     echo '</tr>';
 
@@ -80,12 +84,20 @@
         ?>
 
         <br>
-        <form action="abgabeVocs.php" method="GET" name="submitVocs">
+        <form action="abgabeVocs.php" method="GET" name="submitVocs">            
             <input type="submit" value="Eingabe bestätigen" name="submitVocsSubmit"></input>
+            <br>
+            <b>Achtung! Diese Aktion kann nicht rückgängig gemacht werden! Eine Bearbeitung ist dann nicht mehr möglich.<b> 
+            <p>          
+        </form>
+
+        <form action="vInput.php" method="GET">
+            <input type="submit" value="Neue Frage erstellen" name="newQuestion"></input>
         </form>
 
         </center>
         
         
-    </body>
-</html>
+<?php
+    include "../footer.php";
+?>

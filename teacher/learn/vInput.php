@@ -1,8 +1,8 @@
-<html lang="de">
-    <head>
-        <title>Metis - Vokabeltrainer</title>
-    </head>
-    <body>
+<?php
+    global $position;
+    $position = 3;
+    include "../header.php";
+?>
         <style>
             input[type="number"] {
             width: 389px;
@@ -10,7 +10,6 @@
         </style>
 
         <?php
-        session_start();
 
         if (isset($_GET["addVoc"])) {
 
@@ -78,13 +77,13 @@
                             if (empty($_SESSION["vocabs"][$vocNumber])) { //falls die Vokabel noch nicht geschrieben ist
                                 echo '<option value="no"' . (($_SESSION["defaultLang"] == "no")? "selected" : "") . ' disabled selected>Bitte wählen Sie die Sprache der Eingabe aus</option>';
 
-                                    include "DbAccess.php";
+                                    include "../../includes/DbAccess.php"; 
 
                                     $sql="SELECT langId, lang FROM langs";
                                     /* SQL-Abfrage ausführen */
-                                    $db = $dbank->query($sql);                
+                                    $db = $conn->query($sql);                
                                     /* Verbindung schließen */
-                                    $dbank = null;
+                                    $conn = null;
 
                                     foreach ($db as $ds) {                                    
                                         echo '<option value="'.$ds["langId"].'" '.(($_SESSION["defaultLang"] == $ds["langId"])? "selected" : "").'>'.$ds["lang"].'</option>';     
@@ -94,13 +93,13 @@
                             else { //also z.b. wenn man zurück und wieder vor geht (ist dann auch unten so)
                                 echo '<option value="no"' . (($_SESSION["vocabs"][$vocNumber][0] == "no")? "selected" : "") . ' disabled selected>Bitte wählen Sie die Sprache der Eingabe aus</option>'; 
 
-                                include "DbAccess.php";
+                                include "../../includes/DbAccess.php"; 
 
                                 $sql="SELECT langId, lang FROM langs";
                                 /* SQL-Abfrage ausführen */
-                                $db = $dbank->query($sql);                
+                                $db = $conn->query($sql);                
                                 /* Verbindung schließen */
-                                $dbank = null;
+                                $conn = null;
 
                                 foreach ($db as $ds) {                                    
                                     echo '<option value="'.$ds["langId"].'" '.(($_SESSION["vocabs"][$vocNumber][0] == $ds["langId"])? "selected" : "").'>'.$ds["lang"].'</option>';     
@@ -123,5 +122,6 @@
                         <br>      
 
             </form> 
-    </body>
-</html>
+<?php
+    include "../footer.php";
+?>

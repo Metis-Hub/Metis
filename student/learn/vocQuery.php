@@ -20,7 +20,7 @@
 
             /* Verbindung aufnehmen und Datenbank
             auswählen */
-            include("includes/DbAccess.php");
+            include("../../includes/DbAccess.php");
 
             $sqlVocs = "SELECT lang, vocab, transl, niveau FROM vocabs WHERE lang IN ( " . substr($langs, 0, -1) . " ) AND niveau >= " .
             $minNiveau . " AND niveau <= " . $maxNiveau . " ORDER BY RAND() LIMIT " . $queryLimit . "";
@@ -65,8 +65,8 @@
 
             else {
                 echo "\t<script>\n";
-                echo "\t\talert(unescape(\"Deine Antwort war leider falsch. Die richtige Antwort w%E4re \""
-                     . $_SESSION["resultVocs"][$queryNumber]["transl"] . "\" gewesen.\"));";
+                echo "\t\talert(unescape('Deine Antwort war leider falsch. Die richtige Antwort w%E4re \""
+                     . $_SESSION["resultVocs"][$queryNumber]["transl"] . "\" gewesen.'));";
                 echo "\t</script>";
             }
         }
@@ -84,7 +84,7 @@
             echo "\t</form>;\n";
         }
         else {
-            header("location: allSolved.php"); //muss auf ne andere seite geleitet werden (wegen refreshing) @Jakob neeee
+            header("location: allSolved.php"); //muss auf ne andere seite geleitet werden (wegen refreshing) @Jakob neeee @doot dooooooooooooch
         }
     ?>
 

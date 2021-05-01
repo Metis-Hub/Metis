@@ -1,10 +1,9 @@
-<html>
-    <head>
-        <title>Metis - Quizzes</title>
-    </head>
-    <body>
-        <?php
-        session_start();
+<?php
+    global $position;
+    $position = 3;
+    include "../header.php";
+
+         
 
         if (isset($_GET["delete"])) {
             unset($_SESSION["questions"][$_GET["questionNumber"]]);
@@ -109,6 +108,5 @@
                 }
             }
             
-        ?>
-    </body>
-</html>
+            include "../footer.php";
+?>

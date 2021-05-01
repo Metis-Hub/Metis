@@ -1,10 +1,8 @@
-<html>
-    <head>
-        <title>Metis - Quizzes</title>
-    </head>
-    <body>
-        <?php
-        session_start();
+<?php
+    global $position;
+    $position = 3;
+    include "../header.php";
+         
 
         if (!isset($_GET["submitQuestions"]) && !isset($_GET["answerCountSubmit"]) && !isset($_GET["answersSubmit"])) {
             echo '<h1>Frage '.($_SESSION["questionCount"]+1).'</h1>
@@ -119,10 +117,6 @@
             header("location: showQuestions.php");
         }
 
-
         
-
-        
-        ?>
-    </body>
-</html>
+        include "../footer.php";
+?>

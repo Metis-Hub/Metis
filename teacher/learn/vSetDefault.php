@@ -1,8 +1,8 @@
-<html>
-    <head>
-        <title>Metis - Vokabeltrainer</title>
-    </head>
-    <body>
+<?php
+    global $position;
+    $position = 3;
+    include "../header.php";
+?>
         <style>
             input[type="number"] {
             width: 200px;
@@ -10,7 +10,6 @@
         </style>
         
         <?php
-            session_start();
 
             $_SESSION["vocabs"]=array();
             $_SESSION["vocNumber"]=0; //Das ist später zum Zurückgehen wichtig.
@@ -40,13 +39,13 @@
 			<p>
 
             <?php
-           include "DbAccess.php";
+           include "../../includes/DbAccess.php"; 
 
             $sql="SELECT langId, lang FROM langs";
             /* SQL-Abfrage ausführen */
-            $db = $dbank->query($sql);                
+            $db = $conn->query($sql);                
             /* Verbindung schließen */
-            $dbank = null;
+            $conn = null;
 
             echo '<select name="lang" id="lang">
             <option disabled selected>Bitte wählen Sie die Sprache der Eingabe aus</option>';
@@ -69,5 +68,6 @@
 
      
         </form>
-    </body>
-</html>
+<?php
+    include "../footer.php";
+?>
