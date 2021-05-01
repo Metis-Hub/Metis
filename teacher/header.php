@@ -28,7 +28,7 @@
 		<nav>
 			<div><a <?php echo(($position == 0)?"class=\"active\"": "href=\"./../home\"")?>>Home</a></div>
 			<div><a <?php echo(($position == 1)?"class=\"active\"": "href=\"./../tasks\"")?>>Aufgaben</a></div>
-			<div><a <?php echo(($position == 2)?"class=\"active\"": "href=\"./../class\"")?>>Klassen</a></div>
+			<div><a <?php echo(($position == 2)?"class=\"active\"": "href=\"./../classes\"")?>>Klassen</a></div>
 			<div><a <?php echo(($position == 3)?"class=\"active\"": "href=\"./../learn\"")?>>Lernen</a></div>
 			<div><a <?php echo(($position == 4)?"class=\"active\"": "href=\"./../settings\"")?>>Einstellungen</a></div>
 			<div><a id="SignOut" href="./../../includes/login/logout.inc.php">Abmelden</a></div>
