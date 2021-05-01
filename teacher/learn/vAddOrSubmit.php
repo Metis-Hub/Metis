@@ -1,11 +1,7 @@
-<html>
-    <head>
-        <title>Metis - Vokabeltrainer</title>
-    </head>
-    <body>
-                   
-        <?php
-        session_start();
+<?php
+    global $position;
+    $position = 3;
+    include "../header.php";
 
         if (isset($_GET["addVoc"])) {
 
@@ -56,8 +52,6 @@
             ++$_SESSION["vocNumber"]; //Eingabe vor
          
         }
-        ?>
 
-        
-    </body>
-</html>
+        include "../footer.php";
+?>

@@ -1,10 +1,8 @@
-<html>
-    <head>
-        <title>Metis - Quizzes</title>
-    </head>
-    <body>
-        <?php
-        session_start();
+<?php
+    global $position;
+    $position = 3;
+    include "../header.php";
+         
 
         echo '<table border>
                 <tr>
@@ -72,6 +70,5 @@
                 <input type="submit" name="newQuestion" value="Neue Frage erstellen">
                 </center>
             </form>';
-        ?>
-    </body>
-</html>
+        include "../footer.php";
+?>

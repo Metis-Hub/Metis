@@ -14,10 +14,10 @@
         $_SESSION["rightAnswersCount"]=0; //Zahl der richtig beantworteten Fragen
 
         //Abfragen der Fragen (inkl. IDs f. Antworten)
-        include "DbAccess.php";
+        include "../../includes/DbAccess.php";  
         $sqlGetQuestions="SELECT `questions`.`question`, `questions`.`questionId` FROM `questions` WHERE `questions`.`quizId` LIKE ".$quizId."";
-        $resGetQuestion=$dbank->query($sqlGetQuestions);
-        $dbank->close();
+        $resGetQuestion=$conn->query($sqlGetQuestions);
+        $conn->close();
 
         $_SESSION["questions"]=array();
         foreach ($resGetQuestion as $value) {
@@ -38,9 +38,9 @@
         
 
             //Abfragen der Antwortemöglichkeiten in der DB
-            include "DbAccess.php";
+             include "../../includes/DbAccess.php";  
             $sqlGetAnswers="SELECT `answer` FROM `answers` WHERE `questionId`=".$_SESSION["questions"][$_SESSION["questionNumber"]]["questionId"]."";
-            $resAnswers=$dbank->query($sqlGetAnswers);
+            $resAnswers=$conn->query($sqlGetAnswers);
 
        
 
@@ -72,9 +72,9 @@
 
     else if (isset($_POST["checkAnswer"])) {
         //Abfragen der richtigen Antwortemöglichkeiten in der DB
-        include "DbAccess.php";
+         include "../../includes/DbAccess.php";  
         $sqlGetCorrectAnswers="SELECT `answer` FROM `answers` WHERE `questionId`=".$_SESSION["questions"][$_SESSION["questionNumber"]]["questionId"]." AND `isCorrect` = 1";
-        $resCorrectAnswers=$dbank->query($sqlGetCorrectAnswers);
+        $resCorrectAnswers=$conn->query($sqlGetCorrectAnswers);
 
         $correctAnswers=array();
         foreach ($resCorrectAnswers as $value) {
@@ -141,7 +141,13 @@
     }
 
     else if (isset($_GET["endQuiz"])) {
-        echo 'Du hast alle Fragen gelöst und '.$_SESSION["rightAnswersCount"].'/'.$_SESSION["questionCount"].' Punkten erzielt ('.(($_SESSION["rightAnswersCount"]/$_SESSION["questionCount"])*100).' %).';
+        echo '<h1>Herzlichen Glückwunsch!</h1>
+        <p>
+        Du hast alle Fragen gelöst und '.$_SESSION["rightAnswersCount"].'/'.$_SESSION["questionCount"].' Punkten erzielt ('.(($_SESSION["rightAnswersCount"]/$_SESSION["questionCount"])*100).' %).
+        <p>
+        <form action="index.php">
+            <input type="submit" value=\'Zurück zu "Lernen" gehen\'>
+        </form>';
     }
 
     include "../footer.php";

@@ -45,7 +45,7 @@
         </p>
 
         <!--Limit der abgefragten Vokabeln!-->
-        Maximal abzufragende Vokabeln (sind ggf. weniger):
+        Zahl der abzufragende Vokabeln (Mglw. ist die Zahl der tatsächlich abgefragten Vokabeln geringer):
         <p>
             <input type="range" name="queryLimit" id="queryLimit" min="1" max="100" value="50" width="50" oninput="document.getElementById('queryLimitOut').value=document.getElementById('queryLimit').value"></input>
             <input type="number" name="queryLimitOut" id="queryLimitOut" min="1" max="100" value="50" oninput="document.getElementById('queryLimit').value=document.getElementById('queryLimitOut').value">

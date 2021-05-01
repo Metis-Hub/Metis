@@ -74,10 +74,11 @@
             echo "\t\t\t<th style=\"width: 9cm;\">Vokabel</th>\n";
             echo "\t\t\t<th style=\"width: 9cm;\">Übersetzung der Vokabel</th>\n";
             echo "\t\t\t<th style=\"width: 9cm;\">Anspruch der Vokabel</th>\n";
-            echo "\t\t</tr>\n";
-            echo "\t<tr>";         
+            echo "\t\t</tr>\n";        
 
             foreach ($resultVocs as $dsVocs) {
+                echo "\t<tr>"; 
+                
                 $foundLang = false;
                 foreach ($resultLangs as $dsLangs) {                        
                     if ($dsVocs["lang"] == $dsLangs["langId"] && !$foundLang) {
@@ -106,6 +107,7 @@
         }
     ?>
 
+    <p>
     <form action="vocQuery.php">
         <input type="submit" name="allVocsConfirm" value="Abfrage starten">
         <?php

@@ -1,12 +1,9 @@
-<html>
-    <head>
-        <title>Metis - Vokabeltrainer</title>
-    </head>
-    <body>
-        <?php
-        session_start();
+<?php
+    global $position;
+    $position = 3;
+    include "../header.php";
 
-        include "DbAccess.php";
+        include "../../includes/DbAccess.php"; 
 
         foreach ($_SESSION["vocabs"] as $vocab) {
 
@@ -22,11 +19,11 @@
 
             $vocab[2]=implode(", ", $allMeaningsCaps);
 
-            $exists = $dbank->query("SELECT vId FROM vocabs WHERE vocab = '" . ucfirst(strtolower($vocab[1])) . "'");
+            $exists = $conn->query("SELECT vId FROM vocabs WHERE vocab = '" . ucfirst(strtolower($vocab[1])) . "'");
 
             if($exists->num_rows == 0) {
                 $sqlAdd='INSERT INTO `vocabs`(`lang`, `vocab`, `transl`, `niveau`) VALUES ("'.$vocab[0].'","'.ucfirst(strtolower($vocab[1])).'","'.$vocab[2].'", "'.$vocab[3].'")';
-                $dbank->query($sqlAdd);
+                $conn->query($sqlAdd);
             }         
             
             else {
@@ -34,14 +31,12 @@
             }
         }        
 
-        $dbank = null; //Verbindung schließen
-
-        echo "Vielen Dank für Ihren Beitrag.";
+        $conn = null; //Verbindung schließen
         unset($_SESSION["vocabs"]);
         unset($_SESSION["defaultLang"]);
         unset($_SESSION["defaultNiveau"]);
-        ?>   
-        
-        
-    </body>
-</html>
+
+        header("location: vocabsSubmitSuccessful.php");
+
+        include "../footer.php";
+?>

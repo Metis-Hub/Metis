@@ -1,13 +1,9 @@
-<html>
-    <head>
-        <title>
-            Metis - Quizzes
-        </title>
-    </head>
-    <body>
+<?php
+    global $position;
+    $position = 3;
+    include "../header.php";
 
-        <?php
-        session_start();
+         
         $_SESSION["questionNumber"]=0;
         $_SESSION["questionCount"]=0;
         $_SESSION["answerCount"]=0;
@@ -25,11 +21,11 @@
                 <?php 
                 session_start();
 
-                include "DbAccess.php";            
+                include "../../includes/DbAccess.php";             
                 //Ausgabe aller fächer
                 $sql="SELECT * FROM `subject`";
-                $res=$dbank->query($sql);
-                $dbank=null;
+                $res=$conn->query($sql);
+                $conn=null;
 
                 $result=array();
                 foreach ($res as $value) {
@@ -72,7 +68,7 @@
                 $quizName=str_replace("'", "", $quizName);           
 
                
-                $tagsNoSpace=implode(";", explode("; ", $_GET["quizTags"])); //die Tags werden ohne Leerzeichen zusammengefügt
+                $_SESSION["tags"]=explode("; ", $_GET["quizTags"]); //die Tags werden für später gespeichert
                             
                 //alle (außer die Fragenanzahl) für das Quiz wichtigen Parameter werden zum Eintragen in die DB gespeicherts
                 $_SESSION["quizName"]=$quizName;
@@ -90,7 +86,5 @@
             
         }
             
-
-        ?>
-    </body>
-</html>
+        include "../footer.php";
+?>
