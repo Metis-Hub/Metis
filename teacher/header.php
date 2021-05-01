@@ -1,4 +1,4 @@
-<?php include "../../includes/set_link.php"; include "../../std_session.php"; ?><!DOCTYPE html>
+<?php include "../../includes/set_link.php"; include "../../includes/std_session.php"; ?><!DOCTYPE html>
 <html lang="de">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
