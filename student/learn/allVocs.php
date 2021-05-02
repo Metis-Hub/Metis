@@ -16,7 +16,7 @@
        
     <?php
 
-        if (!empty("lang[]" && !empty("minNiveau") && !empty("maxNiveau") && !empty("queryLimit"))) {
+        if (!empty("lang") && !empty("minNiveau") && !empty("maxNiveau") && !empty("queryLimit")) {
 
             $_SESSION["studentLang"] = $_GET["lang"]; //is als SESSION vllt nt so optimal
             $lang=$_SESSION["studentLang"];
@@ -60,7 +60,7 @@
             /* SQL-Abfrage ausführen */
             $resLangs = $conn->query($sqlLangs);
             /* Verbindung schließen */
-            $conn = null;
+            $conn->close();
 
             $resultLangs=array(); //muss aus irgendwelchen gründen in ein anderes array geschreiben werden
             foreach ($resLangs as $value) {

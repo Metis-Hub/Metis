@@ -28,7 +28,7 @@
             $res = $conn->query($sqlVocs);
 
             /* Verbindung schließen */
-            $conn = null;
+            $conn->close();
         } else if (isset($_POST["studentSolSubmit"])) {
     
             $queryNumber = $_POST["queryNumber"];
