@@ -17,7 +17,7 @@
         <p>
          <!--nach Fach filtern!-->
          <select name="subject">
-                <option value="all">Quizzes aus allen Fächern auswählen</option>
+                <option value="all">Quizze aus allen Fächern auswählen</option>
 
                 <?php 
                 include "../../includes/DbAccess.php";           
@@ -49,7 +49,7 @@
                     $sqlSubject="";
                 }
 
-                //Speichern aller Quizzes
+                //Speichern aller Quizze
                 $search=explode("; ", $_GET["tags"]);
 
                 $resultQuiz=array();
