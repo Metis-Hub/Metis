@@ -2,7 +2,7 @@
     global $position;
     $position = 3;
     include "../header.php";
-         
+    
 
         echo '<table border>
                 <tr>
