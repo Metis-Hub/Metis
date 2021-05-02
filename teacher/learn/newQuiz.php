@@ -25,7 +25,7 @@
                 //Ausgabe aller fächer
                 $sql="SELECT * FROM `subject`";
                 $res=$conn->query($sql);
-                $conn=null;
+                $conn->close();
 
                 $result=array();
                 foreach ($res as $value) {

@@ -31,7 +31,7 @@
             }
         }        
 
-        $conn = null; //Verbindung schließen
+        $conn->close(); //Verbindung schließen
         unset($_SESSION["vocabs"]);
         unset($_SESSION["defaultLang"]);
         unset($_SESSION["defaultNiveau"]);
