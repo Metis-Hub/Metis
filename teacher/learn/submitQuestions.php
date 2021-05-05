@@ -41,6 +41,8 @@
             
         }
 
+        $conn->close();
+
         header("location: QuizSubmitSucessfull.php");
         include "../footer.php";
 ?>

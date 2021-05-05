@@ -32,7 +32,7 @@
                 /* SQL-Abfrage ausführen */
                 $res = $conn->query($sql);                
                 /* Verbindung schließen */
-                $conn = null;
+                $conn->close();
 
                 $result=array();
                 foreach ($res as $value) {
@@ -92,7 +92,7 @@
         </form>
 
         <form action="vInput.php" method="GET">
-            <input type="submit" value="Neue Frage erstellen" name="newQuestion"></input>
+            <input type="submit" value="Neue Vokabel erstellen" name="newQuestion"></input>
         </form>
 
         </center>

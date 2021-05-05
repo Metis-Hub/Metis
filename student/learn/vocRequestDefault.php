@@ -12,7 +12,7 @@
 
     <form action="allVocs.php" method="GET" name="lang+niveau"> <!--Abfrage der Sprache und des Niveaus!-->
         Welche Sprachen soll abgefragt werden?
-        <br />
+        <br/>
         <?php
             include("../../includes/DBAccess.php");
 
@@ -20,7 +20,7 @@
             /* SQL-Abfrage ausführen */
             $result = $conn->query($sql);
             /* Verbindung schließen */
-            $conn = null;
+            $conn->close();
 
             //var_dump($result);
             foreach ($result as $ds) {

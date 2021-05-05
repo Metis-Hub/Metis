@@ -83,7 +83,7 @@
                                     /* SQL-Abfrage ausführen */
                                     $db = $conn->query($sql);                
                                     /* Verbindung schließen */
-                                    $conn = null;
+                                    $conn->close();
 
                                     foreach ($db as $ds) {                                    
                                         echo '<option value="'.$ds["langId"].'" '.(($_SESSION["defaultLang"] == $ds["langId"])? "selected" : "").'>'.$ds["lang"].'</option>';     
@@ -99,7 +99,7 @@
                                 /* SQL-Abfrage ausführen */
                                 $db = $conn->query($sql);                
                                 /* Verbindung schließen */
-                                $conn = null;
+                                $conn->close();
 
                                 foreach ($db as $ds) {                                    
                                     echo '<option value="'.$ds["langId"].'" '.(($_SESSION["vocabs"][$vocNumber][0] == $ds["langId"])? "selected" : "").'>'.$ds["lang"].'</option>';     

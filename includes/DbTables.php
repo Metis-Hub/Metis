@@ -136,7 +136,6 @@ ENGINE = InnoDB;");
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`quizzes` (
   `Id` int(3) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `tags` varchar(255) NOT NULL,
   `subjectId` int(2) NOT NULL,
   `minClass` int(2) NOT NULL,
   `maxClass` int(2) NOT NULL,

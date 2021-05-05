@@ -41,6 +41,7 @@
              include "../../includes/DbAccess.php";  
             $sqlGetAnswers="SELECT `answer` FROM `answers` WHERE `questionId`=".$_SESSION["questions"][$_SESSION["questionNumber"]]["questionId"]."";
             $resAnswers=$conn->query($sqlGetAnswers);
+            $conn->close();
 
        
 
@@ -72,9 +73,10 @@
 
     else if (isset($_POST["checkAnswer"])) {
         //Abfragen der richtigen Antwortemöglichkeiten in der DB
-         include "../../includes/DbAccess.php";  
+        include "../../includes/DbAccess.php";  
         $sqlGetCorrectAnswers="SELECT `answer` FROM `answers` WHERE `questionId`=".$_SESSION["questions"][$_SESSION["questionNumber"]]["questionId"]." AND `isCorrect` = 1";
         $resCorrectAnswers=$conn->query($sqlGetCorrectAnswers);
+        $conn->close();
 
         $correctAnswers=array();
         foreach ($resCorrectAnswers as $value) {

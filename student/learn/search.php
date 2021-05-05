@@ -17,14 +17,14 @@
         <p>
          <!--nach Fach filtern!-->
          <select name="subject">
-                <option value="all">Quizzes aus allen Fächern auswählen</option>
+                <option value="all">Quizze aus allen Fächern auswählen</option>
 
                 <?php 
                 include "../../includes/DbAccess.php";           
                 //Ausgabe aller fächer
                 $sql="SELECT * FROM `subject`";
                 $res=$conn->query($sql);
-                $conn=null;
+                $conn->close();
 
                 $result=array();
                 foreach ($res as $value) {
@@ -49,7 +49,7 @@
                     $sqlSubject="";
                 }
 
-                //Speichern aller Quizzes
+                //Speichern aller Quizze
                 $search=explode("; ", $_GET["tags"]);
 
                 $resultQuiz=array();
@@ -57,7 +57,7 @@
                     include "../../includes/DbAccess.php";     
                     $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subject` ON `quizzes`.`subjectId` = `subject`.`subjectId` INNER JOIN `quizTags` ON `quizTags`.`quizId` = `quizzes`.`Id` WHERE `quiztags`.`tag` LIKE '".$tag."' AND `minClass` >= ".$_GET["minClass"]." AND `maxClass` <= ".$_GET["maxClass"]." ".$sqlSubject;
                     $resQuiz=$conn->query($sqlQuiz);
-                    $conn=null;
+                    $conn->close();
 
                  
                     foreach ($resQuiz as $value) {

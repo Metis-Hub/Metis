@@ -45,7 +45,7 @@
             /* SQL-Abfrage ausführen */
             $db = $conn->query($sql);                
             /* Verbindung schließen */
-            $conn = null;
+            $conn->close();
 
             echo '<select name="lang" id="lang">
             <option disabled selected>Bitte wählen Sie die Sprache der Eingabe aus</option>';
