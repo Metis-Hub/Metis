@@ -1,5 +1,4 @@
 <?php
-	// TODO username bei Cookies verwenden
 	global $position;
 	$position = 1;
 	$time = time() + (3600*24*360);	// Die Cookies bleiben ein Jahr gespeichert.
