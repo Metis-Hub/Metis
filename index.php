@@ -5,7 +5,9 @@
             Metis - Bitte stimmen Sie den Cookies zu
         </title>
         <?php
-            include ("includes/DbTables.php");
+            include ("includes/DbAccess.php");
+            $conn -> multi_query(file_get_contents("setup.sql"));
+            $conn -> close();
 
             session_start();
 
