@@ -1,7 +1,6 @@
 <?php
 include "DbAccess.php";
 
-
 ## Accounts ##
 $conn -> query(
 "    CREATE TABLE IF NOT EXISTS `student` (
@@ -114,6 +113,7 @@ ENGINE = InnoDB;");
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`day_has_course` (
   `courseId` INT NOT NULL,
   `dayId` INT NOT NULL,
+  `courseIndex` TINYINT NOT NULL,
   `isSubstiturte` TINYINT NULL DEFAULT 0)
 ENGINE = InnoDB;");
 
