@@ -48,6 +48,7 @@ $conn -> query(
         `classId` INT NOT NULL
     ) ENGINE = InnoDB
 ");
+
 ## Tasks ##
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`task` (
   `taskId` INT NOT NULL AUTO_INCREMENT,
@@ -62,42 +63,38 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`task` (
 ENGINE = InnoDB");
 
 
-$conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`student_done_task` (
+$conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`studentHasTask` (
   `studentId` INT NOT NULL,
-  `taskId` INT NOT NULL)
+  `taskId` INT NOT NULL,
+  `hasDone` TINYINT NULL)
 ENGINE = InnoDB;");
 
 ## Time Table ##
 # Days #
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`day` (
   `idDay` INT NOT NULL AUTO_INCREMENT,
-  `DayName` VARCHAR(3) NOT NULL,
+  `dayIndex` TINYINT NOT NULL,
+  `priority` TINYINT DEFAULT 0,
   PRIMARY KEY (`idDay`))
 ENGINE = InnoDB;");
 
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`day_has_class` (
   `dayId` INT NOT NULL,
   `classId` INT NOT NULL,
-  `ValidFrom` DATE NOT NULL,
-  `ValidTo` DATE NULL,
+  `validFrom` DATE NOT NULL,
+  `validTo` DATE NULL,
   `createdAt` DATE NULL)
 ENGINE = InnoDB;");
 
-# Time spans #
-$conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`timeSpan` (
-  `spanId` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NOT NULL,
-  `Description` VARCHAR(255) NULL,
-  `fromDate` DATE NOT NULL,
-  `toDate` DATE NOT NULL,
-  `noTask` TINYINT NULL,
-  PRIMARY KEY (`spanId`))
+# Holidays #
+$conn -> query("CREATE TABLE IN IF NOT EXISTS `Meits`.`holiday` (
+  `holidayId` INT NOT NULL AUTO_INCREMENT,
+  `validFrom` DATE NOT NULL,
+  `validTo` DATE NOT NULL,
+  `name` VARCHAR(45) DEFAULT 'Ferien')
 ENGINE = InnoDB;");
 
-$conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`grade_has_timeSpan` (
-  `classId` INT NOT NULL,
-  `spanId` INT NOT NULL)
-ENGINE = InnoDB;");
+
 
 ## Courses ##
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`subject` (
@@ -120,21 +117,9 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`day_has_course` (
   `isSubstiturte` TINYINT NULL DEFAULT 0)
 ENGINE = InnoDB;");
 
-## Messager ##
-$conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`message` (
-    `messageId` INT NOT NULL AUTO_INCREMENT,
-    `gradeId` INT NOT NULL,
-    `isTeacher` TINYINT NOT NULL,
-    `accountId` INT NOT NULL,
-    `message` VARCHAR(700) NOT NULL,
-    `time` DATETIME NOT NULL,
-    PRIMARY KEY (`messageId`))
-ENGINE = InnoDB;");
-
 ## Quizzes ##
-
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`quizzes` (
-  `Id` int(3) NOT NULL AUTO_INCREMENT,
+  `id` int(3) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `subjectId` int(2) NOT NULL,
   `minClass` int(2) NOT NULL,
@@ -143,8 +128,7 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`quizzes` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;");
 
-## Quiztags ##
-
+# Quiztags #
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`quiztags` (
   `tagId` int(5) NOT NULL AUTO_INCREMENT,
   `quizId` varchar(3) NOT NULL,
@@ -152,8 +136,7 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`quiztags` (
   PRIMARY KEY (`tagId`))
 ENGINE = InnoDB;");
 
-## Quizfragen ##
-
+# Quizfragen #
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`questions` (
   `questionId` int(5) NOT NULL AUTO_INCREMENT,
   `quizId` int(5) NOT NULL,
@@ -161,17 +144,17 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`questions` (
   PRIMARY KEY (`questionId`))
 ENGINE = InnoDB;");
 
-## Quizantworten ##
+# Quizantworten #
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`answers` (
-  `Id` int(5) NOT NULL AUTO_INCREMENT,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `questionId` int(5) NOT NULL,
   `answer` varchar(255) NOT NULL,
   `isCorrect` tinyint(1) NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;");
 
-## Vokabeln des Vokabeltrainers ##
-
+## Vokabeltrainer ##
+# Vokabeln des Vokabeltrainers #
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`vocabs` (
   `vId` int(11) NOT NULL AUTO_INCREMENT,
   `lang` int(4) NOT NULL,
@@ -181,8 +164,7 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`vocabs` (
   PRIMARY KEY (`vId`))
 ENGINE = InnoDB;");
 
-## Sprachen für den Vokabeltrainer ##
-
+# Sprachen für den Vokabeltrainer #
 $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`langs` (
   `langId` int(4) NOT NULL AUTO_INCREMENT,
   `langShort` varchar(8) NOT NULL,
@@ -190,5 +172,8 @@ $conn -> query("CREATE TABLE IF NOT EXISTS `Metis`.`langs` (
   PRIMARY KEY (`langId`))
 ENGINE = InnoDB;");
 
+
+
+################
 $conn -> close();
 ?>
