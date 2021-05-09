@@ -16,7 +16,7 @@
        
     <?php
 
-        if (!empty("lang") && !empty("minNiveau") && !empty("maxNiveau") && !empty("queryLimit")) {
+        if (!empty($_GET["lang"]) && !empty($_GET["minNiveau"]) && !empty($_GET["maxNiveau"]) && !empty($_GET["queryLimit"])) {
 
             $_SESSION["studentLang"] = $_GET["lang"]; //is als SESSION vllt nt so optimal
             $lang=$_SESSION["studentLang"];
