@@ -15,7 +15,7 @@ if(isset($_GET["days"])) {
 		$conn -> query('INSERT INTO `day_has_class` (dayId, classId, validFrom, validTo) VALUES ('.$id.', 1, "2021-01-01", "2022-01-01")');
 
 		foreach(array(1, 2) as $course) {
-			$conn -> query("INSERT INTO `day_has_course` (courseId, dayId) VALUES ($course, $id)");
+			$conn -> query("INSERT INTO `day_has_course` (courseId, dayId, courseIndex) VALUES ($course, $id, $couse)");
 		}
 	}
 }
