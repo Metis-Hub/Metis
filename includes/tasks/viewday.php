@@ -7,7 +7,7 @@ if(!isset($_SESSION["user"])) {
 	exit();
 }
 include("../DbAccess.php");
-include("taskmanager.php");
+include("timetablemanager.php");
 
 $date = secureDate(isset($_GET["day"])?$_GET["day"]:"");
 $dayIndex = getDayIndex($date);

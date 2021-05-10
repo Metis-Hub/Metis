@@ -53,6 +53,7 @@ function getCourses($date, $conn) {
 		$stmt -> bind_param("i", $class);
 		$stmt -> execute();
 		$result = $stmt -> get_result();
+		
 		while($rows = $result -> fetch_assoc()) {
 			$index = $rows["courseIndex"];
 			if(empty($courses[$index])) {
