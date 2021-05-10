@@ -110,7 +110,7 @@
                     <!-- Loeschen-Buttons --><?php
                         echo "\n";
                         for($i = 0; $i <= $_SESSION["num"] - 1; $i++) {
-                        echo $input[2][1] . $i . $input[2][2];
+                            echo $input[2][1] . $i . $input[2][2];
                         }
                     ?>
                 </tr>

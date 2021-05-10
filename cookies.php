@@ -48,5 +48,4 @@ elseif(isset($_SESSION["cookie_request_del"])) {
 	$_SESSION["cookie_request_get"] = true;
 	header("Location:".$_SERVER['REQUEST_URI']);	// Neuladen
 }
-
 ?>
