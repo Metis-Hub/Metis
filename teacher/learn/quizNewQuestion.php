@@ -7,7 +7,7 @@
         if (!isset($_GET["submitQuestions"]) && !isset($_GET["answerCountSubmit"]) && !isset($_GET["answersSubmit"])) {
             echo '<h1>Frage '.($_SESSION["questionCount"]+1).'</h1>
             <p>
-            <form action="newQuestion.php" method="get">
+            <form action="quizNewQuestion.php" method="get">
                 <input type="text" name="question" placeholder="Frage">
                 <p>
                 <input type="number" name="answerCount" placeholder="Anzahl der Antwortmöglichkeiten">
@@ -29,7 +29,7 @@
 
             
                 echo '<h1>'.$question.'</h1>
-                    <form action="newQuestion.php" method="get">
+                    <form action="quizNewQuestion.php" method="get">
                         <input type="text" name="question" value="'.$question.'" hidden="true">
                         <p>';
 
@@ -104,7 +104,7 @@
                     ++$_SESSION["questionNumber"];
                     ++$_SESSION["questionCount"];
 
-                    header("location: newQuestion.php");
+                    header("location: quizNewQuestion.php");
                 }
 
                 else {
@@ -114,7 +114,7 @@
         }
 
         else if (isset($_GET["submitQuestions"])) {
-            header("location: showQuestions.php");
+            header("location: quizShowQuestions.php");
         }
 
         

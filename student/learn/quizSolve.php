@@ -28,7 +28,7 @@
 
         echo '<h1>'.$_GET["quizName"].'</h1>
         <br>
-        <form action="solveQuiz.php" method="get">
+        <form action="quizSolve.php" method="get">
             <input type="submit" name="nextQuestion" value="Quiz starten">
         </form>';
     }
@@ -53,7 +53,7 @@
             //ausgabe der Frage u. Antwortemöglichkeiten
             echo '<h1> Frage '.($_SESSION["questionNumber"]+1).'/'.$_SESSION["questionCount"].': '.$_SESSION["questions"][$_SESSION["questionNumber"]]["question"].'</h1>';
 
-            echo '<form action="solveQuiz.php" method="POST">'; //es ist post, damit man die Eingabe nicht nach der Mittteilung der richigen Antworten bearbeiten kann
+            echo '<form action="quizSolve.php" method="POST">'; //es ist post, damit man die Eingabe nicht nach der Mittteilung der richigen Antworten bearbeiten kann
 
             $answerNumber=0;
             foreach ($_SESSION["answers"] as $answer) {
@@ -99,7 +99,7 @@
             ++$_SESSION["rightAnswersCount"];
 
             echo '<h1>Super! Du hast die Frage richtig beantwortet!</h1>
-                <form action="solveQuiz.php" method="get">';
+                <form action="quizSolve.php" method="get">';
 
             //wenn es dann keine Fragen mehr gibt, kann man das Quiz beenden
             if ($_SESSION["questionNumber"]<$_SESSION["questionCount"]) {                
@@ -122,9 +122,9 @@
             foreach ($correctAnswers as $correctAnswer) {
                 echo $correctAnswer["answer"].'<br>';
             }
-            echo '<br>';
+            echo '</h1><br>';
             
-            echo '<form action="solveQuiz.php" method="get">';
+            echo '<form action="quizSolve.php" method="get">';
                 
             //wenn es dann keine Fragen mehr gibt, kann man das Quiz beenden
             if ($_SESSION["questionNumber"]<$_SESSION["questionCount"]) {                

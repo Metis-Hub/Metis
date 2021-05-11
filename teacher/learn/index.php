@@ -2,8 +2,8 @@
 	global $position;
 	$position = 3;
 	include("./../header.php");
-	echo '<a href="vSetDefault.php">Vokabeltrainer</a>
+	echo '<a href="vocSetDefault.php">Vokabeltrainer</a>
 	<br>
-	<a href="newQuiz.php">Quizze</a>';
+	<a href="quizNew.php">Quizze</a>';
 	include("./../footer.php");
 ?>

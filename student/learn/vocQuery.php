@@ -84,7 +84,7 @@
             echo "\t</form>\n";
         }
         else {
-            header("location: allSolved.php"); //muss auf ne andere seite geleitet werden (wegen refreshing) @Jakob neeee @doot dooooooooooooch
+            header("location: vocAllSolved.php"); //muss auf ne andere seite geleitet werden (wegen refreshing) @Jakob neeee @doot dooooooooooooch
         }
     ?>
 

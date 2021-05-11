@@ -4,7 +4,7 @@
     include "../header.php";
 ?>
 
-    <form action="search.php" method="get">
+    <form action="quizSearch.php" method="get">
         <input type="text" name="tags" placeholder="Suche (verschiedene Tags durch Semikola abtrennen)" style="width: 10cm;">
         <p>
         Klassen (von...bis...):
@@ -91,7 +91,7 @@
                         echo '<td> Klasse '.$quiz["minClass"].' bis Klasse '.$quiz["maxClass"].'</td>';
                         echo '<td>'.$quiz["questionCount"].'</td>';
 
-                        echo '<form action="solveQuiz.php" method="get">
+                        echo '<form action="quizSolve.php" method="get">
                                 <td>                            
                                 <input type="submit" name="solveQuiz" value="Quiz bearbeiten">
                                 <input type="number" name="quizId" value="'.$quiz["Id"].'" hidden="true">

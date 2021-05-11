@@ -43,6 +43,6 @@
 
         $conn->close();
 
-        header("location: QuizSubmitSucessfull.php");
+        header("location: quizSubmitSucessfull.php");
         include "../footer.php";
 ?>
