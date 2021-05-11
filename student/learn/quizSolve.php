@@ -6,6 +6,8 @@
      
 
     if (isset($_GET["solveQuiz"])) {
+        //Vorbereiten des Quiz:
+
         //Abfragen der Fragenzahl & ID
         $_SESSION["questionCount"]=$_GET["questionCount"];
         $quizId=$_GET["quizId"];
@@ -24,13 +26,8 @@
             array_push($_SESSION["questions"], $value);
         }
 
-        
-
-        echo '<h1>'.$_GET["quizName"].'</h1>
-        <br>
-        <form action="quizSolve.php" method="get">
-            <input type="submit" name="nextQuestion" value="Quiz starten">
-        </form>';
+        //Starten des Quiz:
+        header("location: quizSolve.php?nextQuestion=1");
     }
 
     else if (isset($_GET["nextQuestion"])) {
