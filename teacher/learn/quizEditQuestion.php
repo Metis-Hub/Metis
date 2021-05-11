@@ -7,6 +7,7 @@
 
         if (isset($_GET["delete"])) {
             unset($_SESSION["questions"][$_GET["questionNumber"]]);
+            --$_SESSION["questionCount"];
             header("location: quizShowQuestions.php");
         }
 
