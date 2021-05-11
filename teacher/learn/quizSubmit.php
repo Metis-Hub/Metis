@@ -43,6 +43,6 @@
 
         $conn->close();
 
-        header("location: quizSubmitSucessfull.php");
+        header("location: quizSubmitSucessfull.php?quizId=".$quizId); //die "Quiz-Kennnummer" wird zum Aufschreiben übergeben
         include "../footer.php";
 ?>
