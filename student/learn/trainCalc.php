@@ -1,5 +1,17 @@
-<head>
-    <title>CalcTest</title>
+<?php
+    global $position;
+    $position = 4;
+    include "../header.php";
+
+    echo '
+	<header>
+		<nav>
+			<div><a href="vocRequestDefault.php">Vokabeltrainer</a></div>
+			<div><a href="quizSearch.php" class="active">Quizze</a></div>
+			<div><a href="trainCalc.php">Kopfrechnen</a></div>
+		</nav>
+	</header>';
+?>
 
     <script>
     //generiert Variablen, die festhalten, ob checkboxes gecheckt sind
@@ -182,16 +194,8 @@
         <br/><br/>
         <input type="button" name="trainCalcSettingsSubmit" onclick="createTasks(document.trainCalcSettings.taskCount.value, document.trainCalcSettings.minNumber.value, document.trainCalcSettings.maxNumber.value)" value="Bestätigen">
     </form>
-
 </body>
 
-
-
-
-
 <?php
-    /*/ global $position;
-    $position = 4;
-    include "../header.php"; /*/
-    ##include "../footer.php";
+    include "../footer.php";
 ?>
