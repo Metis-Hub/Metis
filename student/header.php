@@ -15,7 +15,6 @@ $date = array(
 );
 
 // Datum ende
-
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -23,7 +22,7 @@ $date = array(
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<?php
-		if(!isLoggedIn()) {
+		if(!isLoggedIn() || $_SESSION["user"]["usertype"] != "student") {
 			header("Location: ./../../index/index.php?error=you_not_logged_in");
 		}
 		if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false)
