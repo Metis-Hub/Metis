@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\admin",
     "\\includes",
     "\\includes\\tasks"
   ],
-  "SelectedNode": "\\error_404.php",
+  "SelectedNode": "\\includes\\tasks\\courseInfoQuery.sql",
   "PreviewInSolutionExplorer": false
 }

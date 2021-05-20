@@ -1,19 +1,32 @@
 <?php
 
-function secureDate($input, $next = true) {
-	$date = null;
-	if(!empty($input)) {
-		$date = $input;
-		$d = DateTime::createFromFormat('W-Y', $date);
-		if(!($d && $d->format("W-Y") === $date)) {
-			$date = date("W-Y", strtotime("today"));
-		}
+function secureDate($input) {
+	$split = explode("-", $input);
+	$week = null;
+	$year = null;
+	if(empty($split[0])) {
+		$week = date("W");
 	} else {
-		$date = date("W-Y", strtotime("today"));
+		$week = $split[0];
 	}
-	echo $date, "<br>";
-	echo date("W-Y", strtotime("today"));
+
+	if(empty($split[1])) {
+		$year = date("Y");
+	} else {
+		$year = $split[1];
+	}
+	$date = date("d-m-Y", strtotime($year."W".$week."1"));
+	if($date == "01-01-1970") {
+		$date =  date("d-m-Y", strtotime('last monday', strtotime('tomorrow')));
+	}
 	return $date;
+}
+function changeWeek($date, $next) {
+	if($next) {
+		return date("d-m-Y", strtotime("next week", strtotime($date)));
+	} else {
+		return date("d-m-Y", strtotime("last week", strtotime($date)));
+	}
 }
 ## Returns the Index of the given Date (1-5)
 function getDayIndex($date) {
