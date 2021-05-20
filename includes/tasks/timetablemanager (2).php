@@ -1,20 +1,26 @@
 <?php
 
+## Returns a valid Date
 function secureDate($input, $next = true) {
 	$date = null;
 	if(!empty($input)) {
 		$date = $input;
-		$d = DateTime::createFromFormat('W-Y', $date);
-		if(!($d && $d->format("W-Y") === $date)) {
-			$date = date("W-Y", strtotime("today"));
+		$d = DateTime::createFromFormat('Y-m-d', $date);
+		if(!($d && $d->format("Y-m-d") === $date)) {
+			$date = date("Y-m-d", strtotime("today"));
 		}
 	} else {
-		$date = date("W-Y", strtotime("today"));
+		$date = date("Y-m-d", strtotime("today"));
 	}
-	echo $date, "<br>";
-	echo date("W-Y", strtotime("today"));
+
+	$dayIndex = date("N", strtotime($date));
+	if($dayIndex > 5) {
+		$date = date("Y-m-d", strtotime($next ? "next monday" : "last friday", strtotime($date)));
+		$dayIndex = 1;
+	}
 	return $date;
 }
+
 ## Returns the Index of the given Date (1-5)
 function getDayIndex($date) {
 	return date("N", strtotime($date));
@@ -61,21 +67,12 @@ function getCourses($date, $conn) {
 }
 
 
-function getWeek($date, $conn) {
-	$week = date("W", strtotime($date));
-	$year = date("Y", strtotime($date));
-
+function getWeek($week, $conn) {
 	// get all dates from week
 	$dto = new DateTime();
 	$dto->setISODate($year, $week);
 	$ret['week_start'] = $dto->format('Y-m-d');
-	
-	$days = array();
-	for($i = 0; $i < 5; $i++) {
-		$date = $dto -> format("Y-m-d");
-		$days[$i] = array("date" => $date, "courses" => getCourses($date, $conn));
-		$dto -> modify("+1 day");
-	}
-	return $days;
+	$dto->modify('+6 days');
+	$ret['week_end'] = $dto->format('Y-m-d');
 }
 ?>

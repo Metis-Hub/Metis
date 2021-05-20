@@ -10,3 +10,9 @@ ErrorDocument 401 /Metis/index/error.php?error=401
 ErrorDocument 403 /Metis/index/error.php?error=403
 ErrorDocument 500 /Metis/index/error.php?error=500
 ErrorDocument 503 /Metis/index/error.php?error=503
+
+# Zugriffsverweigerung
+<FilesMatch "\.(htaccess|htpasswd|sql)$">
+Order Allow,Deny
+Deny from all
+</FilesMatch>
