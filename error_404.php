@@ -8,7 +8,7 @@ $link = "http://" . $_SERVER["HTTP_HOST"] . "/Metis/error_404.php";
 <html>
 	<head>
 		<title>Seite exsistiert nicht!</title>
-		<?php
+		<?php /*
 			if($_SESSION["cookies"]["visual_mode_cookie"] == "dark") {	//Style wird nicht gewählt
 				echo "<link rel=\"stylesheet\" href=\"./index/style_dark.css\" />\n";
 			}
@@ -28,7 +28,7 @@ $link = "http://" . $_SERVER["HTTP_HOST"] . "/Metis/error_404.php";
 				unset($_SESSION["error_404"]);
 				echo $_SERVER['PHP_SELF'];
 				echo $_SERVER['HTTP_REFERER'];
-			}
+			}*/
 		?>
 	</head>
 	<body>
