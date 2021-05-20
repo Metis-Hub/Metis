@@ -2,6 +2,15 @@
     global $position;
     $position = 4;
     include "../header.php";
+
+    echo '
+	<header>
+		<nav>
+			<div><a href="vocRequestDefault.php">Vokabeltrainer</a></div>
+			<div><a href="quizSearch.php" class="active">Quizze</a></div>
+			<div><a href="trainCalc.php">Kopfrechnen</a></div>
+		</nav>
+	</header>';
 ?>
     <form action="quizSearch.php" method="get">
         <b>Nach Themen suchen:</b>
