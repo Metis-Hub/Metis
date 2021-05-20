@@ -1,0 +1,197 @@
+<head>
+    <title>CalcTest</title>
+
+    <script>
+    //generiert Variablen, die festhalten, ob checkboxes gecheckt sind
+    var addChecked=false;
+    var subChecked=false;
+    var multiChecked=false;
+    var diviChecked=false;
+    var squareChecked=false;
+    var excludeNegativesChecked=true;
+    var taskCountScript=0;
+    var solutions=new Array(); //alle Lösungen
+    var tasks=new Array(); //alle Aufgaben
+    var rightCount=0; //Zahl der richtig beantworteten Aufgaben
+    var taskStart=0; //Zeit beim Anfang der Bearbeitung
+
+    //Funktionen
+    function checkCheckbox(checkbox) {
+        //Speichert die ausgewählten Checkboxen
+        if (checkbox=="add") {
+            addChecked=!addChecked;        
+        }
+        else if (checkbox=="sub") {
+            subChecked=!subChecked;
+        }
+        else if (checkbox=="multi") {
+            multiChecked=!multiChecked;
+        }
+        else if (checkbox=="divi") {
+            diviChecked=!diviChecked;
+        } 
+
+        else if (checkbox=="square") {
+            squareChecked=!squareChecked;
+        }         
+
+        else if (checkbox=="excludeNegatives") {
+            excludeNegativesChecked=!excludeNegativesChecked;
+        }   
+    }
+
+    function createTasks(taskCount, minNumber, maxNumber) {
+
+        //Schreiben aller ausgewählten Rechenarten in einen array zur einfacheren Verarbeitung
+        taskCountScript=taskCount; //die übergebene Variable muss für den Rest des Scripts gespeichert werden
+        var calcTypes= new Array();
+        var calcTypesIndex=0;
+
+        if (addChecked==true) {
+            calcTypes[calcTypesIndex]="add";
+            calcTypesIndex++;
+        }
+        if (subChecked==true) {
+            calcTypes[calcTypesIndex]="sub";
+            calcTypesIndex++;
+        }
+        if (multiChecked==true) {
+            calcTypes[calcTypesIndex]="multi";
+            calcTypesIndex++;
+        }
+        if (diviChecked==true) {
+            calcTypes[calcTypesIndex]="divi";
+            calcTypesIndex++;
+        }
+        if (squareChecked==true) {
+            calcTypes[calcTypesIndex]="square";
+            calcTypesIndex++;
+        }
+        
+        //Erstellen der Aufgaben
+        var i=0; //Zähler
+
+        while (i<taskCount) { //ist eine while- und keine for-schleife um das Exkludieren negativer Zahlen zu ermöglichen
+            //Ermitteln der Faktoren
+            var factor1=Math.round(Math.random() * (maxNumber-minNumber)) + 1*minNumber;
+            var factor2=Math.round(Math.random() * (maxNumber-minNumber)) + 1*minNumber;
+            
+            //Ermittelnd er Rechenart
+            
+            var calcTypesCount=calcTypes.length;
+            var calcTypesRandIndex=Math.floor(Math.random()*calcTypesCount);
+            var calcTypeUsed=calcTypes[calcTypesRandIndex];
+
+            if (calcTypeUsed=="add") {
+                var solution=factor1+factor2;
+                var task=factor1+" + "+factor2+" = ";
+            }
+            if (calcTypeUsed=="sub") {
+                var solution=factor1-factor2;
+                var task=factor1+" - "+factor2+" = ";
+            }
+            if (calcTypeUsed=="multi") {
+                var solution=factor1*factor2;
+                var task=factor1+" * "+factor2+" = ";
+            }
+            if (calcTypeUsed=="divi") {
+                var solution=factor1/factor2;
+                var task=factor1+" / "+factor2+" = ";
+            }
+            if (calcTypeUsed=="square") {
+                var solution=factor1*factor1;
+                var task=factor1+"² = ";
+            }        
+        
+        //überprüft, ob die Lösung negativ sein muss / ist
+        if (excludeNegativesChecked == true) {
+            if (solution >= 0) {
+                document.write(task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>');
+                solutions.push(solution);
+                tasks.push(task);
+                i++;
+            }
+        }
+
+        else {
+                document.write(task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>');
+                tasks.push(task);
+                i++;
+        }
+        }
+
+        document.write('<form name="checkSolutions"><input type="button" name="checkSolutions" value="Antworten überprüfen" onclick="checkSols()"></form>');
+
+        taskStart = performance.now();
+    }
+
+//überprüft die Antworten des Schülers
+    function checkSols() {
+        var taskEnd = performance.now();
+
+        for (var i=0;i<taskCountScript;i++) { 
+            
+            if (document.getElementById("studentSol"+i).value==solutions[i]) { //Richtig
+                document.write(tasks[i]+'<p style="color:green; display:inline;">'+document.getElementById("studentSol"+i).value+"</p><br>");
+                rightCount++;
+            }  
+
+            else if (document.getElementById("studentSol"+i).value=="") { //keine Antwort
+                document.write(tasks[i]+'<p style="color:red; display:inline;">Keine Antwort</p><p style="color:green; display:inline;"> '+solutions[i]+"</p><br>");
+            }
+
+            else { //falsch
+                document.write(tasks[i]+'<p style="color:red; display:inline;"><s>'+document.getElementById("studentSol"+i).value+'</s></p> <p style="color:green; display:inline;">'+solutions[i]+"</p><br>");
+            }
+        }
+
+        workTime=Math.round((taskEnd-taskStart)/1000);
+
+        document.write('<h1>Herzlichen Glückwunsch!</h1><p>Du hast '+rightCount+' von '+taskCountScript+' Aufgaben richtig beantwortet ('+Math.round((rightCount/taskCountScript)*100)+'%)!<br>');
+        document.write('Dafür hast du '+workTime+' Sekunden gebraucht (durchschnittlich '+Math.round((workTime/taskCountScript)*100)/100+' pro Aufgabe).'); //rundet bei der Durchschnittszahl auf 2 Nachkommastellen
+        taskEnd-taskStart
+    }
+
+    </script>
+</head>
+
+<body>
+
+    <form name="trainCalcSettings">
+        Zahl der Fragen:
+        <br/>
+        <input type="number" name="taskCount" id="taskCount" placeholder="Anzahl der Aufgaben">
+        <br/><br/>
+        Zu übende Rechenarten:
+        <br/>
+        <input type="checkbox" name="calcTypes" id="add" value="add" onClick="checkCheckbox('add')"> Addition
+        <br/>
+        <input type="checkbox" name="calcTypes" id="sub" value="sub" onClick="checkCheckbox('sub')"> Subtraktion
+        <br/>
+        <input type="checkbox" name="calcTypes" id="multi" value="multi" onClick="checkCheckbox('multi')"> Multiplikation
+        <br/>
+        <input type="checkbox" name="calcTypes" id="divi" value="divi" onClick="checkCheckbox('divi')"> Division
+        <br>
+        <input type="checkbox" name="calcTypes" id="square" value="square" onClick="checkCheckbox('square')"> Quadrate
+        <br/><br/>
+        Zahlenbereich:
+        <br/>
+        <input type="number" name="minNumber" id="minNumber" value="1" style="width: 1cm"> bis <input type="number" name="maxNumber" id="maxNumber" value="10" style="width: 1cm">
+        <br/><br/>
+        <input type="checkbox" name="exclude" id="excludeNegatives" value="excludeNegatives" onClick="checkCheckbox('excludeNegatives')" checked> Keine negativen Zahlen in der Lösung nutzen
+        <br/><br/>
+        <input type="button" name="trainCalcSettingsSubmit" onclick="createTasks(document.trainCalcSettings.taskCount.value, document.trainCalcSettings.minNumber.value, document.trainCalcSettings.maxNumber.value)" value="Bestätigen">
+    </form>
+
+</body>
+
+
+
+
+
+<?php
+    /*/ global $position;
+    $position = 4;
+    include "../header.php"; /*/
+    ##include "../footer.php";
+?>
