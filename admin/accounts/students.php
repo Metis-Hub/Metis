@@ -55,7 +55,7 @@ $position = 1;
 $position2 = 0;
 include "../header.php";
 include "accountHeader.php";
-include("../../includes/DbAccess.php");
+include "../../includes/DbAccess.php";
 	if ($conn->connect_errno) {
 		echo "<h1>No DB-Connection</h1>";
 		exit();
@@ -111,7 +111,14 @@ include("../../includes/DbAccess.php");
 	<?php
 
 	######## Aktionsbehandlung ########
-	if(isset($_POST["createAccount"])) {
+	if(isset($_POST["pw"])) {
+		include "../../includes/login/crypt.php";
+		include "../../includes/user.php";
+		changePassword0(decrypt($_SESSION["safe_password_seed"], $_POST["pw"]), $_SESSION["students_select"], "student", $session = false);
+		unset($_SESSION["students_select"]);
+		//echo $_POST["pw"];
+	}
+	elseif(isset($_POST["createAccount"])) {
 		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["surname"])) {
 			echo "Nope, da waren leere Felder";
 		} /*else if(strlen($_POST["pwd"]) < 8) {	// Mindestlänge beträgt 8
@@ -124,7 +131,7 @@ include("../../includes/DbAccess.php");
 			$surname = $_POST["surname"];
 
 			if($pwd != $_POST["pwdConfirm"]) {
-				echo "Die Passwörter stimmen nicht überein";
+				echo "Die Passw&ouml;rter stimmen nicht &uuml;berein";
 			} else {
 				if (!filter_var($email, FILTER_VALIDATE_EMAIL) || emailIsTaken($email)) {
 					echo "Ung&uuml;ltige Email";
@@ -138,7 +145,7 @@ include("../../includes/DbAccess.php");
 					} else {
 						$stmt -> bind_param("ssss", $name, $email, $password, $surname);
 						$stmt -> execute();
-						header("Location: students.php?select=".mysqli_insert_id($conn));
+						header("location: students.php?select=".mysqli_insert_id($conn));
 					}
 				}
 			}
@@ -157,23 +164,20 @@ include("../../includes/DbAccess.php");
 		if(!empty($_GET["editPwd"])) {
 			echo "<div class=\"right\">";
 			echo "<h2>Passwort&auml;nderung</h2>";
+				include "../../includes/Random.php";
+				Rand::SetSeed(time());
+				$_SESSION["safe_password_seed"] = Rand::Next();
+				$_SESSION["students_select"] = $_GET["select"];
+				echo "
+		<input type=\"password\" id=\"pwd\" name=\"pwd\" placeholder=\"Neues Passwort\"></input>
+		<input type=\"password\" id=\"pwd2\" name=\"pwd2\" placeholder=\"Passwort wiederholen\"></input>
+		<input type=\"hidden\" id=\"pwd_old\" name=\"pwd_old\" value=\"12345678\"></input>
+		<button name=\"password_ok\" onclick=\"hash('" . $_SESSION["safe_password_seed"] . "', 'students.php', true)\" value=\"&Auml;ndern\">&Auml;ndern</button>
 
-			echo "
-			<form method='POST'>
-				<input type=\"password\" name = 'newPwd' placeholder='Neues Passwort'>
-				<input type=\"password\" name = 'repeatPwd' placeholder='Passwort wiederholen'>
-				<input type=\"submit\" name='changePwd' value='Best&auml;tigen'>
-			";
-
-			if(!empty($_POST["changePwd"])) {
-				if(!empty($_POST["newPwd"]) && !empty($_POST["repeatPwd"]) && $_POST["newPwd"] == $_POST["repeatPwd"]) {
-					$pwd = $_POST["newPwd"];
-
-					// Karl <-- hier das Passwort ändern
-				} else {
-					echo "Die Passwörter stimmen nicht überein";
-				}
-			}
+		<form id=\"password\" method=\"POST\" action=\"students.php\">
+			<input type=\"hidden\" id=\"pw\" name=\"pw\" value=\"\"></input>
+			<input type=\"hidden\" id=\"pw_old\" name=\"pw_old\" id=\"pw_old\" value=\"\"></input>
+		</form>";
 
 			echo "</div>";
 		} else {
@@ -188,31 +192,31 @@ include("../../includes/DbAccess.php");
 			$edit = isset($_POST["edit"]);
 			if(!empty($result)) {
 			echo "
-				<form method=POST>
-					<table>
-						<tr> <th> ID </th> <td>".$result["id"]."</td></tr>
-						<tr> <th> Name </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type=\"text name=\"name\"> </td>" : "")."</tr>
-						<tr> <th> Nachname </th> <td>".$result["surname"]."</td>". ($edit ? "<td> <input type=\"text name=\"surname\"> </td>" : "")."</tr>
-						<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type=\"text name=\"email\"> </td>" :"")."</tr>
-						<tr> <th> Password </th> <td><a href='?select=".$_GET["select"]."&editPwd=1'>Passwort &auml;ndern'</a></td></tr>
-						<tr> <th> Klassen </th> <td>";
-						{
-							// displaying all classes
-							$stmt = $conn -> prepare("SELECT grade.className, grade.classId FROM studentsclass INNER JOIN grade ON grade.classid = studentsclass.classId WHERE studentsclass.studentId = ?");
-							$stmt -> bind_param("i", $result["id"]);
-							$stmt -> execute();
-							$result = $stmt -> get_result();
-							while($element = $result -> fetch_assoc()) {
-								echo "<a href = './../classes?select=".$element["classId"]."'>".$element["className"]."</a>  ";
-							}
-						}
+	<form method=POST>
+		<table>
+			<tr> <th> ID </th> <td>" . $result["id"]."</td></tr>
+			<tr> <th> Name </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type=\"text name=\"name\"> </td>" : "")."</tr>
+			<tr> <th> Nachname </th> <td>".$result["surname"]."</td>". ($edit ? "<td> <input type=\"text name=\"surname\"> </td>" : "")."</tr>
+			<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type=\"text name=\"email\"> </td>" :"")."</tr>
+			<tr> <th> Password </th> <td><a href='?select=".$_GET["select"]."&editPwd=1'>Passwort &auml;ndern</a></td></tr>
+			<tr> <th> Klassen </th> <td>";
+			{
+				// displaying all classes
+				$stmt = $conn -> prepare("SELECT grade.className, grade.classId FROM studentsclass INNER JOIN grade ON grade.classid = studentsclass.classId WHERE studentsclass.studentId = ?");
+				$stmt -> bind_param("i", $result["id"]);
+				$stmt -> execute();
+				$result = $stmt -> get_result();
+				while($element = $result -> fetch_assoc()) {
+					echo "<a href = './../classes?select=".$element["classId"]."'>".$element["className"]."</a>  ";
+				}
+			}
 
 					
-						echo "</td></tr>
-						<tr> <th> <input type=\"submit\" name=\"delete\" value=\"Entfernen\"> </th>
-						<th> ".($edit ? "<input type=\"submit\" value=\"Abbrechen\"> </th> <th> <input type=\"submit\" name=\"updateUser\" value=\"Absenden\">" : "<input type=\"submit\" name=\"edit\" value=\"Bearbeiten\">")."</th> </tr>
-					</table>
-				</form>";
+			echo "</td></tr>
+			<tr> <th> <input type=\"submit\" name=\"delete\" value=\"Entfernen\"> </th>
+			<th> ".($edit ? "<input type=\"submit\" value=\"Abbrechen\"> </th> <th> <input type=\"submit\" name=\"updateUser\" value=\"Absenden\">" : "<input type=\"submit\" name=\"edit\" value=\"Bearbeiten\">")."</th> </tr>
+		</table>
+	</form>";
 			} else {
 				echo "Es gibt keinen Nutzer mit dieser ID";
 			}
@@ -223,21 +227,21 @@ include("../../includes/DbAccess.php");
 			echo "<h2>Neuer Sch&uuml;ler</h2>";
 
 			echo "
-				<form method=POST>
-					<table>
-						<tr> <th> Name </th> <td> <input type=\"text\" name=\"name\" placeholder=\"Name\"> </td></tr>
-						<tr> <th> Nachname </th> <td> <input type=\"text\" name=\"surname\" placeholder=\"Nachname\"> </td></tr>
-						<tr> <th> E-Mail </th><td> <input type=\"text\" name=\"email\" placeholder=\"E-Mail\"> </td></tr>
-						<tr> <th> Password </th> <td><input type=\"password\" name=\"pwd\" placeholder=\"Passwort\"></td></tr>
-						<tr> <th> Password best&auml;tigen </th> <td><input type=\"password\" name=\"pwdConfirm\" placeholder=\"Wiederholung\"></td></tr>
-						<tr> <th> </th><th><input type=\"submit\" name=\"createAccount\" value=\"Account erstellen\"></th></tr>
-					</table>
-				</form>
-			";
+	<form method=POST>
+		<table>
+			<tr> <th> Name </th> <td> <input type=\"text\" name=\"name\" placeholder=\"Name\"> </td></tr>
+			<tr> <th> Nachname </th> <td> <input type=\"text\" name=\"surname\" placeholder=\"Nachname\"> </td></tr>
+			<tr> <th> E-Mail </th><td> <input type=\"text\" name=\"email\" placeholder=\"E-Mail\"> </td></tr>
+			<tr> <th> Password </th> <td><input type=\"password\" name=\"pwd\" placeholder=\"Passwort\"></td></tr>
+			<tr> <th> Password best&auml;tigen </th> <td><input type=\"password\" name=\"pwdConfirm\" placeholder=\"Wiederholung\"></td></tr>
+			<tr> <th> </th><th><input type=\"submit\" name=\"createAccount\" value=\"Account erstellen\"></th></tr>
+		</table>
+	</form>";
 		} elseif(false) {
 			#TODO Account-Löschung
 		}
 		######## Ende ########
 	?>
+
 </body>
 </html>

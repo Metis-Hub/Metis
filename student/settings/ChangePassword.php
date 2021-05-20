@@ -4,7 +4,7 @@ include "../../includes/Random.php";
 include "../../includes/std_session.php";
 
 Rand::SetSeed(time());
-$_SESSION["safe_password_seed"] = Rand::Next() 
+$_SESSION["safe_password_seed"] = Rand::Next();
 
 ?><!DOCTYPE html>
 <html>
