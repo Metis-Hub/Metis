@@ -3,7 +3,14 @@
     $position = 4;
     include "../header.php";
     
-         
+    echo '
+	<header>
+		<nav>
+			<div><a href="vocRequestDefault.php" class="active">Vokabeltrainer</a></div>
+			<div><a href="quizSearch.php">Quizze</a></div>
+			<div><a href="trainCalc.php">Kopfrechnen</a></div>
+		</nav>
+	</header>';
 
         if (isset($_GET["allVocsConfirm"])) {
             $lang = $_SESSION["studentLang"];
