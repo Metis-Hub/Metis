@@ -7,8 +7,8 @@
 	<header>
 		<nav>
 			<div><a href="vocRequestDefault.php">Vokabeltrainer</a></div>
-			<div><a href="quizSearch.php" class="active">Quizze</a></div>
-			<div><a href="trainCalc.php">Kopfrechnen</a></div>
+			<div><a href="quizSearch.php">Quizze</a></div>
+			<div><a href="trainCalc.php" class="active">Kopfrechnen</a></div>
 		</nav>
 	</header>';
 ?>
