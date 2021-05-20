@@ -28,7 +28,6 @@
                 else {
                     echo '<script>alert("Bitte vervollständigen Sie Ihre Eingabe.");</script>';
                 }
-                //header("Location: vInput.php");
         }
 
        
@@ -40,7 +39,7 @@
                 $_SESSION["vocabs"]=$vocabs;
             }
             
-            header("Location: vSubmit.php");
+            header("Location: vocShow.php");
         }
 
         else if (isset($_GET["back"])) {
@@ -66,7 +65,7 @@
         
         ?>
 
-        <form action="vInput.php" method="GET" name="inputVocs"> <!--Schreiben der Eingabe!-->
+        <form action="vocNew.php" method="GET" name="inputVocs"> <!--Schreiben der Eingabe!-->
             <input type="submit" name="back" value="Zurück">
             <input type="submit" name="forward" value="Vor">
             <p>

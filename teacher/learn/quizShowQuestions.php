@@ -39,7 +39,7 @@
 
             //Bearbeiten
             echo '
-            <form method="GET" action="editQuestion.php">
+            <form method="GET" action="quizEditQuestion.php">
                 <td style="text-align: center;">
                 <input type="submit" name="edit" value="Bearbeiten"\>
                 </td>
@@ -55,7 +55,7 @@
 
         echo '</table>';
 
-        echo '<form action="submitQuestions.php" method="get">
+        echo '<form action="quizSubmit.php" method="get">
             <p>
             <center>
             <input type="submit" name="submitQuiz" value="Quiz bestätigen">
@@ -64,7 +64,7 @@
             </center>
         </form>';
 
-        echo '<form action="newQuestion.php" method="get">
+        echo '<form action="quizNewQuestion.php" method="get">
                 <p>
                 <center>
                 <input type="submit" name="newQuestion" value="Neue Frage erstellen">

@@ -21,7 +21,6 @@
                     echo '<script>alert("Bitte vervollständigen Sie Ihre Eingabe");</script>';
                 }
 
-                //header("Location: vInput.php");
             
         }
 
@@ -34,7 +33,7 @@
                 $_SESSION["vocabs"]=$vocabs;
             }
             
-            header("Location: vSubmit.php");
+            header("Location: vocShow.php");
         }
 
         else if (isset($_GET["back"])) {

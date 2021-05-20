@@ -13,7 +13,7 @@
         <h1>Neues Quiz erstellen</h1>
         <br>
 
-        <form action="newQuiz.php" method="get">
+        <form action="quizNew.php" method="get">
             <input type="text" name="quizName" placeholder="Name des Quizzes">
             <p>
             <select name="subject">
@@ -77,7 +77,7 @@
                 $_SESSION["minClass"]=$_GET["minClass"];
                 $_SESSION["maxClass"]=$_GET["maxClass"];
 
-                header("location: newQuestion.php");
+                header("location: quizNewQuestion.php");
             }
 
             else {

@@ -12,7 +12,7 @@
         $_SESSION["vocabs"][$vocNumber][3]=$_GET["niveau"];
     }
 
-    header ("location: vSubmit.php");
+    header ("location: vocShow.php");
 
     include "../footer.php";
 ?>

@@ -4,6 +4,6 @@
 	include("./../header.php");
 	echo '<a href="vocRequestDefault.php">Vokabeltrainer</a>
 	<br>
-	<a href="search.php">Quizze</a>';
+	<a href="quizSearch.php">Quizze</a>';
 	include("./../footer.php");
 ?>
