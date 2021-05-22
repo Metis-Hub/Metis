@@ -1,7 +1,7 @@
 <?php
 	global $position;
 	$position = 1;
-	include("./../header.php");
+	include("./../header.inc.php");
 ?>
 <header>
 
@@ -9,5 +9,5 @@
 </header>
 
 <?php
-	include("./../footer.php");
+	include("./../footer.inc.php");
 ?>
