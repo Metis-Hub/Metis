@@ -34,7 +34,7 @@ $_SESSION["safe_password_seed"] = Rand::Next();
 						 . "informieren Sie bitte den Administrator, damit dieser es zur%FCcksetzt.\"));\n"; sleep(1);
 					break;
 					case "fields_are_empty":
-					echo "alert(unescape(\"Sie sollten auch die Felder ausf%FCllen.\"));\n"; sleep(1);
+					echo "alert(unescape(\"Sie sollten auch die Felder ausf%FCllen.\"));\n"; // sleep(1) sind wir mal nett ;-)
 					break;
 					case "email_field_is_empty":
 					echo "alert(unescape(\"Sie haben keine E-Mail eingegeben.\"));\n"; sleep(1);
