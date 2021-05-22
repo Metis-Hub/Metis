@@ -62,7 +62,7 @@ elseif (isset($_GET["change_db_access"])) {
 	}
 } elseif(isset($_GET["createTables"])) {
 	# TODO
-	include ("includes/DbAccess.php");
+	include ("./../../includes/DbAccess.php");
 	$conn -> multi_query(file_get_contents("setup.sql"));
 }
 
