@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 4;
-    include "../header.php";
+    include "../header.inc.php";
 ?>
     <!--Einstellen der Lämge der Ranges!-->
     <style>
@@ -55,5 +55,5 @@
     </form>
 
 <?php
-    include "../footer.php";
+    include "../footer.inc.php";
 ?>

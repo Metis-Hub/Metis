@@ -2,7 +2,7 @@
     // ++++ Header ++++
     global $position;
     $position = 1;
-    include("./../header.php");
+    include("./../header.inc.php");
 
     $GET_LINE = "";
     foreach($_GET as $key => $value) $GET_LINE .= $key . "=" . $value . "&";

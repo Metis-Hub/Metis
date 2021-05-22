@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 3;
-    include "../header.php";
+    include "../header.inc.php";
 ?>
         <h1>Die Vokabeln wurde erfolgreich erstellt.</h1>
         Vielen Dank für Ihren Beitrag.
@@ -10,5 +10,5 @@
         <input type="submit" value='Zurück zu "Lernen" gehen'>
     </form>
 <?php
-    include "../footer.php";
+    include "../footer.inc.php";
 ?>

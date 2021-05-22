@@ -3,8 +3,8 @@
 	global $position2;
 	$position = 3;
 	$position2 = 1;
-	include("./../header.php");
-	include("./header2.php");
+	include("./../header.inc.php");
+	include("./header2.inc.php");
 ?>
 	<!-- Inhalt Chat -->
 	<div name="chat">
@@ -68,5 +68,5 @@
 	</div>
 
 <?php
-	include("./../footer.php");
+	include("./../footer.inc.php");
 ?>

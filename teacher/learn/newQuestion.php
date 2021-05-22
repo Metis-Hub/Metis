@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 3;
-    include "../header.php";
+    include "../header.inc.php";
          
 
         if (!isset($_GET["submitQuestions"]) && !isset($_GET["answerCountSubmit"]) && !isset($_GET["answersSubmit"])) {
@@ -118,5 +118,5 @@
         }
 
         
-        include "../footer.php";
+        include "../footer.inc.php";
 ?>

@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 3;
-    include "../header.php";
+    include "../header.inc.php";
          
 
         include "../../includes/DbAccess.php"; 
@@ -44,5 +44,5 @@
         $conn->close();
 
         header("location: QuizSubmitSucessfull.php");
-        include "../footer.php";
+        include "../footer.inc.php";
 ?>

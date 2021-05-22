@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 3;
-    include "../header.php";
+    include "../header.inc.php";
 
          
 
@@ -108,5 +108,5 @@
                 }
             }
             
-            include "../footer.php";
+            include "../footer.inc.php";
 ?>

@@ -1,6 +1,6 @@
 <?php
 $position = 0;
-include "../header.php";
+include "../header.inc.php";
 ?>
 		<h1> Admininstation </h1>
 		<br />
@@ -10,5 +10,5 @@ include "../header.php";
 			<li>  </li>
 		</p>
 <?php
-include "../footer.php";
+include "../footer.inc.php";
 ?>

@@ -1,7 +1,8 @@
 <?php
 	global $position;
 	$position = 1;
-	include("./../header.php");
+	include("./../header.inc.php");
+	include("header.inc.php");
 ?>
 	<div class="table">
 		<center>
@@ -30,5 +31,5 @@
 		</center>
 	</div>
 <?php
-	include("./../footer.php");
+	include("./../footer.inc.php");
 ?>

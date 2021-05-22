@@ -2,7 +2,7 @@
 	global $position;
 	$position = 1;
 	$time = time() + (3600*24*360);	// Die Cookies bleiben ein Jahr gespeichert.
-	include("./../header.php");
+	include("./../header.inc.php");
 	$id = $_SESSION["user"]["id"];
 	
 	if(!isset($_COOKIE["nSubjekts".$id])) {	// Anzahl der Fächer wird auf 0 gesetzt.
@@ -133,5 +133,5 @@
 </div>
 
 <?php
-	include("./../footer.php");
+	include("./../footer.inc.php");
 ?>

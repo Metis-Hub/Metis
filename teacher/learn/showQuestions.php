@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 3;
-    include "../header.php";
+    include "../header.inc.php";
          
 
         echo '<table border>
@@ -70,5 +70,5 @@
                 <input type="submit" name="newQuestion" value="Neue Frage erstellen">
                 </center>
             </form>';
-        include "../footer.php";
+        include "../footer.inc.php";
 ?>

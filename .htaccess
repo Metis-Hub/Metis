@@ -12,7 +12,7 @@ ErrorDocument 500 /Metis/index/error.php?error=500
 ErrorDocument 503 /Metis/index/error.php?error=503
 
 # Zugriffsverweigerung
-<FilesMatch "\.(htaccess|htpasswd|sql)$">
+<FilesMatch "\.(htaccess|htpasswd|sql|inc.php)$">
 Order Allow,Deny
 Deny from all
 </FilesMatch>

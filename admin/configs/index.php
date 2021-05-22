@@ -1,6 +1,6 @@
 <?php
 $position = 3;
-include "../header.php";
+include "../header.inc.php";
 ?>
 		
 		<!-- Datenbank -->
@@ -55,5 +55,5 @@ elseif (isset($_GET["change_db_access"])) {
 	}
 }
 
-include "../footer.php";
+include "../footer.inc.php";
 ?>

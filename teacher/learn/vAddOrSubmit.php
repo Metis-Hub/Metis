@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 3;
-    include "../header.php";
+    include "../header.inc.php";
 
         if (isset($_GET["addVoc"])) {
 
@@ -53,5 +53,5 @@
          
         }
 
-        include "../footer.php";
+        include "../footer.inc.php";
 ?>

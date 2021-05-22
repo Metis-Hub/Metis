@@ -1,7 +1,7 @@
 <?php
 global $position;
 $position = 2;
-include "../header.php";
+include "../header.inc.php";
 include "../../includes/DbAccess.php";
 ?>
 		<h1> Klassen </h1>
@@ -184,5 +184,5 @@ include "../../includes/DbAccess.php";
 		}
 		?>
 <?php
-include "../footer.php";
+include "../footer.inc.php";
 ?>

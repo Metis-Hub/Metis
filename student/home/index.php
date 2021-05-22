@@ -1,7 +1,7 @@
 <?php
 global $position;
 $position = 0;
-include("./../header.php");
+include("./../header.inc.php");
 ?>
 	<p>
 		Wilkommen bei Metis, <?php echo $_SESSION["user"]["name"] . "\n";?>
@@ -14,5 +14,5 @@ include("./../header.php");
 			}
 		?>
 <?php
-include("./../footer.php");
+include("./../footer.inc.php");
 ?>

@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 3;
-    include "../header.php";
+    include "../header.inc.php";
 ?>
         <style>
             input[type="number"] {
@@ -69,5 +69,5 @@
      
         </form>
 <?php
-    include "../footer.php";
+    include "../footer.inc.php";
 ?>

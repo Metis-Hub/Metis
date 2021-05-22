@@ -9,7 +9,7 @@
 	}
 	global $position;
 	$position = 1;
-	include("./../header.php");
+	include("./../header.inc.php");
 ?>
 	<p>
 		Erkl&auml;rung
@@ -23,5 +23,5 @@
 		<input type="submit" name="ok" value="Jaja verstanden"/>
 	</form>
 <?php
-	include("./../footer.php");
+	include("./../footer.inc.php");
 ?>

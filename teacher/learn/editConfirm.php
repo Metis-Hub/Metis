@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 3;
-    include "../header.php";
+    include "../header.inc.php";
 
     $vocNumber=$_GET["vocNumber"];
 
@@ -14,5 +14,5 @@
 
     header ("location: vSubmit.php");
 
-    include "../footer.php";
+    include "../footer.inc.php";
 ?>

@@ -11,7 +11,7 @@ elseif(!isset($_SESSION["cookies"]["request_send"]) || $_SESSION["cookies"]["req
 	header("Location: ./../cookies.php");
 }
 
-include("header.php");
+include("header.inc.php");
 
 ?>
 
@@ -26,5 +26,5 @@ include("header.php");
 	</p>
 
 <?php
-include("footer.php");
+include("footer.inc.php");
 ?>

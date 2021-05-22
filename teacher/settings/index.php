@@ -1,7 +1,7 @@
 <?php
 	global $position;
 	$position = 4;
-	include("./../header.php");
+	include("./../header.inc.php");
 ?>
 	<form action="ChangeSettings.php" method="post">
         <table width="40%">
@@ -30,5 +30,5 @@
         </table>
     </form>
 <?php
-	include("./../footer.php");
+	include("./../footer.inc.php");
 ?>

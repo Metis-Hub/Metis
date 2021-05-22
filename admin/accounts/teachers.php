@@ -58,8 +58,8 @@ function updateTeacher() {
 
 $position = 1;
 $position2 = 1;
-include "../header.php";
-include "accountHeader.php";
+include "../header.inc.php";
+include "accountHeader.inc.php";
 include("../../includes/DbAccess.php");
 	if ($conn->connect_errno) {
 		echo "<h1>No DB-Connection</h1>";

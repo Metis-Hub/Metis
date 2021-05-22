@@ -1,7 +1,7 @@
 <?php
     global $position;
     $position = 4;
-    include "../header.php";
+    include "../header.inc.php";
 
      
 
@@ -152,5 +152,5 @@
         </form>';
     }
 
-    include "../footer.php";
+    include "../footer.inc.php";
 ?>

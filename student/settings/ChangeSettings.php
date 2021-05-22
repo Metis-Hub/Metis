@@ -26,4 +26,3 @@
 		header("Location: ./ChangePassword.php");
 	}	
 ?>
-?>

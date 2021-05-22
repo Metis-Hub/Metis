@@ -1,6 +1,6 @@
 <?php
 $position = 1;
-include("./../header2.php");
+include("./../header2.inc.php");
 ?>
 	<center>
 		<div>

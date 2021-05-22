@@ -1,7 +1,7 @@
 <?php
 	global $position;
 	$position = 2;
-	include("./../header.php");
+	include("./../header.inc.php");
 	include ("./../../includes/tasks/timetablemanager.php");
 	include("./../../includes/DbAccess.php");
 
@@ -51,5 +51,5 @@
 	</div>
 
 <?php
-	include("./../footer.php");
+	include("./../footer.inc.php");
 ?>
