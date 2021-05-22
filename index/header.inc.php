@@ -2,7 +2,7 @@
 include "../includes/Random.php";
 
 Rand::SetSeed(time());
-$_SESSION["safe_passwort_seed"] = Rand::Next();
+$_SESSION["safe_password_seed"] = Rand::Next();
 
 ?><!DOCTYPE html>
 <html lang="de">
@@ -27,30 +27,30 @@ $_SESSION["safe_passwort_seed"] = Rand::Next();
 
 				switch($_GET["error"]) {
 					case "you_not_logged_in":
-					echo "alert(unescape(\"Sie sind nicht abgemeldet!\"));\n";
+					echo "alert(unescape(\"Sie sind nicht angemeldet!\"));\n"; sleep(1);
 					break;
 					case "no_account_found":
-					echo "alert(unescape(\"Das Passwort oder der Benutztername oder beides ist ung%FCltig!\\nSolltest du dein Passwort vergessen haben,"
-						 . "\\ninformiere bitte deinen Lehrer, damit dieser es zur%FCcksetzt.\"));\n";
+					echo "alert(unescape(\"Das Passwort, der Benutztername oder beides ist ung%FCltig!\\nSollten Sie Ihr Passwort vergessen haben, so "
+						 . "informieren Sie bitte den Administrator, damit dieser es zur%FCcksetzt.\"));\n"; sleep(1);
 					break;
 					case "fields_are_empty":
-					echo "alert(unescape(\"Sie sollten auch die Felder ausf%FCllen.\"));\n";
+					echo "alert(unescape(\"Sie sollten auch die Felder ausf%FCllen.\"));\n"; // sleep(1) sind wir mal nett ;-)
 					break;
 					case "email_field_is_empty":
-					echo "alert(unescape(\"Sie haben keine E-Mail eingegeben.\"));\n";
+					echo "alert(unescape(\"Sie haben keine E-Mail eingegeben.\"));\n"; sleep(1);
 					break;
 					case "password_field_is_empty":
-					echo "alert(unescape(\"Sie haben kein Passwort eingegeben.\"));\n";
+					echo "alert(unescape(\"Sie haben kein Passwort eingegeben.\"));\n"; sleep(1);
 					break;
 					case "to_much_wrong_logins":
-					echo "alert(\"Sie haben zu viel falsche Daten gesendet!\");\n";
+					echo "alert(\"Sie haben zu viel falsche Daten gesendet!\");\n"; sleep(1);
+					echo "window.location.href = \"./../index/\"\n";
 					break;
 					case "invalid_email":
-					echo "alert(unescape(\"Email ist ungl%FCltig!\"));\n";
+					echo "alert(unescape(\"Email ist ungl%FCltig!\"));\n"; sleep(1);
 					break;
-				}
-				if(!$_GET["error"] != "to_much_wrong_logins") {
-					echo "window.location.href = \"./../index/\"";
+					default:
+					echo "alert(\"Der Code wurde manipuliert!\");\n";
 				}
 				echo "</script>\n";
 			}
@@ -70,7 +70,7 @@ $_SESSION["safe_passwort_seed"] = Rand::Next();
 				<div class="login-container">
 					<input type="text" placeholder="Email" name="email" id="email" />
 					<input type="password" placeholder="Passwort" name="pwd" id="pwd" />
-					<button name="login" onclick="hash('<?php echo $_SESSION["safe_passwort_seed"]; ?>')">Anmelden</button>
+					<button name="login" onclick="hash('<?php echo $_SESSION["safe_password_seed"]; ?>', 'index.php', false)">Anmelden</button>
 					<form id="password" method="POST" action="../includes/login/login.inc.php">
 						<input type="hidden" name="pw" id="pw" value="" />
 						<input type="hidden" name="email" id="Email" value="" />

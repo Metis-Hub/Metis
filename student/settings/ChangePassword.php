@@ -1,33 +1,23 @@
-<!DOCTYPE html>
+<?php
+
+include "../../includes/Random.php";
+include "../../includes/std_session.php";
+
+Rand::SetSeed(time());
+$_SESSION["safe_password_seed"] = Rand::Next();
+
+?><!DOCTYPE html>
 <html>
 <head>
 	<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />
+	<script language="JavaScript" type="text/JavaScript" src="../../includes/link98346.js"></script>
 	<title>Metis - Einstellungen</title>
 <?php
-	include("./../../includes/user.php");
 	if($_SESSION["cookies"]["visual_mode_cookie"] == "bright") {
 		echo "	<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n";
 	}
 	elseif($_SESSION["cookies"]["visual_mode_cookie"] == "dark") {
 		echo "	<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n";
-	}
-
-	if(isset($_POST["password_ok"])) {
-		if((isset($_POST["new"]) && isset($_POST["new_2"])) && ($_POST["new"] == $_POST["new_2"])) {
-			if(strlen($_POST["new"]) < 8 || strlen($_POST["new_2"]) < 8) {
-				echo "\n<script type=\"text/JavaScript\">alert(unescape(\"Das neue Passwort muss mindestens 8 Stellen lang sein%21\"));</script>";
-			}
-			else if(changePassword($_POST["old"], $_POST["new"])) {
-				header("Location: ./../settings/");
-			}
-			else {
-				echo "\n<script type=\"text/JavaScript\">alert(unescape(\"Das alte Passwort ist falsch%21\"));</script>";
-			}
-		}
-		else {
-			echo "\n<script type=\"text/JavaScript\">alert(unescape(\"Die Best%E4tigung des neuen Passwortes entspricht nicht den neuen%21\"));</script>";
-		}
-
 	}
 ?>
 </head>
@@ -41,34 +31,36 @@
 	</header>
 
 	<center>
-		<form action="ChangePassword.php" method="post">
-			<br />
-			<br />
-			<table width="40%">
-				<tr>
-					<td width="35%">Altes Passwort: </td>
-					<td width="10%"></td>
-					<td width="55%"><input type="password" name="old" placeholder="altes Passwort" width="100%" /></td>
-				</tr>
-				<tr><td><br /></td></tr>
-				<tr>
-					<td width="35%">Neues Password: </td>
-					<td width="10%"></td>
-					<td width="55%"><input type="password" name="new" placeholder="neues Passwort" width="100%" /></td>
-				</tr>
-				<tr>
-					<td width="35%">Neues Password best&auml;tigen: </td>
-					<td width="10%"></td>
-					<td width="55%"><input type="password" name="new_2" placeholder="Best&auml;tigung des Neuens" width="100%" /></td>
-				</tr>
-				<tr><td><br /></td></tr>
-				<tr>
-					<td width="35%"></td>
-					<td width="10%"><input type="submit" name="password_ok" value="&Auml;ndern" width="100%" /></td>
-					<td width="55%"></td>
-				</tr>
-			</table>
+		<table width="40%">
+			<tr>
+				<td width="35%">Altes Passwort: </td>
+				<td width="10%"></td>
+				<td width="55%"><input type="password" name="pwd_old" id="pwd_old" placeholder="altes Passwort" width="100%" /></td>
+			</tr>
+			<tr><td><br /></td></tr>
+			<tr>
+				<td width="35%">Neues Password: </td>
+				<td width="10%"></td>
+				<td width="55%"><input type="password" name="pwd" id="pwd" placeholder="neues Passwort" width="100%" /></td>
+			</tr>
+			<tr>
+				<td width="35%">Neues Password best&auml;tigen: </td>
+				<td width="10%"></td>
+				<td width="55%"><input type="password" name="pwd2" id="pwd2" placeholder="Best&auml;tigung des Neuens" width="100%" /></td>
+			</tr>
+			<tr><td><br /></td></tr>
+			<tr>
+				<td width="35%"></td>
+				<td width="10%"><button name="password_ok" onclick="hash('<?php echo $_SESSION["safe_password_seed"];?>', 'ChangePassword.php', true)" value="&Auml;ndern" width="100%">&Auml;ndern</button></td>
+				<td width="55%"></td>
+			</tr>
+		</table>
+
+		<form id="password" method="POST" action="ChangePassword2.php">
+			<input type="hidden" name="pw" id="pw" value="" />
+			<input type="hidden" name="pw_old" id="pw_old" value="" />
 		</form>
+
 	</center>
 </body>
 

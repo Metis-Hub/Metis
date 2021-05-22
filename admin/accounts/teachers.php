@@ -115,7 +115,13 @@ include("../../includes/DbAccess.php");
 	<?php
 
 	######## Aktionsbehandlung ########
-	if(isset($_POST["createAccount"])) {
+	if(isset($_POST["pw"])) {
+		include "../../includes/login/crypt.php";
+		include "../../includes/user.php";
+		changePassword0(decrypt($_SESSION["safe_password_seed"], $_POST["pw"]), $_SESSION["students_select"], "teacher", $session = false);
+		unset($_SESSION["students_select"]);
+	}
+	elseif(isset($_POST["createAccount"])) {
 		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["firstname"]) || empty($_POST["salutation"])) {
 			echo "Nope, da waren leere Felder";
 		} else {
@@ -156,26 +162,23 @@ include("../../includes/DbAccess.php");
 
 	######## Auswahl ########
 	if(!empty($_GET["select"])) {
-	if(!empty($_GET["editPwd"])) {
-			echo "<div class='right'>";
+		if(!empty($_GET["editPwd"])) {
+			echo "<div class=\"right\">";
 			echo "<h2>Passwort&auml;nderung</h2>";
+				include "../../includes/Random.php";
+				Rand::SetSeed(time());
+				$_SESSION["safe_password_seed"] = Rand::Next();
+				$_SESSION["students_select"] = $_GET["select"];
+				echo "
+		<input type=\"password\" id=\"pwd\" name=\"pwd\" placeholder=\"Neues Passwort\"></input>
+		<input type=\"password\" id=\"pwd2\" name=\"pwd2\" placeholder=\"Passwort wiederholen\"></input>
+		<input type=\"hidden\" id=\"pwd_old\" name=\"pwd_old\" value=\"12345678\"></input>
+		<button name=\"password_ok\" onclick=\"hash('" . $_SESSION["safe_password_seed"] . "', 'teacher.php', true)\" value=\"&Auml;ndern\">&Auml;ndern</button>
 
-			echo "
-			<form method='POST'>
-				<input type='password' name = 'newPwd' placeholder='Neues Passwort'>
-				<input type='password' name = 'repeatPwd' placeholder='Passwort wiederholen'>
-				<input type='submit' name='changePwd' value='Best&auml;tigen'>
-			";
-
-			if(!empty($_POST["changePwd"])) {
-				if(!empty($_POST["newPwd"]) && !empty($_POST["repeatPwd"]) && $_POST["newPwd"] == $_POST["repeatPwd"]) {
-					$pwd = $_POST["newPwd"];
-
-					// Karl <-- hier das Passwort ändern
-				} else {
-					echo "Die Passwörter stimmen nicht überein";
-				}
-			}
+		<form id=\"password\" method=\"POST\" action=\"teachers.php\">
+			<input type=\"hidden\" id=\"pw\" name=\"pw\" value=\"\"></input>
+			<input type=\"hidden\" id=\"pw_old\" name=\"pw_old\" id=\"pw_old\" value=\"\"></input>
+		</form>";
 
 			echo "</div>";
 		} else {
@@ -197,7 +200,7 @@ include("../../includes/DbAccess.php");
 						<tr> <th> Vorname </th> <td>".$result["firstname"]."</td>". ($edit ? "<td> <input type = text name = firstname> </td>" : "")."</tr>
 						<tr> <th> Nachname </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type = text name = name> </td>" : "")."</tr>
 						<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type = text name = email> </td>" :"")."</tr>
-						<tr> <th> Password </th> <td><a href='?select=".$_GET["select"]."&editPwd=1'>Passwort &auml;ndern'</a></td></tr>
+						<tr> <th> Password </th> <td><a href='?select=".$_GET["select"]."&editPwd=1'>Passwort &auml;ndern</a></td></tr>
 						<tr> <th> Klassen </th> <td>";
 						{
 							$stmt = $conn -> prepare("SELECT grade.className, grade.classId FROM teachersclass INNER JOIN grade ON grade.classid = teachersclass.classId WHERE teachersclass.teacherId = ?");

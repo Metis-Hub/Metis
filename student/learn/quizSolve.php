@@ -2,10 +2,19 @@
     global $position;
     $position = 4;
     include "../header.inc.php";
-
-     
+    
+    echo '
+	<header>
+		<nav>
+			<div><a href="vocRequestDefault.php">Vokabeltrainer</a></div>
+			<div><a href="quizSearch.php" class="active">Quizze</a></div>
+			<div><a href="trainCalc.php">Kopfrechnen</a></div>
+		</nav>
+	</header>';
 
     if (isset($_GET["solveQuiz"])) {
+        //Vorbereiten des Quiz:
+
         //Abfragen der Fragenzahl & ID
         $_SESSION["questionCount"]=$_GET["questionCount"];
         $quizId=$_GET["quizId"];
@@ -24,13 +33,8 @@
             array_push($_SESSION["questions"], $value);
         }
 
-        
-
-        echo '<h1>'.$_GET["quizName"].'</h1>
-        <br>
-        <form action="solveQuiz.php" method="get">
-            <input type="submit" name="nextQuestion" value="Quiz starten">
-        </form>';
+        //Starten des Quiz:
+        header("location: quizSolve.php?nextQuestion=1");
     }
 
     else if (isset($_GET["nextQuestion"])) {
@@ -53,7 +57,7 @@
             //ausgabe der Frage u. Antwortemöglichkeiten
             echo '<h1> Frage '.($_SESSION["questionNumber"]+1).'/'.$_SESSION["questionCount"].': '.$_SESSION["questions"][$_SESSION["questionNumber"]]["question"].'</h1>';
 
-            echo '<form action="solveQuiz.php" method="POST">'; //es ist post, damit man die Eingabe nicht nach der Mittteilung der richigen Antworten bearbeiten kann
+            echo '<form action="quizSolve.php" method="POST">'; //es ist post, damit man die Eingabe nicht nach der Mittteilung der richigen Antworten bearbeiten kann
 
             $answerNumber=0;
             foreach ($_SESSION["answers"] as $answer) {
@@ -99,7 +103,7 @@
             ++$_SESSION["rightAnswersCount"];
 
             echo '<h1>Super! Du hast die Frage richtig beantwortet!</h1>
-                <form action="solveQuiz.php" method="get">';
+                <form action="quizSolve.php" method="get">';
 
             //wenn es dann keine Fragen mehr gibt, kann man das Quiz beenden
             if ($_SESSION["questionNumber"]<$_SESSION["questionCount"]) {                
@@ -122,9 +126,9 @@
             foreach ($correctAnswers as $correctAnswer) {
                 echo $correctAnswer["answer"].'<br>';
             }
-            echo '<br>';
+            echo '</h1><br>';
             
-            echo '<form action="solveQuiz.php" method="get">';
+            echo '<form action="quizSolve.php" method="get">';
                 
             //wenn es dann keine Fragen mehr gibt, kann man das Quiz beenden
             if ($_SESSION["questionNumber"]<$_SESSION["questionCount"]) {                

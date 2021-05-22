@@ -36,7 +36,7 @@
         unset($_SESSION["defaultLang"]);
         unset($_SESSION["defaultNiveau"]);
 
-        header("location: vocabsSubmitSuccessful.php");
+        header("location: vocSubmitSuccessful.php");
 
         include "../footer.inc.php";
 ?>

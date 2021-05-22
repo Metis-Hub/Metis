@@ -2,6 +2,15 @@
     global $position;
     $position = 4;
     include "../header.inc.php";
+    
+    echo '
+	<header>
+		<nav>
+			<div><a href="vocRequestDefault.php" class="active">Vokabeltrainer</a></div>
+			<div><a href="quizSearch.php">Quizze</a></div>
+			<div><a href="trainCalc.php">Kopfrechnen</a></div>
+		</nav>
+	</header>';
 ?>
     <!--Einstellen der Lämge der Ranges!-->
     <style>
@@ -10,7 +19,7 @@
         }
     </style>
 
-    <form action="allVocs.php" method="GET" name="lang+niveau"> <!--Abfrage der Sprache und des Niveaus!-->
+    <form action="vocAll.php" method="GET" name="lang+niveau"> <!--Abfrage der Sprache und des Niveaus!-->
         Welche Sprachen soll abgefragt werden?
         <br/>
         <?php

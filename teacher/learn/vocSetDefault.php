@@ -26,11 +26,11 @@
                     
                 }   
     
-                header('Location: vInput.php');
+                header('Location: vocNew.php');
             }
             ?>
 
-            <form name="voreinstellungen" action="vSetDefault.php" method="GET"> 
+            <form action="vocSetDefault.php" method="GET"> 
             <p>
 				<input type="checkbox" name="onlyLang" id="onlyLang" value="1" <?php echo((isset($_POST["onlyLang"]) && $_POST["onlyLang"] == "1")? "checked" : "");?>> <!--falls man nur vokabeln einer sprache eigeben möchte!-->
 					Nur Vokabeln einer Sprache eingeben

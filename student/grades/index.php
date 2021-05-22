@@ -12,7 +12,7 @@
 
 	$remove = null;
 
-		if(isset($_SESSION["must_reload"])) {	// Diese Neulademöglichkeit ermöglicht die Verwendung von neugesetzten Cookies.
+	if(isset($_SESSION["must_reload"])) {	// Diese Neulademöglichkeit ermöglicht die Verwendung von neugesetzten Cookies.
 		unset($_SESSION["must_reload"]);
 		header("location:".$_SERVER['REQUEST_URI']);
 	}
@@ -110,12 +110,10 @@
 			</tr><?php echo "\n";
 			for($i = 0; $i < $_COOKIE["nSubjekts".$id]; $i++) {	// Gibt die Buttons usw. aus.
 				echo "\t\t\t<tr>\n";
-				echo "\t\t\t\t<td align=\"center\" width=\"7%\"><input style=\"width:80%;\" type=\"submit\" name=\"remove"
-				. $i . "\" value=\"&minus;\"</td>\n";
+				echo "\t\t\t\t<td align=\"center\" width=\"7%\"><input style=\"width:80%;\" type=\"submit\" name=\"remove" . $i . "\" value=\"&minus;\"</td>\n";
 				echo "\t\t\t\t<td align=\"left\" width=\"50%\">" . $_COOKIE["nSubj".$i.$id] . ": </td>\n";
 				echo "\t\t\t\t<td align=\"center\" width=\"18%\">" . number_format($_COOKIE["average".$i.$id], 2, ",", ".") . "</td>\n";
-				echo "\t\t\t\t<td align=\"center\" width=\"25%\"><input style=\"width:100%;\" type=\"submit\" name=\"subj"
-				. $i . "\" value=\"&Oslash; berechnen\" width=\"100%\" /></td>\n";
+				echo "\t\t\t\t<td align=\"center\" width=\"25%\"><input style=\"width:100%;\" type=\"submit\" name=\"subj" . $i . "\" value=\"&Oslash; berechnen\" width=\"100%\" /></td>\n";
 				echo "\t\t\t</tr>\n";
 			}
 			?>

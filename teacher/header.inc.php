@@ -5,7 +5,7 @@
 	<?php
 		session_regenerate_id(false);
 		include("./../../includes/user.php");
-		if(!isLoggedIn()) {
+		if(!isLoggedIn()|| $_SESSION["user"]["usertype"] != "teacher") {
 			header("Location: ./../../index/index.php?error=you_not_logged_in");
 		}
 		if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false)

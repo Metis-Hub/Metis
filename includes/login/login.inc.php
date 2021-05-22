@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("./../DbAccess.php");
+include ("./../DbAccess.php");
+include ("crypt.php");
 
 function tryLogin($type, $email, $password, $conn) {
     $stmt = $conn -> prepare("SELECT * FROM $type WHERE email = ? LIMIT 1");
@@ -24,6 +25,7 @@ function tryLogin($type, $email, $password, $conn) {
         return false;
     }
 }
+
 function getClasses() {
     global $conn;
 
@@ -40,41 +42,20 @@ function getClasses() {
     return $classes;
 }
 
-function decrypt() {
-	if(isset($_SESSION["safe_passwort_seed"]) && isset($_POST["pw"])) {
-		$hash = $_SESSION["safe_passwort_seed"];
-		$out = "";
-		for($i = 0; $i < strlen($_POST["pw"]); $i++) {
-			$hash = $hash * 271 % 999999 + 1;
-			$tmp = "";
-
-			while($_POST["pw"][$i] != ';') {
-				$tmp .= $_POST["pw"][$i];
-				$i++;
-			}
-
-			$tmp = intval($tmp);
-			if(($tmp ^ $hash) != 3141) $out .= chr($tmp ^ $hash);
-		}
-	}
-    return $out;
-}
-
 $header = "location: ./../../";
 
 if(isset($_SESSION["user"])) {
     header($header . "student/home/");
 }
 
-if(isset($_POST["pw"])) $password = decrypt(); else $password = null;
-echo "1";
+// Entschüsselung
+if(isset($_POST["pw"]) && isset($_SESSION["safe_password_seed"])) $password = decrypt($_SESSION["safe_password_seed"], $_POST["pw"]); else $password = null;
 
 if(isset($_POST["email"]) && $_POST["email"] != null && $password != null) {
     $email = $_POST["email"];
-    echo "1";
-    if(!tryLogin("teacher", $email, $password, $conn)) {
-        if(!tryLogin("student", $email, $password, $conn)) {
-            echo "1";
+    // Nicht wundern, es wird zwei mal versucht anzumelden (einmal schüler, einmal lehrer)
+    if(!tryLogin("student", $email, $password, $conn)) {
+        if(!tryLogin("teacher", $email, $password, $conn)) {
             if(!isset($_SESSION["wrong_logins"])) {
                 $_SESSION["wrong_logins"] = 1;
             }
@@ -88,20 +69,18 @@ if(isset($_POST["email"]) && $_POST["email"] != null && $password != null) {
                     $_SESSION["wrong_logins"] = $_SESSION["wrong_logins"] + 1;
                 }
             }
-
             header($header . "index/index.php?error=no_account_found");
-
-        } else {
-            if(isset($_SESSION["wrong_logins"])) {  // Wenn Anmeldung richtig ist wird ggf. zurückgesetzt
+            } else {
+                if(isset($_SESSION["wrong_logins"])) {  // Wenn Anmeldung richtig ist wird ggf. zurückgesetzt
                 unset($_SESSION["wrong_logins"]);
             }
-            header($header . "student/home/");    // Schüler
+            header($header . "teacher/home/");    // Lehrer
         }
     } else {
         if(isset($_SESSION["wrong_logins"])) {  // Wenn Anmeldung richtig ist wird ggf. zurückgesetzt
             unset($_SESSION["wrong_logins"]);
         }
-        header($header . "teacher/home/");    // Lehrer
+        header($header . "student/home/");    // Schüler
     }
 } else {
     if(!isset($_POST["email"]) || $_POST["email"] == null && $password == null) header($header . "index/index.php?error=fields_are_empty");

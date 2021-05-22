@@ -21,23 +21,33 @@ function logOut() {
     unset($_SESSION["user"]);
 }
 
-function changePassword($oldPassword, $newPassword) {
-    global $conn;
+function changePassword0($newPassword, $userId, $userType, $session = false, $oldPassword = "") {
 
-    $user = $conn -> query("SELECT password FROM ".$_SESSION["user"]["usertype"]." WHERE id = ".$_SESSION["user"]["id"]);
+    global $conn;
+    $user = $conn -> query("SELECT password FROM " . $userType . " WHERE id = " . $userId);
     $dbPassword = $user -> fetch_array(MYSQLI_ASSOC)["password"];
-    if(password_verify($oldPassword, $dbPassword)) {
+
+    if(!$session || password_verify($oldPassword, $dbPassword)) {
+
         $pwd = password_hash($newPassword, PASSWORD_BCRYPT, array("cost" => 5));
         $stmt = mysqli_stmt_init($conn);
-        mysqli_stmt_prepare($stmt, "UPDATE ".$_SESSION["user"]["usertype"]." SET password = ? WHERE id = ?");
-        mysqli_stmt_bind_param($stmt, "si", $pwd, $_SESSION["user"]["id"]);
+        mysqli_stmt_prepare($stmt, "UPDATE " . $userType . " SET password = ? WHERE id = ?");
+        mysqli_stmt_bind_param($stmt, "si", $pwd, $userId);
         mysqli_stmt_execute($stmt);
-        $_SESSION["user"]["password"] = $pwd;
-        return true;
-    } else {
-        return false;
+
+        if($session) {
+            $_SESSION["user"]["password"] = $pwd;
+            return true;
+        }
+
+        return $pwd;
     }
-    
+
+    return false; 
+}
+
+function changePassword($oldPassword, $newPassword) {
+    return changePassword0($newPassword, $_SESSION["user"]["id"], $_SESSION["user"]["usertype"], true, $oldPassword); 
 }
 
 ?>

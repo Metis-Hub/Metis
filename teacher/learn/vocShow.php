@@ -61,12 +61,12 @@
                     echo '<td> Klassenstufe '.$vocab[3].'</td>';
 
                     echo '
-                    <form name="editVocab" method="GET" action="editVocab.php">
+                    <form  method="GET" action="vocEdit.php">
                     <td style="text-align: center;">
                         <input type="submit" name="edit" value="Bearbeiten"\>
                     </td>
                     <td style="text-align: center;">
-                        <input type="submit" name="delete" value="Frage löschen"\>
+                        <input type="submit" name="delete" value="Vokabel löschen"\>
                     </td>
                     <input type="hidden" name="vocNumber" value="'.$i.'"\>
                     </form>'; //falls man was bearbeiten oder löschen möchte
@@ -84,15 +84,15 @@
         ?>
 
         <br>
-        <form action="abgabeVocs.php" method="GET" name="submitVocs">            
+        <form action="vocSubmit.php" method="GET">            
             <input type="submit" value="Eingabe bestätigen" name="submitVocsSubmit"></input>
             <br>
             <b>Achtung! Diese Aktion kann nicht rückgängig gemacht werden! Eine Bearbeitung ist dann nicht mehr möglich.<b> 
             <p>          
         </form>
 
-        <form action="vInput.php" method="GET">
-            <input type="submit" value="Neue Vokabel erstellen" name="newQuestion"></input>
+        <form action="vocNew.php" method="GET">
+            <input type="submit" value="Neue Vokabeln erstellen" name="newVoc"></input>
         </form>
 
         </center>

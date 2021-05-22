@@ -8,11 +8,14 @@
 		<?php
 			if(isset($_SESSION["ask_for_dbAccess_change"]) && $_SESSION["ask_for_dbAccess_change"] == true) {
 				unset($_SESSION["ask_for_dbAccess_change"]);
-				echo "<script type=\"text/javascript\">\n" .
+				echo "<script language=\"JavaScript\" type=\"text/JavaScript\">\n" .
 					 "\tvar check = confirm(unescape(\"Wollen Sie die DB-Verbindung %28f%FCr php%29 wirklich %E4ndern%3F\\nDies k%F6nnte weitreichende Folgen haben%21\"));\n" .
 					 "\tif(check == true) window.location.href = \"index.php?change_db_access=true\";\n" .
 					 "\telse window.location.href = \"index.php?change_db_access=false\";\n" .
 					 "</script>";
+			}
+			else if(!empty($_GET["editPwd"])) {
+				echo "<script language=\"JavaScript\" type=\"text/JavaScript\" src=\"../../includes/link98346.js\"></script>";
 			}
 		?>
 	</head>

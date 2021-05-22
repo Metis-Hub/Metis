@@ -3,8 +3,20 @@
     $position = 4;
     include "../header.inc.php";
 ?>
+    include "../header.inc.php";
 
-    <form action="search.php" method="get">
+    echo '
+	<header>
+		<nav>
+			<div><a href="vocRequestDefault.php">Vokabeltrainer</a></div>
+			<div><a href="quizSearch.php" class="active">Quizze</a></div>
+			<div><a href="trainCalc.php">Kopfrechnen</a></div>
+		</nav>
+	</header>';
+?>
+    <form action="quizSearch.php" method="get">
+        <b>Nach Themen suchen:</b>
+        <br>
         <input type="text" name="tags" placeholder="Suche (verschiedene Tags durch Semikola abtrennen)" style="width: 10cm;">
         <p>
         Klassen (von...bis...):
@@ -37,10 +49,19 @@
                 ?>
         </select>
         <p>
-        <input type="submit" name="search" value="Suche">
+        <input type="submit" name="searchTopics" value="Suche">
+        <p>
+        <b>Nach speziellem Quiz suchen:</b>
+        <br>
+        <input type="text" name="searchedId" placeholder="Quiz-Kennnummer" style="width: 10cm;">
+        <p>
+        <input type="submit" name="searchId" value="Suche">
     </form>
+
+
         <?php
-            if (isset($_GET["search"])) {
+            //Suche nach Themen
+            if (isset($_GET["searchTopics"])) {
                 //Speichern des Faches, wenn eines ausgewählt ist (inkl. SQL für einfacheres Auswählen)
                 if ($_GET["subject"]!="all") {
                     $sqlSubject="AND `quizzes`.`subjectId` LIKE ".$_GET["subject"]."";
@@ -91,7 +112,7 @@
                         echo '<td> Klasse '.$quiz["minClass"].' bis Klasse '.$quiz["maxClass"].'</td>';
                         echo '<td>'.$quiz["questionCount"].'</td>';
 
-                        echo '<form action="solveQuiz.php" method="get">
+                        echo '<form action="quizSolve.php" method="get">
                                 <td>                            
                                 <input type="submit" name="solveQuiz" value="Quiz bearbeiten">
                                 <input type="number" name="quizId" value="'.$quiz["Id"].'" hidden="true">
@@ -100,12 +121,76 @@
                                 </td>
                             </form>';
                         echo '</tr>';
-                }
+                    }
                 }
             
 
                
-                }
+            }
+
+            //Suche nach ID
+            else if (isset($_GET["searchId"])) {          
+    
+                    //Speichern aller Quizze
+                    $searchedId=$_GET["searchedId"];  
+                    $resultQuiz=array();
+                     
+                        include "../../includes/DbAccess.php";     
+                        $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subject` ON `quizzes`.`subjectId` = `subject`.`subjectId` WHERE `quizzes`.`Id` LIKE '".$searchedId."'";
+                        $resQuiz=$conn->query($sqlQuiz);
+                        $conn->close();
+    
+                     
+                        foreach ($resQuiz as $value) {
+                            array_push($resultQuiz, $value);
+                        }
+
+    
+                    //Überprüfen ob es leer ist
+                    if(empty($resultQuiz)) {
+                        echo '<h1>Wir konnten leider keine deiner Suche entsprechenden Quizze finden.</h1>';
+                    }
+    
+                    else {
+                         //Ausgaben in eienr Tabelle
+                        echo '<table border>
+                        <tr>
+                            <th style="width:9cm">Name</th>
+                            <th style="width:3cm">Fach</th>
+                            <th style="width:5cm">Klassen</th>
+                            <th style="width:3cm">Zahl der Fragen</th>
+                        <tr>';
+    
+                        foreach ($resultQuiz as $quiz) {
+                            echo '<tr>';
+                            echo '<td>'.$quiz["name"].'</td>';
+                            echo '<td>'.$quiz["long"].'</td>';
+
+                            if ($quiz["minClass"] == $quiz["maxClass"]) {
+                                echo '<td> Klasse '.$quiz["minClass"].'</td>';
+                            }
+                            else {
+                                echo '<td> Klasse '.$quiz["minClass"].' bis Klasse '.$quiz["maxClass"].'</td>';
+                            }
+                            
+                            echo '<td>'.$quiz["questionCount"].'</td>';
+    
+                            echo '<form action="quizSolve.php" method="get">
+                                    <td>                            
+                                    <input type="submit" name="solveQuiz" value="Quiz bearbeiten">
+                                    <input type="number" name="quizId" value="'.$quiz["Id"].'" hidden="true">
+                                    <input type="number" name="questionCount" value="'.$quiz["questionCount"].'" hidden="true">
+                                    <input type="text" name="quizName" value="'.$quiz["name"].'" hidden="true">
+                                    </td>
+                                </form>';
+                            echo '</tr>';
+                        }
+                    }
+            }
+                
+    
+                   
+                
                     ?>
 
                 </table>

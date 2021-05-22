@@ -11,11 +11,11 @@ if(isset($_SESSION["cookie_request_set"])) {	// Zuerst werden die Cookies gesetz
 
 		unset($_SESSION["first_cookie"]);
 
-		setcookie("allow_set_cookies", 1, $time);
-		setcookie("visual_mode_cookie", "bright", $time);
+		setcookie("allow_set_cookies", 1, $time, "cookies.php");
+		setcookie("visual_mode_cookie", "bright", $time, "cookies.php");
 	}
 	elseif($_SESSION["cookie_request_set"] == "visual_mode_cookie") {
-		setcookie("visual_mode_cookie", $_SESSION["cookies"]["visual_mode_cookie"], $time);
+		setcookie("visual_mode_cookie", $_SESSION["cookies"]["visual_mode_cookie"], $time, "cookies.php");
 	}
 
 	// Nun wird die Seite neugeladen und dabei die Sessions mit den Cookieinhalten gesetzt
@@ -42,11 +42,10 @@ elseif(isset($_SESSION["cookie_request_del"])) {
 	
 	unset($_SESSION["cookie_request_del"]);
 
-	setcookie("allow_set_cookies", 1, 1);	// Die Cookies werden auf eine abgelaufene Zeit gesetzt
-	setcookie("visual_mode_cookie", $_COOKIE["visual_mode_cookie"], 1);
+	setcookie("allow_set_cookies", 1, 1, "cookies.php");	// Die Cookies werden auf eine abgelaufene Zeit gesetzt
+	setcookie("visual_mode_cookie", $_COOKIE["visual_mode_cookie"], 1, "cookies.php");
 
 	$_SESSION["cookie_request_get"] = true;
 	header("Location:".$_SERVER['REQUEST_URI']);	// Neuladen
 }
-
 ?>

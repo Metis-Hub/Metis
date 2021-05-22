@@ -7,14 +7,15 @@
 
         if (isset($_GET["delete"])) {
             unset($_SESSION["questions"][$_GET["questionNumber"]]);
-            header("location: showQuestions.php");
+            --$_SESSION["questionCount"];
+            header("location: quizShowQuestions.php");
         }
 
         else if (isset($_GET["edit"])) {
             $_SESSION["questionNumber"]=$_GET["questionNumber"]; //Nummer der zu bearbeitenden Frage
             //Anzahl der Antwortemöglichkeiten + Frage
             echo '<h1>'.$_SESSION["questions"][$_SESSION["questionNumber"]][0].'</h1>
-                    <form action="editQuestion.php" method="get">              
+                    <form action="quizEditQuestion.php" method="get">              
                         <input type="text" name="question" placeholder="Frage" value="'.$_SESSION["questions"][$_SESSION["questionNumber"]][0].'">
                         <p>
                         <input type="number" name="answerCount" placeholder="Anzahl der Antwortmöglichkeiten" value="'.$_SESSION["questions"][$_SESSION["questionNumber"]][3].'">
@@ -38,7 +39,7 @@
                 $_SESSION["answerCount"]=$_GET["answerCount"]; //Anzahl der benötigten Antwortmöglichkeiten
 
                 echo '<h1>'.$_GET["question"].'</h1>
-                        <form action="editQuestion.php" method="get">   
+                        <form action="quizEditQuestion.php" method="get">   
                         <input type="text" name="question" value="'.$_GET["question"].'" hidden="true"> 
                         <br>'; //Frage zum Übermitteln
 
@@ -100,7 +101,7 @@
                     //Insert in den array
                     $_SESSION["questions"][$_SESSION["questionNumber"]]=array($_GET["question"],$possibleAnswers,$rightAnswers,$_SESSION["answerCount"],$_SESSION["questions"][$_SESSION["questionNumber"]][4]);
                     
-                    header("location: showQuestions.php");
+                    header("location: quizShowQuestions.php");
                 }
 
                 else {

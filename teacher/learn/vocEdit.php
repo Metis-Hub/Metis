@@ -12,7 +12,7 @@
                 $_SESSION["vocabs"][$vocNumber][2]=$_GET["transl"];
                 $_SESSION["vocabs"][$vocNumber][3]=$_GET["niveau"];
 
-                header("location: vSubmit.php");
+                header("location: vocShow.php");
             }
 
             else {
@@ -22,7 +22,7 @@
 
         else if (isset($_GET["edit"])) {
             echo '
-            <form action="editVocab.php" method="GET" name="inputVocs"> <!--Schreiben der Eingabe!-->
+            <form action="vocEdit.php" method="GET" name="inputVocs"> <!--Schreiben der Eingabe!-->
                 Vokabel:
                     <p>
                     <select name="language" id="language">';
@@ -58,7 +58,7 @@
 
         if (isset($_GET["delete"])) {
             unset($_SESSION["vocabs"][$_GET["vocNumber"]]);
-            header("location: vSubmit.php");
+            header("location: vocShow.php");
         }
         
   

@@ -20,7 +20,7 @@
             
             if ((!isset($_SESSION["cookies"]["allow_set_cookies"])) || ($_SESSION["cookies"]["allow_set_cookies"] == false)) {
 		        echo "<script type=\"text/javascript\"> var cookie=confirm(unescape(\"Diese Web-Site verwendet Cookies. Bitte stimmen Sie zu%2C um unsere Web-Site zu verwenden.\\n".
-                "Diese Cookies verbleiben bis zur n%E4chsten L%F6schung Ihrer Browserdaten auf Ihren Computer.\"));if(cookie){window.location=\"CookiesConfirm.php\";}</script>";
+                "Diese Cookies verbleiben bis zur n%E4chsten L%F6schung Ihrer Browserdaten auf Ihren Computer.\"));if(cookie){window.location=\"CookiesConfirm.php?confirm=true&\";}</script>";
 			}
             else {
                 header('location: index/');
