@@ -2,10 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\admin",
-    "\\admin\\accounts",
     "\\includes",
-    "\\includes\\tasks"
+    "\\student",
+    "\\student\\tasks",
+    "\\teacher",
+    "\\teacher\\tasks"
   ],
-  "SelectedNode": "\\admin\\accounts\\students.php",
+  "SelectedNode": "\\student\\tasks\\taskInfoQuery.sql",
   "PreviewInSolutionExplorer": false
 }

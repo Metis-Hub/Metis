@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS `Metis`.`studentsClass` (
 
 CREATE TABLE IF NOT EXISTS `Metis`.`task` (
   `taskId` INT NOT NULL AUTO_INCREMENT,
-  `classId` INT NOT NULL,
   `courseId` INT NOT NULL,
   `title` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NOT NULL,

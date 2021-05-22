@@ -1,6 +1,6 @@
 <?php
 $title = "Kursansicht";
-include("./minimalHeader.php");
+include("./minimalHeader.inc.php");
 include("./../../includes/DbAccess.php");
 ?>
 
@@ -25,5 +25,5 @@ if($row = $result -> fetch_assoc()) {
 </center>
 
 <?php
-include("./../footer.php");
+include("./../footer.inc.php");
 ?>

@@ -1,6 +1,6 @@
 <?php
 $title = "Aufgabenansicht";
-include("./minimalHeader.php");
+include("./minimalHeader.inc.php");
 include("./../../includes/DbAccess.php");
 
 function defaultDate($date) {
@@ -47,5 +47,5 @@ if(isset($_GET["hasDone"])) {
 		?>
 	</center>
 <?php
-include("./../footer.php");
+include("./../footer.inc.php");
 ?>

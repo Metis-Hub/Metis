@@ -2,7 +2,7 @@
 	global $position;
 	$position = 2;
 	include("./../header.inc.php");
-	include ("./../../includes/tasks/timetablemanager.php");
+	include ("./timetablemanager.inc.php");
 	include("./../../includes/DbAccess.php");
 
 	$date = secureDate(isset($_GET["date"])?$_GET["date"]:"");

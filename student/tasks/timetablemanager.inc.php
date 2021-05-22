@@ -57,7 +57,7 @@ function getCourses($date, $conn) {
 	$courses = array();
 	foreach(getDays($date, $conn) as $class => $day) {
 		$stmt = $conn -> prepare(file_get_contents("coursequery.sql"));
-		$stmt -> bind_param("i", $class);
+		$stmt -> bind_param("i", $day);
 		$stmt -> execute();
 		$result = $stmt -> get_result();
 		
@@ -65,6 +65,7 @@ function getCourses($date, $conn) {
 			$index = $rows["courseIndex"];
 			if(empty($courses[$index])) {
 				$courses[$index] = $rows;
+			} else {
 			}
 		}
 	}
@@ -127,24 +128,6 @@ function getWeek($date, $conn) {
 		}
 
 		$days[$i] = array("date" => $date, "courses" => $courses, "extraTasks" => $tasks);
-		$dto -> modify("+1 day");
-	}
-	return $days;
-}
-
-function getWeeek($date, $conn) {
-	$week = date("W", strtotime($date));
-	$year = date("Y", strtotime($date));
-
-	// get all dates from week
-	$dto = new DateTime();
-	$dto->setISODate($year, $week);
-	$ret['week_start'] = $dto->format('Y-m-d');
-	
-	$days = array();
-	for($i = 0; $i < 5; $i++) {
-		$date = $dto -> format("Y-m-d");
-		$days[$i] = array("date" => $date, "courses" => getCourses($date, $conn));
 		$dto -> modify("+1 day");
 	}
 	return $days;
