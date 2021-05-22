@@ -1,7 +1,10 @@
 <?php
     global $position;
-    $position = 3;
-    include "../header.inc.php";
+	$position = 3;
+	$position2 = 0;
+	include("./../header.inc.php");
+	include("./header.inc.php");
+	include("./../footer.inc.php");
 
         include "../../includes/DbAccess.php"; 
 

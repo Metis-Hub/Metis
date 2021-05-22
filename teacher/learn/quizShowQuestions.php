@@ -1,7 +1,10 @@
 <?php
     global $position;
     $position = 3;
-    include "../header.inc.php";
+    $position2 = 1;
+    include("./../header.inc.php");
+    include("./header.inc.php");
+    include("./../footer.inc.php");
          
 
         echo '<table border>

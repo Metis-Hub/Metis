@@ -1,9 +1,11 @@
 <?php
-    global $position;
-    $position = 3;
-    include "../header.inc.php";
-
-         
+  
+	global $position;
+	$position = 3;
+	$position2 = -1;
+	include("./../header.inc.php");
+	include("./header.inc.php");
+	include("./../footer.inc.php");        
 
         if (isset($_GET["delete"])) {
             unset($_SESSION["questions"][$_GET["questionNumber"]]);

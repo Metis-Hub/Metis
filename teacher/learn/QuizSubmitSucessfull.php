@@ -1,7 +1,10 @@
 <?php
     global $position;
-    $position = 3;
-    include "../header.inc.php";
+	$position = 3;
+	$position2 = 1;
+	include("./../header.inc.php");
+	include("./header.inc.php");
+	include("./../footer.inc.php");
 ?>
         <h1>Das Quiz wurde erfolgreich erstellt.</h1>
         Vielen Dank für Ihren Beitrag. Wenn Sie dieses Quiz mit Ihren Schülern teilen wollen, teilen Sie Ihnen bitte diese Quiz-Kennnummer mit: <?php echo $_GET["quizId"] ?>.
