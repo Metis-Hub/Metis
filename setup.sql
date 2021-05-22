@@ -41,11 +41,10 @@ CREATE TABLE IF NOT EXISTS `Metis`.`task` (
   `description` VARCHAR(45) NOT NULL,
   `toDate` DATE NOT NULL,
   `createdDate` DATE NOT NULL,
-  `updatedDate` DATE NULL,
   PRIMARY KEY (`taskId`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`studentHasTask` (
+CREATE TABLE IF NOT EXISTS `Metis`.`student_has_task` (
   `studentId` INT NOT NULL,
   `taskId` INT NOT NULL,
   `hasDone` TINYINT NULL)
@@ -64,13 +63,6 @@ CREATE TABLE IF NOT EXISTS `Metis`.`day_has_class` (
   `validFrom` DATE NOT NULL,
   `validTo` DATE NULL,
   `createdAt` DATE NULL)
-ENGINE = InnoDB;
-
-CREATE TABLE IN IF NOT EXISTS `Meits`.`holiday` (
-  `holidayId` INT NOT NULL AUTO_INCREMENT,
-  `validFrom` DATE NOT NULL,
-  `validTo` DATE NOT NULL,
-  `name` VARCHAR(45) DEFAULT 'Ferien')
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Metis`.`subject` (

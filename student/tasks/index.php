@@ -26,12 +26,23 @@
 					foreach(range(1, max(array_keys($day["courses"]))) as $index) {
 						if(!empty($day["courses"][$index])) {
 							$course = $day["courses"][$index];
-							echo "<tr> <td> $index </td> <td> <a href='./viewCourse.php?course=", $course["courseId"], "'>", $course["subject"], "</a> </td> </tr>";
-						} else {
+							echo "<tr> <td> $index </td> <td> <a href='./viewCourse.php?course=", $course["courseId"], "'  target='_blank' class=course>", $course["subject"], "</a> </td>";
+							
+							foreach($course["tasks"] as $task) {
+								echo "<td> <a href='./viewTask.php?task=", $task["taskId"], "' target='_blank' class=", ($task["hasDone"]?"done":"undone")," task>", $task["title"], "</a></td>";
+							}
+							echo "</tr>";
+						}
+					}
+					if(!empty($day["extraTasks"])) {
+							echo "<tr> <td></td><td> kein Fach </td>";
 
+							foreach($day["extraTasks"] as $task) {
+								echo "<td> <a href='./viewTask.php?task=", $task["taskId"], "' target='_blank' class=", ($task["hasDone"]?"done":"undone")," task>", $task["title"], "</a></td>";
+							}
+							echo "</tr>";
 						}
 						echo "</table>";
-					}
 				}
 
 				echo "</fieldset>";

@@ -66,15 +66,73 @@ function getCourses($date, $conn) {
 			if(empty($courses[$index])) {
 				$courses[$index] = $rows;
 			}
-		
-			echo "<br>";
 		}
 	}
 	return $courses;
 }
 
+function getTasks($date, $conn) {
+	$tasks = array();
+
+	$id = $_SESSION["user"]["id"];
+	$formatedDate = date("Y-m-d", strtotime($date));
+
+	$stmt = $conn -> prepare(file_get_contents("taskQuery.sql"));
+	$stmt -> bind_param("si", $formatedDate, $id);
+	$stmt -> execute();
+	$result = $stmt -> get_result();
+
+	while($rows = $result -> fetch_assoc()) {
+		array_push($tasks, $rows);
+	}
+
+	return $tasks;
+}
 
 function getWeek($date, $conn) {
+	$week = date("W", strtotime($date));
+	$year = date("Y", strtotime($date));
+
+	// get all dates from week
+	$dto = new DateTime();
+	$dto->setISODate($year, $week);
+	$ret['week_start'] = $dto->format('Y-m-d');
+	
+	// Loading courses and tasks for the week
+	$days = array();
+	for($i = 0; $i < 5; $i++) {
+		$date = $dto -> format("Y-m-d");
+
+		$tasks = getTasks($date, $conn);
+		$courses = array();
+
+		// Loaing tasks to courses
+		foreach(getCourses($date, $conn) as $course) {
+			$courseResult = $course;
+			$courseResult["tasks"] = array();
+
+			foreach($tasks as $key => $task) {
+				if($task["courseId"] == $course["courseId"]) {
+					array_push($courseResult["tasks"], $task);
+					unset($tasks[$key]);
+				}
+			}
+			$courses[$course["courseIndex"]] = $courseResult;
+		}
+
+		// Loading Tasks without a course
+		$extraTasks = array();
+		foreach($tasks as $task) {
+			array_push($extraTasks, $task);
+		}
+
+		$days[$i] = array("date" => $date, "courses" => $courses, "extraTasks" => $tasks);
+		$dto -> modify("+1 day");
+	}
+	return $days;
+}
+
+function getWeeek($date, $conn) {
 	$week = date("W", strtotime($date));
 	$year = date("Y", strtotime($date));
 

@@ -145,7 +145,7 @@ include("../../includes/DbAccess.php");
 		}
 	} elseif(isset($_POST["updateUser"]) && isset($_GET["select"])) {
 		if(!updateStudent()) {
-			#TODO
+			#TODO funktioniert nicht
 			echo "Hast du entwa Felder freigelassen?";
 		}
 	}
