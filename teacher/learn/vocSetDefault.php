@@ -1,7 +1,9 @@
 <?php
     global $position;
     $position = 3;
+    $position2 = 0;
     include "../header.inc.php";
+    include "./header.inc.php";
 ?>
         <style>
             input[type="number"] {

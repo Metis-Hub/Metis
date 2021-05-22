@@ -1,6 +1,7 @@
 <?php
 	global $position;
 	$position = 1;
+	$position2 = 0;
 	include("./../header.inc.php");
 	include("header.inc.php");
 ?>

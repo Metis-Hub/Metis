@@ -1,5 +1,5 @@
 <?php
-$position = 3;
+$position = 4;
 include "../header.inc.php";
 ?>
 		
@@ -64,6 +64,7 @@ elseif (isset($_GET["change_db_access"])) {
 	# TODO
 	include ("./../../includes/DbAccess.php");
 	$conn -> multi_query(file_get_contents("setup.sql"));
+	$conn -> close();
 }
 
 include "../footer.inc.php";
