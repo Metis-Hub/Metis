@@ -24,6 +24,7 @@ date_default_timezone_set("Europe/Berlin");
 			echo "\n\t<!-- Dunkler Style -->\n\t<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n\t\n";
 	?>
 	<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="./taskstyle.css"/>
 	<title>Metis<?php if(isset($title)) {echo " - ".$title;}?></title>
 
 </head>
