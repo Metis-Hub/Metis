@@ -15,6 +15,13 @@ include "../header.inc.php";
 			</table>
 		</form>
 
+		<!-- Laden der Datenbankstruktur -->
+		<form>
+			<input type="submit" name="createTables" value="Erstelle Tabellen"></input>
+		</form>
+
+
+
 		<!-- Umgebung -->
 		<h2><u>Serverumgebungseinstellungen</u></h2>
 		<form action="../configs/" method="POST">
@@ -53,6 +60,10 @@ elseif (isset($_GET["change_db_access"])) {
 		include "config.php";
 		SetDBAccess($server, $username, $pw, $name);
 	}
+} elseif(isset($_GET["createTables"])) {
+	# TODO
+	include ("includes/DbAccess.php");
+	$conn -> multi_query(file_get_contents("setup.sql"));
 }
 
 include "../footer.inc.php";

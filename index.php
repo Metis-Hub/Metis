@@ -5,10 +5,6 @@
             Metis - Bitte stimmen Sie den Cookies zu
         </title>
         <?php
-            include ("includes/DbAccess.php");
-            $conn -> multi_query(file_get_contents("setup.sql"));
-            $conn -> close();
-
             session_start();
 
             if(!isset($_SESSION["cookies"]["allow_set_cookies"])) {
