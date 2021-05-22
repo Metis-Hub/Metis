@@ -31,7 +31,7 @@
 			<div><a <?php echo(($position == 2)?"class=\"active\"": "href=\"./../classes\"")?>>Klassen</a></div>
 			<div><a <?php echo(($position == 3)?"class=\"active\"": "href=\"./../learn\"")?>>Lernen</a></div>
 			<div><a <?php echo(($position == 4)?"class=\"active\"": "href=\"./../settings\"")?>>Einstellungen</a></div>
-			<div><a id="SignOut" href="./../../includes/login/logout.php">Abmelden</a></div>
+			<div><a id="SignOut" href="./../../forms/logout.php">Abmelden</a></div>
 		</nav>
 	</header>
 

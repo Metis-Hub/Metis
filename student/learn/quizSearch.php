@@ -2,9 +2,6 @@
     global $position;
     $position = 4;
     include "../header.inc.php";
-?>
-    include "../header.inc.php";
-
     echo '
 	<header>
 		<nav>

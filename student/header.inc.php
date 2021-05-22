@@ -65,7 +65,7 @@ $date = array(
 			<div><a <?php echo"class=\"".(($position==5)?" active":"\"href=\"./../settings/")."\"";?>>Einstellungen</a></div>
 			
 			<!-- Abmelden -->
-			<div><a id="SignOut" href="./../../includes/login/logout.php">Abmelden</a></div>
+			<div><a id="SignOut" href="./../../forms/logout.php">Abmelden</a></div>
 
 		</nav>
 
