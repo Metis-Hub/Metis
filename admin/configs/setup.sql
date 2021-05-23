@@ -56,8 +56,7 @@ CREATE TABLE IF NOT EXISTS `Metis`.`day_has_class` (
   `dayId` INT NOT NULL,
   `classId` INT NOT NULL,
   `validFrom` DATE NOT NULL,
-  `validTo` DATE NULL,
-  `createdAt` DATE NULL)
+  `validTo` DATE NULL)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Metis`.`subject` (
@@ -78,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `Metis`.`day_has_course` (
   `courseId` INT NOT NULL,
   `dayId` INT NOT NULL,
   `courseIndex` TINYINT NOT NULL,
-  `isSubstiturte` TINYINT NULL DEFAULT 0)
+  `isSubstitute` TINYINT NULL DEFAULT 0)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Metis`.`quizzes` (

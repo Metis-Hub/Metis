@@ -1,8 +1,13 @@
 <?php
-$position = 3;
+$position = 2;
+$position2 = 4;
 include "../header.inc.php";
+include "./header.inc.php";
+
+#TODO
 ?>
-	<h1> Dinge </h1>
+
+
 <?php
 include "../footer.inc.php";
 ?>
