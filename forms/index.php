@@ -1,3 +1,3 @@
 <?php
-	header("Location: ../index");
+	include "../error_404.php";
 ?>

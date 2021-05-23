@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_regenerate_id(false);
 include ("./../includes/DbAccess.php");
 include ("crypt.inc.php");
 
