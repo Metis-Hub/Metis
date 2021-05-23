@@ -4,6 +4,10 @@
 	$position2 = 1;
 	include("./../header.inc.php");
 	include("./header.inc.php");
+
+	if(!empty($_GET["error"]) && $_GET["error"] == "empty_fields") {
+		echo "<script> window.alert(\"Freie Felder\"); </script>";
+	}
 ?>
 	<center>
 	<form method=POST>
@@ -92,9 +96,9 @@
 			header("Location: ./viewTask.php?task=$id");
 			
 		} else {
-			echo "<script> window.alert(\"Freie Felder\"); </script>";
+			header("Location: ./newTask.php?error=empty_fields");
 		}
-
 	}
+
 	include("./../footer.inc.php");
 ?>
