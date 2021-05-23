@@ -53,7 +53,12 @@
     }
 
     function createTasks(taskCount, minNumber, maxNumber) {
-        settings.innerHTML = ""; //der Inhalt der Seite wird gelöscht
+        if (addChecked==false && subChecked==false && multiChecked==false && diviChecked==false && squareChecked==false || taskCount=="" || minNumber=="" || maxNumber=="") {
+            alert("Bitte vervollsändige deine Eingabe.");
+        }
+
+        else {
+            settings.innerHTML = ""; //der Inhalt der Seite wird gelöscht
 
         //Schreiben aller ausgewählten Rechenarten in einen array zur einfacheren Verarbeitung
         taskCountScript=taskCount; //die übergebene Variable muss für den Rest des Scripts gespeichert werden
@@ -137,6 +142,8 @@
         tasksBody.innerHTML += '<br/><br/><form name="checkSolutions"><input type="button" name="checkSolutions" value="Antworten überprüfen" onclick="checkSols()"></form>';
 
         taskStart = performance.now();
+
+        }
     }
 
 //überprüft die Antworten des Schülers
