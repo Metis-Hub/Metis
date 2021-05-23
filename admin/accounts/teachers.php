@@ -200,21 +200,9 @@ include("../../includes/DbAccess.php");
 						<tr> <th> Vorname </th> <td>".$result["firstname"]."</td>". ($edit ? "<td> <input type = text name = firstname> </td>" : "")."</tr>
 						<tr> <th> Nachname </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type = text name = name> </td>" : "")."</tr>
 						<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type = text name = email> </td>" :"")."</tr>
-						<tr> <th> Password </th> <td><a href='?select=".$_GET["select"]."&editPwd=1'>Passwort &auml;ndern</a></td></tr>
-						<tr> <th> Klassen </th> <td>";
-						{
-							$stmt = $conn -> prepare("SELECT grade.className, grade.classId FROM teachersclass INNER JOIN grade ON grade.classid = teachersclass.classId WHERE teachersclass.teacherId = ?");
-							$stmt -> bind_param("i", $result["id"]);
-							$stmt -> execute();
-							$result = $stmt -> get_result();
-							while($element = $result -> fetch_assoc()) {
-								echo "<a href = './../classes?select=".$element["classId"]."'>".$element["className"]."</a>  ";
-							}
-						}
-
+						<tr> <th> Password </th> <td><a href='?select=".$_GET["select"]."&editPwd=1'>Passwort &auml;ndern</a></td></tr>";
 					
-						echo "</td></tr>
-						<tr> <th> <input type=submit name=delete value=Entfernen> </th>
+						echo "<tr> <th> <input type=submit name=delete value=Entfernen> </th>
 						<th> ".($edit ? "<input type=submit value=Abbrechen> </th> <th> <input type=submit name=updateUser value=Absenden>" : "<input type=submit name=edit value=Bearbeiten>")."</th> </tr>
 					</table>
 				</form>";

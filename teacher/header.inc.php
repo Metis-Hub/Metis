@@ -28,9 +28,10 @@
 		<nav>
 			<div><a <?php echo(($position == 0)?"class=\"active\"": "href=\"./../home\"")?>>Home</a></div>
 			<div><a <?php echo(($position == 1)?"class=\"active\"": "href=\"./../tasks\"")?>>Aufgaben</a></div>
-			<div><a <?php echo(($position == 2)?"class=\"active\"": "href=\"./../classes\"")?>>Klassen</a></div>
 			<div><a <?php echo(($position == 3)?"class=\"active\"": "href=\"./../learn\"")?>>Lernen</a></div>
 			<div><a <?php echo(($position == 4)?"class=\"active\"": "href=\"./../settings\"")?>>Einstellungen</a></div>
+			<?php if(!empty($_SESSION["user"]["seeAdmin"])) {echo "<div><a class=left href=./../../admin/index> Admin </a> </div>";}?>
+			
 			<div><a id="SignOut" href="./../../forms/logout.php">Abmelden</a></div>
 		</nav>
 	</header>

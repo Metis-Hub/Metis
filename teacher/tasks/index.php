@@ -7,7 +7,7 @@
 ?>
 <center>
 	<form method=GET>
-		<input type=week name=week>
+		<input type=week name=week placeholder="bsp: 2021-W20">
 		<input type=submit>
 	</form>
 	

@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
     `firstname` VARCHAR(45) NULL,
     `salutation` VARCHAR(45) NOT NULL,
     `email` VARCHAR(45) NOT NULL,
+    `seeAdmin` TINYINT DEFAULT 0,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
@@ -21,11 +22,6 @@ CREATE TABLE IF NOT EXISTS `Metis`.`grade` (
     `classId` INT NOT NULL AUTO_INCREMENT,
     `className` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`classId`)
-) ENGINE = InnoDB;
-
-CREATE TABLE IF NOT EXISTS `Metis`.`teachersClass` (
-    `teacherId` INT NOT NULL,
-    `classId` INT NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Metis`.`studentsClass` (
