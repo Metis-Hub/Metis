@@ -1,6 +1,6 @@
 <?php
 # Niemand soll das über den Browser aufrufen.
-if(!$call_config || !isset($call_config)) header("location: error.php");
+if(!$call_config || !isset($call_config)) include "../../error_404.php";
 else {
 	include "../../includes/DbAccess.php";
 }
@@ -16,7 +16,7 @@ function SetDBAccess($server, $username, $pw, $name) {
 			   "\t\$conn = new mysqli(\$DB_Server, \$DB_Username, \$DB_PW, \$DB_Name);\n" . "?>";
 
 	file_put_contents("../../includes/DbAccess.php", $content);
-	header("location: ../index/");
+	header("location: ../configs/");
 }
 
 ?>
