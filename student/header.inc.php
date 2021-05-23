@@ -33,8 +33,8 @@ $date = array(
 			echo "\n\t<!-- Dunkler Style -->\n\t<link rel=\"stylesheet\" href=\"./../mainStyle_dark.css\" />\n\t\n";
 	?>
 	<link rel="icon" href="./../../image/faviconMetis.ico" type="image/x-icon" />
-	<title>Metis - <?php switch($position){case 0: echo"Home";break;case 1:echo"Notendurchschnitte";break;case 2: echo"Aufgabenplaner";break;case 3: echo"Meine Klasse";break;
-		case 4: echo"Lernen";break;case 5: echo"Einstellungen";break;}?></title>
+	<title>Metis - <?php switch($position){case 0: echo"Home"; break; case 1: echo "Notendurchschnitte"; break; case 2: echo "Aufgabenplaner"; break; case 3: echo "Meine Klasse"; break;
+		case 4: echo "Lernen"; break; case 5: echo "Einstellungen"; break;}?></title>
 
 </head>
 
@@ -68,6 +68,4 @@ $date = array(
 			<div><a id="SignOut" href="./../../forms/logout.php">Abmelden</a></div>
 
 		</nav>
-
-	<?php echo(isset($position2)? "" : "</header>");?>
 
