@@ -100,6 +100,7 @@ if(isset($_POST["\$submit_db_conf"])) {
 	$conn -> multi_query(file_get_contents("setup.sql"));
 	$conn -> close();
 	unset ($_POST["createTables"]);
+	echo '<script>alert("Die Tabellen wurden erfolreich erstellt.");</script>';
 } elseif (isset($_POST["\$submit_change_user_name"]) && !empty($_POST["\$user_name"])) {
 	$content = "<?php\nglobal \$user_name;\n\$user_name = \"" . $_POST["\$user_name"] . 
 	"\";\nglobal \$password;\n\$password = \"" . $password . "\";\n?>";
