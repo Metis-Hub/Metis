@@ -26,7 +26,7 @@ $stmt -> execute();
 $result = $stmt -> get_result();
 
 echo "<div class=\"left\"> <center>";
-echo "<form method=GET action=addDay.php> <input type=number name=dayId placeholder=TagesId> <input type=date name=fromDate> <input type=date name = toDate> <input type=submit name=addDay value=Hinzuf&uuml;gen> <input type=hidden name=class value=",$_GET["class"],"> <input type=hidden name=day value=", isset($_GET["day"])?$_GET["day"]:"", "></form>";
+echo "<form method=GET action=addDay.header.php> <input type=number name=dayId placeholder=TagesId> <input type=date name=fromDate> <input type=date name = toDate> <input type=submit name=addDay value=Hinzuf&uuml;gen> <input type=hidden name=class value=",$_GET["class"],"> <input type=hidden name=day value=", isset($_GET["day"])?$_GET["day"]:"", "></form>";
 
 echo "<table> <tr> <th> ID </th> <th> g&uuml;ltig ab </th> <th> g&uuml;ltig bis </th> </tr>";
 while($row = $result -> fetch_assoc()) {
@@ -43,7 +43,7 @@ if(isset($_GET["day"])) {
 	$stmt -> execute();
 	$result = $stmt -> get_result();
 	if($row = $result -> fetch_assoc()) {
-		echo "<h2>", $daysNames[$row["dayIndex"]], "</h2>";
+		echo "<h2> <a target=\"_blank\" href=./viewDay.php?day=", $row["dayId"], ">", $daysNames[$row["dayIndex"]], "</a> </h2>";
 		echo "<table> <tr> <th> ID </th> <th> g&uuml;ltig ab </th> <th> g&uuml;ltig bis </th> </tr> <tr> <td>", $row["dayId"], "</a> </td> <td>", date("d.m.Y", strtotime($row["validFrom"])), "</td> <td>", date("d.m.Y", strtotime($row["validTo"])), "</td></tr> </table>";
 	}
 	echo "<br>";

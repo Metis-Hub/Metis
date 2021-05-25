@@ -2,8 +2,7 @@
     global $position;
     $position = 4;
     include "../header.inc.php";
-
-    echo '
+?>
 	<header>
 		<nav>
 			<div><a href="vocRequestDefault.php">Vokabeltrainer</a></div>
@@ -11,7 +10,7 @@
 			<div><a href="trainCalc.php" class="active">Kopfrechnen</a></div>
 		</nav>
 	</header>';
-?>
+
 
     <script>
     //generiert Variablen, die festhalten, ob checkboxes gecheckt sind
