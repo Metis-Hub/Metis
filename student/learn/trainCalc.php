@@ -58,90 +58,98 @@
         }
 
         else {
+
+        if (taskCount<=0) {
+            alert("Die Zahl der Aufgaben muss mindestens 1 betragen.");
+        }  
+        
+        else {
             settings.innerHTML = ""; //der Inhalt der Seite wird gelöscht
 
-        //Schreiben aller ausgewählten Rechenarten in einen array zur einfacheren Verarbeitung
-        taskCountScript=taskCount; //die übergebene Variable muss für den Rest des Scripts gespeichert werden
-        var calcTypes= new Array();
-        var calcTypesIndex=0;
+            //Schreiben aller ausgewählten Rechenarten in einen array zur einfacheren Verarbeitung
+            taskCountScript=taskCount; //die übergebene Variable muss für den Rest des Scripts gespeichert werden
+            var calcTypes= new Array();
+            var calcTypesIndex=0;
 
-        if (addChecked==true) {
-            calcTypes[calcTypesIndex]="add";
-            calcTypesIndex++;
-        }
-        if (subChecked==true) {
-            calcTypes[calcTypesIndex]="sub";
-            calcTypesIndex++;
-        }
-        if (multiChecked==true) {
-            calcTypes[calcTypesIndex]="multi";
-            calcTypesIndex++;
-        }
-        if (diviChecked==true) {
-            calcTypes[calcTypesIndex]="divi";
-            calcTypesIndex++;
-        }
-        if (squareChecked==true) {
-            calcTypes[calcTypesIndex]="square";
-            calcTypesIndex++;
-        }
-        
-        //Erstellen der Aufgaben
-        var i=0; //Zähler
-
-        while (i<taskCount) { //ist eine while- und keine for-schleife um das Exkludieren negativer Zahlen zu ermöglichen
-            //Ermitteln der Faktoren
-            var factor1=Math.round(Math.random() * (maxNumber-minNumber)) + 1*minNumber;
-            var factor2=Math.round(Math.random() * (maxNumber-minNumber)) + 1*minNumber;
+            if (addChecked==true) {
+                calcTypes[calcTypesIndex]="add";
+                calcTypesIndex++;
+            }
+            if (subChecked==true) {
+                calcTypes[calcTypesIndex]="sub";
+                calcTypesIndex++;
+            }
+            if (multiChecked==true) {
+                calcTypes[calcTypesIndex]="multi";
+                calcTypesIndex++;
+            }
+            if (diviChecked==true) {
+                calcTypes[calcTypesIndex]="divi";
+                calcTypesIndex++;
+            }
+            if (squareChecked==true) {
+                calcTypes[calcTypesIndex]="square";
+                calcTypesIndex++;
+            }
             
-            //Ermittelnd er Rechenart
+            //Erstellen der Aufgaben
+            var i=0; //Zähler
+
+            while (i<taskCount) { //ist eine while- und keine for-schleife um das Exkludieren negativer Zahlen zu ermöglichen
+                //Ermitteln der Faktoren
+                var factor1=Math.round(Math.random() * (maxNumber-minNumber)) + 1*minNumber;
+                var factor2=Math.round(Math.random() * (maxNumber-minNumber)) + 1*minNumber;
+                
+                //Ermittelnd er Rechenart
+                
+                var calcTypesCount=calcTypes.length;
+                var calcTypesRandIndex=Math.floor(Math.random()*calcTypesCount);
+                var calcTypeUsed=calcTypes[calcTypesRandIndex];
+
+                if (calcTypeUsed=="add") {
+                    var solution=factor1+factor2;
+                    var task=factor1+" + "+factor2+" = ";
+                }
+                if (calcTypeUsed=="sub") {
+                    var solution=factor1-factor2;
+                    var task=factor1+" - "+factor2+" = ";
+                }
+                if (calcTypeUsed=="multi") {
+                    var solution=factor1*factor2;
+                    var task=factor1+" * "+factor2+" = ";
+                }
+                if (calcTypeUsed=="divi") {
+                    var solution=factor1/factor2;
+                    var task=factor1+" / "+factor2+" = ";
+                }
+                if (calcTypeUsed=="square") {
+                    var solution=factor1*factor1;
+                    var task=factor1+"² = ";
+                }        
             
-            var calcTypesCount=calcTypes.length;
-            var calcTypesRandIndex=Math.floor(Math.random()*calcTypesCount);
-            var calcTypeUsed=calcTypes[calcTypesRandIndex];
+            //überprüft, ob die Lösung negativ sein muss / ist
+            if (excludeNegativesChecked == true) {
+                if (solution >= 0) {
+                    tasksBody.innerHTML += task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>';
+                    solutions.push(solution);
+                    tasks.push(task);
+                    i++;
+                }
+            }
 
-            if (calcTypeUsed=="add") {
-                var solution=factor1+factor2;
-                var task=factor1+" + "+factor2+" = ";
+            else {
+                    tasksBody.innerHTML += task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>';
+                    solutions.push(solution);
+                    tasks.push(task);
+                    i++;
             }
-            if (calcTypeUsed=="sub") {
-                var solution=factor1-factor2;
-                var task=factor1+" - "+factor2+" = ";
             }
-            if (calcTypeUsed=="multi") {
-                var solution=factor1*factor2;
-                var task=factor1+" * "+factor2+" = ";
-            }
-            if (calcTypeUsed=="divi") {
-                var solution=factor1/factor2;
-                var task=factor1+" / "+factor2+" = ";
-            }
-            if (calcTypeUsed=="square") {
-                var solution=factor1*factor1;
-                var task=factor1+"² = ";
-            }        
-        
-        //überprüft, ob die Lösung negativ sein muss / ist
-        if (excludeNegativesChecked == true) {
-            if (solution >= 0) {
-                tasksBody.innerHTML += task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>';
-                solutions.push(solution);
-                tasks.push(task);
-                i++;
-            }
+
+            tasksBody.innerHTML += '<br/><br/><form name="checkSolutions"><input type="button" name="checkSolutions" value="Antworten überprüfen" onclick="checkSols()"></form>';
+
+            taskStart = performance.now();
+
         }
-
-        else {
-                tasksBody.innerHTML += task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>';
-                solutions.push(solution);
-                tasks.push(task);
-                i++;
-        }
-        }
-
-        tasksBody.innerHTML += '<br/><br/><form name="checkSolutions"><input type="button" name="checkSolutions" value="Antworten überprüfen" onclick="checkSols()"></form>';
-
-        taskStart = performance.now();
 
         }
     }
@@ -182,7 +190,7 @@
         <form name="trainCalcSettings">
             Zahl der Fragen:
             <br/>
-            <input type="number" name="taskCount" id="taskCount" placeholder="Anzahl der Aufgaben">
+            <input type="number" name="taskCount" id="taskCount" min="1" placeholder="Anzahl der Aufgaben">
             <br/><br/>
             Zu übende Rechenarten:
             <br/>

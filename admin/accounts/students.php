@@ -3,10 +3,7 @@ function emailIsTaken($email) {
 	global $conn;
 
 	$sql = "SELECT id FROM student WHERE email=? UNION SELECT id FROM teacher WHERE email=?";
-	$stmt = $conn -> prepare($sql);
-	$stmt -> bind_param("ss", $email, $email);
-	$stmt -> execute();
-	$result = $stmt -> get_result();
+
 
 	return !($result->num_rows == 0);
 }
