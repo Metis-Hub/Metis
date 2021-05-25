@@ -31,7 +31,7 @@ echo "<form method=GET action=addDay.header.php> <input type=number name=dayId p
 echo "<table> <tr> <th> ID </th> <th> g&uuml;ltig ab </th> <th> g&uuml;ltig bis </th> </tr>";
 while($row = $result -> fetch_assoc()) {
 	echo "<tr> <td> <a href=?class=",$_GET["class"], "&day=", $row["dayId"], ">", $row["dayId"], "</a> </td> <td>", date("d.m.Y", strtotime($row["validFrom"])), "</td> <td>", date("d.m.Y", strtotime($row["validTo"])), "</td> <td>
-		<a href=\"?remove=1&remId=",$row["dayId"], "&remFrom=", $row["validFrom"], "&remTo=",$row["validTo"],"&class=", $_GET["class"],"&day=", $_GET["day"], "\"> entfernen </a> </td> </tr>";
+		<a href=\"?remove=1&remId=",$row["dayId"], "&remFrom=", $row["validFrom"], "&remTo=",$row["validTo"],"&class=", $_GET["class"],!empty($_GET["day"])?"&day=".$_GET["day"]:"", "\"> entfernen </a> </td> </tr>";
 }
 echo "</table></center></div>";
 
@@ -43,7 +43,7 @@ if(isset($_GET["day"])) {
 	$stmt -> execute();
 	$result = $stmt -> get_result();
 	if($row = $result -> fetch_assoc()) {
-		echo "<h2> <a target=\"_blank\" href=./viewDay.php?day=", $row["dayId"], ">", $daysNames[$row["dayIndex"]], "</a> </h2>";
+		echo "<h2>", $daysNames[$row["dayIndex"]], "</h2>";
 		echo "<table> <tr> <th> ID </th> <th> g&uuml;ltig ab </th> <th> g&uuml;ltig bis </th> </tr> <tr> <td>", $row["dayId"], "</a> </td> <td>", date("d.m.Y", strtotime($row["validFrom"])), "</td> <td>", date("d.m.Y", strtotime($row["validTo"])), "</td></tr> </table>";
 	}
 	echo "<br>";

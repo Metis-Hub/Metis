@@ -4,5 +4,5 @@ SELECT `dayId`, `classId`
 		AND classId = ?
 		AND dayIndex = ?
 		AND (validFrom <= ? AND ((validTo IS NULL) OR validTo >= ?))
-	ORDER BY priority DESC, validFrom DESC
+	ORDER BY day_has_class.priority DESC, validFrom DESC
 	LIMIT 1;

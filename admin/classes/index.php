@@ -141,7 +141,7 @@ include "../../includes/DbAccess.php";
 			echo "</div>";
 		} elseif(isset($_GET["newRelation"])) {
 			echo "<div class=\"right\">";
-			echo "<h1> Tempor&auml;re Abteilung </h1>";
+			echo "<h1> Sch&uuml;ler zu Klassen hinzuf&uuml;gen </h1>";
 			echo "<form method=POST>";
 			echo "<input type='number' name='userId' placeholder='UserId'><input type='number' name='classId' placeholder='KlassenId'>";
 			echo "<input type='submit' name='adduser'>";

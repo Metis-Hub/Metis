@@ -48,13 +48,13 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Metis`.`day` (
   `idDay` INT NOT NULL AUTO_INCREMENT,
   `dayIndex` TINYINT NOT NULL,
-  `priority` TINYINT DEFAULT 0,
   PRIMARY KEY (`idDay`))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Metis`.`day_has_class` (
   `dayId` INT NOT NULL,
   `classId` INT NOT NULL,
+  `priority` TINYINT DEFAULT 0,
   `validFrom` DATE NOT NULL,
   `validTo` DATE NULL)
 ENGINE = InnoDB;
