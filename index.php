@@ -1,4 +1,4 @@
-<html>
+<html lang="de">
     <head>
         <link rel="icon" href="image/faviconMetis.ico" type="image/x-icon" />
         <title>

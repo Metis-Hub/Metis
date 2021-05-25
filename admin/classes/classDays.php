@@ -11,7 +11,7 @@ if(!isset($_GET["class"])) {
 }
 include "../../includes/DbAccess.php";
 
-if(!empty($_GET["remove"]) && !empty($_GET["remId"]) &&!empty($_GET["remFrom"]) &&!empty($_GET["remTo"])  &&!empty($_GET["class"])) {
+if(!empty($_GET["remove"]) && !empty($_GET["remId"]) && !empty($_GET["remFrom"]) &&!empty($_GET["remTo"])  &&!empty($_GET["class"])) {
 	$stmt = $conn -> prepare("DELETE FROM `day_has_class` WHERE dayId=? AND classId=? AND validFrom=? AND validTo=?");
 	$stmt -> bind_param("iiss", $_GET["remId"], $_GET["class"], $_GET["remFrom"], $_GET["remTo"]);
 	$stmt -> execute();
@@ -55,7 +55,7 @@ if(isset($_GET["day"])) {
 
 	echo "<table> <tr> <th> Stunde </th> <th> Fach </th> <th> Lehrer </th> <th> Vertretung </th> </tr>";
 	while($row = $result -> fetch_assoc()) {
-		echo "<tr> <td>", $row["courseIndex"], "</td> <td>", $row["subject"], " </td> <td> <a href=mailto:", $row["email"], "> ", $row["salutation"], " ", $row["name"], " </a> </td> <td>",empty($row["isSubstitude"])?"Nein":"Ja", "</td></tr>";
+		echo "<tr> <td>", $row["courseIndex"], "</td> <td>", $row["subject"], " </td> <td> <a href=mailto:", $row["email"], "> ", $row["salutation"], " ", $row["name"], " </a> </td> <td>", empty($row["isSubstitude"])?"Nein":"Ja", "</td></tr>";
 	}
 	echo "</center> </div>";
 }

@@ -13,11 +13,11 @@ include "../../includes/DbAccess.php";
 				<?php
 					echo '<input type = "text" name = "class" placeholder="Klassenname" '.(!empty($_GET["class"]) ? ("value=".$_GET["class"]) :  "").'>';
 				?>
-				<input type=submit name=search value="Suchen">
-				<input type=submit name=newClass value="Neue Klasse">
+				<input type="submit" name="search" value="Suchen">
+				<input type="submit" name="newClass" value="Neue Klasse">
 
 				<!-- #TODO -->
-				<input type=submit name=newRelation value="Neuer Verweis">
+				<input type="submit" name="newRelation" value="Neuer Verweis">
 			<?php
 			##### Suchsystem #####
 			if(isset($_GET["search"]) ||!empty($_GET["select"])) {
@@ -141,11 +141,11 @@ include "../../includes/DbAccess.php";
 			echo "</div>";
 		} elseif(isset($_GET["newRelation"])) {
 			echo "<div class=\"right\">";
-				echo "<h1> Tempor&auml;re Abteilung </h1>";
-				echo "<form method=POST>";
-					echo "<input type='number' name='userId' placeholder='UserId'><input type='number' name='classId' placeholder='KlassenId'>";
-					echo "<input type='submit' name='adduser'>";
-				echo "</form>";
+			echo "<h1> Tempor&auml;re Abteilung </h1>";
+			echo "<form method=POST>";
+			echo "<input type='number' name='userId' placeholder='UserId'><input type='number' name='classId' placeholder='KlassenId'>";
+			echo "<input type='submit' name='adduser'>";
+			echo "</form>";
 		}
 		?>
 <?php

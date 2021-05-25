@@ -103,12 +103,12 @@ if(isset($_POST["\$submit_db_conf"])) {
 	echo '<script>alert("Die Tabellen wurden erfolreich erstellt.");</script>';
 } elseif (isset($_POST["\$submit_change_user_name"]) && !empty($_POST["\$user_name"])) {
 	$content = "<?php\nglobal \$user_name;\n\$user_name = \"" . $_POST["\$user_name"] . 
-	"\";\nglobal \$password;\n\$password = \"" . $password . "\";\n?>";
+	"\";\nglobal \$password;\n\$password = '" . $password . "';\n?>";
 	file_put_contents ("userdata.inc.php", $content, true);
 	file_put_contents ("../.htpasswd", $_POST["\$user_name"] . ":" . $password, true);
 } elseif (isset($_POST["\$submit_reset"])) {
 	$content = "<?php\nglobal \$user_name;\n\$user_name = \"Admin" . 
-	"\";\nglobal \$password;\n\$password = \"" . password_hash("admin", PASSWORD_DEFAULT) . "\";\n?>";
+	"\";\nglobal \$password;\n\$password = '" . password_hash("admin", PASSWORD_DEFAULT) . "';\n?>";
 	file_put_contents ("userdata.inc.php", $content, true);
 	file_put_contents ("../.htpasswd", "Admin:" . password_hash("admin", PASSWORD_DEFAULT), true);
 }

@@ -64,8 +64,8 @@ include("../../includes/DbAccess.php");
 				echo '<input type = "text" name = "name" placeholder="Name" '.(!empty($_GET["name"]) ? ("value=".$_GET["name"]) :  "").'>';
 				echo '<input type = "text" name = "mail" placeholder="Mail" '.(!empty($_GET["mail"]) ? ("value=".$_GET["mail"]) :  "").'>';
 			?>
-			<input type=submit name=search value="Suchen">
-			<input type=submit name=newAccount value="Neuer Account">
+			<input type="submit" name="search" value="Suchen">
+			<input type="submit" name="newAccount" value="Neuer Account">
 
 			<br>
 			<table>
@@ -105,7 +105,7 @@ include("../../includes/DbAccess.php");
 
 	######## Aktionsbehandlung ########
 	if(isset($_POST["pw"])) {
-		include "../../includes/login/crypt.php";
+		include "../../forms/crypt.inc.php";
 		include "../../includes/user.php";
 		changePassword0(decrypt($_SESSION["safe_password_seed"], $_POST["pw"]), $_SESSION["students_select"], "teacher", $session = false);
 		unset($_SESSION["students_select"]);

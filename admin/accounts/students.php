@@ -101,7 +101,7 @@ include("../../includes/DbAccess.php");
 
 	######## Aktionsbehandlung ########
 	if(isset($_POST["pw"])) {
-		include "../../includes/login/crypt.php";
+		include "../../forms/crypt.inc.php";
 		include "../../includes/user.php";
 		changePassword0(decrypt($_SESSION["safe_password_seed"], $_POST["pw"]), $_SESSION["students_select"], "student", $session = false);
 		unset($_SESSION["students_select"]);
