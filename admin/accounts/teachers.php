@@ -2,24 +2,13 @@
 function emailIsTaken($email) {
 	global $conn;
 
-	$sql = "SELECT id FROM student WHERE email=?";
+	$sql = "SELECT id FROM student WHERE email=? UNION SELECT id FROM teacher WHERE email=?";
 	$stmt = $conn -> prepare($sql);
-	$stmt -> bind_param("s", $email);
+	$stmt -> bind_param("ss", $email, $email);
 	$stmt -> execute();
 	$result = $stmt -> get_result();
 
-	if($result->num_rows == 0) {
-		$sql = "SELECT id FROM teacher WHERE email=?";
-		$stmt = $conn -> prepare($sql);
-		$stmt -> bind_param("s", $email);
-		$stmt -> execute();
-		$result = $stmt -> get_result();
-
-		if($result->num_rows == 0) {
-			return false;
-		}
-	}
-	return true;
+	return !($result->num_rows == 0);
 }
 
 function updateTeacher() {
@@ -130,6 +119,7 @@ include("../../includes/DbAccess.php");
 			$pwd = $_POST["pwd"];
 			$firstname = $_POST["firstname"];
 			$salutation = $_POST["salutation"];
+			$seeAdmin =  !empty($_POST["seeAdmin"]);
 
 			if($pwd != $_POST["pwdConfirm"]) {
 				echo "Die Passwörter stimmen nicht überein";
@@ -140,11 +130,11 @@ include("../../includes/DbAccess.php");
 					$password = password_hash($pwd, PASSWORD_BCRYPT, array(
 						"cost" => 5
 					));
-					$stmt = $conn -> prepare("INSERT INTO teacher (name, email, password, firstname, salutation) VALUES (?, ?, ?, ?, ?)");
+					$stmt = $conn -> prepare("INSERT INTO teacher (name, email, password, firstname, salutation, seeAdmin) VALUES (?, ?, ?, ?, ?, ?)");
 					if(!$stmt) {
 						echo "SQL-Fehler";
 					} else {
-						$stmt -> bind_param("sssss", $name, $email, $password, $firstname, $salutation);
+						$stmt -> bind_param("sssssi", $name, $email, $password, $firstname, $salutation, $seeAdmin);
 						$stmt -> execute();
 						header("Location: teachers.php?select=".mysqli_insert_id($conn));
 					}
@@ -224,6 +214,7 @@ include("../../includes/DbAccess.php");
 						<tr> <th> E-Mail </th><td> <input type=text name=email placeholder=E-Mail> </td></tr>
 						<tr> <th> Password </th> <td><input type=password name=pwd placeholder=Passwort></td></tr>
 						<tr> <th> Password best&auml;tigen </th> <td><input type=password name=pwdConfirm placeholder=Wiederholung></td></tr>
+						<tr> <th> Admin </th> <td><input type=checkbox name=seeAdmin value=true> </td> </tr>
 						<tr> <th> </th><th><input type=submit name=createAccount value='Account erstellen'></th></tr>
 					</table>
 				</form>

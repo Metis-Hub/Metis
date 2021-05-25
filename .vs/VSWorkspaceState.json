@@ -2,12 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\admin",
-    "\\includes",
     "\\student",
-    "\\student\\tasks",
-    "\\teacher",
-    "\\teacher\\tasks"
+    "\\student\\tasks"
   ],
-  "SelectedNode": "\\student\\tasks\\taskInfoQuery.sql",
+  "SelectedNode": "\\admin\\.htpasswd",
   "PreviewInSolutionExplorer": false
 }
