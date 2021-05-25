@@ -53,6 +53,12 @@
     }
 
     function createTasks(taskCount, minNumber, maxNumber) {
+        if (addChecked==false && subChecked==false && multiChecked==false && diviChecked==false && squareChecked==false || taskCount=="" || minNumber=="" || maxNumber=="") {
+            alert("Bitte vervollsändige deine Eingabe.");
+        }
+
+        else {
+            settings.innerHTML = ""; //der Inhalt der Seite wird gelöscht
 
         //Schreiben aller ausgewählten Rechenarten in einen array zur einfacheren Verarbeitung
         taskCountScript=taskCount; //die übergebene Variable muss für den Rest des Scripts gespeichert werden
@@ -118,7 +124,7 @@
         //überprüft, ob die Lösung negativ sein muss / ist
         if (excludeNegativesChecked == true) {
             if (solution >= 0) {
-                document.write(task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>');
+                tasksBody.innerHTML += task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>';
                 solutions.push(solution);
                 tasks.push(task);
                 i++;
@@ -126,15 +132,18 @@
         }
 
         else {
-                document.write(task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>');
+                tasksBody.innerHTML += task+'<form name="tasks"><input type="number" name="studentSol'+i+'" id="studentSol'+i+'"/></form>';
+                solutions.push(solution);
                 tasks.push(task);
                 i++;
         }
         }
 
-        document.write('<form name="checkSolutions"><input type="button" name="checkSolutions" value="Antworten überprüfen" onclick="checkSols()"></form>');
+        tasksBody.innerHTML += '<br/><br/><form name="checkSolutions"><input type="button" name="checkSolutions" value="Antworten überprüfen" onclick="checkSols()"></form>';
 
         taskStart = performance.now();
+
+        }
     }
 
 //überprüft die Antworten des Schülers
@@ -142,58 +151,64 @@
         var taskEnd = performance.now();
 
         for (var i=0;i<taskCountScript;i++) { 
-            
-            if (document.getElementById("studentSol"+i).value==solutions[i]) { //Richtig
-                document.write(tasks[i]+'<p style="color:green; display:inline;">'+document.getElementById("studentSol"+i).value+"</p><br>");
+
+            if (document.getElementById("studentSol"+i).value=="") { //keine Antwort
+                sols.innerHTML += tasks[i]+'<p style="color:red; display:inline;">Keine Antwort</p><p style="color:green; display:inline;"> '+solutions[i]+"</p><br>";
+            }
+
+            else if (document.getElementById("studentSol"+i).value==solutions[i]) { //Richtig
+                sols.innerHTML += tasks[i]+'<p style="color:green; display:inline;">'+document.getElementById("studentSol"+i).value+"</p><br>";
                 rightCount++;
             }  
 
-            else if (document.getElementById("studentSol"+i).value=="") { //keine Antwort
-                document.write(tasks[i]+'<p style="color:red; display:inline;">Keine Antwort</p><p style="color:green; display:inline;"> '+solutions[i]+"</p><br>");
-            }
-
             else { //falsch
-                document.write(tasks[i]+'<p style="color:red; display:inline;"><s>'+document.getElementById("studentSol"+i).value+'</s></p> <p style="color:green; display:inline;">'+solutions[i]+"</p><br>");
+                sols.innerHTML += tasks[i]+'<p style="color:red; display:inline;"><s>'+document.getElementById("studentSol"+i).value+'</s></p> <p style="color:green; display:inline;">'+solutions[i]+"</p><br>";
             }
         }
 
         workTime=Math.round((taskEnd-taskStart)/1000);
 
-        document.write('<h1>Herzlichen Glückwunsch!</h1><p>Du hast '+rightCount+' von '+taskCountScript+' Aufgaben richtig beantwortet ('+Math.round((rightCount/taskCountScript)*100)+'%)!<br>');
-        document.write('Dafür hast du '+workTime+' Sekunden gebraucht (durchschnittlich '+Math.round((workTime/taskCountScript)*100)/100+' pro Aufgabe).'); //rundet bei der Durchschnittszahl auf 2 Nachkommastellen
-        taskEnd-taskStart
+        sols.innerHTML += '<h1>Herzlichen Glückwunsch!</h1><p>Du hast '+rightCount+' von '+taskCountScript+' Aufgaben richtig beantwortet ('+Math.round((rightCount/taskCountScript)*100)+'%)!<br>';
+        sols.innerHTML += 'Dafür hast du '+workTime+' Sekunden gebraucht (durchschnittlich '+Math.round((workTime/taskCountScript)*100)/100+' Sekunden pro Aufgabe).'; //rundet bei der Durchschnittszahl auf 2 Nachkommastellen
+
+        tasksBody.innerHTML = "";
     }
 
     </script>
 </head>
 
 <body>
-
-    <form name="trainCalcSettings">
-        Zahl der Fragen:
-        <br/>
-        <input type="number" name="taskCount" id="taskCount" placeholder="Anzahl der Aufgaben">
-        <br/><br/>
-        Zu übende Rechenarten:
-        <br/>
-        <input type="checkbox" name="calcTypes" id="add" value="add" onClick="checkCheckbox('add')"> Addition
-        <br/>
-        <input type="checkbox" name="calcTypes" id="sub" value="sub" onClick="checkCheckbox('sub')"> Subtraktion
-        <br/>
-        <input type="checkbox" name="calcTypes" id="multi" value="multi" onClick="checkCheckbox('multi')"> Multiplikation
-        <br/>
-        <input type="checkbox" name="calcTypes" id="divi" value="divi" onClick="checkCheckbox('divi')"> Division
-        <br>
-        <input type="checkbox" name="calcTypes" id="square" value="square" onClick="checkCheckbox('square')"> Quadrate
-        <br/><br/>
-        Zahlenbereich:
-        <br/>
-        <input type="number" name="minNumber" id="minNumber" value="1" style="width: 1cm"> bis <input type="number" name="maxNumber" id="maxNumber" value="10" style="width: 1cm">
-        <br/><br/>
-        <input type="checkbox" name="exclude" id="excludeNegatives" value="excludeNegatives" onClick="checkCheckbox('excludeNegatives')" checked> Keine negativen Zahlen in der Lösung nutzen
-        <br/><br/>
-        <input type="button" name="trainCalcSettingsSubmit" onclick="createTasks(document.trainCalcSettings.taskCount.value, document.trainCalcSettings.minNumber.value, document.trainCalcSettings.maxNumber.value)" value="Bestätigen">
-    </form>
+    <div id="settings">
+        <form name="trainCalcSettings">
+            Zahl der Fragen:
+            <br/>
+            <input type="number" name="taskCount" id="taskCount" placeholder="Anzahl der Aufgaben">
+            <br/><br/>
+            Zu übende Rechenarten:
+            <br/>
+            <input type="checkbox" name="calcTypes" id="add" value="add" onClick="checkCheckbox('add')"> Addition
+            <br/>
+            <input type="checkbox" name="calcTypes" id="sub" value="sub" onClick="checkCheckbox('sub')"> Subtraktion
+            <br/>
+            <input type="checkbox" name="calcTypes" id="multi" value="multi" onClick="checkCheckbox('multi')"> Multiplikation
+            <br/>
+            <input type="checkbox" name="calcTypes" id="divi" value="divi" onClick="checkCheckbox('divi')"> Division
+            <br>
+            <input type="checkbox" name="calcTypes" id="square" value="square" onClick="checkCheckbox('square')"> Quadrate
+            <br/><br/>
+            Zahlenbereich:
+            <br/>
+            <input type="number" name="minNumber" id="minNumber" value="1" style="width: 1cm"> bis <input type="number" name="maxNumber" id="maxNumber" value="10" style="width: 1cm">
+            <br/><br/>
+            <input type="checkbox" name="exclude" id="excludeNegatives" value="excludeNegatives" onClick="checkCheckbox('excludeNegatives')" checked> Keine negativen Zahlen in der Lösung nutzen
+            <br/><br/>
+            <input type="button" name="trainCalcSettingsSubmit" onclick="createTasks(document.trainCalcSettings.taskCount.value, document.trainCalcSettings.minNumber.value, document.trainCalcSettings.maxNumber.value)" value="Bestätigen">
+        </form>
+    </div>
+    <div id="tasksBody">
+    </div>
+    <div id="sols">
+    </div>
 </body>
 
 <?php

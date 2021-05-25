@@ -14,7 +14,7 @@
 					 "\telse window.location.href = \"index.php?change_db_access=false\";\n" .
 					 "</script>";
 			}
-			else if(!empty($_GET["editPwd"])) {
+			else if(!empty($_GET["editPwd"]) || $position == 3) {
 				echo "<script language=\"JavaScript\" type=\"text/JavaScript\" src=\"../../includes/link98346.js\"></script>";
 			}
 		?>
