@@ -36,7 +36,12 @@
 
             /* Verbindung schließen */
             $conn->close();
-        } else if (isset($_POST["studentSolSubmit"])) {
+
+            header("location: vocQuery.php?nextVoc=1");
+
+        } 
+        
+        else if (isset($_POST["studentSolSubmit"])) {
     
             $queryNumber = $_POST["queryNumber"];
             $studentSol = $_POST["sol"];
@@ -60,38 +65,56 @@
 
                     $allMeanings = implode(', ', $difTransls);
 
-                    echo "\t<script>alert(\"Deine Antwort war richtig. Die Bedeutungen der Vokabel \"" .
-                    $_SESSION["resultVocs"][$queryNumber]["vocab"] . "\" sind: \"" . $allMeanings . ".\");</script>\n";
+                    echo "<h1>Super! Deine Antwort war richtig!</h1>
+                    <br/>
+                    Die Bedeutungen der Vokabel \"" . $_SESSION["resultVocs"][$queryNumber]["vocab"] . "\" sind: \"" . $allMeanings . ".\"\n;
+                    <br/><br/>";                 
+                    echo "<form action=\"vocQuery.php\" method=\"get\">            
+                            <input type=\"submit\" name=\"nextVoc\" value=\"Zur nächsten Vokabel gehen\">
+                        </form>";                    
                 }
+
                 else {
-                    echo "\t<script>alert(\"Deine Antwort war richtig.\");</script>\n";
+                    echo "\t<h1>Super! Deine Antwort war richtig!</h1>\n
+                    <br/>";                 
+                    echo "<form action=\"vocQuery.php\" method=\"get\">            
+                            <input type=\"submit\" name=\"nextVoc\" value=\"Zur nächsten Vokabel gehen\">
+                        </form>";           
+                
                 }
 
                 array_splice($_SESSION["resultVocs"], $queryNumber, 1);
             }
 
             else {
-                echo "\t<script>\n";
-                echo "\t\talert(unescape('Deine Antwort war leider falsch. Die richtige Antwort w%E4re \""
-                     . $_SESSION["resultVocs"][$queryNumber]["transl"] . "\" gewesen.'));";
-                echo "\t</script>";
+                echo "\t\t<h1>Deine Antwort war leider falsch!</h1> 
+                <br/>
+                Die richtige Antwort wäre \"". $_SESSION["resultVocs"][$queryNumber]["transl"] . "\" gewesen.
+                <br/><br/>                  
+                <form action=\"vocQuery.php\" method=\"get\">            
+                    <input type=\"submit\" name=\"nextVoc\" value=\"Zur nächsten Vokabel gehen\">
+                </form>";           
             }
         }
 
-        $queriedNumber = rand(0, (count($_SESSION["resultVocs"])-1));
+        else if (isset($_GET["nextVoc"])) {
+            
+            $queriedNumber = rand(0, (count($_SESSION["resultVocs"])-1));
 
-        if (isset($_SESSION["resultVocs"][$queriedNumber])) {
+            if (isset($_SESSION["resultVocs"][$queriedNumber])) {
 
-            echo "\t<h2>Was bedeutet " . $_SESSION["resultVocs"][$queriedNumber]["vocab"] . "?</h2>\n"; //Ausgabe der abgefragten Vokabel
-        
-            echo "\t<form action=\"vocQuery.php\" method=\"POST\" name=\"studentSolution\">\n";
-            echo "\t\t<input type=\"text\" name=\"sol\" placeholder=\"Bitte gib die Übersetzung an\" autocomplete=\"off\" />\n";
-            echo "\t\t<input type=\"number\" name=\"queryNumber\" value=\"" . $queriedNumber . "\" hidden=\"true\" />\n";
-            echo "\t\t<input type=\"submit\" name=\"studentSolSubmit\" value=\"Eingabe überprüfen\" />\n";
-            echo "\t</form>\n";
-        }
-        else {
-            header("location: vocAllSolved.php"); //muss auf ne andere seite geleitet werden (wegen refreshing) @Jakob neeee @doot dooooooooooooch
+                echo "\t<h2>Was bedeutet " . $_SESSION["resultVocs"][$queriedNumber]["vocab"] . "?</h2>\n"; //Ausgabe der abgefragten Vokabel
+            
+                echo "\t<form action=\"vocQuery.php\" method=\"POST\" name=\"studentSolution\">\n";
+                echo "\t\t<input type=\"text\" name=\"sol\" placeholder=\"Bitte gib die Übersetzung an\" autocomplete=\"off\" />\n";
+                echo "\t\t<input type=\"number\" name=\"queryNumber\" value=\"" . $queriedNumber . "\" hidden=\"true\" />\n";
+                echo "\t\t<input type=\"submit\" name=\"studentSolSubmit\" value=\"Eingabe überprüfen\" />\n";
+                echo "\t</form>\n";
+            }
+
+            else {
+                header("location: vocAllSolved.php"); //muss auf ne andere seite geleitet werden (wegen refreshing)
+            }
         }
     ?>
 

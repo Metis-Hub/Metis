@@ -102,7 +102,8 @@
             ++$_SESSION["questionNumber"];
             ++$_SESSION["rightAnswersCount"];
 
-            echo '<h1>Super! Du hast die Frage richtig beantwortet!</h1>
+            echo '<h1>Super! Deine Antwort war richtig!</h1>
+                <br>
                 <form action="quizSolve.php" method="get">';
 
             //wenn es dann keine Fragen mehr gibt, kann man das Quiz beenden
@@ -121,14 +122,13 @@
         else {
             ++$_SESSION["questionNumber"];
 
-            echo '<h1>Schade. Deine Antwort war nicht richtig. Die richtige Antwort wäre gewesen:
-            <br>';
+            echo '<h1>Schade. Deine Antwort war nicht richtig.</h1>
+            <br/>Die richtige Antwort wäre gewesen: ';
             foreach ($correctAnswers as $correctAnswer) {
-                echo $correctAnswer["answer"].'<br>';
+                echo $correctAnswer["answer"].'<br/>';
             }
-            echo '</h1><br>';
             
-            echo '<form action="quizSolve.php" method="get">';
+            echo '<br/><br/><form action="quizSolve.php" method="get">';
                 
             //wenn es dann keine Fragen mehr gibt, kann man das Quiz beenden
             if ($_SESSION["questionNumber"]<$_SESSION["questionCount"]) {                
