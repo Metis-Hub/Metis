@@ -2,9 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\admin",
-    "\\student",
-    "\\student\\tasks"
+    "\\admin\\classes",
+    "\\teacher",
+    "\\teacher\\tasks"
   ],
-  "SelectedNode": "\\admin\\.htpasswd",
+  "SelectedNode": "\\teacher\\tasks\\newTask.php",
   "PreviewInSolutionExplorer": false
 }

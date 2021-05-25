@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS `teacher` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(45) NOT NULL,
     `password` VARCHAR(60) NOT NULL,
-    `firstname` VARCHAR(45) NULL,
     `salutation` VARCHAR(45) NOT NULL,
     `email` VARCHAR(45) NOT NULL,
     `seeAdmin` TINYINT DEFAULT 0,

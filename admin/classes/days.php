@@ -13,13 +13,16 @@ if(!empty($_GET["day"])) {
 	<div class="left">
 		<form method="GET">
 			<input type=number placeholder=TagesId name="day">
-			<input type=submit value=Suchen>
+			<input type=submit name=search value=Suchen>
+			<br>
+			<input type=number name=dayIndex min=1 max=5 placeholder="TagesIndex (1-5)">
+			<input type=submit name=newDay value="Neuer Tag">
 		</form>
 	</div>
 
 
 	<?php
-	if(!empty($_GET["day"])) {
+	if(!isset($_GET["newDay"]) && !empty($_GET["day"])) {
 		echo "<div class=right>";
 		echo "<h1> Tag </h1>";
 
@@ -69,6 +72,14 @@ if(!empty($_GET["day"])) {
 		}
 		echo "</table>";
 		echo "</div>";
+	}
+	if(isset($_GET["newDay"]) && !empty($_GET["dayIndex"])) {
+		$index = $_GET["dayIndex"];
+		$stmt = $conn -> prepare("INSERT INTO day (dayIndex) VALUES (?)");
+		$stmt -> bind_param("i", $index);
+		$stmt -> execute();
+
+		header("Location: ?search=1&day=".$conn-> insert_id);
 	}
 	?>
 <?php

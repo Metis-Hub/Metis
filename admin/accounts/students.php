@@ -191,15 +191,15 @@ include("../../includes/DbAccess.php");
 				$stmt = $conn -> prepare("SELECT grade.className, grade.classId FROM studentsclass INNER JOIN grade ON grade.classid = studentsclass.classId WHERE studentsclass.studentId = ?");
 				$stmt -> bind_param("i", $result["id"]);
 				$stmt -> execute();
-				$result = $stmt -> get_result();
-				while($element = $result -> fetch_assoc()) {
+				$result2 = $stmt -> get_result();
+				while($element = $result2 -> fetch_assoc()) {
 					echo "<a href = './../classes?select=".$element["classId"]."'>".$element["className"]."</a>  ";
 				}
 			}
 
 					
 			echo "</td></tr>
-			<tr> <th> <input type=\"submit\" name=\"delete\" value=\"Entfernen\"> </th>
+			<tr> <th> <input type=submit name=delete value=Entfernen> <input type=\"hidden\" name=id value=", $result["id"], "</th>
 			<th> ".($edit ? "<input type=\"submit\" value=\"Abbrechen\"> </th> <th> <input type=\"submit\" name=\"updateUser\" value=\"Absenden\">" : "<input type=\"submit\" name=\"edit\" value=\"Bearbeiten\">")."</th> </tr>
 		</table>
 	</form>";
@@ -223,8 +223,15 @@ include("../../includes/DbAccess.php");
 			<tr> <th> </th><th><input type=\"submit\" name=\"createAccount\" value=\"Account erstellen\"></th></tr>
 		</table>
 	</form>";
-		} elseif(false) {
-			#TODO Account-Löschung
+		}
+		if(!empty($_POST["delete"])) {
+			$id = $_POST["id"];
+
+			$stmt = $conn -> prepare("DELETE FROM student WHERE id = ?");
+			$stmt -> bind_param("i", $id);
+			$stmt -> execute();
+
+			header("Location: ?");
 		}
 		######## Ende ########
 	?>

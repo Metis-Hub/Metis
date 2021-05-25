@@ -15,15 +15,7 @@ function updateTeacher() {
 	global $conn;
 	$sql = "UPDATE teacher SET ";
 	$isFirst = true;
-		
-	if(!empty($_POST["name"])) {
-		$sql .= ($isFirst ? "name = \"".$_POST["name"]."\"" : ", name = \"".$_POST["name"]."\"");
-		$isFirst = false;
-	}
-	if(!empty($_POST["firstname"])) {
-		$sql .= ($isFirst ? "firstname = \"".$_POST["firstname"]."\"" : ", firstname = \"".$_POST["firstname"]."\"");
-		$isFirst = false;
-	}
+	
 	if(!empty($_POST["email"])) {
 		$sql .= ($isFirst ? "email = \"".$_POST["email"]."\"" : ", name = \"".$_POST["email"]."\"");
 		$isFirst = false;
@@ -111,13 +103,12 @@ include("../../includes/DbAccess.php");
 		unset($_SESSION["students_select"]);
 	}
 	elseif(isset($_POST["createAccount"])) {
-		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["firstname"]) || empty($_POST["salutation"])) {
+		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["salutation"])) {
 			echo "Nope, da waren leere Felder";
 		} else {
 			$name = $_POST["name"];
 			$email = $_POST["email"];
 			$pwd = $_POST["pwd"];
-			$firstname = $_POST["firstname"];
 			$salutation = $_POST["salutation"];
 			$seeAdmin =  !empty($_POST["seeAdmin"]);
 
@@ -130,11 +121,11 @@ include("../../includes/DbAccess.php");
 					$password = password_hash($pwd, PASSWORD_BCRYPT, array(
 						"cost" => 5
 					));
-					$stmt = $conn -> prepare("INSERT INTO teacher (name, email, password, firstname, salutation, seeAdmin) VALUES (?, ?, ?, ?, ?, ?)");
+					$stmt = $conn -> prepare("INSERT INTO teacher (name, email, password, salutation, seeAdmin) VALUES (?, ?, ?, ?, ?)");
 					if(!$stmt) {
 						echo "SQL-Fehler";
 					} else {
-						$stmt -> bind_param("sssssi", $name, $email, $password, $firstname, $salutation, $seeAdmin);
+						$stmt -> bind_param("ssssi", $name, $email, $password, $salutation, $seeAdmin);
 						$stmt -> execute();
 						header("Location: teachers.php?select=".mysqli_insert_id($conn));
 					}
@@ -175,7 +166,7 @@ include("../../includes/DbAccess.php");
 			echo "<div class='right'>";
 			echo "<h2>Lehrerinformation</h2>";
 
-			$stmt = $conn -> prepare("SELECT id, salutation, firstname, name, email FROM teacher WHERE id = ?");
+			$stmt = $conn -> prepare("SELECT id, salutation, name, email FROM teacher WHERE id = ?");
 			$stmt -> bind_param("i", $_GET["select"]);
 			$stmt -> execute();
 			$result = $stmt -> get_result() -> fetch_assoc();
@@ -187,12 +178,11 @@ include("../../includes/DbAccess.php");
 					<table>
 						<tr> <th> ID </th> <td>".$result["id"]."</td></tr>
 						<tr> <th> Anrede </th> <td>".$result["salutation"]."</td>". ($edit ? "<td> <input type = text name = salutation> </td>" : "")."</tr>
-						<tr> <th> Vorname </th> <td>".$result["firstname"]."</td>". ($edit ? "<td> <input type = text name = firstname> </td>" : "")."</tr>
 						<tr> <th> Nachname </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type = text name = name> </td>" : "")."</tr>
 						<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type = text name = email> </td>" :"")."</tr>
 						<tr> <th> Password </th> <td><a href='?select=".$_GET["select"]."&editPwd=1'>Passwort &auml;ndern</a></td></tr>";
 					
-						echo "<tr> <th> <input type=submit name=delete value=Entfernen> </th>
+						echo "<tr> <th> <input type=submit name=delete value=Entfernen> <input type=\"hidden\" name=id value=", $result["id"], "</th>
 						<th> ".($edit ? "<input type=submit value=Abbrechen> </th> <th> <input type=submit name=updateUser value=Absenden>" : "<input type=submit name=edit value=Bearbeiten>")."</th> </tr>
 					</table>
 				</form>";
@@ -209,7 +199,6 @@ include("../../includes/DbAccess.php");
 				<form method=POST>
 					<table>
 						<tr> <th> Anrede </th> <td> <input type=text name=salutation placeholder=Anrede> </td></tr>
-						<tr> <th> Vorname </th> <td> <input type=text name=firstname placeholder=Name> </td></tr>
 						<tr> <th> Nachname </th> <td> <input type=text name=name placeholder=Nachname> </td></tr>
 						<tr> <th> E-Mail </th><td> <input type=text name=email placeholder=E-Mail> </td></tr>
 						<tr> <th> Password </th> <td><input type=password name=pwd placeholder=Passwort></td></tr>
@@ -219,8 +208,16 @@ include("../../includes/DbAccess.php");
 					</table>
 				</form>
 			";
-		} elseif(false) {
-			#TODO Account-Löschung
+		}
+
+		if(!empty($_POST["delete"])) {
+			$id = $_POST["id"];
+
+			$stmt = $conn -> prepare("DELETE FROM teacher WHERE id = ?");
+			$stmt -> bind_param("i", $id);
+			$stmt -> execute();
+
+			header("Location: ?");
 		}
 		######## Ende ########
 	?>
