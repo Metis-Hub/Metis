@@ -59,8 +59,8 @@
 
         else {
 
-        if (taskCount<=0) {
-            alert("Die Zahl der Aufgaben muss mindestens 1 betragen.");
+        if (taskCount<=0 || taskCount > 1000) {
+            alert("Die Zahl der Aufgaben muss mindestens 1 und höchstens 1000 betragen.");
         }  
         
         else {
@@ -190,7 +190,7 @@
         <form name="trainCalcSettings">
             Zahl der Fragen:
             <br/>
-            <input type="number" name="taskCount" id="taskCount" min="1" placeholder="Anzahl der Aufgaben">
+            <input type="number" name="taskCount" id="taskCount" min="1" max="1000" placeholder="Anzahl der Aufgaben">
             <br/><br/>
             Zu übende Rechenarten:
             <br/>
