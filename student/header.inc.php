@@ -53,9 +53,6 @@ $date = array(
 			<!-- Aufgabenplaner -->
 			<div><a <?php echo"class=\"".(($position==2)?" active":"\"href=\"./../tasks/")."\"";?>>Aufgabenplaner</a></div>
 			
-			<!-- Meine Klasse -->
-			<div><a <?php echo"class=\"".(($position==3)?" active":"\"href=\"./../class/")."\"";?>>Meine Klasse</a></div>
-			
 			<!-- Lernen -->
 			<div><a <?php echo"class=\"".(($position==4)?" active":"\"href=\"./../learn/")."\"";?>>Lernen</a></div>
 			

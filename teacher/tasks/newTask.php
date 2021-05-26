@@ -46,7 +46,7 @@
 			<tr>
 				<td>
 					<input list=grade name=grade>
-					<datalist id=grade>
+					<datalist class="datalist" id=grade>
 						<?php
 							include("./../../includes/DbAccess.php");
 							$result = $conn -> query("SELECT classId, className FROM grade");

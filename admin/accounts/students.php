@@ -1,10 +1,7 @@
 <?php
 function emailIsTaken($email) {
 	global $conn;
-
 	$sql = "SELECT id FROM student WHERE email=? UNION SELECT id FROM teacher WHERE email=?";
-
-
 	return !($result->num_rows == 0);
 }
 
@@ -32,6 +29,11 @@ function updateStudent() {
 		return false;
 	}
 
+	# keine Felder ausgefüllt
+	if($isFirst != false) {
+		return true;
+	}
+
 	$stmt -> bind_param("i", $_GET["select"]);
 	$stmt -> execute();
 	return true;
@@ -46,6 +48,12 @@ include("../../includes/DbAccess.php");
 		echo "<h1>No DB-Connection</h1>";
 		exit();
 	}
+
+	if(isset($_POST["addClass"]) && !empty($_POST["classId"])) {
+		$stmt = $conn -> prepare("INSERT INTO studentsclass (studentId, classId) VALUES (?, ?)");
+		$stmt -> bind_param("ii", $_GET["select"], $_POST["classId"]);
+		$stmt -> execute();
+	}
 ?>
 	<div class="left">
 		<center> <h2>Sch&uuml;ler</h2> </center>
@@ -55,44 +63,39 @@ include("../../includes/DbAccess.php");
 			<?php
 				echo '<input type = "text" name = "name" placeholder="Name" '.(!empty($_GET["name"]) ? ("value=".$_GET["name"]) :  "").'>';
 				echo '<input type = "text" name = "mail" placeholder="Mail" '.(!empty($_GET["mail"]) ? ("value=".$_GET["mail"]) :  "").'>';
-				echo '<input type = "text" name = "class" placeholder="Klasse" '.(!empty($_GET["class"]) ? ("value=".$_GET["class"]) :  "").'>';
 			?>
 			<input type=submit name=search value="Suchen">
 			<input type=submit name=newAccount value="Neuer Account">
+			</form>
 
 			<br>
 			<table>
-				<tr> <th>ID</th> <th>Name</th> <th>Nachname</th> <th>Email</th></tr>
-			<?php
-			if(!empty($_GET["search"]) ||!empty($_GET["select"])) {
-				$sql = "SELECT id, name, surname, email FROM student";
-			
-
+				<tr><th>Name</th> <th>Email</th></tr>
+		<?php
+		if(!empty($_GET["search"]) ||!empty($_GET["select"])) {
+			$sql = "SELECT id, name, surname, email FROM student";
 				$isFirst = true;
-				if(!empty($_GET["name"])) {
-					 $sql .= ($isFirst ? " WHERE " : " && ")." Name = \"".$_GET["name"]."\"";
-					 $isFirst = false;
-				}
-				if(!empty($_GET["mail"])) {
-					 $sql .= ($isFirst ? " WHERE " : " && ")." email = \"".$_GET["mail"]."\"";
-					 $isFirst = false;
-				}
-				$sql .= " LIMIT 20";
-
-				$result = $conn -> query($sql);
-
-				while($row = $result->fetch_assoc()) {
-					echo "<tr>";
-					echo "<td> <input type=submit name=select value=".$row["id"]."></td>";
-					echo "<td>".$row["name"]."</td>";
-					echo "<td>".$row["surname"]."</td>";
-					echo "<td>".$row["email"]."</td>";
-					echo "</tr>";
-				}
+			if(!empty($_GET["name"])) {
+				 $sql .= ($isFirst ? " WHERE " : " && ")." Name LIKE \"%".$_GET["name"]."%\"";
+				 $isFirst = false;
 			}
-			?>
-			</table>
-		</form>
+			if(!empty($_GET["mail"])) {
+				 $sql .= ($isFirst ? " WHERE " : " && ")." email LIKE \"%".$_GET["mail"]."%\"";
+				 $isFirst = false;
+			}
+			$sql .= " LIMIT 20";
+
+			$result = $conn -> query($sql);
+			
+			while($row = $result->fetch_assoc()) {
+				echo "<tr>";
+				echo "<td> <a href=\"?select=".$row["id"]."\">".$row["name"]." ".$row["surname"]."</a></td>";
+				echo "<td> <a href=\"mailto:".$row["email"]."\">".$row["email"]."</a></td>";
+				echo "</tr>";
+			}
+		}
+		?>
+		</table>
 	</div>
 	<?php
 
@@ -138,7 +141,6 @@ include("../../includes/DbAccess.php");
 		}
 	} elseif(isset($_POST["updateUser"]) && isset($_GET["select"])) {
 		if(!updateStudent()) {
-			#TODO funktioniert nicht
 			echo "Hast du entwa Felder freigelassen?";
 		}
 	}
@@ -170,6 +172,25 @@ include("../../includes/DbAccess.php");
 			echo "<div class=\"right\">";
 			echo "<h2>Sch&uuml;lerinformation</h2>";
 
+			echo "
+	<form method=\"POST\">
+		<input class=\"datalist\" list=\"classes\" name=\"classId\" placeholder=\"KlassenId\">
+		<input type=\"submit\" name=\"addClass\" value=\"Klasse hinzuf&uuml;gen\">
+		<datalist id=\"classes\">";
+
+		$stmt = $conn -> prepare("SELECT * FROM grade");
+		$stmt -> execute();
+		$result = $stmt -> get_result();
+		while($row = $result -> fetch_assoc()) {
+			echo "<option value=", $row["classId"], "> ", $row["className"], "</option>";
+		}
+
+		echo "
+		</datalist>
+	</form>
+	<hr>
+			";
+
 			$stmt = $conn -> prepare("SELECT * FROM student WHERE id = ?");
 			$stmt -> bind_param("i", $_GET["select"]);
 			$stmt -> execute();
@@ -177,13 +198,13 @@ include("../../includes/DbAccess.php");
 
 			$edit = isset($_POST["edit"]);
 			if(!empty($result)) {
-			echo "
+			echo "<center>
 	<form method=POST>
 		<table>
 			<tr> <th> ID </th> <td>" . $result["id"]."</td></tr>
-			<tr> <th> Name </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type=\"text name=\"name\"> </td>" : "")."</tr>
-			<tr> <th> Nachname </th> <td>".$result["surname"]."</td>". ($edit ? "<td> <input type=\"text name=\"surname\"> </td>" : "")."</tr>
-			<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type=\"text name=\"email\"> </td>" :"")."</tr>
+			<tr> <th> Name </th> <td>".$result["name"]."</td>". ($edit ? "<td> <input type=\"text\" name=\"name\"> </td>" : "")."</tr>
+			<tr> <th> Nachname </th> <td>".$result["surname"]."</td>". ($edit ? "<td> <input type=\"text\" name=\"surname\"> </td>" : "")."</tr>
+			<tr> <th> E-Mail </th> <td>".$result["email"]."</td>". ($edit ? "<td> <input type=\"text\" name=\"email\"> </td>" :"")."</tr>
 			<tr> <th> Password </th> <td><a href='?select=".$_GET["select"]."&editPwd=1'>Passwort &auml;ndern</a></td></tr>
 			<tr> <th> Klassen </th> <td>";
 			{
@@ -202,7 +223,7 @@ include("../../includes/DbAccess.php");
 			<tr> <th> <input type=submit name=delete value=Entfernen> <input type=\"hidden\" name=id value=", $result["id"], "</th>
 			<th> ".($edit ? "<input type=\"submit\" value=\"Abbrechen\"> </th> <th> <input type=\"submit\" name=\"updateUser\" value=\"Absenden\">" : "<input type=\"submit\" name=\"edit\" value=\"Bearbeiten\">")."</th> </tr>
 		</table>
-	</form>";
+	</form></center>";
 			} else {
 				echo "Es gibt keinen Nutzer mit dieser ID";
 			}
