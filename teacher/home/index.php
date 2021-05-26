@@ -3,16 +3,12 @@ global $position;
 $position = 0;
 include("./../header.inc.php");
 ?>
-	<p>
+	<h1>
 		Wilkommen bei Metis, <?php echo $_SESSION["user"]["salutation"]." ".$_SESSION["user"]["name"] . "\n";?>
+	</h1>
+	<p>
+		
 	</p>
-		<!--Nun für alle, deine erhältlich Daten: *Hu Har har!*
-		< ?php
-			foreach($_SESSION["user"] as $data) {
-				echo "\n<p>\n". $data . "\n</p>\n";
-			}
-		?>
-		-->
 <?php
 include("./../footer.inc.php");
 ?>

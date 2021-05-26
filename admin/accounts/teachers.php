@@ -136,10 +136,7 @@ include("../../includes/DbAccess.php");
 			}
 		}
 	}elseif(isset($_POST["updateUser"]) && isset($_GET["select"])) {
-		if(!updateTeacher()) {
-			#TODO
-			echo "Hast du entwa Felder freigelassen?";
-		}
+		updateTeacher();
 	}
 
 
