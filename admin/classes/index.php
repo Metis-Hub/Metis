@@ -6,6 +6,33 @@ include "../header.inc.php";
 include "./header.inc.php";
 
 include "../../includes/DbAccess.php";
+
+if(isset($_POST["renameClass"]) && !empty($_POST["newName"]) && !empty($_GET["select"])){
+	$stmt = $conn -> prepare("UPDATE grade SET className=? WHERE classId=?");
+	$stmt -> bind_param("si", $_POST["newName"], $_GET["select"]);
+	$stmt -> execute();
+}
+if(isset($_POST["delClass"]) && !empty($_GET["select"])) {
+	$stmt = $conn -> prepare("DELETE FROM grade WHERE classId = ?");
+	$stmt -> bind_param("i", $_GET["select"]);
+	$stmt -> execute();
+}
+if(isset($_GET["newClass"]) && isset($_POST["createClass"])){
+	if(!empty($_POST["className"])) {
+		$stmt = $conn -> prepare("INSERT INTO grade (className) VALUES (?)");
+		$stmt -> bind_param("s", $_POST["className"]);
+		$stmt -> execute();
+		$success = true;
+		header("Location: ./?select=".mysqli_insert_id($conn));
+	}
+}
+if(isset($_POST["addStudent"]) && !empty($_POST["studentId"])) {
+	$stmt = $conn -> prepare("INSERT INTO studentsclass (studentId, classId) VALUES (?, ?)");
+	$stmt -> bind_param("ii", $_POST["studentId"], $_GET["select"]);
+	$stmt -> execute();
+}
+
+
 ?>
 		<h1> Klassen </h1>
 		<div class="left">
@@ -15,13 +42,10 @@ include "../../includes/DbAccess.php";
 				?>
 				<input type="submit" name="search" value="Suchen">
 				<input type="submit" name="newClass" value="Neue Klasse">
-
-				<!-- #TODO -->
-				<input type="submit" name="newRelation" value="Neuer Verweis">
 			<?php
 			##### Suchsystem #####
 			if(isset($_GET["search"]) ||!empty($_GET["select"])) {
-				echo "<table><tr> <th>ID</th> <th>Klassenname</th></tr>";
+				echo "<table><tr> <th>Klassenname</th></tr>";
 				$result;
 				if(!empty($_GET["class"])) {
 					$class = $_GET["class"];
@@ -35,8 +59,7 @@ include "../../includes/DbAccess.php";
 
 				while($row = $result->fetch_assoc()) {
 					echo "<tr>";
-					echo "<td> <input type=submit name=select value=".$row["classId"]."></td>";
-					echo "<td>".$row["className"]."</td>";
+					echo "<td> <a href=\"?select=".$row["classId"]."\">".$row["className"]."</a></td>";
 					echo "</tr>";
 				}
 				echo "</table>";
@@ -47,13 +70,6 @@ include "../../includes/DbAccess.php";
 				$stmt -> bind_param("ii", $id, $_GET["select"]);
 				$stmt -> execute();
 				$_POST["classSearch"] = "ja";
-			}
-
-			#TODO (tmp)
-			if(isset($_POST["adduser"])) {
-				$stmt = $conn -> prepare("INSERT INTO studentsclass (studentId, classId) VALUES (?, ?)");
-				$stmt -> bind_param("ii", $_POST["userId"], $_POST["classId"]);
-				$stmt -> execute();
 			}
 			?>
 			</form>
@@ -80,28 +96,34 @@ include "../../includes/DbAccess.php";
 			
 			## Klasseneinstellung ##
 			echo "<form method=POST>";
-			#TODO
-			echo "<input type = \"submit\" name=\"deleteClass\" value=\"Klasse l&ouml;schen\">";
-			echo "<input type = \"submit\" name=\"changeClassName\" value=\"Name &auml;ndern\">";
+			echo "<input type = \"text\" name=\"newName\" placeholder=\"neuer Name\">";
+			echo "<input type = \"submit\" name=\"renameClass\" value=\"Name &auml;ndern\">";
+			echo "<input type = \"submit\" name=\"delClass\" value=\"Klasse l&ouml;schen\">";
 			echo "</form>";
 
-			## Angehörigensuche ##
+			## Hinzufügen von Schülern ##
 			echo "<form method=POST>";
-			# Suche #
-			echo "<input type=\"text\" name=\"searchkey\" placeholder=\"Suche\">";
-			echo "<input type=\"submit\" name=\"classSearch\" value=\"Suchen\">";
-
+			echo "<input type=\"number\" name=\"studentId\" placeholder=\"Sch&uuml;lerId\">";
+			echo "<input type=\"submit\" name=\"addStudent\" value=\"Sch&uuml;ler hinzuf&uuml;gen\">";
 			echo "</form>";
-
+			
 			echo "<a target=\"_blank\" href=./classDays.php?class=".$_GET["select"]."> Stundenplan </a>";
+			echo "<hr>";
 
+			## Schülerauswahl ##
+			echo "<form method=POST>";
+			echo "<input type=\"text\" name=\"searchkey\" placeholder=\"Suche\">";
+			echo "<input type=\"submit\" name=\"classSearch\" value=\"Sch&uuml;ler suchen\">";
+			echo "</form>";
+			
+			# Ausgabe der Schüler
 			if(isset($_POST["classSearch"])) {
 				$key = empty($_POST["searchkey"]) ? "%" : "%".$_POST["searchkey"]."%";
 				$stmt = $conn -> prepare("SELECT student.id, student.name, student.surname, student.email FROM studentsclass INNER JOIN student ON student.id = studentsclass.studentId WHERE classid = ? AND (name LIKE ? OR email LIKE ?) LIMIT 30");
 				$stmt -> bind_param("iss", $_GET["select"], $key, $key);
 				$stmt -> execute();
 				$result = $stmt -> get_result();
-				echo "<table> <tr> <th> ID </th> <th>Vorname</th> <th>Name</th> <th>Email</th></tr>";
+				echo "<br> <center><table> <tr> <th> ID </th> <th>Vorname</th> <th>Name</th> <th>Email</th></tr>";
 				while($row = $result -> fetch_assoc()) {
 					echo "<tr>";
 					echo "<td> <button onclick=\"location.href = './../accounts/students.php?select=".$row["id"]."&backToClass=".$_GET["select"]."'\">".$row["id"]."</button></td>";
@@ -112,40 +134,17 @@ include "../../includes/DbAccess.php";
 					echo "><input type='submit' name='removeStudent' value='Entfernen'></td>";
 					echo "</form></tr>";
 				}
-				echo "</table>";
+				echo "</center></table>";
 			}
 
 			echo "</div>";
 
 		### Neue Klasse ###
 		}elseif(isset($_GET["newClass"])){
-			$success = false;
 			echo "<div class=\"right\">";
-			if (isset($_POST["createClass"])) {
-				if(!empty($_POST["className"])) {
-					$sql = "INSERT INTO grade (className) VALUES (?)";
-					$stmt = $conn -> prepare($sql);
-					$stmt -> bind_param("s", $_POST["className"]);
-					$stmt -> execute();
-					$success = true;
-					header("Location: ./?select=".mysqli_insert_id($conn));
-				} else {
-					#TODO
-					echo "Empty Fields";
-				}
-			}
-			if(!$success) {
-				echo "<h1> Neue Klasse </h1>";
-				echo "<form method=POST> <input type=text name=className placeholder = 'Klassenname'> <input type=submit name=createClass> </form>";
-			}
+			echo "<h1> Neue Klasse </h1>";
+			echo "<form method=POST> <input type=text name=className placeholder = 'Klassenname'> <input type=submit name=createClass> </form>";
 			echo "</div>";
-		} elseif(isset($_GET["newRelation"])) {
-			echo "<div class=\"right\">";
-			echo "<h1> Sch&uuml;ler zu Klassen hinzuf&uuml;gen </h1>";
-			echo "<form method=POST>";
-			echo "<input type='number' name='userId' placeholder='UserId'><input type='number' name='classId' placeholder='KlassenId'>";
-			echo "<input type='submit' name='adduser'>";
-			echo "</form>";
 		}
 		?>
 <?php

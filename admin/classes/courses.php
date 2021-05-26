@@ -60,7 +60,7 @@ if(isset($_GET["search"])) {
 <?php
 if(isset($_GET["new_course"])) {
 	echo "<div class=\"right\"> <h1> Neuer Kurs </h1>";
-	echo "<form method=GET> <input list=teachers name=teacherId placeholder=LehrerId> <input list=subjects name=subjectId placeholder=FachId>";
+	echo "<form method=GET> <input  class=\"datalist\" list=teachers name=teacherId placeholder=LehrerId> <input list=subjects name=subjectId placeholder=FachId>";
 
 	$result = $conn -> query("SELECT id, email FROM teacher");
 	echo "<datalist id=teachers>";
@@ -70,7 +70,7 @@ if(isset($_GET["new_course"])) {
 	echo "</datalist>";
 
 	$result = $conn -> query("SELECT subjectId, `long` as subject FROM subject");
-	echo "<datalist id=subjects>";
+	echo "<datalist  class=\"datalist\" id=subjects>";
 	while($row = $result -> fetch_assoc()) {
 		echo "<option value=".$row["subjectId"].">".$row["subject"]."</option>";
 	}

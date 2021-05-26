@@ -58,10 +58,11 @@ include("../../includes/DbAccess.php");
 			?>
 			<input type="submit" name="search" value="Suchen">
 			<input type="submit" name="newAccount" value="Neuer Account">
-
+			</form>
+			
 			<br>
 			<table>
-				<tr> <th>ID</th> <th>Anrede</th> <th>Nachname</th> <th>Email</th></tr>
+				<tr> <th> Name </th> <th>Email</th></tr>
 			<?php
 			if(!empty($_GET["search"]) ||!empty($_GET["select"])) {
 				$sql = "SELECT id, salutation, name, email FROM teacher";
@@ -82,16 +83,13 @@ include("../../includes/DbAccess.php");
 
 				while($row = $result->fetch_assoc()) {
 					echo "<tr>";
-					echo "<td> <input type=submit name=select value=".$row["id"]."></td>";
-					echo "<td>".$row["salutation"]."</td>";
-					echo "<td>".$row["name"]."</td>";
-					echo "<td>".$row["email"]."</td>";
+					echo "<td> <a href=\"?select=".$row["id"]."\">".$row["salutation"]." ".$row["name"]."</td>";
+					echo "<td> <a href=\"mailto:".$row["email"]."\">".$row["email"]."</a></td>";
 					echo "</tr>";
 				}
 			}
 			?>
 			</table>
-		</form>
 	</div>
 	<?php
 
