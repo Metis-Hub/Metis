@@ -66,8 +66,7 @@
                 echo '<p>';
                 ++$answerNumber;
             }
-
-            echo '<input type="number" name="answerCount" value="'.$answerNumber.'" hidden="true">
+            echo '<input type="hidden" name="answerCount" value="'.$answerNumber.'">
                 <input type="submit" name="checkAnswer" value="Antwort überprüfen">
             </form>';            
             
