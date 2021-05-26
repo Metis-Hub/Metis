@@ -118,11 +118,11 @@
                 }
                 if (calcTypeUsed=="multi") {
                     var solution=factor1*factor2;
-                    var task=factor1+" * "+factor2+" = ";
+                    var task=factor1+" × "+factor2+" = ";
                 }
                 if (calcTypeUsed=="divi") {
                     var solution=factor1/factor2;
-                    var task=factor1+" / "+factor2+" = ";
+                    var task=factor1+" ÷ "+factor2+" = ";
                 }
                 if (calcTypeUsed=="square") {
                     var solution=factor1*factor1;
@@ -167,9 +167,21 @@
             }
 
             else if (document.getElementById("studentSol"+i).value==solutions[i]) { //Richtig
-                sols.innerHTML += tasks[i]+'<p style="color:green; display:inline;">'+document.getElementById("studentSol"+i).value+"</p><br>";
+                sols.innerHTML += tasks[i]+'<p style="color:green; display:inline;">'+solutions[i]+"</p><br>";
                 rightCount++;
             }  
+
+            //Bei der Division gibt es einen Toleranzbereich von 0,1
+            else if (tasks[i].indexOf("÷")!=-1) {
+                if (document.getElementById("studentSol"+i).value<=(solutions[i]+0.1) && document.getElementById("studentSol"+i).value>=(solutions[i]-0.1)) { //Richtig
+                    sols.innerHTML += tasks[i]+'<p style="color:green; display:inline;">'+solutions[i]+"</p><br>";
+                    rightCount++;
+                }  
+
+                else { //falsch
+                    sols.innerHTML += tasks[i]+'<p style="color:red; display:inline;"><s>'+document.getElementById("studentSol"+i).value+'</s></p> <p style="color:green; display:inline;">'+solutions[i]+"</p><br>";
+                }
+            }
 
             else { //falsch
                 sols.innerHTML += tasks[i]+'<p style="color:red; display:inline;"><s>'+document.getElementById("studentSol"+i).value+'</s></p> <p style="color:green; display:inline;">'+solutions[i]+"</p><br>";
