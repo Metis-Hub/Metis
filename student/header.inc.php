@@ -22,11 +22,9 @@ $date = array(
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<?php
-		if(!isLoggedIn() || $_SESSION["user"]["usertype"] != "student") {
-			header("Location: ./../../index/index.php?error=you_not_logged_in");
-		}
-		if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false)
-			header("Location: ./../../../");
+		if(!isLoggedIn() || $_SESSION["user"]["usertype"] != "student") header("Location: ./../../index/index.php?error=you_not_logged_in");
+		elseif(max_time()) header("Location: ./../../index/index.php?error=max_inactive_time");
+		if (!isset($_SESSION["cookies"]["allow_set_cookies"]) || $_SESSION["cookies"]["allow_set_cookies"] == false) header("Location: ./../../../");
 		if($_SESSION["cookies"]["visual_mode_cookie"] == "bright")
 			echo "\n\t<!-- Heller Syle -->\n\t<link rel=\"stylesheet\" href=\"./../mainStyle.css\" />\n\t\n";
 		elseif($_SESSION["cookies"]["visual_mode_cookie"] == "dark")

@@ -18,6 +18,7 @@ function tryLogin($type, $email, $password, $conn) {
 	    if(password_verify($password, $rows["password"])) {
             $_SESSION["user"] = array_merge($rows, array("usertype" => $type));
             $_SESSION["user"]["classes"] = getClasses();
+            $_SESSION["user"]["inactive_time"] = time();
             return true;
         } else {
             return false;

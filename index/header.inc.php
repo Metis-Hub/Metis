@@ -44,15 +44,17 @@ $_SESSION["safe_password_seed"] = Rand::Next();
 					break;
 					case "to_much_wrong_logins":
 					echo "alert(\"Sie haben zu viel falsche Daten gesendet!\");\n"; sleep(1);
-					echo "window.location.href = \"./../index/\"\n";
 					break;
 					case "invalid_email":
 					echo "alert(unescape(\"Email ist ungl%FCltig!\"));\n"; sleep(1);
 					break;
+					case "max_inactive_time":
+					echo "alert(unescape(\"Inaktivit%E4tsmaximum erreicht%21\"));\n";
+					break;
 					default:
-					echo "alert(\"Der Code wurde manipuliert!\");\n";
+					echo "alert(\"Unbekannter Fehler!\");\n";
 				}
-				echo "</script>\n";
+				echo "window.location.href = \"./../index/\";\n</script>\n";
 			}
 
 		?>

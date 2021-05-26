@@ -206,7 +206,7 @@
             <br/><br/>
             Zahlenbereich:
             <br/>
-            <input type="number" name="minNumber" id="minNumber" value="1" style="width: 1cm"> bis <input type="number" name="maxNumber" id="maxNumber" value="10" style="width: 1cm">
+            <input type="number" name="minNumber" id="minNumber" value="1"> bis <input type="number" name="maxNumber" id="maxNumber" value="10">
             <br/><br/>
             <input type="checkbox" name="exclude" id="excludeNegatives" value="excludeNegatives" onClick="checkCheckbox('excludeNegatives')" checked> Keine negativen Zahlen in der Lösung nutzen
             <br/><br/>

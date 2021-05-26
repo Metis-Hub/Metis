@@ -14,6 +14,13 @@ function isLoggedIn() {
         return false;
     }
 }
+
+function max_time($max_time_in_minutes = 60) {
+	if(time() - $_SESSION["user"]["inactive_time"] <= $max_time_in_minutes * 60) $_SESSION["user"]["inactive_time"] = time();
+	else return true;
+	return false;
+}
+
 /*
  * Meldet den User ab
  */
