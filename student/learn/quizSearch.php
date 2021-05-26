@@ -73,7 +73,7 @@
                 $resultQuiz=array();
                 foreach ($search as $tag) {    
                     include "../../includes/DbAccess.php";     
-                    $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subject` ON `quizzes`.`subjectId` = `subject`.`subjectId` INNER JOIN `quizTags` ON `quizTags`.`quizId` = `quizzes`.`Id` WHERE `quiztags`.`tag` LIKE '".$tag."' AND `minClass` >= ".$_GET["minClass"]." AND `maxClass` <= ".$_GET["maxClass"]." ".$sqlSubject;
+                    $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subject` ON `quizzes`.`subjectId` = `subject`.`subjectId` INNER JOIN `quizTags` ON `quizTags`.`quizId` = `quizzes`.`id` WHERE `quiztags`.`tag` LIKE '".$tag."' AND `minClass` >= ".$_GET["minClass"]." AND `maxClass` <= ".$_GET["maxClass"]." ".$sqlSubject;
                     $resQuiz=$conn->query($sqlQuiz);
                     $conn->close();
 
@@ -112,7 +112,7 @@
                         echo '<form action="quizSolve.php" method="get">
                                 <td>                            
                                 <input type="submit" name="solveQuiz" value="Quiz bearbeiten">
-                                <input type="hidden" name="quizId" value="'.$quiz["Id"].'">
+                                <input type="hidden" name="quizId" value="'.$quiz["id"].'">
                                 <input type="hidden" name="questionCount" value="'.$quiz["questionCount"].'">
                                 <input type="hidden" name="quizName" value="'.$quiz["name"].'">
                                 </td>
@@ -133,7 +133,7 @@
                     $resultQuiz=array();
                      
                         include "../../includes/DbAccess.php";     
-                        $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subject` ON `quizzes`.`subjectId` = `subject`.`subjectId` WHERE `quizzes`.`Id` LIKE '".$searchedId."'";
+                        $sqlQuiz="SELECT * FROM `quizzes` INNER JOIN `subject` ON `quizzes`.`subjectId` = `subject`.`subjectId` WHERE `quizzes`.`id` LIKE '".$searchedId."'";
                         $resQuiz=$conn->query($sqlQuiz);
                         $conn->close();
     
@@ -175,7 +175,7 @@
                             echo '<form action="quizSolve.php" method="get">
                                     <td>                            
                                     <input type="submit" name="solveQuiz" value="Quiz bearbeiten">
-                                    <input type="hidden" name="quizId" value="'.$quiz["Id"].'">
+                                    <input type="hidden" name="quizId" value="'.$quiz["id"].'">
                                     <input type="hidden" name="questionCount" value="'.$quiz["questionCount"].'">
                                     <input type="hidden" name="quizName" value="'.$quiz["name"].'">
                                     </td>
