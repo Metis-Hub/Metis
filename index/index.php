@@ -42,7 +42,7 @@ include("header.inc.php");
 				</p>
 
 				<p style="font-size: 0.5cm;">
-				Melde dich jetzt oben links an und fang an, Schule endlich zu genießen!
+				Melde dich jetzt oben rechts an und fang an, Schule endlich zu genießen!
 				</p>
 			</div>
 		</div>
