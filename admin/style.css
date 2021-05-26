@@ -179,6 +179,7 @@ input[type="button"] {
     cursor: pointer;
 }
 
+.demoform .datalist,
 .demoform input[type="number"],
 .demoform input[type="password"],
 .demoform input[type="text"],
@@ -198,6 +199,7 @@ input[type="button"] {
     cursor: text;
 }
 
+.datalist,
 select,
 input[type="number"],
 input[type="password"],
@@ -217,6 +219,7 @@ input[type="search"] {
     cursor: text;
 }
 
+    .datalist::placeholder,
     input[type="number"]::placeholder,
     input[type="password"]::placeholder,
     input[type="text"]::placeholder,
@@ -226,6 +229,7 @@ input[type="search"] {
         opacity: 1; /* Firefox */
     }
 
+    .datalist::-ms-input-placeholder,
     input[type="number"]::-ms-input-placeholder,
     input[type="password"]::-ms-input-placeholder,
     input[type="text"]::-ms-input-placeholder,
@@ -234,6 +238,7 @@ input[type="search"] {
         color: whitesmoke;
     }
 
+    .datalist::-ms-input-placeholder,
     input[type="number"]::-ms-input-placeholder,
     input[type="password"]::-ms-input-placeholder,
     input[type="text"]::-ms-input-placeholder,
