@@ -26,7 +26,7 @@
 			<?php
 				echo "<a ".(($position == 0) ? 'class="active"' : 'href="../index/"').">Home</a>";
 				echo "<a ".(($position == 1) ? 'class="active"' : 'href="../accounts/"').">Accounts</a>";
-				echo "<a ".(($position == 2) ? 'class="active"' : 'href="../classes/"').">Klassen</a>";
+				echo "<a ".(($position == 2) ? 'class="active"' : 'href="../classes/"').">Planeintr&auml;ge</a>";
 				echo "<a ".(($position == 3) ? 'class="active"' : 'href="../configs/"').">Servereinstellungen</a>";
 				
 				#ersetzen um zum lehrer zu führen

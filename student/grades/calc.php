@@ -93,14 +93,14 @@
                                 }
                             }
                             if($isnJmp) {
-                                echo $input[1][1] . $i - $n_jumps . $input[1][2] . $_GET[$i] . $input[1][3];
+                                echo $input[1][1] . ($i - $n_jumps) . $input[1][2] . $_GET[$i] . $input[1][3];
                             }
                             else {  // Wenn das Feld leer ist, wird es übersprungen
                                 $n_jumps++;
                             }
                             $i2 = $i;
                         }
-                        echo $input[1][1] . $i2 - $n_jumps + 1 . $input[1][4] . $input[1][3];
+                        echo $input[1][1] . ($i2 - $n_jumps + 1) . $input[1][4] . $input[1][3];
                         $_SESSION["num"] = $_SESSION["num"] - $n_jumps;
                     }
                     ?>

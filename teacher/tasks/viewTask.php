@@ -36,21 +36,24 @@
 					$stmt -> execute();
 					$result = $stmt -> get_result();
 
-					if($row = $result -> fetch_assoc()) {
-						echo $row["COUNT(*)"], "/";
-						$row = $result -> fetch_assoc();
-						echo $row["COUNT(*)"], " Sch&uuml;ler haben diese Aufgabe erledigt";
+					if(mysqli_num_rows($result) < 2) {
+						echo "Dieser Aufgabe wurde kein Sch&uuml;ler zugeordnet";
+					} else {
+						if($row = $result -> fetch_assoc()) {
+							echo $row["COUNT(*)"], "/";
+							$row = $result -> fetch_assoc();
+							echo $row["COUNT(*)"], " Sch&uuml;ler haben diese Aufgabe erledigt";
+						}
+						echo "<table> <tr> <th> Name </th> <th> Erledingt </th> </tr>";
+						$stmt = $conn -> prepare(file_get_contents("tasksStudents.sql"));
+						$stmt -> bind_param("i", $_GET["task"]);
+						$stmt -> execute();
+						$result = $stmt -> get_result();
+						while($row = $result -> fetch_assoc()) {
+							echo "<tr> <td> <a href=mailto:",$row["email"], ">", $row["name"], " ", $row["surname"], " </a> </td> <td> ", empty($row["hasDone"])?"Nein":"Ja", "</tr>";
+						}
+						echo "</table>";
 					}
-
-					echo "<table> <tr> <th> Name </th> <th> Erledingt </th> </tr>";
-					$stmt = $conn -> prepare(file_get_contents("tasksStudents.sql"));
-					$stmt -> bind_param("i", $_GET["task"]);
-					$stmt -> execute();
-					$result = $stmt -> get_result();
-					while($row = $result -> fetch_assoc()) {
-						echo "<tr> <td> <a href=mailto:",$row["email"], ">", $row["name"], " ", $row["surname"], " </a> </td> <td> ", empty($row["hasDone"])?"Nein":"Ja", "</tr>";
-					}
-					echo "</table>";
 			} else {
 				echo "<a href=?task=".$_GET["task"]."&viewStudents=1> Sch&uuml;ler anzeigen </a>";
 			}

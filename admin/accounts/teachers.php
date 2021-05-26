@@ -16,6 +16,11 @@ function updateTeacher() {
 	$sql = "UPDATE teacher SET ";
 	$isFirst = true;
 	
+	if(!empty($_POST["name"])) {
+		$sql .= ($isFirst ? "name = \"".$_POST["name"]."\"" : ", name = \"".$_POST["name"]."\"");
+		$isFirst = false;
+	}
+
 	if(!empty($_POST["email"])) {
 		$sql .= ($isFirst ? "email = \"".$_POST["email"]."\"" : ", name = \"".$_POST["email"]."\"");
 		$isFirst = false;
