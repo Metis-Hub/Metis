@@ -1,22 +1,29 @@
-# Datenbank
-Erstellen eines Users "Metis" ohne Passwort mit zugehöriger Datenbank
+# Information
+Metis ist ein Stunden- Aufgaben- und Lernplaner
 
-# FrontEnd
-
-Bei Veröffentlichung:
-Den Ordner index/tmpSignIn löschen, sowie alle links in der Datei index/index.php, zudem können alle Dateien, welche tmp in ihren Namen haben gelöscht werden.
-
-# Sessions
-
-$_SESSION["visual_mode"]:			(dark/bright)
-$_SESSION["caller"]:				(der Pfad, indem nach aufruf von cookies.php geheadert wird)
-$_SESSION["cookies.php_type"]:		(bei aufrufung von cookies.php, ist dies der typ von dem was gemacht werden soll)
-$_SESSION["called"]:				(ob cookies.php schon aufgerufen wurde)
-$_SESSION["login_failed"]:			(ist nur gesetzt, wenn der Loginvorgang fehlschlug)
-$_SESSION["first"]:					(erste anmeldung)
-
-$_SESSION["user"]:					(Array der Userinformationen, extra Feld "usertype" mit möglichen Werten "student" oder "teacher")
+# Anforderungen
 
 
 
-Dezentral, Einfache handhabung, Intuitve Handhabung, einfache Einrichtung, praktische Features für Schüler und Lehrer.
+
+Um Metis benutzen zu können, muss der Dienst seitens der Schule zuerst eingerichtet werden.
+Für diese Einrichtung sind ein Webserver (wir empfehlen Apache2), auf dem PHP installiert sein muss, und ein SQL-Datenbankserver notwendig.
+Sie sollten beim ersten Besuch von Metis auf die Admin-Loginseite weitergeleitet werden, hier müssen Sie sich anmelden.
+Der Nutzername lautet "Admin", das Passwort "admin".
+Unter dem Reiter "Servereinstellungen" finden Sie nun alle wichtigen Einstellungen für den Metis-Server.
+Bitte geben Sie hier die erforderlichen Daten Ihres Schulservers ein. Diese Daten werden nicht mit Dritten geteilt.
+Nun müssen Sie noch die Knöpfe "Übernehmen" und "Erstelle Tabellen" drücken.
+
+Nun sollten Sie noch Eintragungen in folgenden Tabellen vornehmen:
+1. Teacher: Hier können Sie die an Ihrer Schule arbeitenden Lehrer eintragen.
+2. Student: Hier können Sie die an Ihrer Schule lernenden Schüler eintragen.
+3. Grade: Hier können Sie die Klassen Ihrer Schule eintragen.
+4. Subject: Hier können Sie die an Ihrer Schule unterrichteten Fächer eintragen.
+5. Course: Hier können Sie die an Ihrer Schule unterrichteten Fächer in Verbindung mit unterrichtenden Lehrkräften eintragen ("Kurse").
+6. Langs: Hier können Sie die an Ihrer Schule unterrichteten Sprachen eintragen.
+
+Als letzter Schritt sollten Sie nun den Schülern und Lehrern ihre Zugangsdaten mitteilen.
+Metis ist nun aufgesetzt und funktionstüchtig.
+
+Wir wünschen viel Erfolg sowie ein angenehmes Lehr- und Lernerlenis,
+Ihr Metis-Team

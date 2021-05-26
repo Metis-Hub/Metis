@@ -14,7 +14,6 @@ elseif(!isset($_SESSION["cookies"]["request_send"]) || $_SESSION["cookies"]["req
 include("header.inc.php");
 
 ?>
-
 	<center>
 		<div>
 			
@@ -34,7 +33,7 @@ include("header.inc.php");
 				<p>
 					Metis, dies ist eine Schulplattform, welche Aufgabenplanung und Optimierung f&uuml;r Sie &uuml;bernimmt.
 					<br />
-					Zudem Erm&ouml;glichen wir Chats mit Klassenkameraden, und Lehrern zu f&uuml;hren.
+					Zudem erm&ouml;glichen wir einen Stunden- und Vertretungsplaner in dem die Sch&uuml;ler ihre Aufgaben ansehen und l&ouml;sen k&ouml;nnen.
 					Wir bieten den Lehrern die M&ouml;glichkeit, Aufgaben hier f&uuml;r die Sch&uuml;ler hochzuladen.
 				</p>
 				<p>
@@ -56,7 +55,9 @@ include("header.inc.php");
 					<I>Und wage es ja nicht 123, passwort oder &auml;hnliches zu verwenden!</I> &#128544;
 				</p>
 			</div>
-
+			<div>
+				<a target="_blank" href="https://github.com/Metis-Git/Metis"> <i class="fa fa-github fa-5x"></i> </a>
+			</div>
 		</div>
 	</center>
 

@@ -59,6 +59,8 @@ $_SESSION["safe_password_seed"] = Rand::Next();
 
 		?>
 		<link rel="icon" href="../image/faviconMetis.ico" type="image/x-icon" />
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<script language="JavaScript" type="text/JavaScript" src="../includes/link98346.js"></script>
 		<title>Metis</title>
 	</head>

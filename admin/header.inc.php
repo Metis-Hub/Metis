@@ -30,7 +30,7 @@
 				echo "<a ".(($position == 3) ? 'class="active"' : 'href="../configs/"').">Servereinstellungen</a>";
 				
 				#ersetzen um zum lehrer zu führen
-				echo "<a class = 'right' href = './../../index/'> Zur&uuml;ck </a>";
+				echo "<a class = 'right' href = './../../teacher/home/'> Zur&uuml;ck </a>";
 			?>
 			</nav>
 		</header>
