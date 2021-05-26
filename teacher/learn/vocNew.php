@@ -47,7 +47,7 @@
 
         else if (isset($_GET["back"])) {
             if ($_SESSION["vocNumber"]==0) { //wenn man nicht weiter zurück kann
-            echo '<script>alert("Sie k&ouml;nnen nicht weiter zurück gehen.");</script>';
+            echo '<script>alert("Sie können nicht weiter zurück gehen.");</script>';
             }
 
             else {

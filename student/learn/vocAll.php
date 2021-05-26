@@ -120,8 +120,8 @@
     <form action="vocQuery.php">
         <input type="submit" name="allVocsConfirm" value="Abfrage starten">
         <?php
-            echo "<input type=\"number\" name=\"minNiveau\" value=\"" . $minNiveau . "\" hidden=\"true\"\>\n";
-            echo "<input type=\"number\" name=\"maxNiveau\" value=\"" . $maxNiveau . "\" hidden=\"true\"\>\n";
+            echo "<input type=\"hidden\" name=\"minNiveau\" value=\"" . $minNiveau . "\" \n";
+            echo "<input type=\"hidden\" name=\"maxNiveau\" value=\"" . $maxNiveau . "\" \n";
         ?>
     </form>
 

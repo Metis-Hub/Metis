@@ -112,9 +112,9 @@
                         echo '<form action="quizSolve.php" method="get">
                                 <td>                            
                                 <input type="submit" name="solveQuiz" value="Quiz bearbeiten">
-                                <input type="number" name="quizId" value="'.$quiz["Id"].'" hidden="true">
-                                <input type="number" name="questionCount" value="'.$quiz["questionCount"].'" hidden="true">
-                                <input type="text" name="quizName" value="'.$quiz["name"].'" hidden="true">
+                                <input type="hidden" name="quizId" value="'.$quiz["Id"].'">
+                                <input type="hidden" name="questionCount" value="'.$quiz["questionCount"].'">
+                                <input type="hidden" name="quizName" value="'.$quiz["name"].'">
                                 </td>
                             </form>';
                         echo '</tr>';
@@ -175,9 +175,9 @@
                             echo '<form action="quizSolve.php" method="get">
                                     <td>                            
                                     <input type="submit" name="solveQuiz" value="Quiz bearbeiten">
-                                    <input type="number" name="quizId" value="'.$quiz["Id"].'" hidden="true">
-                                    <input type="number" name="questionCount" value="'.$quiz["questionCount"].'" hidden="true">
-                                    <input type="text" name="quizName" value="'.$quiz["name"].'" hidden="true">
+                                    <input type="hidden" name="quizId" value="'.$quiz["Id"].'">
+                                    <input type="hidden" name="questionCount" value="'.$quiz["questionCount"].'">
+                                    <input type="hidden" name="quizName" value="'.$quiz["name"].'">
                                     </td>
                                 </form>';
                             echo '</tr>';

@@ -107,7 +107,7 @@
             
                 echo "\t<form action=\"vocQuery.php\" method=\"POST\" name=\"studentSolution\">\n";
                 echo "\t\t<input type=\"text\" name=\"sol\" placeholder=\"Bitte gib die Übersetzung an\" autocomplete=\"off\" />\n";
-                echo "\t\t<input type=\"number\" name=\"queryNumber\" value=\"" . $queriedNumber . "\" hidden=\"true\" />\n";
+                echo "\t\t<input type=\"hidden\" name=\"queryNumber\" value=\"" . $queriedNumber . "\" />\n";
                 echo "\t\t<input type=\"submit\" name=\"studentSolSubmit\" value=\"Eingabe überprüfen\" />\n";
                 echo "\t</form>\n";
             }
