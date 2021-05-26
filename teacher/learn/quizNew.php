@@ -51,6 +51,9 @@
             <input type="number" name="maxClassOut" id="maxClassOut" min="1" max="13" value="1" oninput="document.getElementById('maxClass').value=document.getElementById('maxClassOut').value"\>
             <br>
             Welche Tags soll das Quiz haben? (Bitte durch Semikola abtrennen) <!--vllt erklärung v. "tags" (für lehrer?)!-->
+            <br>
+            <i>Tags sind Schlagwörter, welche die Themen des Quiz' zusammenfassen.</i>
+            <br>
             <input type="text" name="quizTags" placeholder="Tags des Quizzes">
             <input type="submit" name="newQuizSubmit" value="Eingabe bestätigen">
 
