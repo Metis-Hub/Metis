@@ -57,11 +57,13 @@
             alert("Bitte vervollsändige deine Eingabe.");
         }
 
-        else {
+        else if (taskCount<=0 || taskCount > 1000) {        
+            alert("Die Zahl der Aufgaben muss mindestens 1 und darf höchstens 1000 betragen.");
+        } 
 
-        if (taskCount<=0 || taskCount > 1000) {
-            alert("Die Zahl der Aufgaben muss mindestens 1 und höchstens 1000 betragen.");
-        }  
+        else if (taskCount % 1!=0) {        
+            alert("Die Zahl der Aufgaben muss eine ganze Zahl sein.");
+        } 
         
         else {
             settings.innerHTML = ""; //der Inhalt der Seite wird gelöscht
@@ -149,7 +151,7 @@
 
             taskStart = performance.now();
 
-        }
+        
 
         }
     }
