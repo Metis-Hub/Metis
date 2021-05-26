@@ -4,7 +4,7 @@ Erstellen eines Users "Metis" ohne Passwort mit zugehöriger Datenbank
 # FrontEnd
 
 Bei Veröffentlichung:
-Den Ordner index/tmpSignIn löschen, sowie alle links in der Datei index/index.php, zudem können alle Dateien, welche tmp in ihren Namen haben gelöscht werden.
+Den Ordner index/tmpSignIn löschen, sowie alle links in der Datei index/index.php, zudem k&ouml;nnen alle Dateien, welche tmp in ihren Namen haben gelöscht werden.
 
 # Sessions
 
