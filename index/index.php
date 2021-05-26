@@ -15,15 +15,50 @@ include("header.inc.php");
 
 ?>
 
-	<p><b><u>Das ist tempor&auml;r:</u></b></p>
-	<ul>
-		<li><a href="./../tmpDelCookies.php">Cookies l&ouml;schen</a></li>
-		<li><a href="./../admin/">Admin-Zugriff</a></li>
-	</ul>
-	<h2>Zur Anmeldung:</h2>
-	<p>
-		Datenbank metis erstellen, und dann registrieren
-	</p>
+	<center>
+		<div>
+			
+			<br />
+			<div>
+				<h1>
+					Hallo und Herzlich Willkommen bei Metis!
+				</h1>
+			</div>
+
+			<br />
+
+			<div>
+				<p>
+					<h3>Was ist Metis?</h3>
+				</p>
+				<p>
+					Metis, dies ist eine Schulplattform, welche Aufgabenplanung und Optimierung f&uuml;r Sie &uuml;bernimmt.
+					<br />
+					Zudem Erm&ouml;glichen wir Chats mit Klassenkameraden, und Lehrern zu f&uuml;hren.
+					Wir bieten den Lehrern die M&ouml;glichkeit, Aufgaben hier f&uuml;r die Sch&uuml;ler hochzuladen.
+				</p>
+				<p>
+					Metis &uuml;berzeugt zudem mit den M&ouml;glichkeiten des Lernens, wie zum Beispiel	&uuml;ber Quizze, Vokabeltrainer und anderen Eastereggs.
+				</p>
+			</div>
+
+			<div>
+				<p>
+					<h3>Wie kann ich Metis nutzen?</h3>
+				</p>
+				<p>
+					Nutzt deine Schule immer noch nicht Metis?
+					<br />
+					Frag einfach deinen Klassenleiter, und zeige Ihm Metis. Metis muss n&auml;hmlich von der Schule aktiviert werden.
+					<br />
+					Ist dies getan, bekommst du dein Benutztername, und Passwort welches du bei der Ersten Anmeldung aufgefordert wirst zu &Auml;ndern.
+					<br />
+					<I>Und wage es ja nicht 123, passwort oder &auml;hnliches zu verwenden!</I> &#128544;
+				</p>
+			</div>
+
+		</div>
+	</center>
 
 <?php
 include("footer.inc.php");

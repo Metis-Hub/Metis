@@ -67,7 +67,6 @@ $_SESSION["safe_password_seed"] = Rand::Next();
 		<header>
 			<nav>
 				<a class="active">Home</a>
-				<a href="about/">About</a>
 				<a href="contact/">Impressum</a>
 				<div class="login-container">
 					<input type="text" placeholder="Email" name="email" id="email" />
