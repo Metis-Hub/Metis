@@ -25,12 +25,19 @@ if(!empty($_GET["day"])) {
 	if(!isset($_GET["newDay"])) {
 		if(!empty($_GET["day"])) {
 			echo "</div><div class=right>";
-			echo "<h1> Tag </h1>";
-
 			$id = $_GET["day"];
+			echo "<h1> Tag $id</h1>";
+
+			
 
 			# Hinzufügen
-			echo "<form metod=GET> <input name=courseId type=number placeholder=KursId> <input name=courseIndex type=number placeholder=\"Stunde (1-12)\"><label> Vertretung </label> <input placeholder=Vertretung type=checkbox name=substitute> <input name=day type=hidden value=", isset($_GET["day"])?$_GET["day"]:"","><input type=submit name=addCourse value=Hinzuf&uuml;gen> </form>";
+			echo "<form metod=GET> <input name=courseId list=courses placeholder=KursId> <datalist id=courses>";
+			$result = $conn -> query("SELECT courseId, `long` as subject, name FROM course JOIN teacher on teacherId = id JOIN subject on subject.subjectId = course.subjectId");
+			while($row = $result -> fetch_assoc()) {
+				echo "<option value=".$row["courseId"]."> ".$row["subject"]." ".$row["name"]."</option>";
+			}
+			
+			echo "</datalist><input name=courseIndex type=number placeholder=\"Stunde (1-12)\"><label> Vertretung </label> <input placeholder=Vertretung type=checkbox name=substitute> <input name=day type=hidden value=", isset($_GET["day"])?$_GET["day"]:"","><input type=submit name=addCourse value=Hinzuf&uuml;gen> </form>";
 			if(isset($_GET["addCourse"])) {
 				$stmt = $conn -> prepare("INSERT INTO day_has_course (dayId, courseId, courseIndex, isSubstitute) VALUES (?, ?, ?, ?)");
 
