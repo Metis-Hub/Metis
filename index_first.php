@@ -44,16 +44,27 @@ $content = "<html lang=\"de\">
     </body>
 </html>";
 
+if(isset($_POST["sub_next"])) {
+    file_put_contents($content, "index.php", true);
+    $_SESSION["FIRST_SESSION"] = true;
+    header("location: index.php");
+}
+
 ?><!DOCTYPE html>
 <html>
 
 <head>
     <title>Metis - Einrichtung</title>
+    <link rel="stylesheet" href="student/mainStyle.css" />
 <head>
 
 <body>
+    <h1>Danke, dass Sie sich f&uuml;r Metis entschieden haben!</h1>
     <h1>Was ist zu machen?</h1>
-    <form methode=""
+    <form method="POST" action="index.php">
+        <p>Geben Sie als Benutzername &quot;<b>Admin</b>&quot; und als Passwort &quot;<b>admin</b>&quot; ein.</p>
+        <input type="submit" name="sub_next" value="Zum Admininterface"></input> (Diese Datei wird beim Fortfahren gel&ouml;scht)
+    </form>
 </body>
 
 </html>
