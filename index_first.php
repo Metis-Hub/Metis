@@ -53,6 +53,7 @@ $content = "<html lang=\"de\">
 
 <body>
     <h1>Was ist zu machen?</h1>
+    <form methode=""
 </body>
 
 </html>
