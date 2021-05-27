@@ -40,10 +40,13 @@ include("header.inc.php");
 				<br/>
 				mit Lehrern und Schülern kommunizieren und außerdem individuell Vokabeln, Rechnen und vieles mehr lernen und üben.
 				</p>
-
+				<p style="font-size: 0.5cm;">
+				Verwendet deine Schule etwa noch nicht Metis? Dann lade es dir <a href="https://github.com/Metis-Git/Metis">hier</a> runter!
+				</p>
 				<p style="font-size: 0.5cm;">
 				Melde dich jetzt oben rechts an und fang an, Schule endlich zu genießen!
 				</p>
+
 			</div>
 		</div>
 	</center>
