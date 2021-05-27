@@ -158,7 +158,7 @@ input[type="button"] {
     font-size: 1rem;
     display: inline-block;
     font-size: 1rem;
-    margin: 0px 0px;
+    margin: 1px 1px;
     cursor: pointer;
 }
 
@@ -177,7 +177,7 @@ input[type="button"] {
     text-decoration: none;
     font-size: 1rem;
     display: inline-block;
-    margin: 0px 0px;
+    margin: 1px 1px;
     cursor: text;
 }
 
@@ -196,7 +196,7 @@ input[type="search"] {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: 0px 0px;
+    margin: 1px 1px;
     cursor: text;
 }
 

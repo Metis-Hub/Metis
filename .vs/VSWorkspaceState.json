@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\admin",
-    "\\admin\\classes",
-    "\\teacher",
-    "\\teacher\\tasks"
+    "\\admin\\configs"
   ],
-  "SelectedNode": "\\teacher\\tasks\\newTask.php",
+  "SelectedNode": "\\admin\\configs\\userdata.inc.php",
   "PreviewInSolutionExplorer": false
 }

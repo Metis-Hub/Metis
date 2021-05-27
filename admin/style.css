@@ -165,7 +165,7 @@ nav .right {
 button,
 input[type="submit"],
 input[type="button"] {
-    background-color: #7fbae2;
+    background-color: rgb(255 5 20);
     border: none;
     border-radius: 5px 5px 5px 5px;
     color: white;
@@ -175,7 +175,7 @@ input[type="button"] {
     font-size: 1rem;
     display: inline-block;
     font-size: 1rem;
-    margin: 0px 0px;
+    margin: 1px 1px;
     cursor: pointer;
 }
 
@@ -186,16 +186,16 @@ input[type="button"] {
 .demoform input[type="email"],
 .demoform input[type="search"],
 .demoform textarea {
-    background-color: #7fbae2;
+    background-color: rgb(255 5 20);
     border: none;
     border-radius: 5px 5px 5px 5px;
-    color: white;
+    color: rgb(77 74 70 / 0,87);
     padding: 7.5px 16px;
     text-align: center;
     text-decoration: none;
     font-size: 1rem;
     display: inline-block;
-    margin: 0px 0px;
+    margin: 1px 1px;
     cursor: text;
 }
 
@@ -207,15 +207,15 @@ input[type="text"],
 input[type="email"],
 input[type="search"] {
     font-size: 1rem;
-    background-color: #7fbae2;
+    background-color: rgb(255 5 20);
     border: none;
     border-radius: 5px 5px 5px 5px;
-    color: white;
+    color: rgb(77 74 70 / 0,87);
     padding: 7.5px 16px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: 0px 0px;
+    margin: 1px 1px;
     cursor: text;
 }
 
@@ -225,7 +225,7 @@ input[type="search"] {
     input[type="text"]::placeholder,
     input[type="email"]::placeholder,
     input[type="search"]::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: whitesmoke;
+        color: rgb(77 74 70 / 0,87);
         opacity: 1; /* Firefox */
     }
 
@@ -235,7 +235,7 @@ input[type="search"] {
     input[type="text"]::-ms-input-placeholder,
     input[type="email"]::-ms-input-placeholder,
     input[type="search"]::-ms-input-placeholder { /* Internet Explorer 10-11 */
-        color: whitesmoke;
+        color: rgb(77 74 70 / 0,87);
     }
 
     .datalist::-ms-input-placeholder,
@@ -244,7 +244,7 @@ input[type="search"] {
     input[type="text"]::-ms-input-placeholder,
     input[type="email"]::-ms-input-placeholder,
     input[type="search"]::-ms-input-placeholder { /* Microsoft Edge */
-        color: whitesmoke;
+        color: rgb(77 74 70 / 0,87);
     }
 
 select {

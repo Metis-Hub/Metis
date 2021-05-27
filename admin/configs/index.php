@@ -26,16 +26,6 @@ $_SESSION["safe_password_seed"] = Rand::Next();
 			<input type="submit" name="createTables" value="Erstelle Tabellen"></input>
 		</form>
 
-		<!-- Umgebung -->
-		<h2><u>Serverumgebungseinstellungen</u></h2>
-		<form action="../configs/" method="POST">
-			<table width="25%" border="0">
-				<tr><td width="40%">Domain:</td><td><input type="text" name="$domain" placeholder="z.B.: &quot;Metis.de&quot;"></input></td></tr>
-				<tr><td width="40%">Pfad zum Metisordner:</td><td><input type="text" name="$path" placeholder="z.B.: &quot;Schule/Metis/&quot;"></input></td></tr>
-				<tr><td></td><td><input type="submit" name="$submit_server_conf" value="&Uuml;bernehmen"></input></td></tr>
-			</table>
-		</form>
-
 		<!-- Zugriff Admin -->
 		<h2><u>Adminzugriff &auml;ndern</u></h2>
 		<table width="25%" border="0">

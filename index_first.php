@@ -44,4 +44,15 @@ $content = "<html lang=\"de\">
     </body>
 </html>";
 
-?>
+?><!DOCTYPE html>
+<html>
+
+<head>
+    <title>Metis - Einrichtung</title>
+<head>
+
+<body>
+    <h1>Was ist zu machen?</h1>
+</body>
+
+</html>
