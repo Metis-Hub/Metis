@@ -108,6 +108,8 @@ include("../../includes/DbAccess.php");
 	elseif(isset($_POST["createAccount"])) {
 		if(empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdConfirm"]) || empty($_POST["salutation"])) {
 			echo "Nope, da waren leere Felder";
+		} else if(strlen($_POST["pwd"]) < 8) {	// Mindestlänge beträgt 8
+			echo "Passwort zu kurz!";
 		} else {
 			$name = $_POST["name"];
 			$email = $_POST["email"];
