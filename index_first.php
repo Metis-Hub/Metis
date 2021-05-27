@@ -8,14 +8,14 @@ $content = "<html lang=\"de\">
         <?php
             session_start();
             if(isset(\$_SESSION[\"FIRST_SESSION\"])) { unlink(\"index_first.php\"); header(\"location: admin/index/\"); exit; }
-            if(!isset(\$_SESSION[\"cookies\"][\"allow_set_cookies\"])) {
+            elseif(!isset(\$_SESSION[\"cookies\"][\"allow_set_cookies\"])) {
                 \$_SESSION[\"cookie_caller\"] = \"./\";
                 \$_SESSION[\"cookie_request_get\"] = true;
                 header(\"location: cookies.php\");
             }
 
             
-            if ((!isset(\$_SESSION[\"cookies\"][\"allow_set_cookies\"])) || (\$_SESSION[\"cookies\"][\"allow_set_cookies\"] == false)) {
+            elseif ((!isset(\$_SESSION[\"cookies\"][\"allow_set_cookies\"])) || (\$_SESSION[\"cookies\"][\"allow_set_cookies\"] == false)) {
 		        echo \"<script type=\\\"text/javascript\\\"> var cookie=confirm(unescape(\\\"Diese Web-Site verwendet Cookies. Bitte stimmen Sie zu%2C um unsere Web-Site zu verwenden.\\\\n\".
                 \"Diese Cookies verbleiben bis zur n%E4chsten L%F6schung Ihrer Browserdaten auf Ihren Computer.\\\"));if(cookie){window.location=\\\"CookiesConfirm.php?confirm=true&\\\";}</script>\";
 			}
