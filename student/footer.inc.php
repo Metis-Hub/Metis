@@ -3,6 +3,7 @@
 	<div id="time"></div>
 
 	<!-- Zeitupdate -->
+	<!--
 	<script type="text/JavaScript">
 		function UpdateTime() {
 			var now=new Date();
@@ -14,6 +15,7 @@
 			setTimeout(UpdateTime, 500);
 		}
 	</script>
+	-->
 
 </body>
 
