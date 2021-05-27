@@ -103,7 +103,7 @@
 
             if (isset($_SESSION["resultVocs"][$queriedNumber])) {
 
-                echo "\t<h2>Was bedeutet " . $_SESSION["resultVocs"][$queriedNumber]["vocab"] . "?</h2>\n"; //Ausgabe der abgefragten Vokabel
+                echo "\t<h2>Was bedeutet \"" . $_SESSION["resultVocs"][$queriedNumber]["vocab"] . "\"?</h2>\n"; //Ausgabe der abgefragten Vokabel
             
                 echo "\t<form action=\"vocQuery.php\" method=\"POST\" name=\"studentSolution\">\n";
                 echo "\t\t<input type=\"text\" name=\"sol\" placeholder=\"Bitte gib die Übersetzung an\" autocomplete=\"off\" />\n";
