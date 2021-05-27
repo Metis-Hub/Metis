@@ -43,7 +43,7 @@ $content = "<html lang=\"de\">
         </p>
     </body>
 </html>";
-
+session_start();
 if(isset($_POST["sub_next"])) {
     file_put_contents("index.php", $content);
     $_SESSION["FIRST_SESSION"] = true;
