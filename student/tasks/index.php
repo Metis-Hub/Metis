@@ -45,7 +45,7 @@
 							echo "<tr> <th colspan=2> extra </th>";
 
 							foreach($day["extraTasks"] as $task) {
-								echo "<td> <a href='./viewTask.php?task=", $task["taskId"], "' target='_blank' class=", ($task["hasDone"]?"done":"undone")," task>", $task["title"], "</a></td>";
+								echo "<td> <a href='./viewTask.php?task=", $task["taskId"], "' target='_blank' class=\"", ($task["hasDone"]?"done":"undone")," task\">", $task["title"], "</a></td>";
 							}
 							echo "</tr>";
 						}

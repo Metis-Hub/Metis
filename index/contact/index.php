@@ -21,7 +21,7 @@ include("./../header2.inc.php");
 					Karl Jahn und Jakob Paridon verantwortlich. Die Kursleitung erfolgte durch Herrn Dr. Unger sowie durch Herrn Stock. <!--Die alleinige rechtliche Verantwortung sowie jedwede Haftung &uuml;bernimmt Bruno Hoffmann. ;)-->
 				</p>
 				<p>
-					Metis benutzt Kekse, welche die Funktion der Website gew&auml;hrleisten. Diese Kekse sind essentiell und m&uuml;ssen aktiviert sein. Es werden keine unn&ouml;tigen Daten gesammelt.
+					Metis benutzt Kekse (Cookies), welche die Funktion der Website gew&auml;hrleisten. Diese Cookies sind essentiell und m&uuml;ssen aktiviert sein. Es werden keine unn&ouml;tigen Daten gesammelt.
 					<br />
 					Die auf den Keksen gespeicherten Daten werden nicht an Dritte weitergegeben.
 				</p>
