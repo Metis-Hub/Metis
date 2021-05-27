@@ -13,5 +13,5 @@ Unter dem Reiter *Planeintrage* finden Sie eine Reihe von Unterreitern, in denen
 Wichtig zu wissen ist, dass zwischen Schüler- und Lehrer-Accounts unterschieden wird.
 Metis ist nun aufgesetzt und funktionstüchtig.
 
-Wir wünschen viel Erfolg sowie ein angenehmes Lehr- und Lernerlenis,
+Wir wünschen viel Erfolg sowie ein angenehmes Lehr- und Lernerlebnis,
 Ihr Metis-Team
