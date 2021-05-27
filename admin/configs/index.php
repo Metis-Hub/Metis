@@ -67,6 +67,7 @@ if(isset($_POST["\$submit_db_conf"])) {
 	$_SESSION["\$name"] = $_POST["\$name"];
 	$_SESSION["ask_for_dbAccess_change"] = true;
 	header ("location: ../configs/");
+
 } elseif (isset($_GET["change_db_access"])) {
 
 	$server = $_SESSION["\$server"];
@@ -84,23 +85,37 @@ if(isset($_POST["\$submit_db_conf"])) {
 		include "config.php";
 		SetDBAccess($server, $username, $pw, $name);
 	}
+
 } elseif (isset($_POST["createTables"])) {
+
 	$call_config = true;
 	include "./../../includes/DbAccess.php";
 	$conn -> multi_query(file_get_contents("setup.sql"));
 	$conn -> close();
 	unset ($_POST["createTables"]);
 	echo '<script>alert("Die Tabellen wurden erfolreich erstellt.");</script>';
+
 } elseif (isset($_POST["\$submit_change_user_name"]) && !empty($_POST["\$user_name"])) {
+
 	$content = "<?php\nglobal \$user_name;\n\$user_name = \"" . $_POST["\$user_name"] . 
 	"\";\nglobal \$password;\n\$password = '" . $password . "';\n?>";
 	file_put_contents ("userdata.inc.php", $content, true);
 	file_put_contents ("../.htpasswd", $_POST["\$user_name"] . ":" . $password, true);
+
 } elseif (isset($_POST["\$submit_reset"])) {
+
 	$content = "<?php\nglobal \$user_name;\n\$user_name = \"Admin" . 
 	"\";\nglobal \$password;\n\$password = '" . password_hash("admin", PASSWORD_DEFAULT) . "';\n?>";
 	file_put_contents ("userdata.inc.php", $content, true);
 	file_put_contents ("../.htpasswd", "Admin:" . password_hash("admin", PASSWORD_DEFAULT), true);
+
+} else if(isset($_SESSION["change_pw_admin"])) {
+
+	$content = "<?php\nglobal \$user_name;\n\$user_name = \"" . $user_name .
+	"\";\nglobal \$password;\n\$password = '" . $_SESSION["change_pw_admin"] . "';\n?>";
+	file_put_contents ("userdata.inc.php", $content, true);
+	file_put_contents ("../.htpasswd", $user_name . ":" . $_SESSION["change_pw_admin"], true);
+	unset($_SESSION["change_pw_admin"]);
 }
 
 

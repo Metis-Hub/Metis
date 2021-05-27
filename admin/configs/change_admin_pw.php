@@ -8,10 +8,10 @@ $text1 = "\n</head>\n<body></body>\n</html>";
 
 if (isset($_POST["pw_old"]) && isset($_SESSION["safe_password_seed"])) {
 	if(isset($_POST["pw"])) {
-		/*if(strlen($_POST["pw"]) < 8) {
+		if(strlen($_POST["pw"]) < 8) {
 			echo $text0 . "<script type=\"text/JavaScript\">alert(unescape(\"Das neue Passwort muss mindestens 8 Stellen lang sein%21\"));</script>" . $text1;
 		}
-		else*/ if(password_hash(decrypt($_SESSION["safe_password_seed"], $_POST["pw_old"]), PASSWORD_DEFAULT) == $password) {
+		else if(password_verify(decrypt($_SESSION["safe_password_seed"], $_POST["pw_old"]), $password)) {
 			$_SESSION["change_pw_admin"] = password_hash(decrypt($_SESSION["safe_password_seed"], $_POST["pw"]), PASSWORD_DEFAULT);
 			header("location: ../configs/");
 		}

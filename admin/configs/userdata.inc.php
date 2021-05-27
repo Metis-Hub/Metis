@@ -2,5 +2,5 @@
 global $user_name;
 $user_name = "Admin";
 global $password;
-$password = '$2y$10$/Sw3hjBtpM2jWT00XgTYieK7xamOqSv72MCBmFMnPP8qOhUuy4vga';
+$password = '$2y$10$0bhpuRPmRZXemuGPLoX7RuMosJ0GM.9BdBikFyY9h7O0rzSmproyO';
 ?>
