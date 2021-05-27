@@ -11,9 +11,9 @@
 ?>
 	<div class="table">
 			<?php
-			echo "<table><tr><td><a href='?date=".date("W-Y", strtotime($prev))."'> letzte Woche (".date("W", strtotime($prev)).".KW) </a></td>";
-			echo "<td>".date("W", strtotime($date)).".KW</td>";
-			echo " <td> <a href='?date=".date("W-Y", strtotime($next))."'> n&auml;chste Woche (".date("W", strtotime($next)).".KW) </a> </td></tr></table>";
+			echo "<center><table width=100%><tr><td class=\"middle\" width=33%><a href='?date=".date("W-Y", strtotime($prev))."'> letzte Woche (".date("W", strtotime($prev)).".KW) </a></td>";
+			echo "<td width=33% class=\"middle\" >".date("W", strtotime($date)).".KW</td>";
+			echo " <td width=33% class=\"middle\" > <a href='?date=".date("W-Y", strtotime($next))."'> n&auml;chste Woche (".date("W", strtotime($next)).".KW) </a> </td></tr></table></center>";
 			
 			$week = getWeek($date, $conn);
 			$conn -> close();
@@ -32,13 +32,13 @@
 							echo "<tr> <td> $index </td> <td> <a href='./viewCourse.php?course=", $course["courseId"], "'  target='_blank' class=course", !empty($day["isSubstitute"])?", substitute":"", ">", $course["subject"], "</a> </td>";
 							
 							foreach($course["tasks"] as $task) {
-								echo "<td> <a href='./viewTask.php?task=", $task["taskId"], "' target='_blank' class=", ($task["hasDone"]?"done":"undone")," task>", $task["title"], "</a></td>";
+								echo "<td> <a href='./viewTask.php?task=", $task["taskId"], "' target='_blank' class=\"", ($task["hasDone"]?"done":"undone")," task\">", $task["title"], "</a></td>";
 							}
 							echo "</tr>";
 						# sonst -> Freistunde
 						} else {
 							
-							echo "<tr> <td>", $index, "</td> <td> Frei </td> </tr>";
+							echo "<tr> <td>", $index, "</td> <td> <a class=\"course free\">Frei</a></td> </tr>";
 						}
 					}
 					if(!empty($day["extraTasks"])) {
