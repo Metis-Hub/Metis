@@ -7,7 +7,7 @@ $content = "<html lang=\"de\">
         </title>
         <?php
             session_start();
-            if(isset(\$_SESSION[\"FIRST_SESSION\"])) header(\"location: admin/index/\")
+            if(isset(\$_SESSION[\"FIRST_SESSION\"])) { header(\"location: admin/index/\"); exit; }
             if(!isset(\$_SESSION[\"cookies\"][\"allow_set_cookies\"])) {
                 \$_SESSION[\"cookie_caller\"] = \"./\";
                 \$_SESSION[\"cookie_request_get\"] = true;
