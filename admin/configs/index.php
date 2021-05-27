@@ -24,6 +24,7 @@ $_SESSION["safe_password_seed"] = Rand::Next();
 		<!-- Laden der Datenbankstruktur -->
 		<form action="../configs/" method="POST">
 			<input type="submit" name="createTables" value="Erstelle Tabellen"></input>
+			<input type="submit" name="addData" value="Testdatens&auml;tze hinzuf&uuml;gen"></input>
 		</form>
 
 		<!-- Zugriff Admin -->
@@ -94,6 +95,14 @@ if(isset($_POST["\$submit_db_conf"])) {
 	$conn -> close();
 	unset ($_POST["createTables"]);
 	echo '<script>alert("Die Tabellen wurden erfolreich erstellt.");</script>';
+
+}elseif(isset($_POST["addData"])) {
+	$call_config = true;
+	include "./../../includes/DbAccess.php";
+	$conn -> multi_query(file_get_contents("defaultDataset.sql"));
+	$conn -> close();
+	unset ($_POST["addData"]);
+	echo '<script>alert(unescape("Die Datens%E4tze wurden eingef%FCgt"));</script>';
 
 } elseif (isset($_POST["\$submit_change_user_name"]) && !empty($_POST["\$user_name"])) {
 

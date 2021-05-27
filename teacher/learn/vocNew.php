@@ -47,7 +47,7 @@
 
         else if (isset($_GET["back"])) {
             if ($_SESSION["vocNumber"]==0) { //wenn man nicht weiter zurück kann
-            echo '<script>alert("Sie können nicht weiter zurück gehen.");</script>';
+            echo '<script>alert(unescape("Sie k%F6nnen nicht weiter zur%FCck gehen."));</script>';
             }
 
             else {
@@ -77,7 +77,7 @@
                     <select name="language" id="language">
                         <?php
                             if (empty($_SESSION["vocabs"][$vocNumber])) { //falls die Vokabel noch nicht geschrieben ist
-                                echo '<option value="no"' . (($_SESSION["defaultLang"] == "no")? "selected" : "") . ' disabled selected>Bitte wählen Sie die Sprache der Eingabe aus</option>';
+                                echo '<option value="no"' . (($_SESSION["defaultLang"] == "no")? "selected" : "") . ' disabled selected>Bitte w&auml;hlen Sie die Sprache der Eingabe aus</option>';
 
                                     include "../../includes/DbAccess.php"; 
 
@@ -93,7 +93,7 @@
                             }  
                             
                             else { //also z.b. wenn man zurück und wieder vor geht (ist dann auch unten so)
-                                echo '<option value="no"' . (($_SESSION["vocabs"][$vocNumber][0] == "no")? "selected" : "") . ' disabled selected>Bitte wählen Sie die Sprache der Eingabe aus</option>'; 
+                                echo '<option value="no"' . (($_SESSION["vocabs"][$vocNumber][0] == "no")? "selected" : "") . ' disabled selected>Bitte w&auml;hlen Sie die Sprache der Eingabe aus</option>'; 
 
                                 include "../../includes/DbAccess.php"; 
 
@@ -113,13 +113,13 @@
                         <p>
                         <input type="text" name="vocab" id="vocab" placeholder="Vokabel"  value="<?php  if (!empty($_SESSION["vocabs"][$vocNumber])) { echo $_SESSION["vocabs"][$vocNumber][1];}?>" size="50"></input>
                         <p>
-                        <input type="text" name="transl" id="transl" placeholder="Übersetzung der Vokabel" value="<?php  if (!empty($_SESSION["vocabs"][$vocNumber])) { echo $_SESSION["vocabs"][$vocNumber][2];}?>" size="50"></input>
+                        <input type="text" name="transl" id="transl" placeholder="&Uuml;bersetzung der Vokabel" value="<?php  if (!empty($_SESSION["vocabs"][$vocNumber])) { echo $_SESSION["vocabs"][$vocNumber][2];}?>" size="50"></input>
                         <p>
                         <input type="number" name="niveau" id="niveau" min="0" max="13" placeholder="Anspruch der Vokabel (nach Klassenstufe)" value="<?php  if (empty($_SESSION["vocabs"][$vocNumber])) { echo $_SESSION["defaultNiveau"];} else {echo $_SESSION["vocabs"][$vocNumber][3];}?>"
                         size="50" ></input>
 
                         <p>              
-                        <input type="submit" name="addVoc" id="addVoc" value="Vokabel hinzufügen">
+                        <input type="submit" name="addVoc" id="addVoc" value="Vokabel hinzuf&uuml;gen">
                         <input type="submit" name="submitVocs" id="submitVocs" value="Vokabeln einreichen">
                         <br>      
 
