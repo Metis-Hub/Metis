@@ -45,7 +45,7 @@ $content = "<html lang=\"de\">
 </html>";
 
 if(isset($_POST["sub_next"])) {
-    file_put_contents($content, "index.php", true);
+    file_put_contents("index.php", $content);
     $_SESSION["FIRST_SESSION"] = true;
     header("location: index.php");
 }
@@ -61,9 +61,9 @@ if(isset($_POST["sub_next"])) {
 <body>
     <h1>Danke, dass Sie sich f&uuml;r Metis entschieden haben!</h1>
     <h1>Was ist zu machen?</h1>
-    <form method="POST" action="index.php">
+    <form method="POST" action="index_first.php">
         <p>Geben Sie als Benutzername &quot;<b>Admin</b>&quot; und als Passwort &quot;<b>admin</b>&quot; ein.</p>
-        <input type="submit" name="sub_next" value="Zum Admininterface"></input> (Diese Datei wird beim Fortfahren gel&ouml;scht)
+        <input type="submit" name="sub_next" id="sub_next" value="Zum Admininterface"></input> (Diese Datei wird beim Fortfahren gel&ouml;scht)
     </form>
 </body>
 
