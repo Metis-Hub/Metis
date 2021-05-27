@@ -77,6 +77,10 @@ nav {
     width: 95%;
 }
 
+td.middle {
+    text-align: center;
+    vertical-align: middle;
+}
 /* Navbar links */
 nav a {
     float: left;
@@ -227,4 +231,45 @@ input[type="search"] {
 
 select {
     cursor: pointer;
+}
+
+
+
+a.course {
+    background-color: #2196F3; /* Green */
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+a.free {
+    background-color: #404040; /* Green */
+}
+a.substitude {
+    background-color: #ca5555; /* Green */
+}
+
+a.task {
+    border-radius: 10px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+a.done {
+    background-color: #069f1c; /* Green */
+}
+
+a.undone {
+    background-color: #d70202; /* Green */
 }
