@@ -17,18 +17,18 @@ CREATE TABLE IF NOT EXISTS `teacher` (
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`grade` (
+CREATE TABLE IF NOT EXISTS `grade` (
     `classId` INT NOT NULL AUTO_INCREMENT,
     `className` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`classId`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`studentsClass` (
+CREATE TABLE IF NOT EXISTS `studentsClass` (
     `studentId` INT NOT NULL,
     `classId` INT NOT NULL
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`task` (
+CREATE TABLE IF NOT EXISTS `task` (
   `taskId` INT NOT NULL AUTO_INCREMENT,
   `courseId` INT NOT NULL,
   `title` VARCHAR(45) NOT NULL,
@@ -38,19 +38,19 @@ CREATE TABLE IF NOT EXISTS `Metis`.`task` (
   PRIMARY KEY (`taskId`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`student_has_task` (
+CREATE TABLE IF NOT EXISTS `student_has_task` (
   `studentId` INT NOT NULL,
   `taskId` INT NOT NULL,
   `hasDone` TINYINT NULL)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`day` (
+CREATE TABLE IF NOT EXISTS `day` (
   `idDay` INT NOT NULL AUTO_INCREMENT,
   `dayIndex` TINYINT NOT NULL,
   PRIMARY KEY (`idDay`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`day_has_class` (
+CREATE TABLE IF NOT EXISTS `day_has_class` (
   `dayId` INT NOT NULL,
   `classId` INT NOT NULL,
   `priority` TINYINT DEFAULT 0,
@@ -58,28 +58,28 @@ CREATE TABLE IF NOT EXISTS `Metis`.`day_has_class` (
   `validTo` DATE NULL)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`subject` (
+CREATE TABLE IF NOT EXISTS `subject` (
   `subjectId` INT NOT NULL AUTO_INCREMENT,
   `short` VARCHAR(4) NULL,
   `long` VARCHAR(45) NULL,
   PRIMARY KEY (`subjectId`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`course` (
+CREATE TABLE IF NOT EXISTS `course` (
   `courseId` INT NOT NULL AUTO_INCREMENT,
   `teacherId` INT NOT NULL,
   `subjectId` INT NOT NULL,
   PRIMARY KEY (`courseId`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`day_has_course` (
+CREATE TABLE IF NOT EXISTS `day_has_course` (
   `courseId` INT NOT NULL,
   `dayId` INT NOT NULL,
   `courseIndex` TINYINT NOT NULL,
   `isSubstitute` TINYINT NULL DEFAULT 0)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`quizzes` (
+CREATE TABLE IF NOT EXISTS `quizzes` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `subjectId` int(2) NOT NULL,
@@ -89,21 +89,21 @@ CREATE TABLE IF NOT EXISTS `Metis`.`quizzes` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`quiztags` (
+CREATE TABLE IF NOT EXISTS `quiztags` (
   `tagId` int(5) NOT NULL AUTO_INCREMENT,
   `quizId` varchar(3) NOT NULL,
   `tag` varchar(64) NOT NULL,
   PRIMARY KEY (`tagId`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`questions` (
+CREATE TABLE IF NOT EXISTS `questions` (
   `questionId` int(5) NOT NULL AUTO_INCREMENT,
   `quizId` int(5) NOT NULL,
   `question` varchar(255) NOT NULL,
   PRIMARY KEY (`questionId`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`answers` (
+CREATE TABLE IF NOT EXISTS `answers` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `questionId` int(5) NOT NULL,
   `answer` varchar(255) NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `Metis`.`answers` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`vocabs` (
+CREATE TABLE IF NOT EXISTS `vocabs` (
   `vId` int(11) NOT NULL AUTO_INCREMENT,
   `lang` int(4) NOT NULL,
   `vocab` varchar(255) NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `Metis`.`vocabs` (
   PRIMARY KEY (`vId`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Metis`.`langs` (
+CREATE TABLE IF NOT EXISTS `langs` (
   `langId` int(4) NOT NULL AUTO_INCREMENT,
   `langShort` varchar(8) NOT NULL,
   `lang` varchar(32) NOT NULL,
