@@ -2,7 +2,7 @@
 Metis ist ein Stunden- Aufgaben- und Lernplaner, der im Rahmen des [SRZ Info Kurses II](https://srz.tu-dresden.de/index.php?id=503) als Jahresarbeit entstanden ist.
 
 # Anforderungen
-Metis ist ein in PHP geschriebene Website, welche mit einer Datenbank zu verknüpfen ist. Um Metis zu verwenden wird ein Webserver (getestet Apache2) mit einer Installation von PHP sowie ein SQL-Datenbankserver benötigt.
+Metis ist ein in PHP geschriebene Website, welche mit einer Datenbank zu verknüpfen ist. Um Metis zu verwenden wird ein Webserver (getestet NGINX **Wichtig: Apache geht nicht!**) mit einer Installation von PHP sowie ein SQL-Datenbankserver benötigt.
 
 # Einrichtung
 Beim ersten Aufrufen der Website sollte der werte Nutzer direkt zum Administations-Interface weitergeleitet werden. Mit dem Standart-Benutzernamen *Admin* sowie dem Standart-Passwort *admin* ist sich in das Interface einzuloggen, um die weiteren Systemdetails einzutragen.
